@@ -1,0 +1,338 @@
+/**
+ * DHL Corporate Identity Theme
+ * Official DHL colors and design system
+ */
+
+:root {
+  /* DHL Primary Colors */
+  --dhl-red: #D40511;
+  --dhl-yellow: #FFCC00;
+  
+  /* DHL Grayscale */
+  --dhl-black: #000000;
+  --dhl-dark-gray: #333333;
+  --dhl-medium-gray: #666666;
+  --dhl-light-gray: #CCCCCC;
+  --dhl-white: #FFFFFF;
+  
+  /* DHL Accent Colors (Digital) */
+  --dhl-green: #00A651;
+  --dhl-orange: #FF6600;
+  --dhl-blue: #0066CC;
+  
+  /* Typography */
+  --font-family-base: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-size-base: 16px;
+  --line-height-base: 1.5;
+  --line-height-heading: 1.2;
+  
+  /* Spacing (8px grid) */
+  --spacing-unit: 8px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  
+  /* Border Radius */
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  
+  /* Transitions */
+  --transition-base: 150ms ease-in-out;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Base Styles */
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--dhl-dark-gray);
+  background-color: var(--dhl-white);
+}
+
+/* DHL Buttons */
+.btn-dhl-primary {
+  background-color: var(--dhl-red);
+  color: var(--dhl-white);
+  padding: 12px 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  border-radius: var(--radius-none);
+  transition: var(--transition-base);
+  cursor: pointer;
+}
+
+.btn-dhl-primary:hover {
+  background-color: rgba(212, 5, 17, 0.9);
+}
+
+.btn-dhl-secondary {
+  background-color: var(--dhl-yellow);
+  color: var(--dhl-black);
+  padding: 12px 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  border-radius: var(--radius-none);
+  transition: var(--transition-base);
+  cursor: pointer;
+}
+
+.btn-dhl-secondary:hover {
+  background-color: rgba(255, 204, 0, 0.9);
+}
+
+/* DHL Header */
+.dhl-header {
+  background-color: var(--dhl-red);
+  color: var(--dhl-white);
+  padding: var(--spacing-md) var(--spacing-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.dhl-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+/* DHL Navigation */
+.dhl-nav {
+  background-color: var(--dhl-red);
+  color: var(--dhl-white);
+}
+
+.dhl-nav a {
+  color: var(--dhl-white);
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: var(--spacing-md) var(--spacing-lg);
+  transition: var(--transition-base);
+}
+
+.dhl-nav a:hover {
+  color: var(--dhl-yellow);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* DHL Cards */
+.dhl-card {
+  background-color: var(--dhl-white);
+  border-left: 4px solid var(--dhl-red);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-lg);
+  transition: var(--transition-base);
+}
+
+.dhl-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.dhl-card-title {
+  color: var(--dhl-red);
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* DHL Badges */
+.dhl-badge {
+  display: inline-block;
+  background-color: var(--dhl-yellow);
+  color: var(--dhl-black);
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 9999px;
+}
+
+.dhl-badge-red {
+  background-color: var(--dhl-red);
+  color: var(--dhl-white);
+}
+
+.dhl-badge-green {
+  background-color: var(--dhl-green);
+  color: var(--dhl-white);
+}
+
+/* DHL Table */
+.dhl-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dhl-table thead {
+  background-color: var(--dhl-red);
+  color: var(--dhl-white);
+}
+
+.dhl-table th {
+  padding: var(--spacing-md);
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.dhl-table td {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--dhl-light-gray);
+}
+
+.dhl-table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* DHL Alerts */
+.dhl-alert-success {
+  background-color: var(--dhl-green);
+  color: var(--dhl-white);
+  padding: var(--spacing-md);
+  border-left: 4px solid var(--dhl-yellow);
+  border-radius: var(--radius-sm);
+}
+
+.dhl-alert-error {
+  background-color: var(--dhl-red);
+  color: var(--dhl-white);
+  padding: var(--spacing-md);
+  border-left: 4px solid var(--dhl-yellow);
+  border-radius: var(--radius-sm);
+}
+
+.dhl-alert-warning {
+  background-color: var(--dhl-orange);
+  color: var(--dhl-white);
+  padding: var(--spacing-md);
+  border-left: 4px solid var(--dhl-yellow);
+  border-radius: var(--radius-sm);
+}
+
+.dhl-alert-info {
+  background-color: var(--dhl-blue);
+  color: var(--dhl-white);
+  padding: var(--spacing-md);
+  border-left: 4px solid var(--dhl-yellow);
+  border-radius: var(--radius-sm);
+}
+
+/* DHL Form Elements */
+.dhl-input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 2px solid var(--dhl-light-gray);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  transition: var(--transition-base);
+}
+
+.dhl-input:focus {
+  outline: none;
+  border-color: var(--dhl-red);
+  box-shadow: 0 0 0 3px rgba(212, 5, 17, 0.1);
+}
+
+.dhl-label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 600;
+  color: var(--dhl-dark-gray);
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+/* DHL Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-heading);
+  font-weight: 700;
+  color: var(--dhl-black);
+}
+
+h1 {
+  font-size: 48px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+h2 {
+  font-size: 36px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+/* Utility Classes */
+.dhl-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dhl-bold {
+  font-weight: 700;
+}
+
+.dhl-text-red {
+  color: var(--dhl-red);
+}
+
+.dhl-text-yellow {
+  color: var(--dhl-yellow);
+}
+
+.dhl-bg-red {
+  background-color: var(--dhl-red);
+}
+
+.dhl-bg-yellow {
+  background-color: var(--dhl-yellow);
+}
+
+.dhl-border-red {
+  border-color: var(--dhl-red);
+}
+
+.dhl-border-yellow {
+  border-color: var(--dhl-yellow);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dhl-header h1 {
+    font-size: 20px;
+  }
+  
+  h1 {
+    font-size: 32px;
+  }
+  
+  h2 {
+    font-size: 24px;
+  }
+}
