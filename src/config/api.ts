@@ -1,9 +1,9 @@
 // API Configuration
-// Use Railway backend in production, localhost in development
-export const API_BASE_URL = import.meta.env.VITE_API_URL || 
-  (import.meta.env.MODE === 'production' 
-    ? 'https://lead-hunter-v50-production.up.railway.app/api'
-    : 'http://localhost:3001/api');
+// Always use Railway backend in production (Vercel deployment)
+const isProduction = window.location.hostname !== 'localhost';
+export const API_BASE_URL = isProduction 
+  ? 'https://lead-hunter-v50-production.up.railway.app/api'
+  : 'http://localhost:3001/api';
 
 export const getApiUrl = (endpoint: string) => {
   // Remove leading slash if present
