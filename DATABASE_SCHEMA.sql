@@ -1,4 +1,4 @@
--- DHL Lead Hunter - Komplett Database Schema
+-- Lead Hunter v5.0 - Komplett Database Schema
 -- Multi-user system med roller, områden, postnummer, terminal chefer och centraliserad data
 -- Version: 2.0 - Allt i en fil
 
@@ -126,6 +126,46 @@ CREATE INDEX idx_api_configs_type ON api_configurations(service_type);
 CREATE INDEX idx_api_configs_enabled ON api_configurations(is_enabled);
 
 COMMENT ON TABLE api_configurations IS 'Centraliserad konfiguration för alla externa API:er (LLM, News, Tech, etc.)';
+
+-- ============================================
+-- TERMINALER (MÅSTE SKAPAS FÖRE LEADS)
+-- ============================================
+
+-- Terminaler
+CREATE TABLE terminals (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(255) NOT NULL,
+    code VARCHAR(50) UNIQUE NOT NULL,
+    address TEXT,
+    city VARCHAR(100),
+    postal_code VARCHAR(10),
+    region VARCHAR(100),
+    manager_user_id UUID REFERENCES users(id),
+    status VARCHAR(50) DEFAULT 'active' CHECK (status IN ('active', 'inactive')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_terminals_code ON terminals(code);
+CREATE INDEX idx_terminals_manager ON terminals(manager_user_id);
+
+COMMENT ON TABLE terminals IS 'DHL-terminaler i Sverige';
+
+-- Terminal-postnummer mapping
+CREATE TABLE terminal_postal_codes (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    terminal_id UUID REFERENCES terminals(id) ON DELETE CASCADE,
+    postal_code VARCHAR(10) NOT NULL,
+    city VARCHAR(100),
+    priority INTEGER DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(terminal_id, postal_code)
+);
+
+CREATE INDEX idx_terminal_postal_codes_terminal ON terminal_postal_codes(terminal_id);
+CREATE INDEX idx_terminal_postal_codes_postal ON terminal_postal_codes(postal_code);
+
+COMMENT ON TABLE terminal_postal_codes IS 'Postnummer som tillhör varje terminal';
 
 -- ============================================
 -- LEADS & FÖRETAGSDATA
@@ -610,92 +650,17 @@ CREATE INDEX idx_shipping_detections_analysis ON shipping_provider_detections(we
 CREATE INDEX idx_shipping_detections_provider ON shipping_provider_detections(provider_name);
 CREATE INDEX idx_shipping_detections_type ON shipping_provider_detections(provider_type);
 
--- Competitive Intelligence (Konkurrent-analys)
-CREATE TABLE competitive_intelligence (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    lead_id UUID REFERENCES leads(id) ON DELETE CASCADE,
-    
-    -- DHL Status
-    is_dhl_customer BOOLEAN DEFAULT false,
-    dhl_services JSONB, -- Vilka DHL-tjänster de använder
-    dhl_checkout_position INTEGER,
-    
-    -- Konkurrenter
-    primary_competitor VARCHAR(100),
-    all_competitors JSONB,
-    competitor_count INTEGER DEFAULT 0,
-    
-    -- Opportunity Score
-    opportunity_score INTEGER, -- 0-100
-    opportunity_reason TEXT,
-    
-    -- Rekommendation
-    recommended_action VARCHAR(50), -- 'contact', 'monitor', 'ignore'
-    sales_pitch TEXT,
-    
-    analyzed_at TIMESTAMP DEFAULT NOW(),
-    updated_at TIMESTAMP DEFAULT NOW()
-);
-
-CREATE INDEX idx_competitive_intel_lead ON competitive_intelligence(lead_id);
-CREATE INDEX idx_competitive_intel_dhl ON competitive_intelligence(is_dhl_customer);
-CREATE INDEX idx_competitive_intel_score ON competitive_intelligence(opportunity_score);
-
--- ============================================
--- TERMINALER (NYA TABELLER)
--- ============================================
-
--- Terminaler
-CREATE TABLE terminals (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR(255) NOT NULL,
-    code VARCHAR(50) UNIQUE NOT NULL,
-    address TEXT,
-    city VARCHAR(100),
-    postal_code VARCHAR(10),
-    region VARCHAR(100),
-    manager_user_id UUID REFERENCES users(id),
-    status VARCHAR(50) DEFAULT 'active' CHECK (status IN ('active', 'inactive')),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE INDEX idx_terminals_code ON terminals(code);
-CREATE INDEX idx_terminals_manager ON terminals(manager_user_id);
-
-COMMENT ON TABLE terminals IS 'DHL-terminaler i Sverige';
-
--- Terminal-postnummer mapping
-CREATE TABLE terminal_postal_codes (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    terminal_id UUID REFERENCES terminals(id) ON DELETE CASCADE,
-    postal_code VARCHAR(10) NOT NULL,
-    city VARCHAR(100),
-    priority INTEGER DEFAULT 1,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE(terminal_id, postal_code)
-);
-
-CREATE INDEX idx_terminal_postal_codes_terminal ON terminal_postal_codes(terminal_id);
-CREATE INDEX idx_terminal_postal_codes_postal ON terminal_postal_codes(postal_code);
-
-COMMENT ON TABLE terminal_postal_codes IS 'Postnummer som tillhör varje terminal';
-
--- Lägg till foreign key för leads
-ALTER TABLE leads ADD CONSTRAINT fk_leads_terminal 
-    FOREIGN KEY (assigned_terminal_id) REFERENCES terminals(id);
-
 -- ============================================
 -- INITIAL DATA
 -- ============================================
 
 -- Admin-användare (lösenord: Admin123! - ÄNDRA DETTA!)
 INSERT INTO users (email, password_hash, full_name, role, status) VALUES
-('admin@dhl.se', '$2b$10$YourHashedPasswordHere', 'System Administrator', 'admin', 'active');
+('admin@leadhunter.com', '$2b$10$YourHashedPasswordHere', 'System Administrator', 'admin', 'active');
 
 -- System-inställningar
 INSERT INTO system_settings (setting_key, setting_value, setting_type, description) VALUES
-('app_name', 'DHL Lead Hunter', 'string', 'Applikationens namn'),
+('app_name', 'Lead Hunter v5.0', 'string', 'Applikationens namn'),
 ('max_leads_per_search', '50', 'number', 'Max antal leads per sökning'),
 ('cache_ttl_days', '30', 'number', 'Antal dagar att behålla cache'),
 ('enable_auto_backup', 'true', 'boolean', 'Automatiska backups'),
@@ -741,19 +706,19 @@ INSERT INTO terminals (name, code, city, region, status) VALUES
 
 -- Postnummer för Stockholm terminal (100-139)
 INSERT INTO terminal_postal_codes (terminal_id, postal_code, city, priority) 
-SELECT id, postal_code, 'Stockholm', 1 FROM terminals, 
+SELECT terminals.id, postal_data.postal_code, 'Stockholm', 1 FROM terminals, 
 (SELECT generate_series(100, 139)::text AS postal_code) AS postal_data
 WHERE terminals.code = 'STO';
 
 -- Postnummer för Göteborg terminal (400-439)
 INSERT INTO terminal_postal_codes (terminal_id, postal_code, city, priority)
-SELECT id, postal_code, 'Göteborg', 1 FROM terminals,
+SELECT terminals.id, postal_data.postal_code, 'Göteborg', 1 FROM terminals,
 (SELECT generate_series(400, 439)::text AS postal_code) AS postal_data
 WHERE terminals.code = 'GOT';
 
 -- Postnummer för Malmö terminal (200-239)
 INSERT INTO terminal_postal_codes (terminal_id, postal_code, city, priority)
-SELECT id, postal_code, 'Malmö', 1 FROM terminals,
+SELECT terminals.id, postal_data.postal_code, 'Malmö', 1 FROM terminals,
 (SELECT generate_series(200, 239)::text AS postal_code) AS postal_data
 WHERE terminals.code = 'MAL';
 

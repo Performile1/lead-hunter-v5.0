@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../src/contexts/AuthContext';
 import { SuperAdminDashboard } from '../src/components/admin/SuperAdminDashboard';
 import { SuperAdminHeader } from '../src/components/admin/SuperAdminHeader';
 import { TenantDashboard } from '../src/components/admin/TenantDashboard';

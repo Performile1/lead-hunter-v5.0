@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { ShieldBan, Target, RotateCcw, Settings2, Database, Save, Settings, ChevronDown, Terminal, Activity, FolderOpen, LogOut, User, Clock } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../src/contexts/AuthContext';
 import { NotificationCenter } from '../src/components/notifications/NotificationCenter';
 
 interface HeaderProps {

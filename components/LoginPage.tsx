@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../src/contexts/AuthContext';
 import { Lock, Mail } from 'lucide-react';
 
 // API Configuration - inline to ensure it works in production
