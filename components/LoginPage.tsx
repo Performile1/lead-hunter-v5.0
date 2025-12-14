@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Lock, Mail } from 'lucide-react';
-import { API_BASE_URL } from '../src/config/api';
+
+// API Configuration - inline to ensure it works in production
+const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
+const API_BASE_URL = isProduction 
+  ? 'https://lead-hunter-v50-production.up.railway.app/api'
+  : 'http://localhost:3001/api';
 
 interface TenantInfo {
   id: string;
