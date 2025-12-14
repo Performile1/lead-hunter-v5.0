@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Lock, Mail } from 'lucide-react';
+import { API_BASE_URL } from '../src/config/api';
 
 interface TenantInfo {
   id: string;
@@ -29,7 +30,7 @@ export const LoginPage: React.FC = () => {
     
     if (tenantParam) {
       // Hämta tenant info från backend baserat på subdomain-parameter
-      fetch(`http://localhost:3001/api/tenant-auth/info?subdomain=${tenantParam}`)
+      fetch(`${API_BASE_URL}/tenant-auth/info?subdomain=${tenantParam}`)
         .then(res => res.json())
         .then(data => {
           if (data.tenant) {
@@ -60,7 +61,7 @@ export const LoginPage: React.FC = () => {
     const subdomain = parts[0];
     
     // Hämta tenant info från backend
-    fetch(`http://localhost:3001/api/tenant-auth/info?subdomain=${subdomain}`)
+    fetch(`${API_BASE_URL}/tenant-auth/info?subdomain=${subdomain}`)
       .then(res => res.json())
       .then(data => {
         if (data.tenant) {
