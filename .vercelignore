@@ -1,0 +1,6 @@
+server/
+railway.json
+fix-api-urls.ps1
+node_modules/
+.env
+.env.local
