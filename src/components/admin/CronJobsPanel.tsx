@@ -53,7 +53,7 @@ export const CronJobsPanel: React.FC<CronJobsPanelProps> = ({ userRole = 'admin'
     }
     
     try {
-      const response = await fetch('http://localhost:3001/api/cronjobs');
+      const response = await fetch('${API_BASE_URL}/cronjobs');
       if (!response.ok) {
         if (response.status === 404 || response.status === 500) {
           console.warn('Cronjobs API not available yet. Showing empty list.');
@@ -75,7 +75,7 @@ export const CronJobsPanel: React.FC<CronJobsPanelProps> = ({ userRole = 'admin'
 
   const toggleJob = async (id: string, enabled: boolean) => {
     try {
-      await fetch(`http://localhost:3001/api/cronjobs/${id}/toggle`, {
+      await fetch(`${API_BASE_URL}/cronjobs/${id}/toggle`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ enabled })
@@ -88,7 +88,7 @@ export const CronJobsPanel: React.FC<CronJobsPanelProps> = ({ userRole = 'admin'
 
   const runJob = async (id: string) => {
     try {
-      await fetch(`http://localhost:3001/api/cronjobs/${id}/run`, { method: 'POST' });
+      await fetch(`${API_BASE_URL}/cronjobs/${id}/run`, { method: 'POST' });
       fetchJobs();
     } catch (error) {
       console.error('Failed to run job:', error);
@@ -99,7 +99,7 @@ export const CronJobsPanel: React.FC<CronJobsPanelProps> = ({ userRole = 'admin'
     if (!confirm('Är du säker på att du vill ta bort detta cronjob?')) return;
     
     try {
-      await fetch(`http://localhost:3001/api/cronjobs/${id}`, { method: 'DELETE' });
+      await fetch(`${API_BASE_URL}/cronjobs/${id}`, { method: 'DELETE' });
       fetchJobs();
     } catch (error) {
       console.error('Failed to delete job:', error);

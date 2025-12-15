@@ -34,7 +34,7 @@ export const SuperAdminCustomers: React.FC = () => {
       if (filterTenant) params.append('tenant_id', filterTenant);
       if (filterDHL !== 'all') params.append('uses_dhl', filterDHL === 'dhl' ? 'true' : 'false');
 
-      const response = await fetch(`http://localhost:3001/api/admin/customers?${params}`, {
+      const response = await fetch(`${API_BASE_URL}/admin/customers?${params}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 

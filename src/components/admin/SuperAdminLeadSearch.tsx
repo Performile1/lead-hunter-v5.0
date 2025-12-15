@@ -32,7 +32,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('dhl_token');
-      const response = await fetch('http://localhost:3001/api/admin/leads', {
+      const response = await fetch('${API_BASE_URL}/admin/leads', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -56,7 +56,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
       if (filterTenant) params.append('tenant_id', filterTenant);
       if (showAnonymizedOnly) params.append('anonymized', 'true');
 
-      const response = await fetch(`http://localhost:3001/api/admin/leads?${params}`, {
+      const response = await fetch(`${API_BASE_URL}/admin/leads?${params}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -76,7 +76,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
 
     try {
       const token = localStorage.getItem('dhl_token');
-      const response = await fetch(`http://localhost:3001/api/admin/leads/${leadId}/anonymize`, {
+      const response = await fetch(`${API_BASE_URL}/admin/leads/${leadId}/anonymize`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -96,7 +96,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
     try {
       setAnalyzing(leadId);
       const token = localStorage.getItem('dhl_token');
-      const response = await fetch(`http://localhost:3001/api/admin/leads/${leadId}/analyze`, {
+      const response = await fetch(`${API_BASE_URL}/admin/leads/${leadId}/analyze`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });

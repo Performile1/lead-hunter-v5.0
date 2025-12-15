@@ -1,8 +1,8 @@
 // API Configuration
-// Always use Railway backend in production (Vercel deployment)
+// Use Vercel serverless functions (same domain as frontend)
 const isProduction = window.location.hostname !== 'localhost';
 export const API_BASE_URL = isProduction 
-  ? 'https://lead-hunter-v50-production.up.railway.app/api'
+  ? '/api'  // Relative URL - uses same Vercel domain
   : 'http://localhost:3001/api';
 
 export const getApiUrl = (endpoint: string) => {

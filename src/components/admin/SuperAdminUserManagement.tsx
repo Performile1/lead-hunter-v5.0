@@ -44,10 +44,10 @@ export const SuperAdminUserManagement: React.FC = () => {
       const token = localStorage.getItem('dhl_token');
       
       const [usersRes, tenantsRes] = await Promise.all([
-        fetch('http://localhost:3001/api/users', {
+        fetch('${API_BASE_URL}/users', {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch('http://localhost:3001/api/tenants', {
+        fetch('${API_BASE_URL}/tenants', {
           headers: { 'Authorization': `Bearer ${token}` }
         })
       ]);
@@ -99,8 +99,8 @@ export const SuperAdminUserManagement: React.FC = () => {
     try {
       const token = localStorage.getItem('dhl_token');
       const url = editingUser
-        ? `http://localhost:3001/api/users/${editingUser.id}`
-        : 'http://localhost:3001/api/users';
+        ? `${API_BASE_URL}/users/${editingUser.id}`
+        : '${API_BASE_URL}/users';
       
       const body = editingUser
         ? { ...formData, password: formData.password || undefined }
@@ -134,7 +134,7 @@ export const SuperAdminUserManagement: React.FC = () => {
 
     try {
       const token = localStorage.getItem('dhl_token');
-      const response = await fetch(`http://localhost:3001/api/users/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/users/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

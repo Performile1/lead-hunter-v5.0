@@ -32,7 +32,7 @@ export const TenantUserManagement: React.FC = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('dhl_token');
-      const response = await fetch('http://localhost:3001/api/users', {
+      const response = await fetch('${API_BASE_URL}/users', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -79,8 +79,8 @@ export const TenantUserManagement: React.FC = () => {
     try {
       const token = localStorage.getItem('dhl_token');
       const url = editingUser 
-        ? `http://localhost:3001/api/users/${editingUser.id}`
-        : 'http://localhost:3001/api/users';
+        ? `${API_BASE_URL}/users/${editingUser.id}`
+        : '${API_BASE_URL}/users';
       
       const method = editingUser ? 'PUT' : 'POST';
       
@@ -108,7 +108,7 @@ export const TenantUserManagement: React.FC = () => {
 
     try {
       const token = localStorage.getItem('dhl_token');
-      const response = await fetch(`http://localhost:3001/api/users/${userId}`, {
+      const response = await fetch(`${API_BASE_URL}/users/${userId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

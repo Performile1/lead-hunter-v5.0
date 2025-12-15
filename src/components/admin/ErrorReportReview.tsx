@@ -34,7 +34,7 @@ export const ErrorReportReview: React.FC = () => {
       const token = localStorage.getItem('dhl_token');
       const params = filter !== 'all' ? `?status=${filter}` : '';
       
-      const response = await fetch(`http://localhost:3001/api/admin/error-reports${params}`, {
+      const response = await fetch(`${API_BASE_URL}/admin/error-reports${params}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -52,7 +52,7 @@ export const ErrorReportReview: React.FC = () => {
   const handleStatusUpdate = async (reportId: string, status: 'approved' | 'rejected') => {
     try {
       const token = localStorage.getItem('dhl_token');
-      const response = await fetch(`http://localhost:3001/api/admin/error-reports/${reportId}/status`, {
+      const response = await fetch(`${API_BASE_URL}/admin/error-reports/${reportId}/status`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -77,7 +77,7 @@ export const ErrorReportReview: React.FC = () => {
 
     try {
       const token = localStorage.getItem('dhl_token');
-      const response = await fetch(`http://localhost:3001/api/admin/error-reports/${reportId}/correct`, {
+      const response = await fetch(`${API_BASE_URL}/admin/error-reports/${reportId}/correct`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

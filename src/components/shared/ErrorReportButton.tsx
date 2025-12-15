@@ -27,7 +27,7 @@ export const ErrorReportButton: React.FC<ErrorReportButtonProps> = ({
       setSubmitting(true);
       const token = localStorage.getItem('dhl_token');
       
-      const response = await fetch('http://localhost:3001/api/error-reports', {
+      const response = await fetch('${API_BASE_URL}/error-reports', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

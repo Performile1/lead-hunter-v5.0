@@ -34,7 +34,7 @@ export const LeadAssignment: React.FC<LeadAssignmentProps> = ({
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/users');
+      const response = await fetch('${API_BASE_URL}/users');
       const data = await response.json();
       setUsers(data.filter((u: User) => u.role === 'säljare' || u.role === 'terminalchef'));
     } catch (error) {
