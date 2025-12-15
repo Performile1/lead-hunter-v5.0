@@ -135,8 +135,12 @@ passport.use(
         return done(error);
       }
     }
-  )
-);
+    )
+  );
+  logger.info('Azure AD SSO configured successfully');
+} else {
+  logger.warn('Azure AD SSO not configured - missing credentials');
+}
 
 /**
  * Serialize user för session
