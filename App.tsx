@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { AuthWrapper } from './components/AuthWrapper';
-import { useAuth } from './contexts/AuthContext';
+import { useAuth } from './src/contexts/AuthContext';
 import { Header } from './components/Header';
 import InputForm from './components/InputForm';
 import LeadCard from './components/LeadCard';
