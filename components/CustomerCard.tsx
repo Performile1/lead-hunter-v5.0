@@ -63,7 +63,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
   const fetchCustomer = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3001/api/customers/${customerId}`, {
+      const response = await fetch(`${API_BASE_URL}/customers/${customerId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`,
         },
@@ -86,7 +86,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
     if (!editData) return;
 
     try {
-      const response = await fetch(`http://localhost:3001/api/customers/${customerId}`, {
+      const response = await fetch(`${API_BASE_URL}/customers/${customerId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/api/customers/${customerId}/notes`, {
+      const response = await fetch(`${API_BASE_URL}/customers/${customerId}/notes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -3,7 +3,7 @@
  * Centraliserad kommunikation mellan frontend och backend
  */
 
-const API_BASE_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:3001/api';
+const API_BASE_URL = (import.meta as any).env?.VITE_API_URL || '${API_BASE_URL}';
 
 interface ApiResponse<T> {
   data?: T;

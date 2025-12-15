@@ -90,7 +90,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
 
   const loadSettings = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/settings', {
+      const response = await fetch('${API_BASE_URL}/settings', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`
         }
@@ -139,7 +139,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
         const formData = new FormData();
         formData.append('logo', logoFile);
 
-        const uploadResponse = await fetch('http://localhost:3001/api/settings/upload-logo', {
+        const uploadResponse = await fetch('${API_BASE_URL}/settings/upload-logo', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`
@@ -161,7 +161,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
         customLogo: !!logoUrl
       };
 
-      const response = await fetch('http://localhost:3001/api/settings', {
+      const response = await fetch('${API_BASE_URL}/settings', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

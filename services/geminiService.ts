@@ -1091,7 +1091,7 @@ Returnera ENDAST JSON, ingen annan text.`;
           console.warn('Gemini checkout analysis failed:', err);
           return null;
         }),
-        fetch('http://localhost:3001/api/scrape/website', {
+        fetch('${API_BASE_URL}/scrape/website', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

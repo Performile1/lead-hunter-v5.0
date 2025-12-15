@@ -48,7 +48,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
         ...(userRole === 'terminalchef' && userArea && { area: userArea }),
       });
 
-      const response = await fetch(`http://localhost:3001/api/customers?${params}`, {
+      const response = await fetch(`${API_BASE_URL}/customers?${params}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`,
         },

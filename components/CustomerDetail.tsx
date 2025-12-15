@@ -55,7 +55,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
   const fetchCustomerDetails = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3001/api/customers/${customerId}`, {
+      const response = await fetch(`${API_BASE_URL}/customers/${customerId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`,
         },
@@ -76,7 +76,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
   const handleManualScrape = async () => {
     setScraping(true);
     try {
-      const response = await fetch(`http://localhost:3001/api/customers/${customerId}/scrape`, {
+      const response = await fetch(`${API_BASE_URL}/customers/${customerId}/scrape`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`,

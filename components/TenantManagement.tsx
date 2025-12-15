@@ -53,7 +53,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
 
   const fetchTenants = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/tenants', {
+      const response = await fetch('${API_BASE_URL}/tenants', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`
         }
@@ -72,7 +72,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
 
   const handleCreate = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/tenants', {
+      const response = await fetch('${API_BASE_URL}/tenants', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
     if (!editingTenant) return;
 
     try {
-      const response = await fetch(`http://localhost:3001/api/tenants/${editingTenant.id}`, {
+      const response = await fetch(`${API_BASE_URL}/tenants/${editingTenant.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -130,7 +130,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/api/tenants/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/tenants/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`
