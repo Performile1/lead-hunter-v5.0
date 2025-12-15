@@ -7,6 +7,13 @@ function getPool() {
   if (!pool) {
     const connectionString = process.env.DATABASE_URL;
     
+    if (!connectionString) {
+      console.error('DATABASE_URL is not set!');
+      throw new Error('DATABASE_URL environment variable is required');
+    }
+    
+    console.log('Connecting to database...');
+    
     pool = new Pool({
       connectionString,
       ssl: {
