@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 // API Configuration - inline to ensure it works
 const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
 const API_BASE_URL = isProduction 
-  ? 'https://lead-hunter-v50-production.up.railway.app/api'
+  ? '/api'
   : 'http://localhost:3001/api';
 
 interface User {
