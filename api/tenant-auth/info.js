@@ -1,17 +1,12 @@
-import { query } from '../_lib/database.js';
+const { query } = require('../_lib/database');
 
-/**
- * GET /api/tenant-auth/info
- * Hämta tenant info baserat på subdomän eller domain
- */
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   // CORS headers
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-  // Handle OPTIONS request
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
@@ -76,4 +71,4 @@ export default async function handler(req, res) {
     console.error('Error fetching tenant info:', error);
     res.status(500).json({ error: 'Failed to fetch tenant info' });
   }
-}
+};

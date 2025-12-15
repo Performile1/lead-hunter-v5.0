@@ -1,19 +1,14 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import { query } from '../_lib/database.js';
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const { query } = require('../_lib/database');
 
-/**
- * POST /api/auth/login
- * Multi-tenant login med email och lösenord
- */
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   // CORS headers
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-  // Handle OPTIONS request
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
@@ -25,7 +20,6 @@ export default async function handler(req, res) {
   try {
     const { email, password, tenantId } = req.body;
 
-    // Validering
     if (!email || !password) {
       return res.status(400).json({
         error: 'Email och lösenord krävs',
@@ -33,7 +27,6 @@ export default async function handler(req, res) {
       });
     }
 
-    // Hämta användare med tenant info
     let userQuery = `
       SELECT u.*, t.company_name as tenant_name, t.domain as tenant_domain, 
              t.subdomain, t.primary_color, t.secondary_color, t.logo_url
@@ -44,7 +37,6 @@ export default async function handler(req, res) {
     
     const params = [email];
     
-    // Om tenantId är specificerat, filtrera på det
     if (tenantId) {
       userQuery += ` AND (u.tenant_id = $2 OR u.is_super_admin = true)`;
       params.push(tenantId);
@@ -62,7 +54,6 @@ export default async function handler(req, res) {
 
     const user = result.rows[0];
 
-    // Kontrollera status
     if (user.status !== 'active') {
       console.log('Login failed: Account inactive', { email, status: user.status });
       return res.status(403).json({
@@ -72,7 +63,6 @@ export default async function handler(req, res) {
       });
     }
 
-    // Kontrollera lösenord
     const validPassword = await bcrypt.compare(password, user.password_hash);
     if (!validPassword) {
       console.log('Login failed: Invalid password', { email });
@@ -82,20 +72,17 @@ export default async function handler(req, res) {
       });
     }
 
-    // Uppdatera last_login
     await query(
       'UPDATE users SET last_login = NOW() WHERE id = $1',
       [user.id]
     );
 
-    // Hämta regioner
     const regionsResult = await query(
       'SELECT region_name FROM user_regions WHERE user_id = $1',
       [user.id]
     );
     const regions = regionsResult.rows.map(r => r.region_name);
 
-    // Generera JWT med tenant info
     const token = jwt.sign(
       {
         userId: user.id,
@@ -108,7 +95,6 @@ export default async function handler(req, res) {
       { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
     );
 
-    // Logga aktivitet
     try {
       await query(
         `INSERT INTO activity_log (user_id, action_type, details, ip_address)
@@ -125,7 +111,6 @@ export default async function handler(req, res) {
 
     console.log('Login successful', { userId: user.id, email: user.email, tenantId: user.tenant_id });
 
-    // Returnera användardata och token
     res.json({
       token,
       user: {
@@ -157,4 +142,4 @@ export default async function handler(req, res) {
       code: 'SERVER_ERROR'
     });
   }
-}
+};

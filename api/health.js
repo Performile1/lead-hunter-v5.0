@@ -1,8 +1,4 @@
-/**
- * GET /api/health
- * Health check endpoint
- */
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   
   if (req.method !== 'GET') {
@@ -15,4 +11,4 @@ export default async function handler(req, res) {
     version: '1.0.0',
     environment: 'serverless'
   });
-}
+};

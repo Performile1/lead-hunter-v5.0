@@ -1,13 +1,10 @@
-import pg from 'pg';
-
-const { Pool } = pg;
+const { Pool } = require('pg');
 
 // Serverless-optimized connection pool
 let pool;
 
 function getPool() {
   if (!pool) {
-    // Use DATABASE_URL from Vercel environment variables
     const connectionString = process.env.DATABASE_URL;
     
     pool = new Pool({
@@ -15,22 +12,21 @@ function getPool() {
       ssl: {
         rejectUnauthorized: false
       },
-      max: 1, // Serverless functions should use minimal connections
+      max: 1,
       idleTimeoutMillis: 30000,
       connectionTimeoutMillis: 5000,
     });
 
     pool.on('error', (err) => {
       console.error('Unexpected database error:', err);
-      pool = null; // Reset pool on error
+      pool = null;
     });
   }
   
   return pool;
 }
 
-// Query helper
-export const query = async (text, params) => {
+const query = async (text, params) => {
   const client = getPool();
   try {
     const res = await client.query(text, params);
@@ -41,8 +37,7 @@ export const query = async (text, params) => {
   }
 };
 
-// Transaction helper
-export const transaction = async (callback) => {
+const transaction = async (callback) => {
   const client = await getPool().connect();
   try {
     await client.query('BEGIN');
@@ -57,4 +52,4 @@ export const transaction = async (callback) => {
   }
 };
 
-export default getPool;
+module.exports = { query, transaction, getPool };
