@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Users, Package, TrendingUp, DollarSign,
   AlertCircle, CheckCircle, Clock, BarChart3,
-  Activity, Zap, Award
+  Activity, Zap, Award, Search, UserPlus, Settings
 } from 'lucide-react';
 
 interface TenantMetrics {

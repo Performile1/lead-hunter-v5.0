@@ -27,10 +27,10 @@ interface SystemSettings {
 
 const defaultSchemes: ColorScheme[] = [
   {
-    name: 'DHL Standard',
-    primary: '#2563EB',
-    secondary: '#4F46E5',
-    accent: '#000000',
+    name: 'EurekAI',
+    primary: '#FFC400',
+    secondary: '#000000',
+    accent: '#4BC6B8',
     background: '#FFFFFF',
     text: '#1F2937'
   },
