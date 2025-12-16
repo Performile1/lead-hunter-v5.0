@@ -461,7 +461,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                     />
                 </div>
                 
-                <button onClick={() => handleSort('org')}          className="flex items-center gap-2 text-black hover:text-gray-600 font-bold mb-6 transition-colors" font-bold">
+                <button onClick={() => handleSort('org')} className="flex items-center gap-2 text-black hover:text-gray-600 font-bold mb-6 transition-colors">
                     Org {getSortIcon('org')}
                 </button>
                 <button onClick={() => handleSort('companyName')} className="text-left text-black hover:text-gray-600 flex items-center gap-1 transition-colors font-bold">
