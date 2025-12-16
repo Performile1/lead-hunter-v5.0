@@ -128,7 +128,7 @@ export const SuperAdminDashboard: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-black text-[#8B5CF6] uppercase tracking-wide">
+          <h1 className="text-3xl font-black text-black uppercase tracking-wide">
             Super Admin Dashboard
           </h1>
           <p className="text-sm text-gray-600 mt-1">
