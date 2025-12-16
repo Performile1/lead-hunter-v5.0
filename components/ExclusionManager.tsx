@@ -259,7 +259,7 @@ export const ExclusionManager: React.FC<ExclusionManagerProps> = ({
               </button>
               <button
                 onClick={handleSaveExisting}
-                className="flex items-center gap-2 bg-black text-white px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-[#a0040d] transition-colors shadow-sm"
+                className="flex items-center gap-2 bg-black text-white px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-gray-800 transition-colors shadow-sm"
               >
                 <Save className="w-4 h-4" />
                 Spara Lista

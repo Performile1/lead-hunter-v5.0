@@ -99,7 +99,7 @@ export const QuotaTimer: React.FC<QuotaTimerProps> = ({ onComplete, customWaitSe
           {isReady && (
             <button
               onClick={onComplete}
-              className="flex items-center gap-2 bg-black text-white px-6 py-2 text-sm font-bold uppercase tracking-wider hover:bg-[#a0040d] transition-colors shadow-sm rounded-sm"
+              className="flex items-center gap-2 bg-black text-white px-6 py-2 text-sm font-bold uppercase tracking-wider hover:bg-gray-800 transition-colors shadow-sm rounded-sm"
             >
               <RefreshCw className="w-4 h-4" />
               Återställ & Sök

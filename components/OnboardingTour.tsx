@@ -200,7 +200,7 @@ export const OnboardingTour: React.FC<TourProps> = ({ isOpen, onClose, onDemoFil
                 </div>
                 <button
                     onClick={handleNext}
-                    className="flex items-center gap-1 bg-black hover:bg-[#a0040d] text-white px-4 py-2 text-xs font-bold uppercase tracking-wider shadow-md transition-colors"
+                    className="flex items-center gap-1 bg-black hover:bg-gray-800 text-white px-4 py-2 text-xs font-bold uppercase tracking-wider shadow-md transition-colors"
                 >
                     {stepIndex === STEPS.length - 1 ? 'Starta' : 'Nästa'}
                     <ChevronRight className="w-3 h-3" />

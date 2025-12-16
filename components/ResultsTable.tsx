@@ -461,7 +461,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                     />
                 </div>
                 
-                <button onClick={() => handleSort('org')} className="pl-4 text-left text-black hover:text-gray-600 flex items-center gap-1 transition-colors font-bold">
+                <button onClick={() => handleSort('org')}          className="flex items-center gap-2 text-black hover:text-gray-600 font-bold mb-6 transition-colors" font-bold">
                     Org {getSortIcon('org')}
                 </button>
                 <button onClick={() => handleSort('companyName')} className="text-left text-black hover:text-gray-600 flex items-center gap-1 transition-colors font-bold">
@@ -704,7 +704,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                             className={`p-1.5 rounded-sm transition-colors border ${
                             isAnalyzed 
                                 ? 'bg-slate-800 text-white border-slate-900 hover:bg-black' 
-                                : 'bg-black text-white border-[#b0040e] hover:bg-[#a0040d]'
+                                : 'bg-black text-white border-black hover:bg-gray-800'
                             }`}
                             title={isAnalyzed ? `Analys Klar ${lead.analysisDate ? '(' + new Date(lead.analysisDate).toLocaleDateString() + ')' : ''}. Klicka för att öppna.` : "Starta Analys"}
                         >

@@ -180,7 +180,7 @@ export const ManualAddModal: React.FC<ManualAddModalProps> = ({ isOpen, onClose,
           <div className="pt-2">
              <button
               type="submit"
-              className="w-full bg-black hover:bg-[#a0040d] text-white py-2 px-4 text-sm font-bold uppercase tracking-wider shadow-sm transition-colors rounded-sm"
+              className="w-full bg-black hover:bg-gray-800 text-white py-2 px-4 text-sm font-bold uppercase tracking-wider shadow-sm transition-colors rounded-sm"
              >
                 Lägg till i Listan
              </button>
