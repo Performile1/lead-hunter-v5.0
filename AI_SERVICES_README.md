@@ -221,4 +221,5 @@ For issues or questions about specific services:
 - Algolia: https://www.algolia.com/doc/
 - Firecrawl: https://docs.firecrawl.dev/
 - Browse.ai: https://www.browse.ai/docs
+- Octoparse: https://www.octoparse.com/docs
 - Crawl4AI: https://github.com/unclecode/crawl4ai
