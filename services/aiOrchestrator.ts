@@ -107,7 +107,7 @@ export async function selectBestScraperForURL(url: string): Promise<{
 }> {
   const status = getAIServiceStatus();
 
-  // Priority: Firecrawl -> Browse.ai -> Crawl4AI
+  // Priority: Firecrawl -> Octoparse -> Browse.ai -> Crawl4AI
   if (status.firecrawl) {
     try {
       console.log('🔥 Using Firecrawl for scraping');
@@ -128,6 +128,18 @@ export async function selectBestScraperForURL(url: string): Promise<{
       }
     } catch (error) {
       console.warn('Firecrawl failed, trying fallback');
+    }
+  }
+
+  if (status.octoparse) {
+    try {
+      console.log('🐙 Using Octoparse for scraping');
+      const result = await scrapeCompanyWithOctoparse(url);
+      if (result) {
+        return { service: 'octoparse', data: result };
+      }
+    } catch (error) {
+      console.warn('Octoparse failed, trying fallback');
     }
   }
 
