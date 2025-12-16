@@ -61,7 +61,7 @@ export const LeadAssignment: React.FC<LeadAssignmentProps> = ({
   return (
     <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
       <div className="flex items-center gap-2 mb-3">
-        <UserPlus className="w-5 h-5 text-[#2563EB]" />
+        <UserPlus className="w-5 h-5 text-black" />
         <h3 className="font-bold text-sm uppercase tracking-wide">Tilldela Lead</h3>
       </div>
 
@@ -73,7 +73,7 @@ export const LeadAssignment: React.FC<LeadAssignmentProps> = ({
           <select
             value={selectedUser}
             onChange={(e) => setSelectedUser(e.target.value)}
-            className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
+            className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:border-black focus:ring-1 focus:ring-[#2563EB]"
           >
             <option value="">-- Välj säljare --</option>
             {users.map(user => (
@@ -98,7 +98,7 @@ export const LeadAssignment: React.FC<LeadAssignmentProps> = ({
         <button
           onClick={handleAssign}
           disabled={!selectedUser || isLoading}
-          className="w-full bg-[#2563EB] text-white px-4 py-2 rounded-lg hover:bg-[#B00410] disabled:bg-slate-300 disabled:cursor-not-allowed font-semibold text-sm uppercase tracking-wide transition-colors"
+          className="w-full bg-black text-white px-4 py-2 rounded-lg hover:bg-[#B00410] disabled:bg-slate-300 disabled:cursor-not-allowed font-semibold text-sm uppercase tracking-wide transition-colors"
         >
           {isLoading ? 'Tilldelar...' : 'Tilldela Lead'}
         </button>

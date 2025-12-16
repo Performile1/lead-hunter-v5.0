@@ -238,7 +238,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
       <div className="max-w-6xl mx-auto">
         
         {/* Header */}
-        <div className="bg-white rounded-sm shadow-lg p-6 mb-6 border-t-4 border-[#2563EB]">
+        <div className="bg-white rounded-sm shadow-lg p-6 mb-6 border-t-4 border-black">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-4">
               <button
@@ -248,7 +248,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                 <ArrowLeft className="w-4 h-4" />
                 Tillbaka
               </button>
-              <Settings className="w-8 h-8 text-[#2563EB]" />
+              <Settings className="w-8 h-8 text-black" />
               <div>
                 <h1 className="text-3xl font-black text-black uppercase tracking-wide">Systeminställningar</h1>
                 <p className="text-sm text-gray-600 font-semibold">
@@ -276,7 +276,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                   <button
                     onClick={handleSaveSettings}
                     disabled={saving}
-                    className="flex items-center gap-2 px-6 py-2 bg-[#2563EB] hover:bg-[#a0040d] text-white rounded-sm transition-colors font-bold uppercase shadow-lg disabled:opacity-50"
+                    className="flex items-center gap-2 px-6 py-2 bg-black hover:bg-[#a0040d] text-white rounded-sm transition-colors font-bold uppercase shadow-lg disabled:opacity-50"
                   >
                     {saving ? (
                       <>
@@ -307,7 +307,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                 onClick={() => setActiveTab('branding')}
                 className={`flex items-center gap-2 px-6 py-3 font-bold uppercase transition-colors ${
                   activeTab === 'branding'
-                    ? 'border-b-4 border-[#2563EB] text-[#2563EB] -mb-0.5'
+                    ? 'border-b-4 border-black text-black -mb-0.5'
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
@@ -318,7 +318,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                 onClick={() => setActiveTab('tenants')}
                 className={`flex items-center gap-2 px-6 py-3 font-bold uppercase transition-colors ${
                   activeTab === 'tenants'
-                    ? 'border-b-4 border-[#2563EB] text-[#2563EB] -mb-0.5'
+                    ? 'border-b-4 border-black text-black -mb-0.5'
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
@@ -336,9 +336,9 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           
           {/* Färgschema */}
-          <div className="bg-white rounded-sm shadow-lg p-6 border-t-4 border-[#4F46E5]">
+          <div className="bg-white rounded-sm shadow-lg p-6 border-t-4 border-black">
             <div className="flex items-center gap-3 mb-6">
-              <Palette className="w-6 h-6 text-[#2563EB]" />
+              <Palette className="w-6 h-6 text-black" />
               <div>
                 <h2 className="text-2xl font-bold text-gray-900">Färgschema</h2>
                 <p className="text-xs text-gray-600 mt-1">Gäller för din tenant/organisation</p>
@@ -353,14 +353,14 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                   onClick={() => handleSchemeChange(index)}
                   className={`p-4 border-2 rounded-lg cursor-pointer transition-all ${
                     selectedScheme === index
-                      ? 'border-[#2563EB] bg-red-50'
+                      ? 'border-black bg-red-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className="font-bold text-gray-900">{scheme.name}</span>
                     {selectedScheme === index && (
-                      <Check className="w-5 h-5 text-[#2563EB]" />
+                      <Check className="w-5 h-5 text-black" />
                     )}
                   </div>
                   <div className="flex gap-2">
@@ -423,9 +423,9 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
           </div>
 
           {/* Logo Upload */}
-          <div className="bg-white rounded-sm shadow-lg p-6 border-t-4 border-[#4F46E5]">
+          <div className="bg-white rounded-sm shadow-lg p-6 border-t-4 border-black">
             <div className="flex items-center gap-3 mb-6">
-              <Image className="w-6 h-6 text-[#2563EB]" />
+              <Image className="w-6 h-6 text-black" />
               <h2 className="text-2xl font-bold text-gray-900">Logotyp</h2>
             </div>
 
@@ -450,7 +450,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
               </div>
 
               {/* Upload Button */}
-              <label className="flex items-center justify-center gap-2 px-4 py-3 bg-[#2563EB] hover:bg-[#a0040d] text-white rounded-sm transition-colors font-bold uppercase cursor-pointer">
+              <label className="flex items-center justify-center gap-2 px-4 py-3 bg-black hover:bg-[#a0040d] text-white rounded-sm transition-colors font-bold uppercase cursor-pointer">
                 <Upload className="w-5 h-5" />
                 Ladda upp logo
                 <input
@@ -468,9 +468,9 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
           </div>
 
           {/* Login Text */}
-          <div className="bg-white rounded-sm shadow-lg p-6 border-t-4 border-[#4F46E5] lg:col-span-2">
+          <div className="bg-white rounded-sm shadow-lg p-6 border-t-4 border-black lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <Type className="w-6 h-6 text-[#2563EB]" />
+              <Type className="w-6 h-6 text-black" />
               <h2 className="text-2xl font-bold text-gray-900">Login-text</h2>
             </div>
 
@@ -481,7 +481,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                   type="text"
                   value={settings.loginText.title}
                   onChange={(e) => handleLoginTextChange('title', e.target.value)}
-                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-[#2563EB] focus:ring-0"
+                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
                   placeholder="Lead Hunter"
                 />
               </div>
@@ -492,7 +492,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                   type="text"
                   value={settings.loginText.subtitle}
                   onChange={(e) => handleLoginTextChange('subtitle', e.target.value)}
-                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-[#2563EB] focus:ring-0"
+                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
                   placeholder="Sales Intelligence Platform"
                 />
               </div>
@@ -503,7 +503,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                   value={settings.loginText.welcomeMessage}
                   onChange={(e) => handleLoginTextChange('welcomeMessage', e.target.value)}
                   rows={3}
-                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-[#2563EB] focus:ring-0"
+                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
                   placeholder="Välkommen till Lead Hunter..."
                 />
               </div>
@@ -514,7 +514,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                   type="text"
                   value={settings.loginText.footerText}
                   onChange={(e) => handleLoginTextChange('footerText', e.target.value)}
-                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-[#2563EB] focus:ring-0"
+                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
                   placeholder="© 2024 DHL. Alla rättigheter förbehållna."
                 />
               </div>

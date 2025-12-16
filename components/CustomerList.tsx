@@ -112,7 +112,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
-        <div className="bg-white rounded-sm shadow-lg p-6 mb-6 border-t-4 border-[#4F46E5]">
+        <div className="bg-white rounded-sm shadow-lg p-6 mb-6 border-t-4 border-black">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-4">
               {onBack && (
@@ -124,7 +124,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
                   Tillbaka
                 </button>
               )}
-              <Building2 className="w-8 h-8 text-[#2563EB]" />
+              <Building2 className="w-8 h-8 text-black" />
               <div>
                 <h1 className="text-3xl font-black text-black uppercase tracking-wide">Kundlista</h1>
                 <p className="text-sm text-gray-600 font-semibold">Befintliga DHL-kunder med checkout-övervakning</p>
@@ -132,7 +132,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
             </div>
             <button
               onClick={() => {/* TODO: Open add customer modal */}}
-              className="flex items-center gap-2 bg-[#2563EB] hover:bg-[#a0040d] text-white px-6 py-3 rounded-sm transition-colors font-bold uppercase tracking-wide shadow-lg"
+              className="flex items-center gap-2 bg-black hover:bg-[#a0040d] text-white px-6 py-3 rounded-sm transition-colors font-bold uppercase tracking-wide shadow-lg"
             >
               <Plus className="w-5 h-5" />
               Lägg till kund
@@ -149,7 +149,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
                 placeholder="Sök företag..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border-2 border-gray-300 rounded-sm focus:border-[#2563EB] focus:ring-0 font-medium"
+                className="w-full pl-10 pr-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0 font-medium"
               />
             </div>
 
@@ -157,7 +157,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-[#2563EB] focus:ring-0 font-bold"
+              className="px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0 font-bold"
             >
               <option value="all">Alla status</option>
               <option value="active">Aktiva</option>
@@ -170,7 +170,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
             <select
               value={segmentFilter}
               onChange={(e) => setSegmentFilter(e.target.value)}
-              className="px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-[#2563EB] focus:ring-0 font-bold"
+              className="px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0 font-bold"
             >
               <option value="all">Alla segment</option>
               <option value="ecommerce">E-handel</option>
@@ -186,7 +186,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
                 type="checkbox"
                 checked={monitorOnlyFilter}
                 onChange={(e) => setMonitorOnlyFilter(e.target.checked)}
-                className="w-4 h-4 text-[#2563EB] border-gray-300 rounded focus:ring-[#2563EB]"
+                className="w-4 h-4 text-black border-gray-300 rounded focus:ring-[#2563EB]"
               />
               <span className="font-bold text-sm">Endast övervakade</span>
             </label>
@@ -196,10 +196,10 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
         {/* Customer List */}
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#2563EB]"></div>
+            <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-black"></div>
           </div>
         ) : customers.length === 0 ? (
-          <div className="bg-white rounded-sm shadow-lg p-12 text-center border-t-4 border-[#2563EB]">
+          <div className="bg-white rounded-sm shadow-lg p-12 text-center border-t-4 border-black">
             <Building2 className="w-20 h-20 text-gray-300 mx-auto mb-4" />
             <p className="text-xl font-bold text-gray-600">Inga kunder hittades</p>
             <p className="text-gray-500 mt-2">Prova att ändra dina filter eller lägg till en ny kund</p>
@@ -209,7 +209,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
             {customers.map((customer) => (
               <div
                 key={customer.id}
-                className="bg-white rounded-sm shadow-md hover:shadow-xl transition-all cursor-pointer border-t-4 border-[#2563EB] p-6"
+                className="bg-white rounded-sm shadow-md hover:shadow-xl transition-all cursor-pointer border-t-4 border-black p-6"
                 onClick={() => setSelectedCustomerId(customer.id)}
               >
                 <div className="flex items-start justify-between gap-4">
@@ -217,7 +217,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
                     <div className="flex-1">
                       {/* Header */}
                       <div className="flex items-center gap-3 mb-3">
-                        <Building2 className="w-6 h-6 text-[#2563EB]" />
+                        <Building2 className="w-6 h-6 text-black" />
                         <h3 className="text-2xl font-bold text-gray-900">{customer.company_name}</h3>
                         {customer.segment && (
                           <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase border ${getSegmentColor(customer.segment)}`}>
@@ -244,7 +244,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
                           </div>
                           <p className="text-lg font-bold text-gray-900">{customer.account_manager_name || 'Ej tilldelad'}</p>
                         </div>
-                        <div className="bg-yellow-50 p-3 rounded-sm border-t-2 border-[#4F46E5]">
+                        <div className="bg-yellow-50 p-3 rounded-sm border-t-2 border-black">
                           <div className="flex items-center gap-1 text-xs text-gray-600 mb-1">
                             <span>Checkout Position</span>
                           </div>
@@ -284,7 +284,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
                           e.stopPropagation();
                           setSelectedCustomerId(customer.id);
                         }}
-                        className="flex items-center gap-2 bg-[#2563EB] hover:bg-[#a0040d] text-white px-4 py-2 rounded-sm transition-colors font-bold text-sm uppercase"
+                        className="flex items-center gap-2 bg-black hover:bg-[#a0040d] text-white px-4 py-2 rounded-sm transition-colors font-bold text-sm uppercase"
                       >
                         <Eye className="w-4 h-4" />
                         Visa detaljer

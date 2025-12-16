@@ -13,7 +13,7 @@ export const DailyBriefing: React.FC<DailyBriefingProps> = ({ isOpen, onClose, c
 
   return (
     <div className="fixed inset-0 bg-black/60 z-[90] flex items-center justify-center p-4 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-slate-900 w-full max-w-lg shadow-2xl border-t-4 border-[#2563EB] relative text-slate-300 font-mono">
+      <div className="bg-slate-900 w-full max-w-lg shadow-2xl border-t-4 border-black relative text-slate-300 font-mono">
         <button 
           onClick={onClose}
           className="absolute top-3 right-3 p-1 hover:bg-slate-800 rounded-sm text-slate-500 hover:text-white transition-colors"
@@ -55,13 +55,13 @@ export const DailyBriefing: React.FC<DailyBriefingProps> = ({ isOpen, onClose, c
              </div>
           </div>
 
-          <div className="bg-[#2563EB]/10 border border-[#2563EB]/30 p-4 text-xs leading-relaxed text-slate-200 italic mb-6">
+          <div className="bg-black/10 border border-black/30 p-4 text-xs leading-relaxed text-slate-200 italic mb-6">
              "Välkommen tillbaka. Systemet är redo för dagens jakt. Kom ihåg att kontrollera exkluderingslistan innan du startar större batch-körningar."
           </div>
 
           <button
             onClick={onClose}
-            className="w-full bg-[#2563EB] hover:bg-[#a0040d] text-white py-3 px-6 text-sm font-bold uppercase tracking-wider shadow-lg transition-colors"
+            className="w-full bg-black hover:bg-[#a0040d] text-white py-3 px-6 text-sm font-bold uppercase tracking-wider shadow-lg transition-colors"
           >
             Starta Session
           </button>

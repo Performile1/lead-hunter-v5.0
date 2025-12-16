@@ -60,7 +60,7 @@ export const Header: React.FC<HeaderProps> = ({
   const totalBadgeCount = cacheCount + inclusionCount + exclusionCount;
 
   return (
-    <header className="bg-[#FFC400] shadow-md sticky top-0 z-50 border-b-4 border-[#192A56]">
+    <header className="bg-[#FFC400] shadow-md sticky top-0 z-50 border-b-4 border-black">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-2">
         <div className="flex items-center justify-between">
           
@@ -87,8 +87,8 @@ export const Header: React.FC<HeaderProps> = ({
               )}
               
               {/* Subtitle */}
-              <div className="hidden lg:block border-l-2 border-[#192A56]/20 pl-4">
-                <div className="text-[#192A56] font-black italic uppercase tracking-widest text-lg leading-none">
+              <div className="hidden lg:block border-l-2 border-black/20 pl-4">
+                <div className="text-black font-black italic uppercase tracking-widest text-lg leading-none">
                   Lead Hunter
                 </div>
                 <div className="text-[#333333] text-[10px] font-bold uppercase tracking-wide opacity-80">
@@ -98,9 +98,9 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
 
             {/* Protocol Selector Dropdown */}
-            <div className="hidden xl:flex items-center gap-2 ml-4 border-l border-[#192A56]/10 pl-4">
+            <div className="hidden xl:flex items-center gap-2 ml-4 border-l border-black/10 pl-4">
                <div className="flex items-center gap-2 bg-white/50 px-2 py-1 rounded-sm border border-black/5 hover:bg-white transition-colors">
-                 <Settings2 className="w-4 h-4 text-[#192A56]" />
+                 <Settings2 className="w-4 h-4 text-black" />
                  <div className="flex flex-col">
                    <span className="text-[8px] text-black/60 uppercase font-bold leading-none mb-0.5">Analys Protokoll</span>
                    <select 
@@ -195,7 +195,7 @@ export const Header: React.FC<HeaderProps> = ({
                            <span className="text-sm font-medium text-slate-800">Exkluderingar</span>
                         </div>
                         {exclusionCount > 0 && (
-                           <span className="bg-red-100 text-[#192A56] text-[10px] font-bold px-2 py-0.5 rounded-full">{exclusionCount}</span>
+                           <span className="bg-red-100 text-black text-[10px] font-bold px-2 py-0.5 rounded-full">{exclusionCount}</span>
                         )}
                       </button>
 
@@ -248,7 +248,7 @@ export const Header: React.FC<HeaderProps> = ({
                   onClick={onToggleCustomerList}
                   className={`flex items-center gap-2 px-4 py-2 rounded-sm transition-colors shadow-sm font-bold text-sm uppercase ${
                     showCustomerList 
-                      ? 'bg-[#4F46E5] text-black hover:bg-[#e6b800]' 
+                      ? 'bg-black text-black hover:bg-[#e6b800]' 
                       : 'bg-white/50 hover:bg-white text-slate-700 border border-black/5'
                   }`}
                   title={showCustomerList ? 'Visa Leads' : 'Visa Kundlista'}
@@ -262,7 +262,7 @@ export const Header: React.FC<HeaderProps> = ({
 
               <button 
                 onClick={onReset}
-                className="flex items-center gap-2 bg-[#192A56] hover:bg-[#0F1C3F] text-white px-3 py-2 rounded-sm transition-colors shadow-sm"
+                className="flex items-center gap-2 bg-black hover:bg-[#0F1C3F] text-white px-3 py-2 rounded-sm transition-colors shadow-sm"
                 title="Systemåterställning (Nollställ vyn, behåll data)"
               >
                 <RotateCcw className="w-4 h-4" />
@@ -271,7 +271,7 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="w-px h-6 bg-black/10 mx-1"></div>
 
               {user?.role === 'super_admin' && (
-                <div className="flex items-center gap-2 bg-[#192A56] text-[#FFC400] px-3 py-2 rounded-sm shadow-sm border-2 border-[#FFC400]">
+                <div className="flex items-center gap-2 bg-black text-[#FFC400] px-3 py-2 rounded-sm shadow-sm border-2 border-[#FFC400]">
                   <User className="w-4 h-4" />
                   <span className="text-xs font-bold uppercase tracking-wide">Super Admin</span>
                 </div>
@@ -284,7 +284,7 @@ export const Header: React.FC<HeaderProps> = ({
 
               <button
                 onClick={logout}
-                className="flex items-center gap-2 bg-white/50 hover:bg-white text-slate-700 hover:text-[#192A56] px-3 py-2 rounded-sm transition-colors shadow-sm border border-black/5"
+                className="flex items-center gap-2 bg-white/50 hover:bg-white text-slate-700 hover:text-black px-3 py-2 rounded-sm transition-colors shadow-sm border border-black/5"
                 title="Logga ut"
               >
                 <LogOut className="w-4 h-4" />

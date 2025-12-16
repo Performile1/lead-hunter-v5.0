@@ -98,7 +98,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#4F46E5]/10 to-white flex items-center justify-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#2563EB]"></div>
+        <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-black"></div>
       </div>
     );
   }
@@ -109,7 +109,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
         <div className="text-center">
           <AlertTriangle className="w-20 h-20 text-red-500 mx-auto mb-4" />
           <p className="text-xl font-bold text-gray-600">Kund hittades inte</p>
-          <button onClick={onBack} className="mt-4 text-[#2563EB] font-bold hover:underline">
+          <button onClick={onBack} className="mt-4 text-black font-bold hover:underline">
             Tillbaka till listan
           </button>
         </div>
@@ -127,18 +127,18 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
         {/* Back Button */}
         <button
           onClick={onBack}
-          className="flex items-center gap-2 text-[#2563EB] hover:text-[#a0040d] font-bold mb-6 transition-colors"
+          className="flex items-center gap-2 text-black hover:text-[#a0040d] font-bold mb-6 transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
           Tillbaka till kundlistan
         </button>
 
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-6 border-t-4 border-[#2563EB]">
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-6 border-t-4 border-black">
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
-                <Building2 className="w-8 h-8 text-[#2563EB]" />
+                <Building2 className="w-8 h-8 text-black" />
                 <h1 className="text-3xl font-black text-black uppercase">{customer.company_name}</h1>
                 {customer.customer_tier && (
                   <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase border ${
@@ -158,7 +158,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
             <button
               onClick={handleManualScrape}
               disabled={scraping}
-              className="flex items-center gap-2 bg-[#2563EB] hover:bg-[#a0040d] text-white px-6 py-3 rounded-sm transition-colors font-bold uppercase tracking-wide shadow-lg disabled:opacity-50"
+              className="flex items-center gap-2 bg-black hover:bg-[#a0040d] text-white px-6 py-3 rounded-sm transition-colors font-bold uppercase tracking-wide shadow-lg disabled:opacity-50"
             >
               <RefreshCw className={`w-5 h-5 ${scraping ? 'animate-spin' : ''}`} />
               {scraping ? 'Scrapar...' : 'Scrapa nu'}
@@ -203,8 +203,8 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`flex items-center gap-2 px-6 py-4 font-bold uppercase tracking-wide transition-colors ${
                   activeTab === tab.id
-                    ? 'border-b-4 border-[#2563EB] text-[#2563EB]'
-                    : 'text-gray-600 hover:text-[#2563EB]'
+                    ? 'border-b-4 border-black text-black'
+                    : 'text-gray-600 hover:text-black'
                 }`}
               >
                 <tab.icon className="w-5 h-5" />
@@ -218,16 +218,16 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
             {activeTab === 'overview' && (
               <div className="space-y-6">
                 {/* Checkout Position */}
-                <div className="bg-gradient-to-br from-[#4F46E5]/20 to-white p-6 rounded-lg border-2 border-[#4F46E5]">
+                <div className="bg-gradient-to-br from-[#4F46E5]/20 to-white p-6 rounded-lg border-2 border-black">
                   <h3 className="text-xl font-black text-black uppercase mb-4 flex items-center gap-2">
-                    <Package className="w-6 h-6 text-[#2563EB]" />
+                    <Package className="w-6 h-6 text-black" />
                     Checkout-position
                   </h3>
                   {latestMonitoring ? (
                     <div className="grid grid-cols-3 gap-4">
                       <div>
                         <p className="text-sm text-gray-600 font-bold uppercase">DHL Position</p>
-                        <p className="text-3xl font-black text-[#2563EB]">
+                        <p className="text-3xl font-black text-black">
                           #{latestMonitoring.dhl_position || 'N/A'}
                         </p>
                         {previousMonitoring && latestMonitoring.position_change !== 0 && (
@@ -265,7 +265,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
                 {customer.website_analysis && (
                   <div className="bg-white p-6 rounded-lg border-2 border-gray-200">
                     <h3 className="text-xl font-black text-black uppercase mb-4 flex items-center gap-2">
-                      <Globe className="w-6 h-6 text-[#2563EB]" />
+                      <Globe className="w-6 h-6 text-black" />
                       Webbplats-analys
                     </h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -300,7 +300,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
                 {/* Monitoring Settings */}
                 <div className="bg-white p-6 rounded-lg border-2 border-gray-200">
                   <h3 className="text-xl font-black text-black uppercase mb-4 flex items-center gap-2">
-                    <Clock className="w-6 h-6 text-[#2563EB]" />
+                    <Clock className="w-6 h-6 text-black" />
                     Övervakningsinställningar
                   </h3>
                   <div className="grid grid-cols-3 gap-4">
@@ -357,7 +357,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
                             <div className="grid grid-cols-4 gap-4 text-sm">
                               <div>
                                 <span className="text-gray-500 font-bold">DHL Position:</span>
-                                <span className="ml-2 font-black text-[#2563EB]">#{record.dhl_position || 'N/A'}</span>
+                                <span className="ml-2 font-black text-black">#{record.dhl_position || 'N/A'}</span>
                               </div>
                               <div>
                                 <span className="text-gray-500 font-bold">Totalt:</span>
@@ -395,7 +395,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
               <div className="space-y-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-xl font-black text-black uppercase">Anteckningar</h3>
-                  <button className="flex items-center gap-2 bg-[#2563EB] hover:bg-[#a0040d] text-white px-4 py-2 rounded-sm transition-colors font-bold text-sm uppercase">
+                  <button className="flex items-center gap-2 bg-black hover:bg-[#a0040d] text-white px-4 py-2 rounded-sm transition-colors font-bold text-sm uppercase">
                     <Plus className="w-4 h-4" />
                     Ny anteckning
                   </button>

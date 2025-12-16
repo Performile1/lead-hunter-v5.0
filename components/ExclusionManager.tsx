@@ -122,12 +122,12 @@ export const ExclusionManager: React.FC<ExclusionManagerProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-white w-full max-w-2xl shadow-2xl border-t-4 border-[#2563EB] flex flex-col max-h-[90vh]">
+      <div className="bg-white w-full max-w-2xl shadow-2xl border-t-4 border-black flex flex-col max-h-[90vh]">
         
         {/* Header */}
         <div className="bg-white p-4 flex justify-between items-center border-b border-slate-200">
           <h2 className="text-lg font-black italic uppercase flex items-center gap-2 text-black">
-            <ShieldBan className="w-5 h-5 text-[#2563EB]" />
+            <ShieldBan className="w-5 h-5 text-black" />
             Hantera Exkluderingar & Blockeringar
           </h2>
           <button onClick={onClose} className="p-1 hover:bg-black/10 rounded-full transition-colors">
@@ -141,7 +141,7 @@ export const ExclusionManager: React.FC<ExclusionManagerProps> = ({
             onClick={() => setActiveTab('existing')}
             className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider ${
               activeTab === 'existing' 
-                ? 'bg-white text-[#2563EB] border-b-2 border-[#2563EB]' 
+                ? 'bg-white text-black border-b-2 border-black' 
                 : 'bg-slate-50 text-slate-500 hover:bg-slate-100'
             }`}
           >
@@ -151,7 +151,7 @@ export const ExclusionManager: React.FC<ExclusionManagerProps> = ({
             onClick={() => setActiveTab('history')}
             className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider ${
               activeTab === 'history' 
-                ? 'bg-white text-[#2563EB] border-b-2 border-[#2563EB]' 
+                ? 'bg-white text-black border-b-2 border-black' 
                 : 'bg-slate-50 text-slate-500 hover:bg-slate-100'
             }`}
           >
@@ -209,7 +209,7 @@ export const ExclusionManager: React.FC<ExclusionManagerProps> = ({
 
               <div>
                 <textarea
-                  className="w-full h-64 p-3 text-xs border border-slate-300 focus:border-[#2563EB] focus:ring-[#2563EB] rounded-none font-mono"
+                  className="w-full h-64 p-3 text-xs border border-slate-300 focus:border-black focus:ring-[#2563EB] rounded-none font-mono"
                   placeholder="Exempel:&#10;Volvo Cars&#10;556000-0000&#10;NEGATIV MATCH: Fel Bolag AB ; 123456-7890"
                   value={textInput}
                   onChange={(e) => setTextInput(e.target.value)}
@@ -253,13 +253,13 @@ export const ExclusionManager: React.FC<ExclusionManagerProps> = ({
             <>
               <button 
                  onClick={() => setTextInput('')}
-                 className="text-xs text-slate-500 hover:text-[#2563EB] font-bold uppercase"
+                 className="text-xs text-slate-500 hover:text-black font-bold uppercase"
               >
                 Rensa Fält
               </button>
               <button
                 onClick={handleSaveExisting}
-                className="flex items-center gap-2 bg-[#2563EB] text-white px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-[#a0040d] transition-colors shadow-sm"
+                className="flex items-center gap-2 bg-black text-white px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-[#a0040d] transition-colors shadow-sm"
               >
                 <Save className="w-4 h-4" />
                 Spara Lista

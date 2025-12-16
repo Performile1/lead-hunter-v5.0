@@ -120,7 +120,7 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2563EB]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
       </div>
     );
   }
@@ -141,7 +141,7 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
         </div>
         <button
           onClick={loadMetrics}
-          className="flex items-center gap-2 bg-[#2563EB] hover:bg-[#a0040d] text-white px-4 py-2 rounded font-semibold"
+          className="flex items-center gap-2 bg-black hover:bg-[#a0040d] text-white px-4 py-2 rounded font-semibold"
         >
           <Zap className="w-4 h-4" />
           Uppdatera
@@ -154,7 +154,7 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Mina Leads</p>
-              <p className="text-3xl font-black text-[#2563EB] mt-1">
+              <p className="text-3xl font-black text-black mt-1">
                 {metrics.my_leads.total}
               </p>
               <p className="text-xs text-gray-600 mt-1">
@@ -169,7 +169,7 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Mina Kunder</p>
-              <p className="text-3xl font-black text-[#2563EB] mt-1">
+              <p className="text-3xl font-black text-black mt-1">
                 {metrics.my_customers.total}
               </p>
               <p className="text-xs text-gray-600 mt-1">
@@ -184,7 +184,7 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Konvertering</p>
-              <p className="text-3xl font-black text-[#2563EB] mt-1">
+              <p className="text-3xl font-black text-black mt-1">
                 {metrics.conversion_rate.toFixed(1)}%
               </p>
               <p className="text-xs text-gray-600 mt-1">
@@ -199,7 +199,7 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Snitt Tid</p>
-              <p className="text-3xl font-black text-[#2563EB] mt-1">
+              <p className="text-3xl font-black text-black mt-1">
                 {metrics.avg_time_to_conversion.toFixed(0)}
               </p>
               <p className="text-xs text-gray-600 mt-1">
@@ -214,7 +214,7 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
       {/* Pipeline */}
       <div className="bg-white border-2 border-gray-200 p-6 rounded shadow-sm">
         <div className="flex items-center gap-2 mb-4">
-          <BarChart3 className="w-5 h-5 text-[#2563EB]" />
+          <BarChart3 className="w-5 h-5 text-black" />
           <h2 className="text-lg font-black text-black uppercase">Min Pipeline</h2>
         </div>
         
@@ -260,7 +260,7 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white border-2 border-gray-200 p-6 rounded shadow-sm">
           <div className="flex items-center gap-2 mb-4">
-            <Calendar className="w-5 h-5 text-[#2563EB]" />
+            <Calendar className="w-5 h-5 text-black" />
             <h2 className="text-lg font-black text-black uppercase">Dagens Uppgifter</h2>
           </div>
           
@@ -294,7 +294,7 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
         {/* Performance */}
         <div className="bg-white border-2 border-gray-200 p-6 rounded shadow-sm">
           <div className="flex items-center gap-2 mb-4">
-            <Award className="w-5 h-5 text-[#2563EB]" />
+            <Award className="w-5 h-5 text-black" />
             <h2 className="text-lg font-black text-black uppercase">Min Prestanda</h2>
           </div>
           
@@ -306,7 +306,7 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
               </div>
               <div className="w-full bg-gray-200 rounded-full h-3">
                 <div
-                  className="bg-[#2563EB] h-3 rounded-full transition-all"
+                  className="bg-black h-3 rounded-full transition-all"
                   style={{ width: `${Math.min((metrics.my_leads.this_month / 50) * 100, 100)}%` }}
                 ></div>
               </div>

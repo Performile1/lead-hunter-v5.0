@@ -102,11 +102,11 @@ export const ProcessingStatusBanner: React.FC<ProcessingStatusBannerProps> = ({
   }
 
   return (
-    <div className="bg-slate-900 text-white shadow-lg border-b-4 border-[#2563EB] sticky top-0 z-40 animate-slideDown">
+    <div className="bg-slate-900 text-white shadow-lg border-b-4 border-black sticky top-0 z-40 animate-slideDown">
       <div className="max-w-[1600px] mx-auto px-4 py-3 flex items-center justify-between gap-4">
         
         <div className="flex items-center gap-3 min-w-0">
-          <div className="bg-[#2563EB] p-2 rounded-full animate-pulse">
+          <div className="bg-black p-2 rounded-full animate-pulse">
             <Loader2 className="w-5 h-5 text-white animate-spin" />
           </div>
           <div className="min-w-0">
@@ -128,7 +128,7 @@ export const ProcessingStatusBanner: React.FC<ProcessingStatusBannerProps> = ({
              </div>
              <div className="w-32 sm:w-48 h-2 bg-slate-700 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-[#4F46E5] transition-all duration-500 ease-out"
+                  className="h-full bg-black transition-all duration-500 ease-out"
                   style={{ width: `${progressPercent}%` }}
                 ></div>
              </div>
@@ -137,7 +137,7 @@ export const ProcessingStatusBanner: React.FC<ProcessingStatusBannerProps> = ({
         
         {!isBatch && (
            <div className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase flex-shrink-0">
-              <Activity className="w-4 h-4 text-[#2563EB]" />
+              <Activity className="w-4 h-4 text-black" />
               Bearbetar Data
            </div>
         )}

@@ -106,8 +106,8 @@ const cleanOrgForRatsit = (org: string | undefined) => {
 const SegmentBadge: React.FC<{ segment: Segment }> = ({ segment }) => {
   const colors = {
     [Segment.TS]: 'bg-green-100 text-green-800 border-green-200',
-    [Segment.FS]: 'bg-[#4F46E5] text-black border-yellow-300',
-    [Segment.KAM]: 'bg-[#2563EB] text-white border-red-700',
+    [Segment.FS]: 'bg-black text-black border-yellow-300',
+    [Segment.KAM]: 'bg-black text-white border-red-700',
     [Segment.DM]: 'bg-blue-50 text-blue-800 border-blue-200',
     [Segment.UNKNOWN]: 'bg-gray-100 text-gray-800 border-gray-200'
   };
@@ -335,7 +335,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
     if (isNaN(num)) return 'text-slate-500';
     if (num >= 4) return 'text-green-600';
     if (num >= 3) return 'text-yellow-600';
-    return 'text-[#2563EB]';
+    return 'text-black';
   };
 
   // Updated Risk Logic: Only trigger RED for actual legal issues
@@ -425,7 +425,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
   const isLoadingPeople = isEnriching && data.decisionMakers.length === 0;
 
   return (
-    <div className="bg-white rounded-none shadow-md border-t-4 border-[#2563EB] overflow-hidden mb-6 transition-all hover:shadow-xl w-full relative">
+    <div className="bg-white rounded-none shadow-md border-t-4 border-black overflow-hidden mb-6 transition-all hover:shadow-xl w-full relative">
       
       {/* Header */}
       <div className="bg-gradient-to-r from-white to-slate-50 border-b border-slate-200 p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -436,7 +436,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                 type="text"
                 value={editData.companyName}
                 onChange={(e) => setEditData({...editData, companyName: e.target.value})}
-                className="text-xl font-black italic text-black uppercase w-full max-w-md border-b border-slate-300 focus:border-[#2563EB] focus:ring-0 outline-none bg-transparent"
+                className="text-xl font-black italic text-black uppercase w-full max-w-md border-b border-slate-300 focus:border-black focus:ring-0 outline-none bg-transparent"
                 placeholder="Företagsnamn"
               />
             ) : (
@@ -473,13 +473,13 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
             {/* Org Nr */}
             <div className="flex items-center gap-1">
                 <span className="flex items-center gap-1 min-w-0">
-                  <Hash className="w-3.5 h-3.5 text-[#2563EB] flex-shrink-0" />
+                  <Hash className="w-3.5 h-3.5 text-black flex-shrink-0" />
                   {isEditing ? (
                     <input
                       type="text"
                       value={editData.orgNumber}
                       onChange={(e) => setEditData({...editData, orgNumber: e.target.value})}
-                      className="font-mono font-semibold text-xs border-slate-300 rounded-sm p-1 w-24 focus:border-[#2563EB] focus:ring-[#2563EB]"
+                      className="font-mono font-semibold text-xs border-slate-300 rounded-sm p-1 w-24 focus:border-black focus:ring-[#2563EB]"
                       placeholder="Org.nr"
                     />
                   ) : (
@@ -498,19 +498,19 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
             {/* Website URL */}
             {isEditing ? (
                 <div className="flex items-center gap-1">
-                  <Globe className="w-3.5 h-3.5 text-[#2563EB] flex-shrink-0" />
+                  <Globe className="w-3.5 h-3.5 text-black flex-shrink-0" />
                   <input
                     type="text"
                     value={editData.websiteUrl}
                     onChange={(e) => setEditData({...editData, websiteUrl: e.target.value})}
-                    className="text-xs border-slate-300 rounded-sm p-1 w-40 focus:border-[#2563EB] focus:ring-[#2563EB]"
+                    className="text-xs border-slate-300 rounded-sm p-1 w-40 focus:border-black focus:ring-[#2563EB]"
                     placeholder="Webbplats"
                   />
                 </div>
             ) : (
               data.websiteUrl && (
-                <a href={formatUrl(data.websiteUrl)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-[#2563EB] hover:underline min-w-0 max-w-[250px]">
-                  <Globe className="w-3.5 h-3.5 text-[#2563EB] flex-shrink-0" />
+                <a href={formatUrl(data.websiteUrl)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-black hover:underline min-w-0 max-w-[250px]">
+                  <Globe className="w-3.5 h-3.5 text-black flex-shrink-0" />
                   <span className="truncate font-semibold">{data.websiteUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')}</span>
                 </a>
               )
@@ -518,13 +518,13 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
 
             {/* Phone */}
             <span className="flex items-center gap-1 min-w-0">
-              <Phone className="w-3.5 h-3.5 text-[#2563EB] flex-shrink-0" />
+              <Phone className="w-3.5 h-3.5 text-black flex-shrink-0" />
               {isEditing ? (
                   <input
                     type="text"
                     value={editData.phoneNumber}
                     onChange={(e) => setEditData({...editData, phoneNumber: e.target.value})}
-                    className="text-xs font-bold border-slate-300 rounded-sm p-1 w-28 focus:border-[#2563EB] focus:ring-[#2563EB]"
+                    className="text-xs font-bold border-slate-300 rounded-sm p-1 w-28 focus:border-black focus:ring-[#2563EB]"
                     placeholder="Telefon"
                   />
               ) : (
@@ -544,7 +544,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
              {/* Analysis Timestamp */}
              {data.analysisDate && (
                  <div className="text-[10px] text-slate-500 font-bold flex items-center gap-1 bg-slate-100 px-2 py-1 rounded-sm border border-slate-200 shadow-sm" title={`Analys utförd: ${new Date(data.analysisDate).toLocaleString()}`}>
-                    <Clock className="w-3 h-3 text-[#2563EB]" />
+                    <Clock className="w-3 h-3 text-black" />
                     Analys: {new Date(data.analysisDate).toLocaleDateString('sv-SE')}
                  </div>
              )}
@@ -556,8 +556,8 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                         onClick={() => onRefreshAnalysis(data)}
                         className={`flex items-center gap-1 px-3 py-1.5 border rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm ${
                            hasMissingOrgNr 
-                           ? 'bg-red-50 text-[#2563EB] border-[#2563EB] hover:bg-[#2563EB] hover:text-white animate-pulse' 
-                           : 'bg-white border-slate-300 text-slate-700 hover:bg-[#2563EB] hover:text-white hover:border-[#2563EB]'
+                           ? 'bg-red-50 text-black border-black hover:bg-black hover:text-white animate-pulse' 
+                           : 'bg-white border-slate-300 text-slate-700 hover:bg-black hover:text-white hover:border-black'
                         }`}
                         title={hasMissingOrgNr ? "Kritisk data saknas. Klicka för att försöka hämta igen." : "Starta en helt ny sökning/analys på detta företag"}
                     >
@@ -608,7 +608,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                     )}
                     <button 
                         onClick={() => setIsEditing(true)}
-                        className="flex items-center gap-1 px-3 py-1.5 bg-white border border-slate-300 text-slate-600 hover:text-[#2563EB] hover:border-[#2563EB] rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
+                        className="flex items-center gap-1 px-3 py-1.5 bg-white border border-slate-300 text-slate-600 hover:text-black hover:border-black rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
                         title="Redigera grunduppgifter"
                     >
                         <Edit2 className="w-3 h-3" />
@@ -632,12 +632,12 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
           </div>
           
           <div className="flex flex-col items-end gap-1">
-            <div className="text-[10px] text-[#2563EB] uppercase tracking-wider font-bold">Kreditvärdighet</div>
+            <div className="text-[10px] text-black uppercase tracking-wider font-bold">Kreditvärdighet</div>
             {/* UPDATED: Dynamic Color for Credit Badge */}
             <div className={`font-mono font-bold px-3 py-1 rounded-sm inline-block shadow-sm text-xs ${
                 isCreditWarning 
                 ? 'bg-red-600 text-white animate-pulse' 
-                : 'bg-[#4F46E5] text-black'
+                : 'bg-black text-black'
             }`}>
                 {safeRender(data.creditRatingLabel) || '-'}
             </div>
@@ -660,8 +660,8 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
         
         {/* Column 1: Financials & Logistics & Ratings */}
         <div className="space-y-4 min-w-0">
-          <h4 className="text-sm font-bold text-black border-b-2 border-[#4F46E5] pb-2 flex items-center gap-2 uppercase">
-            <TrendingUp className="w-4 h-4 text-[#2563EB]" />
+          <h4 className="text-sm font-bold text-black border-b-2 border-black pb-2 flex items-center gap-2 uppercase">
+            <TrendingUp className="w-4 h-4 text-black" />
             Ekonomi & Logistik
           </h4>
           
@@ -678,14 +678,14 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                                 type="text" 
                                 value={record.year}
                                 onChange={(e) => handleFinancialChange(index, 'year', e.target.value)}
-                                className="w-16 text-xs font-bold border-slate-300 rounded-sm p-1 focus:border-[#2563EB] focus:ring-[#2563EB]"
+                                className="w-16 text-xs font-bold border-slate-300 rounded-sm p-1 focus:border-black focus:ring-[#2563EB]"
                                 placeholder="År"
                              />
                              <input 
                                 type="text" 
                                 value={record.revenue}
                                 onChange={(e) => handleFinancialChange(index, 'revenue', e.target.value)}
-                                className="flex-1 text-xs font-bold border-slate-300 rounded-sm p-1 focus:border-[#2563EB] focus:ring-[#2563EB]"
+                                className="flex-1 text-xs font-bold border-slate-300 rounded-sm p-1 focus:border-black focus:ring-[#2563EB]"
                                 placeholder="Omsättning (tkr)"
                              />
                              <span className="text-[10px] text-slate-400">tkr</span>
@@ -696,7 +696,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                       ))}
                       <button 
                         onClick={addFinancialYear}
-                        className="w-full py-1 text-[10px] border border-dashed border-slate-300 text-slate-500 hover:text-[#2563EB] hover:border-[#2563EB] rounded-sm font-bold uppercase"
+                        className="w-full py-1 text-[10px] border border-dashed border-slate-300 text-slate-500 hover:text-black hover:border-black rounded-sm font-bold uppercase"
                       >
                          + Lägg till År
                       </button>
@@ -713,7 +713,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             href={getAllabolagUrl()}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200 hover:bg-[#2563EB] hover:text-white hover:border-[#2563EB] transition-colors"
+                            className="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200 hover:bg-black hover:text-white hover:border-black transition-colors"
                             onClick={(e) => e.stopPropagation()}
                         >
                             Allabolag
@@ -722,7 +722,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             href={cleanOrgForRatsit(data.orgNumber) ? `https://www.ratsit.se/${cleanOrgForRatsit(data.orgNumber)}` : `https://www.ratsit.se/sok/foretag?q=${encodeURIComponent(data.companyName)}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200 hover:bg-[#2563EB] hover:text-white hover:border-[#2563EB] transition-colors"
+                            className="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200 hover:bg-black hover:text-white hover:border-black transition-colors"
                             onClick={(e) => e.stopPropagation()}
                         >
                             Ratsit
@@ -735,7 +735,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
               <div className="mt-2">
                 <span className="text-xs text-slate-500 block mb-1">Est. Frakt (5%)</span>
                 {/* Freight Budget is calculated, so kept read-only even in edit mode, unless we want manual override. Keeping read-only to simplify as requested. */}
-                <span className="font-bold text-[#2563EB] text-xs break-words">{formatFinancial(safeRender(data.freightBudget))}</span>
+                <span className="font-bold text-black text-xs break-words">{formatFinancial(safeRender(data.freightBudget))}</span>
               </div>
             </div>
 
@@ -839,7 +839,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                 <>
                 <div className="flex flex-col gap-2 mb-2">
                 <span className="text-xs font-bold flex items-center gap-1 text-slate-700">
-                    <Truck className="w-3 h-3 text-[#2563EB]" />
+                    <Truck className="w-3 h-3 text-black" />
                     Transportörer
                 </span>
                 
@@ -851,7 +851,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
 
                 {/* Show tenant-specific provider status for tenant users */}
                 {!isSuperAdmin && data.usesDhl && (
-                    <div className={`text-[10px] font-bold px-2 py-1.5 rounded flex items-start gap-2 border ${usesTenantProvider ? 'bg-green-50 text-green-800 border-green-100' : 'bg-red-50 text-[#2563EB] border-red-100'}`}>
+                    <div className={`text-[10px] font-bold px-2 py-1.5 rounded flex items-start gap-2 border ${usesTenantProvider ? 'bg-green-50 text-green-800 border-green-100' : 'bg-red-50 text-black border-red-100'}`}>
                     {usesTenantProvider ? <CheckCircle2 className="w-3 h-3 mt-0.5 flex-shrink-0"/> : <XCircle className="w-3 h-3 mt-0.5 flex-shrink-0"/>}
                     <span className="leading-tight">{tenantSearchTerm || 'DHL'}: {data.usesDhl}</span>
                     </div>
@@ -946,7 +946,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             href={`https://se.trustpilot.com/search?query=${encodeURIComponent(data.companyName)}`} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 bg-slate-100 border border-slate-300 text-slate-600 hover:bg-[#2563EB] hover:text-white hover:border-[#2563EB] px-3 py-1.5 rounded-sm text-[10px] font-bold uppercase transition-colors"
+                            className="inline-flex items-center gap-1 bg-slate-100 border border-slate-300 text-slate-600 hover:bg-black hover:text-white hover:border-black px-3 py-1.5 rounded-sm text-[10px] font-bold uppercase transition-colors"
                         >
                             <Search className="w-3 h-3" />
                             Sök på Trustpilot
@@ -959,8 +959,8 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
 
         {/* Column 2: AI Insights & Sources (MOVED TO MIDDLE) */}
         <div className="space-y-4 min-w-0">
-          <h4 className="text-sm font-bold text-black border-b-2 border-[#4F46E5] pb-2 flex items-center gap-2 uppercase">
-            <Target className="w-4 h-4 text-[#2563EB]" />
+          <h4 className="text-sm font-bold text-black border-b-2 border-black pb-2 flex items-center gap-2 uppercase">
+            <Target className="w-4 h-4 text-black" />
             AI Säljanalys
           </h4>
           
@@ -968,7 +968,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
              {/* Addresses Grid (Redesigned) */}
              <div className="bg-white border border-slate-200 text-xs shadow-sm">
                 <div className="bg-slate-50 border-b border-slate-100 p-2 font-bold text-slate-800 flex items-center gap-2">
-                    <MapPin className="w-3 h-3 text-[#2563EB]" /> Logistiknätverk
+                    <MapPin className="w-3 h-3 text-black" /> Logistiknätverk
                 </div>
                 <div className="grid grid-cols-2 gap-px bg-slate-100">
                     <div className="bg-white p-2 flex flex-col gap-1">
@@ -979,7 +979,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             <textarea
                                 value={editData.address}
                                 onChange={(e) => setEditData({...editData,address: e.target.value})}
-                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:border-[#2563EB] focus:ring-[#2563EB] resize-none h-10 font-mono"
+                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:border-black focus:ring-[#2563EB] resize-none h-10 font-mono"
                             />
                         ) : (
                             <span className="font-mono text-slate-700 break-words leading-tight">{safeRender(data.address) || "-"}</span>
@@ -993,7 +993,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             <textarea
                                 value={editData.visitingAddress}
                                 onChange={(e) => setEditData({...editData, visitingAddress: e.target.value})}
-                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:border-[#2563EB] focus:ring-[#2563EB] resize-none h-10 font-mono"
+                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:border-black focus:ring-[#2563EB] resize-none h-10 font-mono"
                             />
                         ) : (
                             <span className="font-mono text-slate-700 break-words leading-tight">{safeRender(data.visitingAddress) || "-"}</span>
@@ -1007,7 +1007,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             <textarea
                                 value={editData.warehouseAddress}
                                 onChange={(e) => setEditData({...editData, warehouseAddress: e.target.value})}
-                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:border-[#2563EB] focus:ring-[#2563EB] resize-none h-10 font-mono"
+                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:border-black focus:ring-[#2563EB] resize-none h-10 font-mono"
                             />
                         ) : (
                             <span className="font-mono text-slate-700 break-words leading-tight">{safeRender(data.warehouseAddress) || "-"}</span>
@@ -1021,7 +1021,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             <textarea
                                 value={editData.returnAddress}
                                 onChange={(e) => setEditData({...editData, returnAddress: e.target.value})}
-                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:border-[#2563EB] focus:ring-[#2563EB] resize-none h-10 font-mono"
+                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:border-black focus:ring-[#2563EB] resize-none h-10 font-mono"
                             />
                         ) : (
                             <span className="font-mono text-slate-700 break-words leading-tight">{safeRender(data.returnAddress) || "-"}</span>
@@ -1036,7 +1036,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
              ) : (
                 <div className="bg-slate-50 p-3 border border-slate-200 shadow-sm">
                     <div className="flex items-start gap-2 mb-1">
-                        <TrendingUp className="w-4 h-4 text-[#2563EB] mt-0.5" />
+                        <TrendingUp className="w-4 h-4 text-black mt-0.5" />
                         <span className="text-xs font-bold text-slate-700 uppercase">Marknadsposition & Risk</span>
                     </div>
                     <p className="text-xs text-slate-600 leading-relaxed italic pl-6">
@@ -1059,7 +1059,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
             {!isLoadingPeople && (
                 <div className="bg-white p-3 border border-slate-200 shadow-sm border-l-4 border-l-[#2563EB]">
                     <div className="flex items-start gap-2 mb-1">
-                        <Newspaper className="w-4 h-4 text-[#2563EB] mt-0.5" />
+                        <Newspaper className="w-4 h-4 text-black mt-0.5" />
                         <span className="text-xs font-bold text-slate-700 uppercase">Senaste Nytt</span>
                     </div>
                     {data.latestNews && (
@@ -1073,7 +1073,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                                         href={formatUrl(data.latestNewsUrl)} 
                                         target="_blank" 
                                         rel="noopener noreferrer" 
-                                        className="text-[10px] text-[#2563EB] hover:underline flex items-center gap-1 font-bold uppercase tracking-wide"
+                                        className="text-[10px] text-black hover:underline flex items-center gap-1 font-bold uppercase tracking-wide"
                                     >
                                         Läs mer <ExternalLink className="w-2.5 h-2.5" />
                                     </a>
@@ -1086,7 +1086,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
 
             {/* Icebreaker */}
             {!isLoadingPeople && (
-                <div className="bg-[#4F46E5]/10 border border-[#4F46E5] p-3 rounded-sm">
+                <div className="bg-black/10 border border-black p-3 rounded-sm">
                 <span className="text-[10px] font-bold text-slate-500 uppercase mb-1 block">Förslag på inledning (Icebreaker)</span>
                 <p className="text-xs text-slate-800 italic leading-relaxed">
                     "{safeRender(data.icebreaker)}"
@@ -1155,8 +1155,8 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
 
         {/* Column 3: Decision Makers (MOVED TO RIGHT) */}
         <div className="space-y-4 min-w-0">
-          <h4 className="text-sm font-bold text-black border-b-2 border-[#4F46E5] pb-2 flex items-center gap-2 uppercase">
-            <User className="w-4 h-4 text-[#2563EB]" />
+          <h4 className="text-sm font-bold text-black border-b-2 border-black pb-2 flex items-center gap-2 uppercase">
+            <User className="w-4 h-4 text-black" />
             Beslutsfattare
           </h4>
 
@@ -1178,7 +1178,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
           ) : (
              <div className="space-y-3">
             {editData.decisionMakers.map((dm, idx) => (
-              <div key={idx} className="bg-white border border-slate-200 p-3 shadow-sm hover:border-[#2563EB] transition-colors group relative">
+              <div key={idx} className="bg-white border border-slate-200 p-3 shadow-sm hover:border-black transition-colors group relative">
                 {isEditing && (
                     <button 
                         onClick={() => removeDM(idx)}
@@ -1190,7 +1190,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                 
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex items-center gap-2 mb-1 min-w-0">
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center bg-[#2563EB] text-white text-xs font-bold">
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center bg-black text-white text-xs font-bold">
                       {dm.name && dm.name !== "Okänd" ? dm.name.charAt(0) : "U"}
                     </div>
                     <div className="min-w-0">
@@ -1199,7 +1199,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             type="text" 
                             value={dm.name}
                             onChange={(e) => updateDM(idx, 'name', e.target.value)}
-                            className="w-full text-sm font-bold border-slate-300 rounded-sm p-0.5 focus:border-[#2563EB] focus:ring-[#2563EB] mb-1"
+                            className="w-full text-sm font-bold border-slate-300 rounded-sm p-0.5 focus:border-black focus:ring-[#2563EB] mb-1"
                             placeholder="Namn"
                             />
                         ) : (
@@ -1211,7 +1211,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             type="text" 
                             value={dm.title}
                             onChange={(e) => updateDM(idx, 'title', e.target.value)}
-                            className="w-full text-xs text-slate-500 border-slate-300 rounded-sm p-0.5 focus:border-[#2563EB] focus:ring-[#2563EB]"
+                            className="w-full text-xs text-slate-500 border-slate-300 rounded-sm p-0.5 focus:border-black focus:ring-[#2563EB]"
                             placeholder="Titel"
                             />
                         ) : (
@@ -1242,7 +1242,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             type="text" 
                             value={dm.email}
                             onChange={(e) => updateDM(idx, 'email', e.target.value)}
-                            className="flex-1 text-xs border-slate-300 rounded-sm p-0.5 focus:border-[#2563EB] focus:ring-[#2563EB]"
+                            className="flex-1 text-xs border-slate-300 rounded-sm p-0.5 focus:border-black focus:ring-[#2563EB]"
                             placeholder="Email"
                         />
                     ) : (
@@ -1260,7 +1260,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             type="text" 
                             value={dm.directPhone}
                             onChange={(e) => updateDM(idx, 'directPhone', e.target.value)}
-                            className="flex-1 text-xs border-slate-300 rounded-sm p-0.5 focus:border-[#2563EB] focus:ring-[#2563EB]"
+                            className="flex-1 text-xs border-slate-300 rounded-sm p-0.5 focus:border-black focus:ring-[#2563EB]"
                             placeholder="Direktnummer"
                         />
                     ) : (
@@ -1276,7 +1276,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
             {isEditing && (
                 <button 
                     onClick={addDM}
-                    className="w-full py-2 border-2 border-dashed border-slate-300 text-slate-400 font-bold uppercase text-xs hover:border-[#2563EB] hover:text-[#2563EB] transition-colors rounded-sm flex items-center justify-center gap-2"
+                    className="w-full py-2 border-2 border-dashed border-slate-300 text-slate-400 font-bold uppercase text-xs hover:border-black hover:text-black transition-colors rounded-sm flex items-center justify-center gap-2"
                 >
                     <Plus className="w-4 h-4" /> Lägg till person
                 </button>
@@ -1293,7 +1293,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                     type="text" 
                     value={roleInput}
                     onChange={(e) => setRoleInput(e.target.value)}
-                    className="flex-1 text-xs border-slate-300 rounded-sm focus:ring-[#2563EB] focus:border-[#2563EB]"
+                    className="flex-1 text-xs border-slate-300 rounded-sm focus:ring-[#2563EB] focus:border-black"
                     placeholder="Titel (t.ex. VD)"
                     />
                     <button 

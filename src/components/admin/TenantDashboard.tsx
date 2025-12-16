@@ -123,7 +123,7 @@ export const TenantDashboard: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2563EB]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
       </div>
     );
   }
@@ -157,7 +157,7 @@ export const TenantDashboard: React.FC = () => {
           </span>
           <button
             onClick={loadMetrics}
-            className="flex items-center gap-2 bg-[#2563EB] hover:bg-[#a0040d] text-white px-4 py-2 rounded font-semibold"
+            className="flex items-center gap-2 bg-black hover:bg-[#a0040d] text-white px-4 py-2 rounded font-semibold"
           >
             <Zap className="w-4 h-4" />
             Uppdatera
@@ -184,7 +184,7 @@ export const TenantDashboard: React.FC = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Användare</p>
-              <p className="text-2xl font-black text-[#2563EB] mt-1">
+              <p className="text-2xl font-black text-black mt-1">
                 {metrics.usage.users.current} / {metrics.usage.users.max}
               </p>
             </div>
@@ -207,7 +207,7 @@ export const TenantDashboard: React.FC = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Leads (månad)</p>
-              <p className="text-2xl font-black text-[#2563EB] mt-1">
+              <p className="text-2xl font-black text-black mt-1">
                 {metrics.activity.leads_this_month} / {metrics.usage.leads.max}
               </p>
             </div>
@@ -232,7 +232,7 @@ export const TenantDashboard: React.FC = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Kunder</p>
-              <p className="text-2xl font-black text-[#2563EB] mt-1">
+              <p className="text-2xl font-black text-black mt-1">
                 {metrics.usage.customers.current} / {metrics.usage.customers.max}
               </p>
             </div>
@@ -258,7 +258,7 @@ export const TenantDashboard: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Totalt Leads</p>
-              <p className="text-3xl font-black text-[#2563EB] mt-1">
+              <p className="text-3xl font-black text-black mt-1">
                 {metrics.performance.total_leads}
               </p>
             </div>
@@ -270,7 +270,7 @@ export const TenantDashboard: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Totalt Kunder</p>
-              <p className="text-3xl font-black text-[#2563EB] mt-1">
+              <p className="text-3xl font-black text-black mt-1">
                 {metrics.performance.total_customers}
               </p>
             </div>
@@ -282,7 +282,7 @@ export const TenantDashboard: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Konvertering</p>
-              <p className="text-3xl font-black text-[#2563EB] mt-1">
+              <p className="text-3xl font-black text-black mt-1">
                 {metrics.performance.conversion_rate.toFixed(1)}%
               </p>
             </div>
@@ -294,7 +294,7 @@ export const TenantDashboard: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Snitt Tid</p>
-              <p className="text-3xl font-black text-[#2563EB] mt-1">
+              <p className="text-3xl font-black text-black mt-1">
                 {metrics.performance.avg_time_to_conversion.toFixed(0)}
               </p>
               <p className="text-xs text-gray-600 mt-1">dagar</p>
@@ -307,7 +307,7 @@ export const TenantDashboard: React.FC = () => {
       {/* Activity This Month */}
       <div className="bg-white border-2 border-gray-200 p-6 rounded shadow-sm">
         <div className="flex items-center gap-2 mb-4">
-          <Activity className="w-5 h-5 text-[#2563EB]" />
+          <Activity className="w-5 h-5 text-black" />
           <h2 className="text-lg font-black text-black uppercase">Aktivitet Denna Månad</h2>
         </div>
         

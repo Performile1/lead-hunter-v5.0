@@ -168,7 +168,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#4F46E5]/10 to-white p-6 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2563EB] mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
           <p className="text-slate-600">Laddar kunddata...</p>
         </div>
       </div>
@@ -195,20 +195,20 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
       <div className="max-w-5xl mx-auto">
         
         {/* Header Card */}
-        <div className="bg-white rounded-sm shadow-lg border-t-4 border-[#4F46E5] mb-6">
+        <div className="bg-white rounded-sm shadow-lg border-t-4 border-black mb-6">
           <div className="p-6">
             
             {/* Title Row */}
             <div className="flex items-start justify-between mb-6">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
-                  <Building className="w-8 h-8 text-[#2563EB]" />
+                  <Building className="w-8 h-8 text-black" />
                   {isEditing ? (
                     <input
                       type="text"
                       value={editData?.company_name || ''}
                       onChange={(e) => setEditData(prev => prev ? {...prev, company_name: e.target.value} : null)}
-                      className="text-2xl font-bold text-slate-800 border-b-2 border-[#4F46E5] focus:outline-none flex-1"
+                      className="text-2xl font-bold text-slate-800 border-b-2 border-black focus:outline-none flex-1"
                     />
                   ) : (
                     <h1 className="text-2xl font-bold text-slate-800">{customer.company_name}</h1>
@@ -223,7 +223,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
                       type="text"
                       value={editData?.org_number || ''}
                       onChange={(e) => setEditData(prev => prev ? {...prev, org_number: e.target.value} : null)}
-                      className="border-b border-slate-300 focus:outline-none focus:border-[#4F46E5]"
+                      className="border-b border-slate-300 focus:outline-none focus:border-black"
                       placeholder="XXXXXX-XXXX"
                     />
                   ) : (
@@ -240,7 +240,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
                     {customer.customer_status}
                   </span>
                   {customer.uses_dhl && (
-                    <span className="px-3 py-1 rounded-sm text-xs font-bold uppercase border bg-[#4F46E5] text-[#2563EB] border-[#2563EB]">
+                    <span className="px-3 py-1 rounded-sm text-xs font-bold uppercase border bg-black text-black border-black">
                       Använder DHL
                     </span>
                   )}
@@ -277,7 +277,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
                     </button>
                     <button
                       onClick={() => setIsEditing(true)}
-                      className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-300 text-[#2563EB] hover:bg-[#2563EB] hover:text-white rounded-sm font-bold"
+                      className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-300 text-black hover:bg-black hover:text-white rounded-sm font-bold"
                     >
                       <Edit2 className="w-4 h-4" />
                       Redigera
@@ -300,7 +300,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
                       type="text"
                       value={editData?.address || ''}
                       onChange={(e) => setEditData(prev => prev ? {...prev, address: e.target.value} : null)}
-                      className="w-full border-b border-slate-300 focus:outline-none focus:border-[#4F46E5]"
+                      className="w-full border-b border-slate-300 focus:outline-none focus:border-black"
                       placeholder="Gatuadress, Postnummer Ort"
                     />
                   ) : (
@@ -319,7 +319,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
                       type="text"
                       value={editData?.phone || ''}
                       onChange={(e) => setEditData(prev => prev ? {...prev, phone: e.target.value} : null)}
-                      className="w-full border-b border-slate-300 focus:outline-none focus:border-[#4F46E5]"
+                      className="w-full border-b border-slate-300 focus:outline-none focus:border-black"
                       placeholder="08-123 456 78"
                     />
                   ) : (
@@ -338,7 +338,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
                       type="email"
                       value={editData?.email || ''}
                       onChange={(e) => setEditData(prev => prev ? {...prev, email: e.target.value} : null)}
-                      className="w-full border-b border-slate-300 focus:outline-none focus:border-[#4F46E5]"
+                      className="w-full border-b border-slate-300 focus:outline-none focus:border-black"
                       placeholder="info@foretag.se"
                     />
                   ) : (
@@ -357,7 +357,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
                       type="url"
                       value={editData?.website_url || ''}
                       onChange={(e) => setEditData(prev => prev ? {...prev, website_url: e.target.value} : null)}
-                      className="w-full border-b border-slate-300 focus:outline-none focus:border-[#4F46E5]"
+                      className="w-full border-b border-slate-300 focus:outline-none focus:border-black"
                       placeholder="https://www.foretag.se"
                     />
                   ) : (
@@ -419,14 +419,14 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
 
         {/* Decision Makers Section */}
         {customer.decision_makers && customer.decision_makers.length > 0 && (
-          <div className="bg-white rounded-sm shadow-lg border-t-4 border-[#4F46E5] mb-6 p-6">
+          <div className="bg-white rounded-sm shadow-lg border-t-4 border-black mb-6 p-6">
             <h2 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
-              <User className="w-5 h-5 text-[#2563EB]" />
+              <User className="w-5 h-5 text-black" />
               Beslutsfattare
             </h2>
             <div className="space-y-3">
               {customer.decision_makers.map((dm, index) => (
-                <div key={index} className="border-l-4 border-[#4F46E5] pl-4 py-2">
+                <div key={index} className="border-l-4 border-black pl-4 py-2">
                   <div className="font-bold text-slate-800">{dm.name}</div>
                   <div className="text-sm text-slate-600">{dm.title}</div>
                   {dm.email && <div className="text-sm text-blue-600">{dm.email}</div>}
@@ -438,15 +438,15 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
         )}
 
         {/* Notes Section */}
-        <div className="bg-white rounded-sm shadow-lg border-t-4 border-[#4F46E5] p-6">
+        <div className="bg-white rounded-sm shadow-lg border-t-4 border-black p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
-              <FileText className="w-5 h-5 text-[#2563EB]" />
+              <FileText className="w-5 h-5 text-black" />
               Anteckningar
             </h2>
             <button
               onClick={() => setShowAddNote(!showAddNote)}
-              className="flex items-center gap-2 px-3 py-1.5 bg-[#2563EB] hover:bg-[#B00410] text-white rounded-sm text-sm font-bold"
+              className="flex items-center gap-2 px-3 py-1.5 bg-black hover:bg-[#B00410] text-white rounded-sm text-sm font-bold"
             >
               <Plus className="w-4 h-4" />
               Ny anteckning
@@ -461,7 +461,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
                 <select
                   value={newNote.note_type}
                   onChange={(e) => setNewNote(prev => ({...prev, note_type: e.target.value}))}
-                  className="w-full border border-slate-300 rounded-sm px-3 py-2 focus:outline-none focus:border-[#4F46E5]"
+                  className="w-full border border-slate-300 rounded-sm px-3 py-2 focus:outline-none focus:border-black"
                 >
                   <option value="general">Allmänt</option>
                   <option value="meeting">Möte</option>
@@ -476,7 +476,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
                   type="text"
                   value={newNote.subject}
                   onChange={(e) => setNewNote(prev => ({...prev, subject: e.target.value}))}
-                  className="w-full border border-slate-300 rounded-sm px-3 py-2 focus:outline-none focus:border-[#4F46E5]"
+                  className="w-full border border-slate-300 rounded-sm px-3 py-2 focus:outline-none focus:border-black"
                   placeholder="T.ex. Uppföljningsmöte"
                 />
               </div>
@@ -485,7 +485,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
                 <textarea
                   value={newNote.content}
                   onChange={(e) => setNewNote(prev => ({...prev, content: e.target.value}))}
-                  className="w-full border border-slate-300 rounded-sm px-3 py-2 focus:outline-none focus:border-[#4F46E5] h-24"
+                  className="w-full border border-slate-300 rounded-sm px-3 py-2 focus:outline-none focus:border-black h-24"
                   placeholder="Skriv din anteckning här..."
                 />
               </div>
@@ -513,7 +513,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
           {customer.notes && customer.notes.length > 0 ? (
             <div className="space-y-3">
               {customer.notes.map((note, index) => (
-                <div key={note.id || index} className="border-l-4 border-[#4F46E5] pl-4 py-3 bg-slate-50">
+                <div key={note.id || index} className="border-l-4 border-black pl-4 py-3 bg-slate-50">
                   <div className="flex items-start justify-between mb-2">
                     <div>
                       <span className="inline-block px-2 py-1 bg-slate-200 text-slate-700 text-xs font-bold rounded-sm uppercase mr-2">

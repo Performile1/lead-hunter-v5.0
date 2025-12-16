@@ -188,7 +188,7 @@ export const LoginPage: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="w-full pl-10 pr-4 py-3 border-2 border-gray-300 focus:border-[#2563EB] focus:ring-0 transition-colors font-medium"
+                    className="w-full pl-10 pr-4 py-3 border-2 border-gray-300 focus:border-black focus:ring-0 transition-colors font-medium"
                     placeholder="••••••••"
                     disabled={isLoading}
                   />

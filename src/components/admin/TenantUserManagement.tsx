@@ -143,7 +143,7 @@ export const TenantUserManagement: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2563EB]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
       </div>
     );
   }
@@ -162,7 +162,7 @@ export const TenantUserManagement: React.FC = () => {
         </div>
         <button
           onClick={handleCreate}
-          className="flex items-center gap-2 bg-[#2563EB] hover:bg-[#a0040d] text-white px-4 py-2 rounded font-semibold"
+          className="flex items-center gap-2 bg-black hover:bg-[#a0040d] text-white px-4 py-2 rounded font-semibold"
         >
           <Plus className="w-5 h-5" />
           Ny Användare
@@ -175,7 +175,7 @@ export const TenantUserManagement: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Totalt</p>
-              <p className="text-2xl font-black text-[#2563EB] mt-1">{users.length}</p>
+              <p className="text-2xl font-black text-black mt-1">{users.length}</p>
             </div>
             <Users className="w-8 h-8 text-[#4F46E5]" />
           </div>
@@ -375,7 +375,7 @@ export const TenantUserManagement: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-2 bg-[#2563EB] hover:bg-[#a0040d] text-white rounded font-semibold"
+                  className="flex-1 px-4 py-2 bg-black hover:bg-[#a0040d] text-white rounded font-semibold"
                 >
                   {editingUser ? 'Uppdatera' : 'Skapa'}
                 </button>

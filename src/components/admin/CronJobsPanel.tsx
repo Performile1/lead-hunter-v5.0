@@ -134,7 +134,7 @@ export const CronJobsPanel: React.FC<CronJobsPanelProps> = ({ userRole = 'admin'
           )}
           <div>
             <h2 className="text-2xl font-bold flex items-center gap-2">
-              <Clock className="w-6 h-6 text-[#2563EB]" />
+              <Clock className="w-6 h-6 text-black" />
               Cronjobs
             </h2>
             <p className="text-sm text-slate-600 mt-1">
@@ -144,7 +144,7 @@ export const CronJobsPanel: React.FC<CronJobsPanelProps> = ({ userRole = 'admin'
         </div>
         <button
           onClick={() => setShowAddModal(true)}
-          className="flex items-center gap-2 bg-[#2563EB] text-white px-4 py-2 rounded-lg hover:bg-[#B00410] font-semibold text-sm uppercase tracking-wide"
+          className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg hover:bg-[#B00410] font-semibold text-sm uppercase tracking-wide"
         >
           <Plus className="w-4 h-4" />
           Nytt Cronjob
@@ -164,7 +164,7 @@ export const CronJobsPanel: React.FC<CronJobsPanelProps> = ({ userRole = 'admin'
                       type="checkbox"
                       checked={job.enabled}
                       onChange={(e) => toggleJob(job.id, e.target.checked)}
-                      className="w-4 h-4 text-[#2563EB] rounded focus:ring-[#2563EB]"
+                      className="w-4 h-4 text-black rounded focus:ring-[#2563EB]"
                     />
                     <span className="text-sm font-semibold text-slate-600">
                       {job.enabled ? 'Aktiverad' : 'Inaktiverad'}
@@ -247,10 +247,10 @@ export const CronJobsPanel: React.FC<CronJobsPanelProps> = ({ userRole = 'admin'
                   {/* Lead Search Cronjob */}
                   <button
                     onClick={() => {/* TODO: Open lead search config */}}
-                    className="p-6 border-2 border-slate-200 rounded-lg hover:border-[#2563EB] hover:bg-slate-50 transition-all text-left group"
+                    className="p-6 border-2 border-slate-200 rounded-lg hover:border-black hover:bg-slate-50 transition-all text-left group"
                   >
-                    <Search className="w-8 h-8 text-[#2563EB] mb-3" />
-                    <h5 className="font-bold text-lg mb-2 group-hover:text-[#2563EB]">Sök nya leads</h5>
+                    <Search className="w-8 h-8 text-black mb-3" />
+                    <h5 className="font-bold text-lg mb-2 group-hover:text-black">Sök nya leads</h5>
                     <p className="text-sm text-slate-600">
                       Schemalägg automatisk sökning efter nya leads baserat på dina kriterier
                     </p>
@@ -262,10 +262,10 @@ export const CronJobsPanel: React.FC<CronJobsPanelProps> = ({ userRole = 'admin'
                   {/* Data Update Cronjob */}
                   <button
                     onClick={() => {/* TODO: Open data update config */}}
-                    className="p-6 border-2 border-slate-200 rounded-lg hover:border-[#2563EB] hover:bg-slate-50 transition-all text-left group"
+                    className="p-6 border-2 border-slate-200 rounded-lg hover:border-black hover:bg-slate-50 transition-all text-left group"
                   >
-                    <Calendar className="w-8 h-8 text-[#2563EB] mb-3" />
-                    <h5 className="font-bold text-lg mb-2 group-hover:text-[#2563EB]">Uppdatera kunddata</h5>
+                    <Calendar className="w-8 h-8 text-black mb-3" />
+                    <h5 className="font-bold text-lg mb-2 group-hover:text-black">Uppdatera kunddata</h5>
                     <p className="text-sm text-slate-600">
                       Schemalägg automatisk uppdatering av befintlig kunddata från Allabolag
                     </p>
@@ -277,10 +277,10 @@ export const CronJobsPanel: React.FC<CronJobsPanelProps> = ({ userRole = 'admin'
                   {/* Custom Cronjob */}
                   <button
                     onClick={() => {/* TODO: Open custom config */}}
-                    className="p-6 border-2 border-slate-200 rounded-lg hover:border-[#2563EB] hover:bg-slate-50 transition-all text-left group"
+                    className="p-6 border-2 border-slate-200 rounded-lg hover:border-black hover:bg-slate-50 transition-all text-left group"
                   >
-                    <Plus className="w-8 h-8 text-[#2563EB] mb-3" />
-                    <h5 className="font-bold text-lg mb-2 group-hover:text-[#2563EB]">Anpassat cronjob</h5>
+                    <Plus className="w-8 h-8 text-black mb-3" />
+                    <h5 className="font-bold text-lg mb-2 group-hover:text-black">Anpassat cronjob</h5>
                     <p className="text-sm text-slate-600">
                       Skapa ett anpassat cronjob med egna inställningar
                     </p>
