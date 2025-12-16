@@ -70,20 +70,10 @@ export const Header: React.FC<HeaderProps> = ({
               {/* EurekAI Logo - Clickable to Dashboard */}
               {onNavigateToDashboard ? (
                 <button onClick={onNavigateToDashboard} className="hover:opacity-80 transition-opacity">
-                  <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold text-xl">E</span>
-                    </div>
-                    <span className="text-2xl font-bold text-gray-900">EurekAI</span>
-                  </div>
+                  <img src="/eurekai-logo.svg" alt="EurekAI" className="h-12" />
                 </button>
               ) : (
-                <div className="flex items-center gap-2">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">E</span>
-                  </div>
-                  <span className="text-2xl font-bold text-gray-900">EurekAI</span>
-                </div>
+                <img src="/eurekai-logo.svg" alt="EurekAI" className="h-12" />
               )}
               
               {/* Subtitle */}

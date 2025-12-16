@@ -15,11 +15,12 @@
   --light-gray: #D1D5DB;
   --white: #FFFFFF;
   
-  /* Accent Colors */
-  --success-green: #10B981;
-  --warning-orange: #F59E0B;
-  --error-red: #EF4444;
-  --info-cyan: #06B6D4;
+  /* Feedback & Alert Colors - Standard UX */
+  --success: #4CAF50;
+  --warning: #FF9800;
+  --error: #F44336;
+  --info: #4BC6B8;
+  --cyan: #06B6D4;
   
   /* Typography */
   --font-family-base: 'Helvetica Neue', Helvetica, Arial, sans-serif;
