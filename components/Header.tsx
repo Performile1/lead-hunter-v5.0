@@ -1,7 +1,7 @@
 
 
 import React, { useState, useRef, useEffect } from 'react';
-import { ShieldBan, Target, RotateCcw, Settings2, Database, Save, Settings, ChevronDown, Terminal, Activity, FolderOpen, LogOut, User, Clock } from 'lucide-react';
+import { ShieldBan, Target, RotateCcw, Settings2, Database, Save, Settings, ChevronDown, Terminal, Activity, FolderOpen, LogOut, User, Clock, Search, Zap, ShieldCheck, HardDrive } from 'lucide-react';
 import { useAuth } from '../src/contexts/AuthContext';
 import { NotificationCenter } from '../src/components/notifications/NotificationCenter';
 
