@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Loader2, Activity, CheckCircle2, ArrowRight, X } from 'lucide-react';
 import { LeadData } from '../types';
 
@@ -102,7 +102,7 @@ export const ProcessingStatusBanner: React.FC<ProcessingStatusBannerProps> = ({
   }
 
   return (
-    <div className="bg-slate-900 text-white shadow-lg border-b-4 border-black sticky top-0 z-40 animate-slideDown">
+    <div className="bg-slate-900 text-white shadow-lg border-b-4 sticky top-0 z-40 animate-slideDown">
       <div className="max-w-[1600px] mx-auto px-4 py-3 flex items-center justify-between gap-4">
         
         <div className="flex items-center gap-3 min-w-0">

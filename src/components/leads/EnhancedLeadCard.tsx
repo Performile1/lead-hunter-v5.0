@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { 
   X, Building2, MapPin, Phone, Globe, Mail, Calendar, User, TrendingUp, TrendingDown,
   AlertCircle, CheckCircle, ExternalLink, DollarSign, Package, ShoppingCart, 
@@ -255,7 +255,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
             
             <button
               onClick={onClose}
-              className="p-2 hover:bg-white hover:bg-opacity-20 rounded-full transition"
+              className="p-2 hover:bg-[#FFC400] hover:bg-opacity-20 rounded-full transition"
             >
               <X className="w-6 h-6" />
             </button>

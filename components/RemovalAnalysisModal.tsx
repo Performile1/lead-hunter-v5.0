@@ -1,4 +1,4 @@
-
+﻿
 import React from 'react';
 import { X, Trash2, Copy, UserCheck, Ban, History, AlertTriangle } from 'lucide-react';
 
@@ -21,7 +21,7 @@ export const RemovalAnalysisModal: React.FC<RemovalAnalysisModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-white w-full max-w-lg shadow-2xl border-t-4 border-black relative rounded-sm">
+      <div className="bg-white w-full max-w-lg shadow-2xl border-t-4 relative rounded-sm">
         <button 
           onClick={onClose}
           className="absolute top-3 right-3 p-1 hover:bg-slate-100 rounded-full text-slate-500 transition-colors"
@@ -42,7 +42,7 @@ export const RemovalAnalysisModal: React.FC<RemovalAnalysisModalProps> = ({
             
             <button
               onClick={() => onConfirm('DUPLICATE')}
-              className="flex items-center gap-4 p-4 border border-slate-200 hover:border-black hover:bg-yellow-50 transition-all text-left group"
+              className="flex items-center gap-4 p-4 border border-slate-200 hover:hover:bg-yellow-50 transition-all text-left group"
             >
               <div className="bg-yellow-100 p-2 rounded-full group-hover:bg-black transition-colors">
                 <Copy className="w-5 h-5 text-yellow-700 group-hover:text-black" />
@@ -81,7 +81,7 @@ export const RemovalAnalysisModal: React.FC<RemovalAnalysisModalProps> = ({
 
             <button
               onClick={() => onConfirm('NOT_RELEVANT')}
-              className="flex items-center gap-4 p-4 border border-slate-200 hover:border-black hover:bg-red-50 transition-all text-left group"
+              className="flex items-center gap-4 p-4 border border-slate-200 hover:hover:bg-red-50 transition-all text-left group"
             >
               <div className="bg-red-100 p-2 rounded-full group-hover:bg-black transition-colors">
                 <Ban className="w-5 h-5 text-black group-hover:text-white" />

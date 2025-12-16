@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import { Folder, Save, Trash2, RotateCcw, Download, Upload, X, FileJson, Clock, HardDrive, AlertTriangle } from 'lucide-react';
 
 interface BackupItem {
@@ -62,7 +62,7 @@ export const BackupManager: React.FC<BackupManagerProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-white w-full max-w-4xl shadow-2xl border-t-4 border-black flex flex-col max-h-[90vh]">
+      <div className="bg-white w-full max-w-4xl shadow-2xl border-t-4 flex flex-col max-h-[90vh]">
         
         {/* Header */}
         <div className="bg-slate-800 p-4 flex justify-between items-center border-b border-slate-700">
@@ -77,7 +77,7 @@ export const BackupManager: React.FC<BackupManagerProps> = ({
               </p>
             </div>
           </div>
-          <button type="button" onClick={onClose} className="p-1 hover:bg-white/10 rounded-full transition-colors">
+          <button type="button" onClick={onClose} className="p-1 hover:bg-[#FFC400]/10 rounded-full transition-colors">
             <X className="w-6 h-6 text-white" />
           </button>
         </div>
@@ -101,7 +101,7 @@ export const BackupManager: React.FC<BackupManagerProps> = ({
                     value={newBackupName}
                     onChange={(e) => setNewBackupName(e.target.value)}
                     placeholder="t.ex. 'Efter Göteborg Batch'"
-                    className="w-full text-sm border-slate-300 rounded-sm focus:border-black focus:ring-[#2563EB]"
+                    className="w-full text-sm border-slate-300 rounded-sm focus:focus:ring-[#2563EB]"
                     maxLength={30}
                   />
                 </div>

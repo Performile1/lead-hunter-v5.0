@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import { Target, X, Plus, Check, Search } from 'lucide-react';
 
@@ -191,7 +191,7 @@ export const InclusionManager: React.FC<InclusionManagerProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-white w-full max-w-3xl shadow-2xl border-t-4 border-black flex flex-col max-h-[90vh]">
+      <div className="bg-white w-full max-w-3xl shadow-2xl border-t-4 flex flex-col max-h-[90vh]">
         
         {/* Header */}
         <div className="bg-white p-4 flex justify-between items-center border-b border-slate-200">
@@ -215,7 +215,7 @@ export const InclusionManager: React.FC<InclusionManagerProps> = ({
               </div>
               
               <textarea
-                className="flex-1 w-full p-3 text-xs border border-slate-300 focus:border-black focus:ring-[#2563EB] rounded-sm font-mono resize-none mb-2"
+                className="flex-1 w-full p-3 text-xs border border-slate-300 focus:focus:ring-[#2563EB] rounded-sm font-mono resize-none mb-2"
                 placeholder="Exempel:&#10;SNI 47.91&#10;Sportartiklar&#10;SNI 46.73"
                 value={textInput}
                 onChange={(e) => setTextInput(e.target.value)}
@@ -238,7 +238,7 @@ export const InclusionManager: React.FC<InclusionManagerProps> = ({
                     placeholder="Sök på bransch (t.ex. 'Bygg', 'IT', 'Vård', 'Handel')..." 
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-9 pr-4 py-2 text-sm border border-slate-300 focus:border-black focus:ring-[#2563EB] rounded-sm"
+                    className="w-full pl-9 pr-4 py-2 text-sm border border-slate-300 focus:focus:ring-[#2563EB] rounded-sm"
                   />
                 </div>
              </div>
@@ -260,7 +260,7 @@ export const InclusionManager: React.FC<InclusionManagerProps> = ({
                        className={`w-full text-left text-xs px-3 py-2 border rounded-sm flex items-center justify-between group transition-all ${
                          isActive 
                            ? 'bg-green-100 border-green-300 text-green-800 cursor-default' 
-                           : 'bg-white border-slate-200 hover:border-black hover:text-black shadow-sm'
+                           : 'bg-white border-slate-200 hover:hover:text-black shadow-sm'
                        }`}
                      >
                        <div className="flex flex-col">

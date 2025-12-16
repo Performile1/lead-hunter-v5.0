@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Building2, Search, Filter, Plus, TrendingDown, AlertTriangle, CheckCircle, Clock, Eye, RefreshCw, ArrowLeft } from 'lucide-react';
 import { CustomerCard } from './CustomerCard';
 
@@ -112,7 +112,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
-        <div className="bg-white rounded-sm shadow-lg p-6 mb-6 border-t-4 border-black">
+        <div className="bg-white rounded-sm shadow-lg p-6 mb-6 border-t-4">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-4">
               {onBack && (
@@ -149,7 +149,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
                 placeholder="Sök företag..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0 font-medium"
+                className="w-full pl-10 pr-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0 font-medium"
               />
             </div>
 
@@ -157,7 +157,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0 font-bold"
+              className="px-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0 font-bold"
             >
               <option value="all">Alla status</option>
               <option value="active">Aktiva</option>
@@ -170,7 +170,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
             <select
               value={segmentFilter}
               onChange={(e) => setSegmentFilter(e.target.value)}
-              className="px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0 font-bold"
+              className="px-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0 font-bold"
             >
               <option value="all">Alla segment</option>
               <option value="ecommerce">E-handel</option>
@@ -196,10 +196,10 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
         {/* Customer List */}
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-black"></div>
+            <div className="animate-spin rounded-full h-16 w-16 border-b-4"></div>
           </div>
         ) : customers.length === 0 ? (
-          <div className="bg-white rounded-sm shadow-lg p-12 text-center border-t-4 border-black">
+          <div className="bg-white rounded-sm shadow-lg p-12 text-center border-t-4">
             <Building2 className="w-20 h-20 text-gray-300 mx-auto mb-4" />
             <p className="text-xl font-bold text-gray-600">Inga kunder hittades</p>
             <p className="text-gray-500 mt-2">Prova att ändra dina filter eller lägg till en ny kund</p>
@@ -209,7 +209,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
             {customers.map((customer) => (
               <div
                 key={customer.id}
-                className="bg-white rounded-sm shadow-md hover:shadow-xl transition-all cursor-pointer border-t-4 border-black p-6"
+                className="bg-white rounded-sm shadow-md hover:shadow-xl transition-all cursor-pointer border-t-4 p-6"
                 onClick={() => setSelectedCustomerId(customer.id)}
               >
                 <div className="flex items-start justify-between gap-4">
@@ -244,7 +244,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
                           </div>
                           <p className="text-lg font-bold text-gray-900">{customer.account_manager_name || 'Ej tilldelad'}</p>
                         </div>
-                        <div className="bg-yellow-50 p-3 rounded-sm border-t-2 border-black">
+                        <div className="bg-yellow-50 p-3 rounded-sm border-t-2">
                           <div className="flex items-center gap-1 text-xs text-gray-600 mb-1">
                             <span>Checkout Position</span>
                           </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Users, Plus, Edit2, Trash2, X, Save, AlertCircle, Shield } from 'lucide-react';
 
 interface User {
@@ -251,7 +251,7 @@ export const SuperAdminUserManagement: React.FC = () => {
       )}
 
       {/* Users Table */}
-      <div className="bg-white border-2 border-black rounded-none overflow-hidden">
+      <div className="bg-white  rounded-none overflow-hidden">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
@@ -313,7 +313,7 @@ export const SuperAdminUserManagement: React.FC = () => {
       {/* Create/Edit Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-none p-6 max-w-2xl w-full mx-4 border-2 border-black">
+          <div className="bg-white rounded-none p-6 max-w-2xl w-full mx-4 ">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-black text-black">
                 {editingUser ? 'Redigera Användare' : 'Skapa Ny Användare'}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Building2, Plus, Edit2, Trash2, X, Save, AlertCircle } from 'lucide-react';
 
 interface Tenant {
@@ -219,7 +219,7 @@ export const TenantManagement: React.FC = () => {
         {tenants.map((tenant) => (
           <div
             key={tenant.id}
-            className="bg-white border-2 border-black rounded-none p-6 hover:shadow-lg transition-shadow"
+            className="bg-white  rounded-none p-6 hover:shadow-lg transition-shadow"
           >
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
@@ -298,7 +298,7 @@ export const TenantManagement: React.FC = () => {
       {/* Create/Edit Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-none p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto border-2 border-black">
+          <div className="bg-white rounded-none p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto ">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-black text-black">
                 {editingTenant ? 'Redigera Tenant' : 'Skapa Ny Tenant'}

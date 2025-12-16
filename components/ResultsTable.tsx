@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useMemo, useEffect } from 'react';
 import { LeadData, Segment } from '../types';
 import { Search, ExternalLink, ArrowRight, ShieldAlert, Ban, CheckCircle2, AlertTriangle, ArrowUpDown, Filter, Phone, DollarSign, Users2, Download, Check, Database, MapPin, Truck, Hash, LayoutList, User, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Trash2, Microscope, ScanSearch, X, ArrowUp, ArrowDown, TrendingUp, TrendingDown, Calendar, Clock } from 'lucide-react';
@@ -380,7 +380,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
 
   return (
     <div className="w-full">
-      <div className="bg-[#FFC400] p-2 border-t-4 border-black border-b-2 border-black flex flex-col items-start gap-3">
+      <div className="bg-[#FFC400] p-2 border-t-4 border-b-2 flex flex-col items-start gap-3">
         
         {/* ROW 1: SEARCH & ACTIONS */}
         <div className="w-full flex flex-wrap items-center justify-between gap-3">
@@ -431,7 +431,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                         placeholder="Snabbsök (Globalt)..."
                         value={filters.global}
                         onChange={(e) => handleFilterChange('global', e.target.value)}
-                        className="pl-7 pr-2 py-1 w-48 text-xs border border-slate-300 rounded-sm focus:ring-[#2563EB] focus:border-black"
+                        className="pl-7 pr-2 py-1 w-48 text-xs border border-slate-300 rounded-sm focus:ring-[#2563EB] focus:"
                       />
                     </div>
 
@@ -451,7 +451,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
 
       <div className="bg-white shadow-md w-full overflow-x-auto">
         <div className="min-w-[840px]">
-            <div className="grid grid-cols-[40px_110px_minmax(150px,2fr)_minmax(100px,1fr)_110px_60px_minmax(150px,1.5fr)_90px] bg-white border-b-2 border-black text-xs font-black uppercase tracking-wider py-2 gap-2">
+            <div className="grid grid-cols-[40px_110px_minmax(150px,2fr)_minmax(100px,1fr)_110px_60px_minmax(150px,1.5fr)_90px] bg-white border-b-2 text-xs font-black uppercase tracking-wider py-2 gap-2">
                 <div className="flex items-center justify-center">
                     <input 
                     type="checkbox" 
@@ -498,7 +498,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                        placeholder="Org / Status..." 
                        value={filters.org}
                        onChange={(e) => handleFilterChange('org', e.target.value)}
-                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:border-black focus:ring-[#2563EB]"
+                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:focus:ring-[#2563EB]"
                      />
                  </div>
                  <div className="pr-1">
@@ -507,7 +507,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                        placeholder="Företagsnamn..." 
                        value={filters.company}
                        onChange={(e) => handleFilterChange('company', e.target.value)}
-                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:border-black focus:ring-[#2563EB]"
+                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:focus:ring-[#2563EB]"
                      />
                  </div>
                  <div className="pr-1">
@@ -517,7 +517,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                        placeholder="Ort..." 
                        value={filters.city}
                        onChange={(e) => handleFilterChange('city', e.target.value)}
-                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:border-black focus:ring-[#2563EB]"
+                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:focus:ring-[#2563EB]"
                      />
                      <datalist id="city-suggestions">
                          {uniqueCities.map(city => <option key={city} value={city} />)}
@@ -529,7 +529,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                        placeholder="Min Oms..." 
                        value={filters.revenue}
                        onChange={(e) => handleFilterChange('revenue', e.target.value)}
-                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:border-black focus:ring-[#2563EB]"
+                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:focus:ring-[#2563EB]"
                        title="Ange siffra för 'Minst X tkr', eller text för matchning"
                      />
                  </div>
@@ -537,7 +537,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                      <select 
                        value={filters.segment}
                        onChange={(e) => handleFilterChange('segment', e.target.value)}
-                       className="w-full text-[10px] py-0.5 px-0 border-slate-300 rounded-sm focus:border-black focus:ring-[#2563EB]"
+                       className="w-full text-[10px] py-0.5 px-0 border-slate-300 rounded-sm focus:focus:ring-[#2563EB]"
                      >
                         <option value="ALL">Alla</option>
                         <option value="KAM">KAM</option>
@@ -552,7 +552,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                        placeholder="Namn / Titel..." 
                        value={filters.contact}
                        onChange={(e) => handleFilterChange('contact', e.target.value)}
-                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:border-black focus:ring-[#2563EB]"
+                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:focus:ring-[#2563EB]"
                      />
                  </div>
                  <div>{/* Action Column Empty */}</div>
@@ -704,7 +704,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                             className={`p-1.5 rounded-sm transition-colors border ${
                             isAnalyzed 
                                 ? 'bg-slate-800 text-white border-slate-900 hover:bg-black' 
-                                : 'bg-black text-white border-black hover:bg-gray-800'
+                                : 'bg-black text-white hover:bg-gray-800'
                             }`}
                             title={isAnalyzed ? `Analys Klar ${lead.analysisDate ? '(' + new Date(lead.analysisDate).toLocaleDateString() + ')' : ''}. Klicka för att öppna.` : "Starta Analys"}
                         >
@@ -739,7 +739,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
              <select 
                value={itemsPerPage}
                onChange={(e) => setItemsPerPage(Number(e.target.value))}
-               className="text-xs border-slate-300 rounded-sm py-1 pl-2 pr-6 focus:ring-[#2563EB] focus:border-black bg-slate-50"
+               className="text-xs border-slate-300 rounded-sm py-1 pl-2 pr-6 focus:ring-[#2563EB] focus:bg-slate-50"
              >
                <option value={10}>10</option>
                <option value={20}>20</option>

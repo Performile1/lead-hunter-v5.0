@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { SearchFormData } from '../types';
 import { Search, Building2, MapPin, DollarSign, Users, Briefcase, Zap, X, UserSearch, HelpCircle, Activity } from 'lucide-react';
 
@@ -54,7 +54,7 @@ const ChipInput = ({
         <span className="text-[9px] font-normal text-slate-500 italic self-center">Enter för att lägga till</span>
       </label>
       
-      <div className="border border-slate-300 p-1.5 bg-white rounded-none focus-within:ring-1 focus-within:ring-[#2563EB] focus-within:border-black">
+      <div className="border border-slate-300 p-1.5 bg-white rounded-none focus-within:ring-1 focus-within:ring-[#2563EB] focus-within:">
         <div className="flex flex-wrap gap-1 mb-1">
           {chips.map((chip, index) => (
             <span key={index} className="bg-slate-100 border border-slate-300 text-slate-800 text-[10px] font-semibold px-1.5 py-0.5 flex items-center gap-1 rounded-sm">
@@ -233,8 +233,8 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
   };
 
   return (
-    <div className="bg-white rounded-none shadow-lg border-t-4 border-black overflow-hidden">
-      <div className="bg-[#FFC400] p-3 text-black flex items-center justify-between border-b-2 border-black">
+    <div className="bg-white rounded-none shadow-lg border-t-4 overflow-hidden">
+      <div className="bg-[#FFC400] p-3 text-black flex items-center justify-between border-b-2">
         <h2 className="text-sm font-bold italic flex items-center gap-2">
           <Search className="w-4 h-4 text-black" />
           Konfigurera Sökning
@@ -251,7 +251,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
           {onOpenTour && (
             <button 
               onClick={onOpenTour}
-              className="p-1 hover:bg-white/30 rounded-full transition-colors"
+              className="p-1 hover:bg-[#FFC400]/30 rounded-full transition-colors"
               title="Starta Guidad Tur"
             >
               <HelpCircle className="w-4 h-4 text-black" />
@@ -267,7 +267,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
           onClick={() => handleTabChange('single')}
           className={`flex-1 py-2 px-3 text-xs font-bold transition-colors uppercase tracking-wide ${
             activeTab === 'single' 
-              ? 'bg-white text-black border-b-2 border-black' 
+              ? 'bg-white text-black border-b-2' 
               : 'text-slate-500 hover:bg-slate-50 bg-slate-50'
           }`}
         >
@@ -282,7 +282,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
           onClick={() => handleTabChange('batch')}
           className={`flex-1 py-2 px-3 text-xs font-bold transition-colors uppercase tracking-wide ${
             activeTab === 'batch' 
-              ? 'bg-white text-black border-b-2 border-black' 
+              ? 'bg-white text-black border-b-2' 
               : 'text-slate-500 hover:bg-slate-50 bg-slate-50'
           }`}
         >
@@ -312,7 +312,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                     value={formData.companyNameOrOrg}
                     onChange={handleChange}
                     placeholder="t.ex. RevolutionRace AB / 556754-5262"
-                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:border-black focus:ring-[#2563EB] text-xs border p-2"
+                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:focus:ring-[#2563EB] text-xs border p-2"
                     autoFocus
                   />
                 </div>
@@ -332,7 +332,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                     value={formData.specificPerson || ''}
                     onChange={handleChange}
                     placeholder="t.ex. Anders Andersson"
-                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:border-black focus:ring-[#2563EB] text-xs border p-2"
+                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:focus:ring-[#2563EB] text-xs border p-2"
                   />
                 </div>
               </div>
@@ -364,7 +364,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                     value={formData.geoArea}
                     onChange={handleChange}
                     placeholder="Ort/Postnr"
-                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:border-black focus:ring-[#2563EB] text-xs border p-2"
+                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:focus:ring-[#2563EB] text-xs border p-2"
                   />
                 </div>
               </div>
@@ -380,7 +380,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                     name="financialScope"
                     value={formData.financialScope}
                     onChange={handleChange}
-                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:border-black focus:ring-[#2563EB] text-xs border p-2 bg-white"
+                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:focus:ring-[#2563EB] text-xs border p-2 bg-white"
                   >
                     <option value="Alla">Alla (Enklast)</option>
                     <option value="KAM">KAM (≥ 5M)</option>
@@ -418,7 +418,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                   max="100"
                   value={formData.leadCount}
                   onChange={handleChange}
-                  className="block w-20 rounded-none border-slate-300 shadow-sm focus:border-black focus:ring-[#2563EB] text-xs border p-2 text-center font-bold"
+                  className="block w-20 rounded-none border-slate-300 shadow-sm focus:focus:ring-[#2563EB] text-xs border p-2 text-center font-bold"
                 />
                 <input
                   type="range"
@@ -482,7 +482,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
               onChange={handleChange}
               rows={2}
               placeholder="Ämne för inledning..."
-              className="block w-full rounded-none border-slate-300 shadow-sm focus:border-black focus:ring-[#2563EB] text-xs border p-2"
+              className="block w-full rounded-none border-slate-300 shadow-sm focus:focus:ring-[#2563EB] text-xs border p-2"
             />
           </div>
         </div>

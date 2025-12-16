@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect, useRef } from 'react';
 import { X, ChevronRight, MousePointer2 } from 'lucide-react';
 
@@ -168,7 +168,7 @@ export const OnboardingTour: React.FC<TourProps> = ({ isOpen, onClose, onDemoFil
 
         {/* Tooltip Card */}
         <div 
-            className="absolute z-[101] bg-white w-80 shadow-2xl border-t-4 border-black pointer-events-auto transition-all duration-500 ease-out p-6 rounded-sm flex flex-col gap-3"
+            className="absolute z-[101] bg-white w-80 shadow-2xl border-t-4 pointer-events-auto transition-all duration-500 ease-out p-6 rounded-sm flex flex-col gap-3"
             style={tooltipStyle}
         >
             <div className="flex justify-between items-start">

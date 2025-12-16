@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Eye, Mail, Clock, CheckCircle, X } from 'lucide-react';
 
 interface WatchFormProps {
@@ -77,7 +77,7 @@ export const WatchForm: React.FC<WatchFormProps> = ({ leadId, companyName, onWat
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-white hover:bg-opacity-20 rounded-full transition"
+            className="p-2 hover:bg-[#FFC400] hover:bg-opacity-20 rounded-full transition"
           >
             <X className="w-5 h-5" />
           </button>

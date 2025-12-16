@@ -12,9 +12,9 @@ import { analyzeCompetitiveIntelligence } from "./competitiveIntelligenceService
 import { detectTriggers } from "./triggerDetectionService";
 import { searchCompanyNews } from "./newsApiService";
 
-// API keys from environment or hardcoded for frontend
-const GEMINI_API_KEY = 'AIzaSyCHHVIjyMPUT6jXyanTE_z1II54f3JSJGg';
-const GROQ_API_KEY = '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';
+// API keys from environment variables
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
+const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY || '';
 
 // --- GLOBAL CACHE CONFIG ---
 const CACHE_KEY = 'dhl_deep_analysis_cache';

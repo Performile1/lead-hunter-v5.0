@@ -1,4 +1,4 @@
-
+﻿
 
 import React, { useState, useRef, useEffect } from 'react';
 import { ShieldBan, Target, RotateCcw, Settings2, Database, Save, Settings, ChevronDown, Terminal, Activity, FolderOpen, LogOut, User, Clock, Search, Zap, ShieldCheck, HardDrive } from 'lucide-react';
@@ -60,7 +60,7 @@ export const Header: React.FC<HeaderProps> = ({
   const totalBadgeCount = cacheCount + inclusionCount + exclusionCount;
 
   return (
-    <header className="bg-[#FFC400] shadow-md sticky top-0 z-50 border-b-4 border-black">
+    <header className="bg-[#FFC400] shadow-md sticky top-0 z-50 border-b-4">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-2">
         <div className="flex items-center justify-between">
           
@@ -87,7 +87,7 @@ export const Header: React.FC<HeaderProps> = ({
               )}
               
               {/* Subtitle */}
-              <div className="hidden lg:block border-l-2 border-black/20 pl-4">
+              <div className="hidden lg:block border-l-2/20 pl-4">
                 <div className="text-black font-black italic uppercase tracking-widest text-lg leading-none">
                   Lead Hunter
                 </div>
@@ -98,8 +98,8 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
 
             {/* Protocol Selector Dropdown */}
-            <div className="hidden xl:flex items-center gap-2 ml-4 border-l border-black/10 pl-4">
-               <div className="flex items-center gap-2 bg-white/50 px-2 py-1 rounded-sm border border-black/5 hover:bg-white transition-colors">
+            <div className="hidden xl:flex items-center gap-2 ml-4 border-l/10 pl-4">
+               <div className="flex items-center gap-2 bg-white/50 px-2 py-1 rounded-sm border/5 hover:bg-white transition-colors">
                  <Settings2 className="w-4 h-4 text-black" />
                  <div className="flex flex-col">
                    <span className="text-[8px] text-black/60 uppercase font-bold leading-none mb-0.5">Analys Protokoll</span>
@@ -130,7 +130,7 @@ export const Header: React.FC<HeaderProps> = ({
              <div className="relative" ref={menuRef}>
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-sm transition-colors shadow-sm border border-black/5 group ${isMenuOpen ? 'bg-white text-black' : 'bg-white/50 hover:bg-white text-slate-800'}`}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-sm transition-colors shadow-sm border/5 group ${isMenuOpen ? 'bg-white text-black' : 'bg-white/50 hover:bg-white text-slate-800'}`}
                   title="Öppna Verktygsmeny"
                 >
                   <div className="relative">
@@ -249,7 +249,7 @@ export const Header: React.FC<HeaderProps> = ({
                   className={`flex items-center gap-2 px-4 py-2 rounded-sm transition-colors shadow-sm font-bold text-sm uppercase ${
                     showCustomerList 
                       ? 'bg-black text-black hover:bg-[#e6b800]' 
-                      : 'bg-white/50 hover:bg-white text-slate-700 border border-black/5'
+                      : 'bg-white/50 hover:bg-white text-slate-700 border/5'
                   }`}
                   title={showCustomerList ? 'Visa Leads' : 'Visa Kundlista'}
                 >
@@ -277,14 +277,14 @@ export const Header: React.FC<HeaderProps> = ({
                 </div>
               )}
 
-              <div className="flex items-center gap-2 bg-white/50 px-3 py-2 rounded-sm border border-black/5">
+              <div className="flex items-center gap-2 bg-white/50 px-3 py-2 rounded-sm border/5">
                 <User className="w-4 h-4 text-slate-600" />
                 <span className="text-xs font-semibold text-slate-700">{user?.name || user?.email}</span>
               </div>
 
               <button
                 onClick={logout}
-                className="flex items-center gap-2 bg-white/50 hover:bg-white text-slate-700 hover:text-black px-3 py-2 rounded-sm transition-colors shadow-sm border border-black/5"
+                className="flex items-center gap-2 bg-[#FFC400]/50 hover:bg-white text-slate-700 hover:text-black px-3 py-2 rounded-sm transition-colors shadow-sm border/5"
                 title="Logga ut"
               >
                 <LogOut className="w-4 h-4" />

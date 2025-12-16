@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Building2, Plus, Edit2, Trash2, Save, X, Users, TrendingUp, Package, AlertCircle } from 'lucide-react';
 
 interface Tenant {
@@ -208,7 +208,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-black"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-4"></div>
       </div>
     );
   }
@@ -347,7 +347,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
                     type="text"
                     value={formData.company_name}
                     onChange={(e) => setFormData({ ...formData, company_name: e.target.value })}
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0"
                     placeholder="DHL Express Sweden"
                   />
                 </div>
@@ -358,7 +358,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
                     type="text"
                     value={formData.domain}
                     onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0"
                     placeholder="dhl.se"
                   />
                 </div>
@@ -369,7 +369,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
                     type="text"
                     value={formData.subdomain}
                     onChange={(e) => setFormData({ ...formData, subdomain: e.target.value })}
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0"
                     placeholder="dhl-sweden"
                   />
                   <p className="text-xs text-gray-500 mt-1">Används för tenant-specifik URL (valfritt)</p>
@@ -386,7 +386,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
                     type="text"
                     value={formData.checkout_search_term}
                     onChange={(e) => setFormData({ ...formData, checkout_search_term: e.target.value })}
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0"
                     placeholder="DHL"
                   />
                 </div>
@@ -397,7 +397,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
                     type="text"
                     value={formData.main_competitor}
                     onChange={(e) => setFormData({ ...formData, main_competitor: e.target.value })}
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0"
                     placeholder="PostNord"
                   />
                 </div>
@@ -412,7 +412,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
                   <select
                     value={formData.subscription_tier}
                     onChange={(e) => setFormData({ ...formData, subscription_tier: e.target.value as any })}
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0"
                   >
                     <option value="basic">Basic</option>
                     <option value="professional">Professional</option>
@@ -427,7 +427,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
                       type="number"
                       value={formData.max_users}
                       onChange={(e) => setFormData({ ...formData, max_users: parseInt(e.target.value) })}
-                      className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
+                      className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0"
                     />
                   </div>
                   <div>
@@ -436,7 +436,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
                       type="number"
                       value={formData.max_leads_per_month}
                       onChange={(e) => setFormData({ ...formData, max_leads_per_month: parseInt(e.target.value) })}
-                      className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
+                      className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0"
                     />
                   </div>
                   <div>
@@ -445,7 +445,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
                       type="number"
                       value={formData.max_customers}
                       onChange={(e) => setFormData({ ...formData, max_customers: parseInt(e.target.value) })}
-                      className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
+                      className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0"
                     />
                   </div>
                 </div>

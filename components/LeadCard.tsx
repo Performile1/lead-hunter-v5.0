@@ -1,4 +1,4 @@
-
+﻿
 
 
 
@@ -425,10 +425,10 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
   const isLoadingPeople = isEnriching && data.decisionMakers.length === 0;
 
   return (
-    <div className="bg-white rounded-none shadow-md border-t-4 border-black overflow-hidden mb-6 transition-all hover:shadow-xl w-full relative">
+    <div className="bg-white rounded-none shadow-md border-t-4 overflow-hidden mb-6 transition-all hover:shadow-xl w-full relative">
       
       {/* Header */}
-      <div className="bg-[#FFC400] border-b-2 border-black p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-[#FFC400] border-b-2 p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-3 mb-2 flex-wrap">
             {isEditing ? (
@@ -436,7 +436,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                 type="text"
                 value={editData.companyName}
                 onChange={(e) => setEditData({...editData, companyName: e.target.value})}
-                className="text-xl font-black italic text-black uppercase w-full max-w-md border-b border-slate-300 focus:border-black focus:ring-0 outline-none bg-transparent"
+                className="text-xl font-black italic text-black uppercase w-full max-w-md border-b border-slate-300 focus:focus:ring-0 outline-none bg-transparent"
                 placeholder="Företagsnamn"
               />
             ) : (
@@ -479,7 +479,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                       type="text"
                       value={editData.orgNumber}
                       onChange={(e) => setEditData({...editData, orgNumber: e.target.value})}
-                      className="font-mono font-semibold text-xs border-slate-300 rounded-sm p-1 w-24 focus:border-black focus:ring-[#2563EB]"
+                      className="font-mono font-semibold text-xs border-slate-300 rounded-sm p-1 w-24 focus:focus:ring-[#2563EB]"
                       placeholder="Org.nr"
                     />
                   ) : (
@@ -503,7 +503,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                     type="text"
                     value={editData.websiteUrl}
                     onChange={(e) => setEditData({...editData, websiteUrl: e.target.value})}
-                    className="text-xs border-slate-300 rounded-sm p-1 w-40 focus:border-black focus:ring-[#2563EB]"
+                    className="text-xs border-slate-300 rounded-sm p-1 w-40 focus:focus:ring-[#2563EB]"
                     placeholder="Webbplats"
                   />
                 </div>
@@ -524,7 +524,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                     type="text"
                     value={editData.phoneNumber}
                     onChange={(e) => setEditData({...editData, phoneNumber: e.target.value})}
-                    className="text-xs font-bold border-slate-300 rounded-sm p-1 w-28 focus:border-black focus:ring-[#2563EB]"
+                    className="text-xs font-bold border-slate-300 rounded-sm p-1 w-28 focus:focus:ring-[#2563EB]"
                     placeholder="Telefon"
                   />
               ) : (
@@ -556,8 +556,8 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                         onClick={() => onRefreshAnalysis(data)}
                         className={`flex items-center gap-1 px-3 py-1.5 border rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm ${
                            hasMissingOrgNr 
-                           ? 'bg-red-50 text-black border-black hover:bg-black hover:text-white animate-pulse' 
-                           : 'bg-white border-slate-300 text-slate-700 hover:bg-black hover:text-white hover:border-black'
+                           ? 'bg-red-50 text-black hover:bg-black hover:text-white animate-pulse' 
+                           : 'bg-white border-slate-300 text-slate-700 hover:bg-black hover:text-white hover:'
                         }`}
                         title={hasMissingOrgNr ? "Kritisk data saknas. Klicka för att försöka hämta igen." : "Starta en helt ny sökning/analys på detta företag"}
                     >
@@ -570,7 +570,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                     <>
                     <button 
                         onClick={handleCancel}
-                        className="p-1.5 text-slate-500 hover:text-red-600 bg-white border border-slate-300 hover:bg-red-50 rounded-sm transition-colors"
+                        className="p-1.5 text-slate-500 hover:text-red-600 bg-[#FFC400] border border-slate-300 hover:bg-red-50 rounded-sm transition-colors"
                         title="Avbryt"
                     >
                         <X className="w-4 h-4" />
@@ -608,7 +608,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                     )}
                     <button 
                         onClick={() => setIsEditing(true)}
-                        className="flex items-center gap-1 px-3 py-1.5 bg-white border border-slate-300 text-slate-600 hover:text-black hover:border-black rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
+                        className="flex items-center gap-1 px-3 py-1.5 bg-white border border-slate-300 text-slate-600 hover:text-black hover:rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
                         title="Redigera grunduppgifter"
                     >
                         <Edit2 className="w-3 h-3" />
@@ -660,7 +660,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
         
         {/* Column 1: Financials & Logistics & Ratings */}
         <div className="space-y-4 min-w-0">
-          <h4 className="text-sm font-bold text-black border-b-2 border-black pb-2 flex items-center gap-2 uppercase">
+          <h4 className="text-sm font-bold text-black border-b-2 pb-2 flex items-center gap-2 uppercase">
             <TrendingUp className="w-4 h-4 text-black" />
             Ekonomi & Logistik
           </h4>
@@ -678,14 +678,14 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                                 type="text" 
                                 value={record.year}
                                 onChange={(e) => handleFinancialChange(index, 'year', e.target.value)}
-                                className="w-16 text-xs font-bold border-slate-300 rounded-sm p-1 focus:border-black focus:ring-[#2563EB]"
+                                className="w-16 text-xs font-bold border-slate-300 rounded-sm p-1 focus:focus:ring-[#2563EB]"
                                 placeholder="År"
                              />
                              <input 
                                 type="text" 
                                 value={record.revenue}
                                 onChange={(e) => handleFinancialChange(index, 'revenue', e.target.value)}
-                                className="flex-1 text-xs font-bold border-slate-300 rounded-sm p-1 focus:border-black focus:ring-[#2563EB]"
+                                className="flex-1 text-xs font-bold border-slate-300 rounded-sm p-1 focus:focus:ring-[#2563EB]"
                                 placeholder="Omsättning (tkr)"
                              />
                              <span className="text-[10px] text-slate-400">tkr</span>
@@ -696,7 +696,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                       ))}
                       <button 
                         onClick={addFinancialYear}
-                        className="w-full py-1 text-[10px] border border-dashed border-slate-300 text-slate-500 hover:text-black hover:border-black rounded-sm font-bold uppercase"
+                        className="w-full py-1 text-[10px] border border-dashed border-slate-300 text-slate-500 hover:text-black hover:rounded-sm font-bold uppercase"
                       >
                          + Lägg till År
                       </button>
@@ -713,7 +713,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             href={getAllabolagUrl()}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200 hover:bg-black hover:text-white hover:border-black transition-colors"
+                            className="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200 hover:bg-black hover:text-white hover:transition-colors"
                             onClick={(e) => e.stopPropagation()}
                         >
                             Allabolag
@@ -722,7 +722,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             href={cleanOrgForRatsit(data.orgNumber) ? `https://www.ratsit.se/${cleanOrgForRatsit(data.orgNumber)}` : `https://www.ratsit.se/sok/foretag?q=${encodeURIComponent(data.companyName)}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200 hover:bg-black hover:text-white hover:border-black transition-colors"
+                            className="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200 hover:bg-black hover:text-white hover:transition-colors"
                             onClick={(e) => e.stopPropagation()}
                         >
                             Ratsit
@@ -946,7 +946,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             href={`https://se.trustpilot.com/search?query=${encodeURIComponent(data.companyName)}`} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 bg-slate-100 border border-slate-300 text-slate-600 hover:bg-black hover:text-white hover:border-black px-3 py-1.5 rounded-sm text-[10px] font-bold uppercase transition-colors"
+                            className="inline-flex items-center gap-1 bg-slate-100 border border-slate-300 text-slate-600 hover:bg-black hover:text-white hover:px-3 py-1.5 rounded-sm text-[10px] font-bold uppercase transition-colors"
                         >
                             <Search className="w-3 h-3" />
                             Sök på Trustpilot
@@ -959,7 +959,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
 
         {/* Column 2: AI Insights & Sources (MOVED TO MIDDLE) */}
         <div className="space-y-4 min-w-0">
-          <h4 className="text-sm font-bold text-black border-b-2 border-black pb-2 flex items-center gap-2 uppercase">
+          <h4 className="text-sm font-bold text-black border-b-2 pb-2 flex items-center gap-2 uppercase">
             <Target className="w-4 h-4 text-black" />
             AI Säljanalys
           </h4>
@@ -979,7 +979,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             <textarea
                                 value={editData.address}
                                 onChange={(e) => setEditData({...editData,address: e.target.value})}
-                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:border-black focus:ring-[#2563EB] resize-none h-10 font-mono"
+                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:focus:ring-[#2563EB] resize-none h-10 font-mono"
                             />
                         ) : (
                             <span className="font-mono text-slate-700 break-words leading-tight">{safeRender(data.address) || "-"}</span>
@@ -993,7 +993,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             <textarea
                                 value={editData.visitingAddress}
                                 onChange={(e) => setEditData({...editData, visitingAddress: e.target.value})}
-                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:border-black focus:ring-[#2563EB] resize-none h-10 font-mono"
+                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:focus:ring-[#2563EB] resize-none h-10 font-mono"
                             />
                         ) : (
                             <span className="font-mono text-slate-700 break-words leading-tight">{safeRender(data.visitingAddress) || "-"}</span>
@@ -1007,7 +1007,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             <textarea
                                 value={editData.warehouseAddress}
                                 onChange={(e) => setEditData({...editData, warehouseAddress: e.target.value})}
-                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:border-black focus:ring-[#2563EB] resize-none h-10 font-mono"
+                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:focus:ring-[#2563EB] resize-none h-10 font-mono"
                             />
                         ) : (
                             <span className="font-mono text-slate-700 break-words leading-tight">{safeRender(data.warehouseAddress) || "-"}</span>
@@ -1021,7 +1021,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             <textarea
                                 value={editData.returnAddress}
                                 onChange={(e) => setEditData({...editData, returnAddress: e.target.value})}
-                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:border-black focus:ring-[#2563EB] resize-none h-10 font-mono"
+                                className="text-[10px] border-slate-300 rounded-sm p-1 focus:focus:ring-[#2563EB] resize-none h-10 font-mono"
                             />
                         ) : (
                             <span className="font-mono text-slate-700 break-words leading-tight">{safeRender(data.returnAddress) || "-"}</span>
@@ -1086,7 +1086,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
 
             {/* Icebreaker */}
             {!isLoadingPeople && (
-                <div className="bg-black/10 border border-black p-3 rounded-sm">
+                <div className="bg-black/10 border p-3 rounded-sm">
                 <span className="text-[10px] font-bold text-slate-500 uppercase mb-1 block">Förslag på inledning (Icebreaker)</span>
                 <p className="text-xs text-slate-800 italic leading-relaxed">
                     "{safeRender(data.icebreaker)}"
@@ -1155,7 +1155,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
 
         {/* Column 3: Decision Makers (MOVED TO RIGHT) */}
         <div className="space-y-4 min-w-0">
-          <h4 className="text-sm font-bold text-black border-b-2 border-black pb-2 flex items-center gap-2 uppercase">
+          <h4 className="text-sm font-bold text-black border-b-2 pb-2 flex items-center gap-2 uppercase">
             <User className="w-4 h-4 text-black" />
             Beslutsfattare
           </h4>
@@ -1178,7 +1178,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
           ) : (
              <div className="space-y-3">
             {editData.decisionMakers.map((dm, idx) => (
-              <div key={idx} className="bg-white border border-slate-200 p-3 shadow-sm hover:border-black transition-colors group relative">
+              <div key={idx} className="bg-white border border-slate-200 p-3 shadow-sm hover:transition-colors group relative">
                 {isEditing && (
                     <button 
                         onClick={() => removeDM(idx)}
@@ -1199,7 +1199,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             type="text" 
                             value={dm.name}
                             onChange={(e) => updateDM(idx, 'name', e.target.value)}
-                            className="w-full text-sm font-bold border-slate-300 rounded-sm p-0.5 focus:border-black focus:ring-[#2563EB] mb-1"
+                            className="w-full text-sm font-bold border-slate-300 rounded-sm p-0.5 focus:focus:ring-[#2563EB] mb-1"
                             placeholder="Namn"
                             />
                         ) : (
@@ -1211,7 +1211,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             type="text" 
                             value={dm.title}
                             onChange={(e) => updateDM(idx, 'title', e.target.value)}
-                            className="w-full text-xs text-slate-500 border-slate-300 rounded-sm p-0.5 focus:border-black focus:ring-[#2563EB]"
+                            className="w-full text-xs text-slate-500 border-slate-300 rounded-sm p-0.5 focus:focus:ring-[#2563EB]"
                             placeholder="Titel"
                             />
                         ) : (
@@ -1242,7 +1242,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             type="text" 
                             value={dm.email}
                             onChange={(e) => updateDM(idx, 'email', e.target.value)}
-                            className="flex-1 text-xs border-slate-300 rounded-sm p-0.5 focus:border-black focus:ring-[#2563EB]"
+                            className="flex-1 text-xs border-slate-300 rounded-sm p-0.5 focus:focus:ring-[#2563EB]"
                             placeholder="Email"
                         />
                     ) : (
@@ -1260,7 +1260,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                             type="text" 
                             value={dm.directPhone}
                             onChange={(e) => updateDM(idx, 'directPhone', e.target.value)}
-                            className="flex-1 text-xs border-slate-300 rounded-sm p-0.5 focus:border-black focus:ring-[#2563EB]"
+                            className="flex-1 text-xs border-slate-300 rounded-sm p-0.5 focus:focus:ring-[#2563EB]"
                             placeholder="Direktnummer"
                         />
                     ) : (
@@ -1276,7 +1276,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
             {isEditing && (
                 <button 
                     onClick={addDM}
-                    className="w-full py-2 border-2 border-dashed border-slate-300 text-slate-400 font-bold uppercase text-xs hover:border-black hover:text-black transition-colors rounded-sm flex items-center justify-center gap-2"
+                    className="w-full py-2 border-2 border-dashed border-slate-300 text-slate-400 font-bold uppercase text-xs hover:hover:text-black transition-colors rounded-sm flex items-center justify-center gap-2"
                 >
                     <Plus className="w-4 h-4" /> Lägg till person
                 </button>
@@ -1293,7 +1293,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                     type="text" 
                     value={roleInput}
                     onChange={(e) => setRoleInput(e.target.value)}
-                    className="flex-1 text-xs border-slate-300 rounded-sm focus:ring-[#2563EB] focus:border-black"
+                    className="flex-1 text-xs border-slate-300 rounded-sm focus:ring-[#2563EB] focus:"
                     placeholder="Titel (t.ex. VD)"
                     />
                     <button 

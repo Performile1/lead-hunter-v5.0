@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Building2, TrendingUp, TrendingDown, RefreshCw, Clock, AlertTriangle, CheckCircle, Globe, Package, CreditCard, Users, FileText, Plus } from 'lucide-react';
 
 interface CustomerDetailProps {
@@ -98,7 +98,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#4F46E5]/10 to-white flex items-center justify-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-black"></div>
+        <div className="animate-spin rounded-full h-16 w-16 border-b-4"></div>
       </div>
     );
   }
@@ -134,7 +134,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
         </button>
 
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-6 border-t-4 border-black">
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-6 border-t-4">
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
@@ -203,7 +203,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`flex items-center gap-2 px-6 py-4 font-bold uppercase tracking-wide transition-colors ${
                   activeTab === tab.id
-                    ? 'border-b-4 border-black text-black'
+                    ? 'border-b-4 text-black'
                     : 'text-gray-600 hover:text-black'
                 }`}
               >
@@ -218,7 +218,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
             {activeTab === 'overview' && (
               <div className="space-y-6">
                 {/* Checkout Position */}
-                <div className="bg-gradient-to-br from-[#4F46E5]/20 to-white p-6 rounded-lg border-2 border-black">
+                <div className="bg-gradient-to-br from-[#4F46E5]/20 to-white p-6 rounded-lg ">
                   <h3 className="text-xl font-black text-black uppercase mb-4 flex items-center gap-2">
                     <Package className="w-6 h-6 text-black" />
                     Checkout-position

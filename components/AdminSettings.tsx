@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Settings, Palette, Type, Image, Save, Upload, RotateCcw, Eye, ArrowLeft, Check, Building2 } from 'lucide-react';
 import { TenantManagement } from './TenantManagement';
 
@@ -238,7 +238,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
       <div className="max-w-6xl mx-auto">
         
         {/* Header */}
-        <div className="bg-white rounded-sm shadow-lg p-6 mb-6 border-t-4 border-black">
+        <div className="bg-white rounded-sm shadow-lg p-6 mb-6 border-t-4">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-4">
               <button
@@ -307,7 +307,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                 onClick={() => setActiveTab('branding')}
                 className={`flex items-center gap-2 px-6 py-3 font-bold uppercase transition-colors ${
                   activeTab === 'branding'
-                    ? 'border-b-4 border-black text-black -mb-0.5'
+                    ? 'border-b-4 text-black -mb-0.5'
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
@@ -318,7 +318,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                 onClick={() => setActiveTab('tenants')}
                 className={`flex items-center gap-2 px-6 py-3 font-bold uppercase transition-colors ${
                   activeTab === 'tenants'
-                    ? 'border-b-4 border-black text-black -mb-0.5'
+                    ? 'border-b-4 text-black -mb-0.5'
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
@@ -336,7 +336,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           
           {/* Färgschema */}
-          <div className="bg-white rounded-sm shadow-lg p-6 border-t-4 border-black">
+          <div className="bg-white rounded-sm shadow-lg p-6 border-t-4">
             <div className="flex items-center gap-3 mb-6">
               <Palette className="w-6 h-6 text-black" />
               <div>
@@ -353,7 +353,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                   onClick={() => handleSchemeChange(index)}
                   className={`p-4 border-2 rounded-lg cursor-pointer transition-all ${
                     selectedScheme === index
-                      ? 'border-black bg-red-50'
+                      ? 'bg-red-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
@@ -423,7 +423,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
           </div>
 
           {/* Logo Upload */}
-          <div className="bg-white rounded-sm shadow-lg p-6 border-t-4 border-black">
+          <div className="bg-white rounded-sm shadow-lg p-6 border-t-4">
             <div className="flex items-center gap-3 mb-6">
               <Image className="w-6 h-6 text-black" />
               <h2 className="text-2xl font-bold text-gray-900">Logotyp</h2>
@@ -468,7 +468,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
           </div>
 
           {/* Login Text */}
-          <div className="bg-white rounded-sm shadow-lg p-6 border-t-4 border-black lg:col-span-2">
+          <div className="bg-white rounded-sm shadow-lg p-6 border-t-4 lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
               <Type className="w-6 h-6 text-black" />
               <h2 className="text-2xl font-bold text-gray-900">Login-text</h2>
@@ -481,7 +481,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                   type="text"
                   value={settings.loginText.title}
                   onChange={(e) => handleLoginTextChange('title', e.target.value)}
-                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
+                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0"
                   placeholder="Lead Hunter"
                 />
               </div>
@@ -492,7 +492,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                   type="text"
                   value={settings.loginText.subtitle}
                   onChange={(e) => handleLoginTextChange('subtitle', e.target.value)}
-                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
+                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0"
                   placeholder="Sales Intelligence Platform"
                 />
               </div>
@@ -503,7 +503,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                   value={settings.loginText.welcomeMessage}
                   onChange={(e) => handleLoginTextChange('welcomeMessage', e.target.value)}
                   rows={3}
-                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
+                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0"
                   placeholder="Välkommen till Lead Hunter..."
                 />
               </div>
@@ -514,7 +514,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                   type="text"
                   value={settings.loginText.footerText}
                   onChange={(e) => handleLoginTextChange('footerText', e.target.value)}
-                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:border-black focus:ring-0"
+                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-sm focus:focus:ring-0"
                   placeholder="© 2024 DHL. Alla rättigheter förbehållna."
                 />
               </div>

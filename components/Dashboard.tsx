@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { 
   TrendingUp, 
   Users, 
@@ -71,7 +71,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
       <div className="max-w-7xl mx-auto space-y-6">
         
         {/* Header */}
-        <div className="bg-white rounded-sm shadow-lg p-6 border-t-4 border-black">
+        <div className="bg-white rounded-sm shadow-lg p-6 border-t-4">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-black text-black uppercase tracking-wide flex items-center gap-3">
@@ -122,7 +122,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
           </div>
 
           {/* Conversion Rate */}
-          <div className="bg-white rounded-sm shadow-md p-6 border-t-4 border-black hover:shadow-xl transition-shadow">
+          <div className="bg-white rounded-sm shadow-md p-6 border-t-4 hover:shadow-xl transition-shadow">
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 bg-red-100 rounded-lg">
                 <Zap className="w-6 h-6 text-black" />
@@ -138,7 +138,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
           </div>
 
           {/* Average Revenue */}
-          <div className="bg-white rounded-sm shadow-md p-6 border-t-4 border-black hover:shadow-xl transition-shadow">
+          <div className="bg-white rounded-sm shadow-md p-6 border-t-4 hover:shadow-xl transition-shadow">
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 bg-yellow-100 rounded-lg">
                 <DollarSign className="w-6 h-6 text-yellow-600" />

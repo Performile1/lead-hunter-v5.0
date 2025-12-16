@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { CheckCircle, AlertTriangle, Info, XCircle, X } from 'lucide-react';
 
 interface DHLNotificationProps {
@@ -41,7 +41,7 @@ export const DHLNotification: React.FC<DHLNotificationProps> = ({
       case 'error':
         return {
           bg: 'bg-red-50',
-          border: 'border-black',
+          border: '',
           icon: <XCircle className="w-6 h-6 text-black" />,
           titleColor: 'text-black',
           messageColor: 'text-red-700'
@@ -49,7 +49,7 @@ export const DHLNotification: React.FC<DHLNotificationProps> = ({
       case 'warning':
         return {
           bg: 'bg-yellow-50',
-          border: 'border-black',
+          border: '',
           icon: <AlertTriangle className="w-6 h-6 text-yellow-600" />,
           titleColor: 'text-yellow-900',
           messageColor: 'text-yellow-700'

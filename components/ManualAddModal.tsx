@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { X, PlusCircle, Building2, MapPin, Hash, DollarSign } from 'lucide-react';
 import { LeadData, Segment } from '../types';
 
@@ -83,7 +83,7 @@ export const ManualAddModal: React.FC<ManualAddModalProps> = ({ isOpen, onClose,
 
   return (
     <div className="fixed inset-0 bg-black/60 z-[80] flex items-center justify-center p-4 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-white w-full max-w-md shadow-2xl border-t-4 border-black relative">
+      <div className="bg-white w-full max-w-md shadow-2xl border-t-4 relative">
         <button 
           onClick={onClose}
           className="absolute top-3 right-3 p-1 hover:bg-slate-100 rounded-full text-slate-500 transition-colors"
@@ -111,7 +111,7 @@ export const ManualAddModal: React.FC<ManualAddModalProps> = ({ isOpen, onClose,
               value={formData.companyName}
               onChange={(e) => setFormData({...formData, companyName: e.target.value})}
               placeholder="T.ex. Nya Bolaget AB"
-              className="w-full text-sm border-slate-300 rounded-sm focus:border-black focus:ring-[#2563EB]"
+              className="w-full text-sm border-slate-300 rounded-sm focus:focus:ring-[#2563EB]"
               autoFocus
             />
           </div>
@@ -127,7 +127,7 @@ export const ManualAddModal: React.FC<ManualAddModalProps> = ({ isOpen, onClose,
                 value={formData.orgNumber}
                 onChange={(e) => setFormData({...formData, orgNumber: e.target.value})}
                 placeholder="556XXX-XXXX"
-                className="w-full text-sm border-slate-300 rounded-sm focus:border-black focus:ring-[#2563EB]"
+                className="w-full text-sm border-slate-300 rounded-sm focus:focus:ring-[#2563EB]"
                 />
             </div>
             <div>
@@ -140,7 +140,7 @@ export const ManualAddModal: React.FC<ManualAddModalProps> = ({ isOpen, onClose,
                 value={formData.city}
                 onChange={(e) => setFormData({...formData, city: e.target.value})}
                 placeholder="T.ex. Örebro"
-                className="w-full text-sm border-slate-300 rounded-sm focus:border-black focus:ring-[#2563EB]"
+                className="w-full text-sm border-slate-300 rounded-sm focus:focus:ring-[#2563EB]"
                 />
             </div>
           </div>
@@ -156,7 +156,7 @@ export const ManualAddModal: React.FC<ManualAddModalProps> = ({ isOpen, onClose,
                 value={formData.revenue}
                 onChange={(e) => setFormData({...formData, revenue: e.target.value})}
                 placeholder="T.ex. 10000"
-                className="w-full text-sm border-slate-300 rounded-sm focus:border-black focus:ring-[#2563EB]"
+                className="w-full text-sm border-slate-300 rounded-sm focus:focus:ring-[#2563EB]"
                 />
             </div>
             <div>
@@ -166,7 +166,7 @@ export const ManualAddModal: React.FC<ManualAddModalProps> = ({ isOpen, onClose,
                 <select
                 value={formData.segment}
                 onChange={(e) => setFormData({...formData, segment: e.target.value})}
-                className="w-full text-sm border-slate-300 rounded-sm focus:border-black focus:ring-[#2563EB]"
+                className="w-full text-sm border-slate-300 rounded-sm focus:focus:ring-[#2563EB]"
                 >
                     <option value="UNKNOWN">Välj...</option>
                     <option value="TS">TS</option>

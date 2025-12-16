@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { Clock, Play, Pause, Trash2, Plus, CheckCircle, XCircle, Calendar, Search, X, ArrowLeft } from 'lucide-react';
 
 interface CronJob {
@@ -247,7 +247,7 @@ export const CronJobsPanel: React.FC<CronJobsPanelProps> = ({ userRole = 'admin'
                   {/* Lead Search Cronjob */}
                   <button
                     onClick={() => {/* TODO: Open lead search config */}}
-                    className="p-6 border-2 border-slate-200 rounded-lg hover:border-black hover:bg-slate-50 transition-all text-left group"
+                    className="p-6 border-2 border-slate-200 rounded-lg hover:hover:bg-slate-50 transition-all text-left group"
                   >
                     <Search className="w-8 h-8 text-black mb-3" />
                     <h5 className="font-bold text-lg mb-2 group-hover:text-black">Sök nya leads</h5>
@@ -262,7 +262,7 @@ export const CronJobsPanel: React.FC<CronJobsPanelProps> = ({ userRole = 'admin'
                   {/* Data Update Cronjob */}
                   <button
                     onClick={() => {/* TODO: Open data update config */}}
-                    className="p-6 border-2 border-slate-200 rounded-lg hover:border-black hover:bg-slate-50 transition-all text-left group"
+                    className="p-6 border-2 border-slate-200 rounded-lg hover:hover:bg-slate-50 transition-all text-left group"
                   >
                     <Calendar className="w-8 h-8 text-black mb-3" />
                     <h5 className="font-bold text-lg mb-2 group-hover:text-black">Uppdatera kunddata</h5>
@@ -277,7 +277,7 @@ export const CronJobsPanel: React.FC<CronJobsPanelProps> = ({ userRole = 'admin'
                   {/* Custom Cronjob */}
                   <button
                     onClick={() => {/* TODO: Open custom config */}}
-                    className="p-6 border-2 border-slate-200 rounded-lg hover:border-black hover:bg-slate-50 transition-all text-left group"
+                    className="p-6 border-2 border-slate-200 rounded-lg hover:hover:bg-slate-50 transition-all text-left group"
                   >
                     <Plus className="w-8 h-8 text-black mb-3" />
                     <h5 className="font-bold text-lg mb-2 group-hover:text-black">Anpassat cronjob</h5>

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { 
   Hash, Globe, Phone, Clock, RefreshCw, TriangleAlert, Pen, 
   TrendingUp, ChartColumn, Code, Store, ShieldCheck, Truck, 
@@ -227,7 +227,7 @@ export const ImprovedLeadCard: React.FC<ImprovedLeadCardProps> = ({
               <div className="flex gap-2">
                 {onRefresh && (
                   <button onClick={onRefresh}
-                          className="flex items-center gap-1 px-3 py-1.5 border rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm bg-white border-slate-300 text-slate-700 hover:bg-[#D40511] hover:text-white hover:border-[#D40511]"
+                          className="flex items-center gap-1 px-3 py-1.5 border rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm bg-[#FFC400] border-slate-300 text-slate-700 hover:bg-[#D40511] hover:text-white hover:border-[#D40511]"
                           title="Starta en helt ny sökning/analys på detta företag">
                     <RefreshCw className="w-3 h-3" />
                     Ny Analys
@@ -236,7 +236,7 @@ export const ImprovedLeadCard: React.FC<ImprovedLeadCardProps> = ({
                 
                 {onReport && (
                   <button onClick={onReport}
-                          className="flex items-center gap-1 px-3 py-1.5 bg-white border border-slate-300 text-orange-600 hover:bg-orange-50 hover:border-orange-500 rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
+                          className="flex items-center gap-1 px-3 py-1.5 bg-[#FFC400] border border-slate-300 text-orange-600 hover:bg-orange-50 hover:border-orange-500 rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
                           title="Rapportera fel data eller ta bort">
                     <TriangleAlert className="w-3 h-3" />
                     Rapportera
@@ -245,7 +245,7 @@ export const ImprovedLeadCard: React.FC<ImprovedLeadCardProps> = ({
                 
                 {onEdit && (
                   <button onClick={onEdit}
-                          className="flex items-center gap-1 px-3 py-1.5 bg-white border border-slate-300 text-slate-600 hover:text-[#D40511] hover:border-[#D40511] rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
+                          className="flex items-center gap-1 px-3 py-1.5 bg-[#FFC400] border border-slate-300 text-slate-600 hover:text-[#D40511] hover:border-[#D40511] rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
                           title="Redigera grunduppgifter">
                     <Pen className="w-3 h-3" />
                     Redigera

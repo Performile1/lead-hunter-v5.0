@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { X, Clock, Search, BarChart3, Calendar, Settings } from 'lucide-react';
 
 interface BatchJobFormProps {
@@ -90,7 +90,7 @@ export const BatchJobForm: React.FC<BatchJobFormProps> = ({ onClose, onJobCreate
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-white hover:bg-opacity-20 rounded-full transition"
+            className="p-2 hover:bg-[#FFC400] hover:bg-opacity-20 rounded-full transition"
           >
             <X className="w-5 h-5" />
           </button>

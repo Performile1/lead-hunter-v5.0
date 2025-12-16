@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { 
   Target, TrendingUp, Clock, CheckCircle, 
   AlertCircle, Package, Users, BarChart3,
@@ -120,7 +120,7 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2"></div>
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { UserPlus, Users, Building2, CheckCircle } from 'lucide-react';
 import { showSuccess, showError } from '../common/DHLNotification';
 
@@ -73,7 +73,7 @@ export const LeadAssignment: React.FC<LeadAssignmentProps> = ({
           <select
             value={selectedUser}
             onChange={(e) => setSelectedUser(e.target.value)}
-            className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:border-black focus:ring-1 focus:ring-[#2563EB]"
+            className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:focus:ring-1 focus:ring-[#2563EB]"
           >
             <option value="">-- Välj säljare --</option>
             {users.map(user => (

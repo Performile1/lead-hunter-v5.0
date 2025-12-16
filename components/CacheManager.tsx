@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import { Database, Download, ArrowUpRight, Trash2, X, Filter, LayoutGrid, Upload, FileText, CheckCircle2, FileSpreadsheet, FileDown } from 'lucide-react';
 import { LeadData, Segment } from '../types';
 import * as XLSX from 'xlsx';
@@ -283,7 +283,7 @@ export const CacheManager: React.FC<CacheManagerProps> = ({
               </p>
             </div>
           </div>
-          <button type="button" onClick={onClose} className="p-1 hover:bg-white/10 rounded-full transition-colors">
+          <button type="button" onClick={onClose} className="p-1 hover:bg-[#FFC400]/10 rounded-full transition-colors">
             <X className="w-6 h-6 text-white" />
           </button>
         </div>
@@ -351,7 +351,7 @@ export const CacheManager: React.FC<CacheManagerProps> = ({
                     <button 
                       type="button"
                       onClick={handleMoveAll}
-                      className="flex items-center gap-2 bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
+                      className="flex items-center gap-2 bg-[#FFC400] border border-slate-300 text-slate-700 hover:bg-slate-50 px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
                     >
                       <ArrowUpRight className="w-4 h-4" />
                       Flytta Urval
@@ -486,7 +486,7 @@ export const CacheManager: React.FC<CacheManagerProps> = ({
                 
                 <button
                    onClick={handleDownloadTemplate}
-                   className="flex items-center gap-2 bg-white border border-slate-300 text-slate-700 px-3 py-2 text-xs font-bold uppercase tracking-wider hover:bg-slate-100 transition-colors shadow-sm rounded-sm"
+                   className="flex items-center gap-2 bg-[#FFC400] border border-slate-300 text-slate-700 px-3 py-2 text-xs font-bold uppercase tracking-wider hover:bg-slate-100 transition-colors shadow-sm rounded-sm"
                    title="Ladda ner en exempelfil att fylla i"
                 >
                    <FileDown className="w-4 h-4" />
@@ -498,7 +498,7 @@ export const CacheManager: React.FC<CacheManagerProps> = ({
                 value={importText}
                 onChange={(e) => setImportText(e.target.value)}
                 placeholder={`Förhandsgranskning av import visas här...`}
-                className="flex-1 w-full p-4 border border-slate-300 rounded-sm font-mono text-xs focus:ring-[#2563EB] focus:border-black resize-none mb-4 shadow-inner bg-white"
+                className="flex-1 w-full p-4 border border-slate-300 rounded-sm font-mono text-xs focus:ring-[#2563EB] focus:resize-none mb-4 shadow-inner bg-white"
                 readOnly
              />
 
