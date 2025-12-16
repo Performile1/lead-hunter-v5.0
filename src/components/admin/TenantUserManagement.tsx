@@ -162,7 +162,7 @@ export const TenantUserManagement: React.FC = () => {
         </div>
         <button
           onClick={handleCreate}
-          className="flex items-center gap-2 bg-black hover:bg-[#a0040d] text-white px-4 py-2 rounded font-semibold"
+          className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-4 py-2 rounded font-semibold"
         >
           <Plus className="w-5 h-5" />
           Ny Användare
@@ -375,7 +375,7 @@ export const TenantUserManagement: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-2 bg-black hover:bg-[#a0040d] text-white rounded font-semibold"
+                  className="flex-1 px-4 py-2 bg-black hover:bg-[#FFC400] hover:text-black text-white rounded font-semibold"
                 >
                   {editingUser ? 'Uppdatera' : 'Skapa'}
                 </button>

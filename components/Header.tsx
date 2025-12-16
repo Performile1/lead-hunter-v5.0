@@ -262,7 +262,7 @@ export const Header: React.FC<HeaderProps> = ({
 
               <button 
                 onClick={onReset}
-                className="flex items-center gap-2 bg-black hover:bg-[#0F1C3F] text-white px-3 py-2 rounded-sm transition-colors shadow-sm"
+                className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-3 py-2 rounded-sm transition-colors shadow-sm"
                 title="Systemåterställning (Nollställ vyn, behåll data)"
               >
                 <RotateCcw className="w-4 h-4" />

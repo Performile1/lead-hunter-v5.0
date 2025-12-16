@@ -124,7 +124,7 @@ export const ManagerDashboard: React.FC<ManagerDashboardProps> = ({ leads }) => 
         </div>
         <button
           onClick={loadMetrics}
-          className="flex items-center gap-2 bg-black hover:bg-[#a0040d] text-white px-4 py-2 rounded font-semibold"
+          className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-4 py-2 rounded font-semibold"
         >
           <Zap className="w-4 h-4" />
           Uppdatera

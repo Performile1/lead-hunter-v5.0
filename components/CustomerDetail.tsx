@@ -158,7 +158,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
             <button
               onClick={handleManualScrape}
               disabled={scraping}
-              className="flex items-center gap-2 bg-black hover:bg-[#a0040d] text-white px-6 py-3 rounded-sm transition-colors font-bold uppercase tracking-wide shadow-lg disabled:opacity-50"
+              className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-6 py-3 rounded-sm transition-colors font-bold uppercase tracking-wide shadow-lg disabled:opacity-50"
             >
               <RefreshCw className={`w-5 h-5 ${scraping ? 'animate-spin' : ''}`} />
               {scraping ? 'Scrapar...' : 'Scrapa nu'}
@@ -395,7 +395,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
               <div className="space-y-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-xl font-black text-black uppercase">Anteckningar</h3>
-                  <button className="flex items-center gap-2 bg-black hover:bg-[#a0040d] text-white px-4 py-2 rounded-sm transition-colors font-bold text-sm uppercase">
+                  <button className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-4 py-2 rounded-sm transition-colors font-bold text-sm uppercase">
                     <Plus className="w-4 h-4" />
                     Ny anteckning
                   </button>

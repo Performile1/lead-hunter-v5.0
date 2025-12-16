@@ -446,7 +446,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
             </h2>
             <button
               onClick={() => setShowAddNote(!showAddNote)}
-              className="flex items-center gap-2 px-3 py-1.5 bg-black hover:bg-[#B00410] text-white rounded-sm text-sm font-bold"
+              className="flex items-center gap-2 px-3 py-1.5 bg-black hover:bg-[#FFC400] hover:text-black text-white rounded-sm text-sm font-bold"
             >
               <Plus className="w-4 h-4" />
               Ny anteckning

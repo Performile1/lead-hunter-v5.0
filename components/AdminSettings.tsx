@@ -276,7 +276,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
                   <button
                     onClick={handleSaveSettings}
                     disabled={saving}
-                    className="flex items-center gap-2 px-6 py-2 bg-black hover:bg-[#a0040d] text-white rounded-sm transition-colors font-bold uppercase shadow-lg disabled:opacity-50"
+                    className="flex items-center gap-2 px-6 py-2 bg-black hover:bg-[#FFC400] hover:text-black text-white rounded-sm transition-colors font-bold uppercase shadow-lg disabled:opacity-50"
                   >
                     {saving ? (
                       <>
@@ -450,7 +450,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
               </div>
 
               {/* Upload Button */}
-              <label className="flex items-center justify-center gap-2 px-4 py-3 bg-black hover:bg-[#a0040d] text-white rounded-sm transition-colors font-bold uppercase cursor-pointer">
+              <label className="flex items-center justify-center gap-2 px-4 py-3 bg-black hover:bg-[#FFC400] hover:text-black text-white rounded-sm transition-colors font-bold uppercase cursor-pointer">
                 <Upload className="w-5 h-5" />
                 Ladda upp logo
                 <input

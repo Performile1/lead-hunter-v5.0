@@ -61,7 +61,7 @@ export const DailyBriefing: React.FC<DailyBriefingProps> = ({ isOpen, onClose, c
 
           <button
             onClick={onClose}
-            className="w-full bg-black hover:bg-gray-800 text-white py-3 px-6 text-sm font-bold uppercase tracking-wider shadow-lg transition-colors"
+            className="w-full bg-black hover:bg-[#FFC400] hover:text-black text-white py-3 px-6 text-sm font-bold uppercase tracking-wider shadow-lg transition-colors"
           >
             Starta Session
           </button>

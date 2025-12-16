@@ -226,7 +226,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
             resetForm();
             setShowCreateModal(true);
           }}
-          className="flex items-center gap-2 px-4 py-2 bg-black hover:bg-gray-800 text-white rounded-sm transition-colors font-bold uppercase"
+          className="flex items-center gap-2 px-4 py-2 bg-black hover:bg-[#FFC400] hover:text-black text-white rounded-sm transition-colors font-bold uppercase"
         >
           <Plus className="w-5 h-5" />
           Ny Tenant
@@ -521,7 +521,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
               </button>
               <button
                 onClick={editingTenant ? handleUpdate : handleCreate}
-                className="flex items-center gap-2 px-6 py-2 bg-black hover:bg-gray-800 text-white rounded-sm font-bold uppercase"
+                className="flex items-center gap-2 px-6 py-2 bg-black hover:bg-[#FFC400] hover:text-black text-white rounded-sm font-bold uppercase"
               >
                 <Save className="w-5 h-5" />
                 {editingTenant ? 'Uppdatera' : 'Skapa'}

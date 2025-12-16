@@ -137,7 +137,7 @@ export const SuperAdminDashboard: React.FC = () => {
         </div>
         <button
           onClick={loadAnalytics}
-          className="flex items-center gap-2 bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-none font-semibold"
+          className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-4 py-2 rounded-none font-semibold"
         >
           <Activity className="w-4 h-4" />
           Uppdatera

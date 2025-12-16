@@ -132,7 +132,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
             </div>
             <button
               onClick={() => {/* TODO: Open add customer modal */}}
-              className="flex items-center gap-2 bg-black hover:bg-[#a0040d] text-white px-6 py-3 rounded-sm transition-colors font-bold uppercase tracking-wide shadow-lg"
+              className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-6 py-3 rounded-sm transition-colors font-bold uppercase tracking-wide shadow-lg"
             >
               <Plus className="w-5 h-5" />
               Lägg till kund
@@ -284,7 +284,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
                           e.stopPropagation();
                           setSelectedCustomerId(customer.id);
                         }}
-                        className="flex items-center gap-2 bg-black hover:bg-[#a0040d] text-white px-4 py-2 rounded-sm transition-colors font-bold text-sm uppercase"
+                        className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-4 py-2 rounded-sm transition-colors font-bold text-sm uppercase"
                       >
                         <Eye className="w-4 h-4" />
                         Visa detaljer
