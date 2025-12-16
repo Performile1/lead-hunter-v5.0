@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { AlertTriangle, X, Send } from 'lucide-react';
 
 interface ErrorReportButtonProps {
@@ -27,7 +27,7 @@ export const ErrorReportButton: React.FC<ErrorReportButtonProps> = ({
       setSubmitting(true);
       const token = localStorage.getItem('eurekai_token');
       
-      const response = await fetch('${API_BASE_URL}/error-reports', {
+      const response = await fetch(`${API_BASE_URL}/error-reports`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

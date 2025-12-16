@@ -53,7 +53,7 @@ export const CronJobsPanel: React.FC<CronJobsPanelProps> = ({ userRole = 'admin'
     }
     
     try {
-      const response = await fetch('${API_BASE_URL}/cronjobs');
+      const response = await fetch(`${API_BASE_URL}/cronjobs`);
       if (!response.ok) {
         if (response.status === 404 || response.status === 500) {
           console.warn('Cronjobs API not available yet. Showing empty list.');

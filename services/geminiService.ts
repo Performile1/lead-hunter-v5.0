@@ -1,4 +1,4 @@
-import { GoogleGenAI } from "@google/genai";
+﻿import { GoogleGenAI } from "@google/genai";
 import { SearchFormData, LeadData, Segment, DecisionMaker, SourceLink, FinancialRecord } from "../types";
 import { DEEP_STEP_1_CORE, DEEP_STEP_2_LOGISTICS, DEEP_STEP_3_PEOPLE, DEEP_ANALYSIS_INSTRUCTION } from "../prompts/deepAnalysis";
 import { BATCH_SCAN_INSTRUCTION, BATCH_DEEP_INSTRUCTION } from "../prompts/quickScan";
@@ -646,7 +646,7 @@ async function generateWithRetry(ai: GoogleGenAI, model: string, prompt: string,
         config: currentConfig
       });
     } catch (error: any) {
-      // DETECT QUOTA ERRORS (429) AGGRESSIVELY
+      // DETECT QUOTA/OVERLOAD ERRORS (429, 503) AGGRESSIVELY
       const errString = (error.toString() || '').toLowerCase();
       const message = (error.message || '').toLowerCase();
       const status = error.status || error.response?.status || error.statusCode;
@@ -654,17 +654,23 @@ async function generateWithRetry(ai: GoogleGenAI, model: string, prompt: string,
       // Log error for debugging purposes
       console.warn(`Gemini API Error (Attempt ${i + 1}):`, error);
 
-      const isQuota = 
+      const isQuotaOrOverload = 
         status === 429 || 
+        status === 503 ||
         errString.includes('429') || 
+        errString.includes('503') ||
         message.includes('429') || 
+        message.includes('503') ||
         errString.includes('quota') || 
         message.includes('quota') || 
+        errString.includes('overloaded') ||
+        message.includes('overloaded') ||
         errString.includes('too many requests') || 
         message.includes('too many requests') ||
-        message.includes('resource exhausted');
+        message.includes('resource exhausted') ||
+        message.includes('unavailable');
 
-      if (isQuota) {
+      if (isQuotaOrOverload) {
         // --- GROQ FALLBACK (FIRST PRIORITY) ---
         // Try Groq first if available (gratis och snabb!)
         if (isGroqAvailable() && i === 0) {
@@ -1091,7 +1097,7 @@ Returnera ENDAST JSON, ingen annan text.`;
           console.warn('Gemini checkout analysis failed:', err);
           return null;
         }),
-        fetch('${API_BASE_URL}/scrape/website', {
+        fetch(`${API_BASE_URL}/scrape/website`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

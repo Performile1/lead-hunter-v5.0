@@ -41,7 +41,7 @@ export const NotificationCenter: React.FC = () => {
     }
     
     try {
-      const response = await fetch('${API_BASE_URL}/notifications');
+      const response = await fetch(`${API_BASE_URL}/notifications`);
       if (!response.ok) {
         if (response.status === 404) {
           console.warn('Notifications API not available yet. Polling stopped.');
@@ -72,7 +72,7 @@ export const NotificationCenter: React.FC = () => {
 
   const markAllAsRead = async () => {
     try {
-      await fetch('${API_BASE_URL}/notifications/read-all', { method: 'POST' });
+      await fetch(`${API_BASE_URL}/notifications/read-all`, { method: 'POST' });
       setNotifications(prev => prev.map(n => ({ ...n, read: true })));
     } catch (error) {
       console.error('Failed to mark all as read:', error);

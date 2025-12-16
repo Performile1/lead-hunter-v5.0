@@ -53,7 +53,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
 
   const fetchTenants = async () => {
     try {
-      const response = await fetch('${API_BASE_URL}/tenants', {
+      const response = await fetch(`${API_BASE_URL}/tenants`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('eurekai_token')}`
         }
@@ -72,7 +72,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
 
   const handleCreate = async () => {
     try {
-      const response = await fetch('${API_BASE_URL}/tenants', {
+      const response = await fetch(`${API_BASE_URL}/tenants`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

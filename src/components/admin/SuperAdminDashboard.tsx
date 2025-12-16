@@ -44,7 +44,7 @@ export const SuperAdminDashboard: React.FC = () => {
   const loadAnalytics = async () => {
     try {
       const token = localStorage.getItem('eurekai_token');
-      const response = await fetch('${API_BASE_URL}/analytics/overview', {
+      const response = await fetch(`${API_BASE_URL}/analytics/overview`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

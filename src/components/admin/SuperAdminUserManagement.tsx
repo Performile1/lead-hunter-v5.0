@@ -148,7 +148,7 @@ export const SuperAdminUserManagement: React.FC = () => {
       const token = localStorage.getItem('eurekai_token');
       const url = editingUser
         ? `${API_BASE_URL}/users/${editingUser.id}`
-        : '${API_BASE_URL}/users';
+        : `${API_BASE_URL}/users`;
       
       const body = editingUser
         ? { ...formData, password: formData.password || undefined }

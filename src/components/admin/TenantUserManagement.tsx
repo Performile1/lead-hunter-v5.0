@@ -32,7 +32,7 @@ export const TenantUserManagement: React.FC = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('eurekai_token');
-      const response = await fetch('${API_BASE_URL}/users', {
+      const response = await fetch(`${API_BASE_URL}/users`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -80,7 +80,7 @@ export const TenantUserManagement: React.FC = () => {
       const token = localStorage.getItem('eurekai_token');
       const url = editingUser 
         ? `${API_BASE_URL}/users/${editingUser.id}`
-        : '${API_BASE_URL}/users';
+        : `${API_BASE_URL}/users`;
       
       const method = editingUser ? 'PUT' : 'POST';
       

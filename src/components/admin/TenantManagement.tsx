@@ -125,7 +125,7 @@ export const TenantManagement: React.FC = () => {
       const token = localStorage.getItem('eurekai_token');
       const url = editingTenant
         ? `${API_BASE_URL}/tenants/${editingTenant.id}`
-        : '${API_BASE_URL}/tenants';
+        : `${API_BASE_URL}/tenants`;
       
       const response = await fetch(url, {
         method: editingTenant ? 'PUT' : 'POST',
