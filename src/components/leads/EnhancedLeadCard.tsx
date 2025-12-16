@@ -716,7 +716,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                       {lead.website_analysis.ecommerce_platform && (
                         <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-lg">
                           <p className="text-sm text-gray-600 mb-1">E-handelsplattform</p>
-                          <p className="text-xl font-bold text-purple-900">{lead.website_analysis.ecommerce_platform}</p>
+                          <p className="text-xl font-bold text-black">{lead.website_analysis.ecommerce_platform}</p>
                         </div>
                       )}
                       
@@ -991,7 +991,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                         {lead.website_analysis.financial_metrics.profit_margin && (
                           <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-lg">
                             <p className="text-sm text-gray-600 mb-1">Vinstmarginal</p>
-                            <p className="text-2xl font-bold text-purple-900">{lead.website_analysis.financial_metrics.profit_margin}%</p>
+                            <p className="text-2xl font-bold text-black">{lead.website_analysis.financial_metrics.profit_margin}%</p>
                           </div>
                         )}
                       </div>
@@ -1042,7 +1042,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                 
                 {lead.assigned_salesperson && (
                   <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4 border-yellow-500">
-                    <User className="w-5 h-5 text-purple-500 mt-1" />
+                    <User className="w-5 h-5 text-[#FFC400] mt-1" />
                     <div>
                       <p className="font-semibold">Tilldelad säljare</p>
                       <p className="text-sm text-gray-600">{lead.assigned_salesperson}</p>

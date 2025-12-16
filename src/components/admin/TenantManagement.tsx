@@ -175,7 +175,7 @@ export const TenantManagement: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#8B5CF6]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FFC400]"></div>
       </div>
     );
   }
@@ -186,7 +186,7 @@ export const TenantManagement: React.FC = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-black text-black uppercase tracking-wide flex items-center gap-3">
-            <Building2 className="w-8 h-8 text-[#8B5CF6]" />
+            <Building2 className="w-8 h-8 text-[#FFC400]" />
             Tenant Management
           </h1>
           <p className="text-sm text-gray-600 mt-1">
@@ -266,15 +266,15 @@ export const TenantManagement: React.FC = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-2 pt-4 border-t border-gray-200">
               <div className="text-center">
-                <p className="text-2xl font-black text-[#8B5CF6]">{tenant.user_count}</p>
+                <p className="text-2xl font-black text-[#FFC400]">{tenant.user_count}</p>
                 <p className="text-xs text-gray-600">Users</p>
               </div>
               <div className="text-center">
-                <p className="text-2xl font-black text-[#8B5CF6]">{tenant.lead_count}</p>
+                <p className="text-2xl font-black text-[#FFC400]">{tenant.lead_count}</p>
                 <p className="text-xs text-gray-600">Leads</p>
               </div>
               <div className="text-center">
-                <p className="text-2xl font-black text-[#8B5CF6]">{tenant.customer_count}</p>
+                <p className="text-2xl font-black text-[#FFC400]">{tenant.customer_count}</p>
                 <p className="text-xs text-gray-600">Customers</p>
               </div>
             </div>
@@ -320,7 +320,7 @@ export const TenantManagement: React.FC = () => {
                   type="text"
                   value={formData.company_name}
                   onChange={(e) => setFormData({ ...formData, company_name: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
                   placeholder="DHL Sweden"
                 />
               </div>
@@ -333,7 +333,7 @@ export const TenantManagement: React.FC = () => {
                   type="text"
                   value={formData.domain}
                   onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
                   placeholder="dhl.se"
                 />
               </div>
@@ -346,7 +346,7 @@ export const TenantManagement: React.FC = () => {
                   type="text"
                   value={formData.subdomain}
                   onChange={(e) => setFormData({ ...formData, subdomain: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
                   placeholder="dhl-sweden"
                 />
               </div>
@@ -359,7 +359,7 @@ export const TenantManagement: React.FC = () => {
                   type="text"
                   value={formData.checkout_search_term}
                   onChange={(e) => setFormData({ ...formData, checkout_search_term: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
                   placeholder="DHL"
                 />
               </div>

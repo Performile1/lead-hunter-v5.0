@@ -199,7 +199,7 @@ export const TenantUserManagement: React.FC = () => {
                 {users.filter(u => u.role === 'admin').length}
               </p>
             </div>
-            <Shield className="w-8 h-8 text-purple-500" />
+            <Shield className="w-8 h-8 text-[#FFC400]" />
           </div>
         </div>
         <div className="bg-white border-2 border-gray-200 p-4 rounded shadow-sm">

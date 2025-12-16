@@ -79,7 +79,7 @@ export const ErrorReportButton: React.FC<ErrorReportButtonProps> = ({
 
             <div className="mb-4 p-4 bg-gray-50 rounded">
               <p className="text-sm font-semibold text-gray-700">
-                {entityType === 'lead' ? 'Lead' : 'Kund'}: <span className="text-[#8B5CF6]">{entityName}</span>
+                {entityType === 'lead' ? 'Lead' : 'Kund'}: <span className="text-[#FFC400]">{entityName}</span>
               </p>
             </div>
 
@@ -89,7 +89,7 @@ export const ErrorReportButton: React.FC<ErrorReportButtonProps> = ({
                 <select
                   value={reportData.error_type}
                   onChange={(e) => setReportData({ ...reportData, error_type: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
                 >
                   <option value="incorrect_data">Felaktig data</option>
                   <option value="hallucination">AI Hallucination</option>
@@ -107,7 +107,7 @@ export const ErrorReportButton: React.FC<ErrorReportButtonProps> = ({
                   onChange={(e) => setReportData({ ...reportData, description: e.target.value })}
                   rows={4}
                   placeholder="Beskriv vad som är fel..."
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
                 />
               </div>
 
@@ -118,7 +118,7 @@ export const ErrorReportButton: React.FC<ErrorReportButtonProps> = ({
                   onChange={(e) => setReportData({ ...reportData, suggested_correction: e.target.value })}
                   rows={3}
                   placeholder="Om du vet rätt information, ange den här..."
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
                 />
               </div>
             </div>

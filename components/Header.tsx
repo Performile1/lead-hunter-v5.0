@@ -248,7 +248,7 @@ export const Header: React.FC<HeaderProps> = ({
                   onClick={onToggleCustomerList}
                   className={`flex items-center gap-2 px-4 py-2 rounded-sm transition-colors shadow-sm font-bold text-sm uppercase ${
                     showCustomerList 
-                      ? 'bg-black text-black hover:bg-[#e6b800]' 
+                      ? 'bg-black text-white hover:bg-[#FFC400] hover:text-black' 
                       : 'bg-white/50 hover:bg-white text-slate-700 border/5'
                   }`}
                   title={showCustomerList ? 'Visa Leads' : 'Visa Kundlista'}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Users, Search, Filter, Building2, Package } from 'lucide-react';
 
 interface Customer {
@@ -76,7 +76,7 @@ export const SuperAdminCustomers: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#8B5CF6]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FFC400]"></div>
       </div>
     );
   }
@@ -86,7 +86,7 @@ export const SuperAdminCustomers: React.FC = () => {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-black text-black uppercase tracking-wide flex items-center gap-3">
-          <Users className="w-8 h-8 text-[#8B5CF6]" />
+          <Users className="w-8 h-8 text-[#FFC400]" />
           Alla Kunder
         </h1>
         <p className="text-sm text-gray-600 mt-1">
@@ -100,7 +100,7 @@ export const SuperAdminCustomers: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Totalt Kunder</p>
-              <p className="text-3xl font-black text-[#8B5CF6] mt-1">{stats.total}</p>
+              <p className="text-3xl font-black text-[#FFC400] mt-1">{stats.total}</p>
             </div>
             <Users className="w-10 h-10 text-[#4F46E5]" />
           </div>
@@ -130,7 +130,7 @@ export const SuperAdminCustomers: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Aktiva Tenants</p>
-              <p className="text-3xl font-black text-[#8B5CF6] mt-1">{stats.tenants}</p>
+              <p className="text-3xl font-black text-[#FFC400] mt-1">{stats.tenants}</p>
             </div>
             <Building2 className="w-10 h-10 text-[#4F46E5]" />
           </div>
@@ -147,7 +147,7 @@ export const SuperAdminCustomers: React.FC = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Företagsnamn eller domän..."
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
             />
           </div>
 
@@ -158,7 +158,7 @@ export const SuperAdminCustomers: React.FC = () => {
               value={filterTenant}
               onChange={(e) => setFilterTenant(e.target.value)}
               placeholder="Tenant ID"
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
             />
           </div>
 
@@ -167,7 +167,7 @@ export const SuperAdminCustomers: React.FC = () => {
             <select
               value={filterDHL}
               onChange={(e) => setFilterDHL(e.target.value as any)}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
             >
               <option value="all">Alla</option>
               <option value="dhl">DHL</option>

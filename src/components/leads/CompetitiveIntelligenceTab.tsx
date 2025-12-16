@@ -252,7 +252,7 @@ export const CompetitiveIntelligenceTab: React.FC<CompetitiveIntelligenceTabProp
                 <DollarSign className="w-6 h-6 text-gray-700" />
                 <p className="text-sm font-semibold text-black">Estimerat Årligt Värde</p>
               </div>
-              <p className="text-4xl font-bold text-purple-900">
+              <p className="text-4xl font-bold text-black">
                 {intelligence.estimated_annual_value.toLocaleString('sv-SE')} kr
               </p>
               <p className="text-sm text-gray-700 mt-1">potentiell årsomsättning</p>

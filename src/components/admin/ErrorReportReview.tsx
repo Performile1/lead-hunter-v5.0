@@ -122,7 +122,7 @@ export const ErrorReportReview: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#8B5CF6]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FFC400]"></div>
       </div>
     );
   }
@@ -206,7 +206,7 @@ export const ErrorReportReview: React.FC = () => {
                     </button>
                     <button
                       onClick={() => setSelectedReport(report)}
-                      className="p-2 text-[#8B5CF6] hover:bg-yellow-50 rounded"
+                      className="p-2 text-[#FFC400] hover:bg-yellow-50 rounded"
                       title="Korrigera"
                     >
                       <Edit2 className="w-5 h-5" />
@@ -255,7 +255,7 @@ export const ErrorReportReview: React.FC = () => {
 
             <div className="mb-4 p-4 bg-gray-50 rounded">
               <p className="text-sm font-semibold text-gray-700 mb-2">
-                {selectedReport.entity_type === 'lead' ? 'Lead' : 'Kund'}: <span className="text-[#8B5CF6]">{selectedReport.entity_name}</span>
+                {selectedReport.entity_type === 'lead' ? 'Lead' : 'Kund'}: <span className="text-[#FFC400]">{selectedReport.entity_name}</span>
               </p>
               <p className="text-sm text-gray-600">{selectedReport.description}</p>
               {selectedReport.suggested_correction && (
@@ -275,7 +275,7 @@ export const ErrorReportReview: React.FC = () => {
                   onChange={(e) => setCorrectionData(e.target.value)}
                   rows={10}
                   placeholder='{"field": "new_value"}'
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent font-mono text-sm"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent font-mono text-sm"
                 />
               </div>
             </div>

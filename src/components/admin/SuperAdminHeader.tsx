@@ -50,7 +50,7 @@ export const SuperAdminHeader: React.FC<SuperAdminHeaderProps> = ({
               
               {/* Subtitle */}
               <div className="hidden lg:block border-l-2 border-[#8B5CF6]/20 pl-4">
-                <div className="text-[#8B5CF6] font-black italic uppercase tracking-widest text-lg leading-none">
+                <div className="text-[#FFC400] font-black italic uppercase tracking-widest text-lg leading-none">
                   Super Admin
                 </div>
                 <div className="text-[10px] text-black font-bold uppercase tracking-wide opacity-80">
@@ -72,13 +72,13 @@ export const SuperAdminHeader: React.FC<SuperAdminHeaderProps> = ({
               <div className="w-px h-6 bg-black/10 mx-1"></div>
 
               <div className="flex items-center gap-2 bg-white/50 px-3 py-2 rounded-sm border/5">
-                <User className="w-4 h-4 text-[#8B5CF6]" />
+                <User className="w-4 h-4 text-[#FFC400]" />
                 <span className="text-xs font-semibold text-slate-700">{user?.name || user?.email}</span>
               </div>
 
               <button
                 onClick={logout}
-                className="flex items-center gap-2 bg-[#FFC400]/50 hover:bg-white text-slate-700 hover:text-[#8B5CF6] px-3 py-2 rounded-sm transition-colors shadow-sm border/5"
+                className="flex items-center gap-2 bg-[#FFC400]/50 hover:bg-white text-slate-700 hover:text-[#FFC400] px-3 py-2 rounded-sm transition-colors shadow-sm border/5"
                 title="Logga ut"
               >
                 <LogOut className="w-4 h-4" />

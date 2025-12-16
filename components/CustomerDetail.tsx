@@ -185,7 +185,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
             </div>
             <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border border-yellow-200">
               <p className="text-xs text-gray-700 font-bold uppercase mb-1">Status</p>
-              <p className="text-lg font-black text-purple-900 capitalize">{customer.customer_status}</p>
+              <p className="text-lg font-black text-black capitalize">{customer.customer_status}</p>
             </div>
           </div>
         </div>

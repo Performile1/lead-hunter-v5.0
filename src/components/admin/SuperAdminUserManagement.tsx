@@ -200,7 +200,7 @@ export const SuperAdminUserManagement: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#8B5CF6]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FFC400]"></div>
       </div>
     );
   }
@@ -222,7 +222,7 @@ export const SuperAdminUserManagement: React.FC = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-black text-black uppercase tracking-wide flex items-center gap-3">
-            <Users className="w-8 h-8 text-[#8B5CF6]" />
+            <Users className="w-8 h-8 text-[#FFC400]" />
             User Management
           </h1>
           <p className="text-sm text-gray-600 mt-1">
@@ -330,7 +330,7 @@ export const SuperAdminUserManagement: React.FC = () => {
                   type="text"
                   value={formData.full_name}
                   onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
                 />
               </div>
 
@@ -340,7 +340,7 @@ export const SuperAdminUserManagement: React.FC = () => {
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
                 />
               </div>
 
@@ -352,7 +352,7 @@ export const SuperAdminUserManagement: React.FC = () => {
                   type="password"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
                 />
               </div>
 
@@ -361,7 +361,7 @@ export const SuperAdminUserManagement: React.FC = () => {
                 <select
                   value={formData.tenant_id}
                   onChange={(e) => setFormData({ ...formData, tenant_id: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
                 >
                   <option value="">Välj tenant</option>
                   {tenants.map((tenant) => (
@@ -375,7 +375,7 @@ export const SuperAdminUserManagement: React.FC = () => {
                 <select
                   value={formData.role}
                   onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
                 >
                   <option value="sales">Sales</option>
                   <option value="terminal">Terminal</option>
@@ -390,7 +390,7 @@ export const SuperAdminUserManagement: React.FC = () => {
                 <select
                   value={formData.status}
                   onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
                 >
                   <option value="active">Active</option>
                   <option value="inactive">Inactive</option>

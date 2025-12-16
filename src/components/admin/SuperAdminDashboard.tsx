@@ -91,7 +91,7 @@ export const SuperAdminDashboard: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#8B5CF6]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FFC400]"></div>
       </div>
     );
   }
@@ -218,7 +218,7 @@ export const SuperAdminDashboard: React.FC = () => {
         <div>
           <button 
             onClick={() => setCurrentView('dashboard')} 
-            className="mb-4 text-[#8B5CF6] hover:underline font-semibold"
+            className="mb-4 text-[#FFC400] hover:underline font-semibold"
           >
             ← Tillbaka till Dashboard
           </button>
@@ -230,7 +230,7 @@ export const SuperAdminDashboard: React.FC = () => {
         <div>
           <button 
             onClick={() => setCurrentView('dashboard')} 
-            className="mb-4 text-[#8B5CF6] hover:underline font-semibold"
+            className="mb-4 text-[#FFC400] hover:underline font-semibold"
           >
             ← Tillbaka till Dashboard
           </button>
@@ -242,7 +242,7 @@ export const SuperAdminDashboard: React.FC = () => {
         <div>
           <button 
             onClick={() => setCurrentView('dashboard')} 
-            className="mb-4 text-[#8B5CF6] hover:underline font-semibold"
+            className="mb-4 text-[#FFC400] hover:underline font-semibold"
           >
             ← Tillbaka till Dashboard
           </button>
@@ -254,7 +254,7 @@ export const SuperAdminDashboard: React.FC = () => {
         <div>
           <button 
             onClick={() => setCurrentView('dashboard')} 
-            className="mb-4 text-[#8B5CF6] hover:underline font-semibold"
+            className="mb-4 text-[#FFC400] hover:underline font-semibold"
           >
             ← Tillbaka till Dashboard
           </button>
@@ -266,7 +266,7 @@ export const SuperAdminDashboard: React.FC = () => {
         <div>
           <button 
             onClick={() => setCurrentView('dashboard')} 
-            className="mb-4 text-[#8B5CF6] hover:underline font-semibold"
+            className="mb-4 text-[#FFC400] hover:underline font-semibold"
           >
             ← Tillbaka till Dashboard
           </button>
@@ -278,7 +278,7 @@ export const SuperAdminDashboard: React.FC = () => {
         <div>
           <button 
             onClick={() => setCurrentView('dashboard')} 
-            className="mb-4 text-[#8B5CF6] hover:underline font-semibold"
+            className="mb-4 text-[#FFC400] hover:underline font-semibold"
           >
             ← Tillbaka till Dashboard
           </button>
@@ -295,7 +295,7 @@ export const SuperAdminDashboard: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Aktiva Tenants</p>
-              <p className="text-3xl font-black text-[#8B5CF6] mt-1">
+              <p className="text-3xl font-black text-[#FFC400] mt-1">
                 {displayData.system_health.active_tenants}
               </p>
             </div>
@@ -307,7 +307,7 @@ export const SuperAdminDashboard: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Aktiva Användare</p>
-              <p className="text-3xl font-black text-[#8B5CF6] mt-1">
+              <p className="text-3xl font-black text-[#FFC400] mt-1">
                 {displayData.system_health.active_users}
               </p>
             </div>
@@ -319,7 +319,7 @@ export const SuperAdminDashboard: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Totalt Leads</p>
-              <p className="text-3xl font-black text-[#8B5CF6] mt-1">
+              <p className="text-3xl font-black text-[#FFC400] mt-1">
                 {displayData.system_health.total_leads.toLocaleString()}
               </p>
             </div>
@@ -331,7 +331,7 @@ export const SuperAdminDashboard: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Totalt Kunder</p>
-              <p className="text-3xl font-black text-[#8B5CF6] mt-1">
+              <p className="text-3xl font-black text-[#FFC400] mt-1">
                 {displayData.system_health.total_customers.toLocaleString()}
               </p>
             </div>
@@ -345,7 +345,7 @@ export const SuperAdminDashboard: React.FC = () => {
         {/* E-handelsplattformar */}
         <div className="bg-white border-2 border-gray-200 p-6 rounded shadow-sm">
           <div className="flex items-center gap-2 mb-4">
-            <Store className="w-5 h-5 text-[#8B5CF6]" />
+            <Store className="w-5 h-5 text-[#FFC400]" />
             <h2 className="text-lg font-black text-black uppercase">E-handelsplattformar</h2>
           </div>
           <div className="space-y-3">
@@ -369,7 +369,7 @@ export const SuperAdminDashboard: React.FC = () => {
         {/* Checkout-lösningar */}
         <div className="bg-white border-2 border-gray-200 p-6 rounded shadow-sm">
           <div className="flex items-center gap-2 mb-4">
-            <CreditCard className="w-5 h-5 text-[#8B5CF6]" />
+            <CreditCard className="w-5 h-5 text-[#FFC400]" />
             <h2 className="text-lg font-black text-black uppercase">Checkout-lösningar</h2>
           </div>
           <div className="space-y-3">
@@ -396,7 +396,7 @@ export const SuperAdminDashboard: React.FC = () => {
         {/* Transportörer */}
         <div className="bg-white border-2 border-gray-200 p-6 rounded shadow-sm">
           <div className="flex items-center gap-2 mb-4">
-            <Truck className="w-5 h-5 text-[#8B5CF6]" />
+            <Truck className="w-5 h-5 text-[#FFC400]" />
             <h2 className="text-lg font-black text-black uppercase">Transportörer i Checkout</h2>
           </div>
           <div className="space-y-3">
@@ -420,7 +420,7 @@ export const SuperAdminDashboard: React.FC = () => {
         {/* Leveranssätt */}
         <div className="bg-white border-2 border-gray-200 p-6 rounded shadow-sm">
           <div className="flex items-center gap-2 mb-4">
-            <Home className="w-5 h-5 text-[#8B5CF6]" />
+            <Home className="w-5 h-5 text-[#FFC400]" />
             <h2 className="text-lg font-black text-black uppercase">Leveranssätt</h2>
           </div>
           <div className="space-y-3">
@@ -445,7 +445,7 @@ export const SuperAdminDashboard: React.FC = () => {
       {/* Tenant Activity */}
       <div className="bg-white border-2 border-gray-200 p-6 rounded shadow-sm">
           <div className="flex items-center gap-2 mb-4">
-            <Clock className="w-5 h-5 text-[#8B5CF6]" />
+            <Clock className="w-5 h-5 text-[#FFC400]" />
             <h2 className="text-lg font-black text-black uppercase">Tenant Aktivitet (Senaste 24h)</h2>
           </div>
         <div className="space-y-2 max-h-96 overflow-y-auto">

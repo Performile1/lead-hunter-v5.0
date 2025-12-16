@@ -110,7 +110,7 @@ export const ProcessingStatusBanner: React.FC<ProcessingStatusBannerProps> = ({
             <Loader2 className="w-5 h-5 text-white animate-spin" />
           </div>
           <div className="min-w-0">
-            <h3 className="text-sm font-bold uppercase tracking-wider truncate flex items-center gap-2">
+            <h3 className="text-sm font-bold uppercase tracking-wider truncate flex items-center gap-2 text-white">
               {message}
             </h3>
             <p className="text-xs text-slate-400 truncate hidden sm:block font-mono">

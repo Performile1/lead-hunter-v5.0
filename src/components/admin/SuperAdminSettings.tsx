@@ -25,7 +25,7 @@ export const SuperAdminSettings: React.FC = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-black text-black uppercase tracking-wide flex items-center gap-3">
-            <Settings className="w-8 h-8 text-[#8B5CF6]" />
+            <Settings className="w-8 h-8 text-[#FFC400]" />
             System Settings
           </h1>
           <p className="text-sm text-gray-600 mt-1">
@@ -44,7 +44,7 @@ export const SuperAdminSettings: React.FC = () => {
       {/* General Settings */}
       <div className="bg-white  rounded-none p-6">
         <div className="flex items-center gap-2 mb-4">
-          <Settings className="w-5 h-5 text-[#8B5CF6]" />
+          <Settings className="w-5 h-5 text-[#FFC400]" />
           <h2 className="text-lg font-black text-black uppercase">Allmänna Inställningar</h2>
         </div>
         
@@ -55,7 +55,7 @@ export const SuperAdminSettings: React.FC = () => {
               type="text"
               value={settings.systemName}
               onChange={(e) => setSettings({ ...settings, systemName: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
             />
           </div>
 
@@ -96,7 +96,7 @@ export const SuperAdminSettings: React.FC = () => {
       {/* Tenant Limits */}
       <div className="bg-white  rounded-none p-6">
         <div className="flex items-center gap-2 mb-4">
-          <Shield className="w-5 h-5 text-[#8B5CF6]" />
+          <Shield className="w-5 h-5 text-[#FFC400]" />
           <h2 className="text-lg font-black text-black uppercase">Tenant Gränser</h2>
         </div>
         
@@ -107,7 +107,7 @@ export const SuperAdminSettings: React.FC = () => {
               type="number"
               value={settings.maxTenantsLimit}
               onChange={(e) => setSettings({ ...settings, maxTenantsLimit: parseInt(e.target.value) })}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
             />
           </div>
 
@@ -117,7 +117,7 @@ export const SuperAdminSettings: React.FC = () => {
               type="number"
               value={settings.defaultUserLimit}
               onChange={(e) => setSettings({ ...settings, defaultUserLimit: parseInt(e.target.value) })}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
             />
           </div>
 
@@ -127,7 +127,7 @@ export const SuperAdminSettings: React.FC = () => {
               type="number"
               value={settings.defaultLeadLimit}
               onChange={(e) => setSettings({ ...settings, defaultLeadLimit: parseInt(e.target.value) })}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
             />
           </div>
         </div>
@@ -136,7 +136,7 @@ export const SuperAdminSettings: React.FC = () => {
       {/* Notifications */}
       <div className="bg-white  rounded-none p-6">
         <div className="flex items-center gap-2 mb-4">
-          <Bell className="w-5 h-5 text-[#8B5CF6]" />
+          <Bell className="w-5 h-5 text-[#FFC400]" />
           <h2 className="text-lg font-black text-black uppercase">Notifikationer</h2>
         </div>
         
@@ -178,7 +178,7 @@ export const SuperAdminSettings: React.FC = () => {
       {/* Backup & Maintenance */}
       <div className="bg-white  rounded-none p-6">
         <div className="flex items-center gap-2 mb-4">
-          <Database className="w-5 h-5 text-[#8B5CF6]" />
+          <Database className="w-5 h-5 text-[#FFC400]" />
           <h2 className="text-lg font-black text-black uppercase">Backup & Underhåll</h2>
         </div>
         
@@ -188,7 +188,7 @@ export const SuperAdminSettings: React.FC = () => {
             <select
               value={settings.backupFrequency}
               onChange={(e) => setSettings({ ...settings, backupFrequency: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
             >
               <option value="hourly">Varje timme</option>
               <option value="daily">Dagligen</option>
@@ -203,7 +203,7 @@ export const SuperAdminSettings: React.FC = () => {
               type="number"
               value={settings.logRetentionDays}
               onChange={(e) => setSettings({ ...settings, logRetentionDays: parseInt(e.target.value) })}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
             />
           </div>
         </div>

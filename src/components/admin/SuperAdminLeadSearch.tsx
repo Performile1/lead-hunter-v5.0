@@ -1,5 +1,7 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { Search, Filter, Download, Eye, AlertCircle, RefreshCw, CheckCircle, XCircle } from 'lucide-react';
+import { Search, Filter, Download, Eye, AlertCircle, RefreshCw, CheckCircle, XCircle, LayoutGrid, List } from 'lucide-react';
+import { LeadCard } from '../leads/LeadCard';
+import { LeadData, Segment } from '../../../types';
 
 interface Lead {
   id: string;
@@ -23,6 +25,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterTenant, setFilterTenant] = useState('');
   const [showAnonymizedOnly, setShowAnonymizedOnly] = useState(false);
+  const [viewMode, setViewMode] = useState<'table' | 'cards'>('cards');
 
   useEffect(() => {
     loadAllLeads();
@@ -138,7 +141,9 @@ export const SuperAdminLeadSearch: React.FC = () => {
   };
 
   const handleAnonymize = async (leadId: string) => {
-    if (!confirm('Anonymisera detta lead för cross-tenant användning?')) return;
+    if (!confirm('Är du säker på att du vill anonymisera detta lead? Detta kan inte ångras.')) {
+      return;
+    }
 
     try {
       const token = localStorage.getItem('eurekai_token');
@@ -152,13 +157,11 @@ export const SuperAdminLeadSearch: React.FC = () => {
       alert('Lead anonymiserat!');
       loadAllLeads();
     } catch (err) {
-      alert('Kunde inte anonymisera lead');
+      alert('Kunde inte anonymisera lead: ' + (err instanceof Error ? err.message : 'Unknown error'));
     }
   };
 
   const handleAnalyze = async (leadId: string, domain: string) => {
-    if (!confirm(`Analysera/omanalysera lead: ${domain}?`)) return;
-
     try {
       setAnalyzing(leadId);
       const token = localStorage.getItem('eurekai_token');
@@ -178,12 +181,60 @@ export const SuperAdminLeadSearch: React.FC = () => {
     }
   };
 
+  const convertLeadToLeadData = (lead: Lead): LeadData => {
+    return {
+      id: lead.id,
+      companyName: lead.company_name,
+      orgNumber: '',
+      address: '',
+      visitingAddress: '',
+      warehouseAddress: '',
+      returnAddress: '',
+      phoneNumber: '',
+      segment: Segment.UNKNOWN,
+      revenue: '',
+      revenueSource: '',
+      freightBudget: '',
+      legalStatus: '',
+      creditRatingLabel: '',
+      creditRatingDescription: '',
+      ecommercePlatform: lead.ecommerce_platform || '',
+      hasFtax: '',
+      logisticsProfile: '',
+      markets: '',
+      multiBrands: '',
+      deliveryServices: [],
+      checkoutPosition: lead.checkout_position || '',
+      parentCompany: '',
+      liquidity: '',
+      trendRisk: '',
+      trigger: '',
+      emailStructure: '',
+      decisionMakers: [],
+      icebreaker: '',
+      latestNews: '',
+      latestNewsUrl: '',
+      websiteUrl: lead.domain,
+      carriers: lead.carriers || '',
+      usesDhl: '',
+      shippingTermsLink: '',
+      searchLog: {
+        primaryQuery: '',
+        secondaryQuery: '',
+        credibilitySource: ''
+      },
+      sourceLinks: [],
+      analysisDate: lead.created_at,
+      source: 'ai'
+    };
+  };
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-black text-black uppercase tracking-wide flex items-center gap-3">
-          <Search className="w-8 h-8 text-[#8B5CF6]" />
+          <Search className="w-8 h-8 text-[#FFC400]" />
           Lead Sökning
         </h1>
         <p className="text-sm text-gray-600 mt-1">
@@ -195,7 +246,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-white border-2 border-gray-200 p-4 rounded">
           <p className="text-xs font-bold text-gray-500 uppercase">Totalt Leads</p>
-          <p className="text-2xl font-black text-[#8B5CF6] mt-1">{leads.length}</p>
+          <p className="text-2xl font-black text-[#FFC400] mt-1">{leads.length}</p>
         </div>
         <div className="bg-white border-2 border-gray-200 p-4 rounded">
           <p className="text-xs font-bold text-gray-500 uppercase">Analyserade</p>
@@ -228,7 +279,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && searchLeads()}
               placeholder="Företagsnamn, domän, plattform..."
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
             />
           </div>
 
@@ -239,7 +290,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
               value={filterTenant}
               onChange={(e) => setFilterTenant(e.target.value)}
               placeholder="Tenant ID"
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
             />
           </div>
 
@@ -247,7 +298,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
             <button
               onClick={searchLeads}
               disabled={loading}
-              className="flex-1 flex items-center justify-center gap-2 bg-[#FFC400] hover:bg-black text-white px-4 py-2 rounded font-semibold disabled:opacity-50"
+              className="flex-1 flex items-center justify-center gap-2 bg-[#FFC400] hover:bg-black hover:text-white text-black px-4 py-2 rounded font-semibold disabled:opacity-50"
             >
               <Search className="w-4 h-4" />
               {loading ? 'Söker...' : 'Sök'}
@@ -260,6 +311,22 @@ export const SuperAdminLeadSearch: React.FC = () => {
             >
               <RefreshCw className="w-4 h-4" />
             </button>
+            <div className="flex gap-1 border border-gray-300 rounded overflow-hidden">
+              <button
+                onClick={() => setViewMode('cards')}
+                className={`px-3 py-2 ${viewMode === 'cards' ? 'bg-[#FFC400] text-black' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                title="Kortvy"
+              >
+                <LayoutGrid className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setViewMode('table')}
+                className={`px-3 py-2 ${viewMode === 'table' ? 'bg-[#FFC400] text-black' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                title="Tabellvy"
+              >
+                <List className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
 
@@ -269,7 +336,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
               type="checkbox"
               checked={showAnonymizedOnly}
               onChange={(e) => setShowAnonymizedOnly(e.target.checked)}
-              className="w-4 h-4 text-[#8B5CF6] border-gray-300 rounded focus:ring-[#8B5CF6]"
+              className="w-4 h-4 text-[#FFC400] border-gray-300 rounded focus:ring-[#FFC400]"
             />
             <span className="text-sm font-semibold text-gray-700">Visa endast anonymiserade leads</span>
           </label>
@@ -280,11 +347,22 @@ export const SuperAdminLeadSearch: React.FC = () => {
       {loading && leads.length === 0 ? (
         <div className="flex items-center justify-center h-64 bg-white border-2 border-gray-200 rounded-lg">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#8B5CF6] mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FFC400] mx-auto mb-4"></div>
             <p className="text-gray-600">Laddar leads...</p>
           </div>
         </div>
       ) : leads.length > 0 ? (
+        viewMode === 'cards' ? (
+          <div className="space-y-6">
+            {leads.map((lead) => (
+              <LeadCard
+                key={lead.id}
+                data={convertLeadToLeadData(lead)}
+                isSuperAdmin={true}
+              />
+            ))}
+          </div>
+        ) : (
         <div className="bg-white border-2 border-gray-200 rounded-lg overflow-hidden">
           <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
             <p className="text-sm font-semibold text-gray-700">
@@ -368,7 +446,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
                         <button
                           onClick={() => handleAnonymize(lead.id)}
                           disabled={lead.is_anonymized}
-                          className="text-[#8B5CF6] hover:text-[#7C3AED] disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="text-[#FFC400] hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
                           title="Anonymisera för cross-tenant användning"
                         >
                           <Eye className="w-4 h-4" />
@@ -381,6 +459,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
             </table>
           </div>
         </div>
+        )
       ) : (
         <div className="bg-white border-2 border-gray-200 rounded-lg p-12 text-center">
           <Search className="w-12 h-12 text-gray-400 mx-auto mb-4" />
