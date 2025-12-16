@@ -51,10 +51,10 @@ const ChipInput = ({
           <Icon className="w-3 h-3 text-black" />
           {label}
         </span>
-        <span className="text-[9px] font-normal text-slate-500 italic self-center">Enter för att lägga till</span>
+        <span className="text-[9px] font-normal text-black italic self-center">Enter för att lägga till</span>
       </label>
       
-      <div className="border border-slate-300 p-1.5 bg-white rounded-none focus-within:ring-1 focus-within:ring-[#2563EB] focus-within:border-black">
+      <div className="border border-slate-300 p-1.5 bg-[#FFC400] rounded-none focus-within:ring-1 focus-within:ring-[#2563EB] focus-within:border-black">
         <div className="flex flex-wrap gap-1 mb-1">
           {chips.map((chip, index) => (
             <span key={index} className="bg-slate-100 border border-slate-300 text-slate-800 text-[10px] font-semibold px-1.5 py-0.5 flex items-center gap-1 rounded-sm">
@@ -81,7 +81,7 @@ const ChipInput = ({
         </div>
       </div>
       {helperText && (
-        <p className="mt-0.5 text-[9px] text-slate-500 italic leading-tight">
+        <p className="mt-0.5 text-[9px] text-black italic leading-tight">
           {helperText}
         </p>
       )}
@@ -233,7 +233,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
   };
 
   return (
-    <div className="bg-white rounded-none shadow-lg border-t-4 border-black overflow-hidden">
+    <div className="bg-[#FFC400] rounded-none shadow-lg border-t-4 border-black overflow-hidden">
       <div className="bg-[#FFC400] p-3 text-black flex items-center justify-between border-b-2 border-black">
         <h2 className="text-sm font-bold italic flex items-center gap-2">
           <Search className="w-4 h-4 text-black" />
@@ -242,7 +242,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
         
         <div className="flex items-center gap-2">
           {apiCallCount !== undefined && (
-            <div className="flex items-center gap-1 bg-white/30 px-2 py-0.5 rounded-full" title="Antal API-anrop idag">
+            <div className="flex items-center gap-1 bg-[#FFC400]/30 px-2 py-0.5 rounded-full" title="Antal API-anrop idag">
               <Activity className="w-3 h-3 text-black" />
               <span className="text-[10px] font-bold font-mono">{apiCallCount}</span>
             </div>
@@ -251,7 +251,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
           {onOpenTour && (
             <button 
               onClick={onOpenTour}
-              className="p-1 hover:bg-white/30 rounded-full transition-colors"
+              className="p-1 hover:bg-[#FFC400]/30 rounded-full transition-colors"
               title="Starta Guidad Tur"
             >
               <HelpCircle className="w-4 h-4 text-black" />
@@ -267,8 +267,8 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
           onClick={() => handleTabChange('single')}
           className={`flex-1 py-2 px-3 text-xs font-bold transition-colors uppercase tracking-wide ${
             activeTab === 'single' 
-              ? 'bg-white text-black border-b-2 border-black' 
-              : 'text-slate-500 hover:bg-slate-50 bg-slate-50'
+              ? 'bg-[#FFC400] text-black border-b-2 border-black' 
+              : 'text-black hover:bg-[#FFD633] bg-[#FFD633]'
           }`}
         >
           <div className="flex items-center justify-center gap-2">
@@ -282,8 +282,8 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
           onClick={() => handleTabChange('batch')}
           className={`flex-1 py-2 px-3 text-xs font-bold transition-colors uppercase tracking-wide ${
             activeTab === 'batch' 
-              ? 'bg-white text-black border-b-2 border-black' 
-              : 'text-slate-500 hover:bg-slate-50 bg-slate-50'
+              ? 'bg-[#FFC400] text-black border-b-2 border-black' 
+              : 'text-black hover:bg-[#FFD633] bg-[#FFD633]'
           }`}
         >
           <div className="flex items-center justify-center gap-2">
@@ -300,7 +300,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
         {/* MODE 1: SINGLE COMPANY */}
         {activeTab === 'single' && (
           <div className="space-y-3 animate-fadeIn">
-            <div className="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-3">
+            <div className="p-3 bg-[#FFD633] rounded-lg border border-slate-200 space-y-3">
               <div>
                 <label className="block text-xs font-bold text-slate-800 mb-1">
                   Sök på företagsnamn / Org.nr
@@ -339,7 +339,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                 </div>
               </div>
 
-              <p className="text-[10px] text-slate-500 italic">
+              <p className="text-[10px] text-black italic">
                 Sökningen använder automatiskt det protokoll som är valt i menyn (Rek: Djupanalys).
               </p>
             </div>
@@ -382,7 +382,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                     name="financialScope"
                     value={formData.financialScope}
                     onChange={handleChange}
-                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:border-black focus:ring-[#2563EB] text-xs border p-2 bg-white"
+                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:border-black focus:ring-[#2563EB] text-xs border p-2 bg-[#FFC400]"
                   >
                     <option value="Alla">Alla (Enklast)</option>
                     <option value="KAM">KAM (≥ 5M)</option>
@@ -432,7 +432,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                   className="flex-1 h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#2563EB]"
                 />
               </div>
-              <div className="flex justify-between text-[10px] text-slate-500 mt-0.5 px-1">
+              <div className="flex justify-between text-[10px] text-black mt-0.5 px-1">
                 <span>1</span>
                 <span>100</span>
               </div>
