@@ -745,8 +745,8 @@ async function generateWithRetry(ai: GoogleGenAI, model: string, prompt: string,
  * Searches specifically for a person on LinkedIn for a given company and role.
  */
 export const findPersonOnLinkedIn = async (companyName: string, role: string): Promise<DecisionMaker | null> => {
-   if (!processEnv.API_KEY) throw new Error("API Key missing");
-   const ai = new GoogleGenAI({ apiKey: processEnv.API_KEY });
+   if (!GEMINI_API_KEY) throw new Error("API Key missing");
+   const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
    
    // SWITCH TO FLASH TO SAVE QUOTA
    const model = "gemini-2.5-flash"; 
@@ -812,8 +812,8 @@ export const generateDeepDiveSequential = async (
   formData: SearchFormData, 
   onPartialUpdate: (lead: LeadData) => void
 ): Promise<LeadData> => {
-  if (!processEnv.API_KEY) throw new Error("API Key missing");
-  const ai = new GoogleGenAI({ apiKey: processEnv.API_KEY });
+  if (!GEMINI_API_KEY) throw new Error("API Key missing");
+  const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
   
   // --- CACHE CHECK ---
   const cached = getFromCache(formData.companyNameOrOrg);
