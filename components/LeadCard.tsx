@@ -428,7 +428,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
     <div className="bg-white rounded-none shadow-md border-t-4 border-black overflow-hidden mb-6 transition-all hover:shadow-xl w-full relative">
       
       {/* Header */}
-      <div className="bg-gradient-to-r from-white to-slate-50 border-b border-slate-200 p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-[#FFC400] border-b-2 border-black p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-3 mb-2 flex-wrap">
             {isEditing ? (

@@ -37,27 +37,11 @@ export const TenantDashboard: React.FC = () => {
 
   const loadMetrics = async () => {
     try {
-      const token = localStorage.getItem('auth_token');
-      
-      const [usersRes, leadsRes, customersRes, qualityRes] = await Promise.all([
-        fetch('/api/users', {
-          headers: { 'Authorization': `Bearer ${token}` }
-        }),
-        fetch('/api/leads', {
-          headers: { 'Authorization': `Bearer ${token}` }
-        }),
-        fetch('/api/customers', {
-          headers: { 'Authorization': `Bearer ${token}` }
-        }),
-        fetch('/api/lead-quality/conversion-rate', {
-          headers: { 'Authorization': `Bearer ${token}` }
-        })
-      ]);
-
-      const users = await usersRes.json();
-      const leads = await leadsRes.json();
-      const customers = await customersRes.json();
-      const quality = await qualityRes.json();
+      // For now, use mock data since API endpoints don't exist yet
+      const users = { total: 5 };
+      const leads = { total: 150, leads: [] };
+      const customers = { total: 25, customers: [] };
+      const quality = { conversion_rate: 16.7 };
 
       // Calculate usage (example limits)
       const maxUsers = 50;
