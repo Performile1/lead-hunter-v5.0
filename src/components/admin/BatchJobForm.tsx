@@ -83,7 +83,7 @@ export const BatchJobForm: React.FC<BatchJobFormProps> = ({ onClose, onJobCreate
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-dhl-red text-white p-6 flex items-center justify-between">
+        <div className="bg-primary text-white p-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Clock className="w-6 h-6" />
             <h2 className="text-xl font-bold uppercase">Skapa Batch-Jobb</h2>
@@ -108,7 +108,7 @@ export const BatchJobForm: React.FC<BatchJobFormProps> = ({ onClose, onJobCreate
               value={jobName}
               onChange={(e) => setJobName(e.target.value)}
               placeholder="t.ex. Nattlig sökning - Logistikföretag"
-              className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-dhl-red"
+              className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-primary"
               required
             />
           </div>
@@ -120,7 +120,7 @@ export const BatchJobForm: React.FC<BatchJobFormProps> = ({ onClose, onJobCreate
             </label>
             <div className="grid grid-cols-3 gap-3">
               <label className={`flex items-center gap-2 p-4 border-2 rounded cursor-pointer transition ${
-                jobType === 'search' ? 'border-dhl-red bg-red-50' : 'border-gray-300'
+                jobType === 'search' ? 'border-primary bg-red-50' : 'border-gray-300'
               }`}>
                 <input
                   type="radio"
@@ -135,7 +135,7 @@ export const BatchJobForm: React.FC<BatchJobFormProps> = ({ onClose, onJobCreate
               </label>
 
               <label className={`flex items-center gap-2 p-4 border-2 rounded cursor-pointer transition ${
-                jobType === 'analysis' ? 'border-dhl-red bg-red-50' : 'border-gray-300'
+                jobType === 'analysis' ? 'border-primary bg-red-50' : 'border-gray-300'
               }`}>
                 <input
                   type="radio"
@@ -150,7 +150,7 @@ export const BatchJobForm: React.FC<BatchJobFormProps> = ({ onClose, onJobCreate
               </label>
 
               <label className={`flex items-center gap-2 p-4 border-2 rounded cursor-pointer transition ${
-                jobType === 'both' ? 'border-dhl-red bg-red-50' : 'border-gray-300'
+                jobType === 'both' ? 'border-primary bg-red-50' : 'border-gray-300'
               }`}>
                 <input
                   type="radio"
@@ -176,7 +176,7 @@ export const BatchJobForm: React.FC<BatchJobFormProps> = ({ onClose, onJobCreate
                 type="time"
                 value={scheduleTime}
                 onChange={(e) => setScheduleTime(e.target.value)}
-                className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-dhl-red"
+                className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-primary"
                 required
               />
               <p className="text-xs text-gray-500 mt-1">Rekommenderat: 20:00 - 23:00 (kvällstid)</p>
@@ -189,7 +189,7 @@ export const BatchJobForm: React.FC<BatchJobFormProps> = ({ onClose, onJobCreate
               <select
                 value={scheduleDays}
                 onChange={(e) => setScheduleDays(e.target.value)}
-                className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-dhl-red"
+                className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-primary"
               >
                 <option value="daily">Varje dag</option>
                 <option value="weekdays">Vardagar (Mån-Fre)</option>
@@ -209,7 +209,7 @@ export const BatchJobForm: React.FC<BatchJobFormProps> = ({ onClose, onJobCreate
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="t.ex. logistikföretag Stockholm"
-                className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-dhl-red"
+                className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-primary"
               />
               <p className="text-xs text-gray-500 mt-1">
                 Sök efter företag i Bolagsverket eller andra datakällor
@@ -247,7 +247,7 @@ export const BatchJobForm: React.FC<BatchJobFormProps> = ({ onClose, onJobCreate
                   <select
                     value={analysisProtocol}
                     onChange={(e) => setAnalysisProtocol(e.target.value)}
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-dhl-red"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-primary"
                   >
                     <option value="quick">Quick Scan (Snabb)</option>
                     <option value="batch">Batch Prospecting (Batch)</option>
@@ -263,7 +263,7 @@ export const BatchJobForm: React.FC<BatchJobFormProps> = ({ onClose, onJobCreate
                   <select
                     value={llmProvider}
                     onChange={(e) => setLlmProvider(e.target.value)}
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-dhl-red"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-primary"
                   >
                     <option value="gemini">Gemini (Rekommenderad)</option>
                     <option value="groq">Groq (Snabbast)</option>
@@ -283,7 +283,7 @@ export const BatchJobForm: React.FC<BatchJobFormProps> = ({ onClose, onJobCreate
                 type="checkbox"
                 checked={autoAssign}
                 onChange={(e) => setAutoAssign(e.target.checked)}
-                className="mt-1 w-5 h-5 text-dhl-red border-gray-300 rounded focus:ring-dhl-red"
+                className="mt-1 w-5 h-5 text-primary border-gray-300 rounded focus:ring-dhl-red"
               />
               <div className="flex-1">
                 <div className="font-semibold text-gray-900">
@@ -303,7 +303,7 @@ export const BatchJobForm: React.FC<BatchJobFormProps> = ({ onClose, onJobCreate
                 <select
                   value={assignToTerminal}
                   onChange={(e) => setAssignToTerminal(e.target.value)}
-                  className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-dhl-red"
+                  className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-primary"
                   required={autoAssign}
                 >
                   <option value="">Välj terminal...</option>
@@ -331,7 +331,7 @@ export const BatchJobForm: React.FC<BatchJobFormProps> = ({ onClose, onJobCreate
             <button
               type="submit"
               disabled={submitting}
-              className="flex-1 bg-dhl-red text-white px-6 py-3 rounded hover:bg-opacity-90 transition disabled:bg-gray-300 font-semibold uppercase flex items-center justify-center gap-2"
+              className="flex-1 bg-primary text-white px-6 py-3 rounded hover:bg-opacity-90 transition disabled:bg-gray-300 font-semibold uppercase flex items-center justify-center gap-2"
             >
               {submitting ? (
                 <>

@@ -46,7 +46,7 @@ export const SalespeopleList: React.FC = () => {
   if (loading) {
     return (
       <div className="bg-white p-12 text-center shadow-md">
-        <div className="animate-spin w-12 h-12 border-4 border-dhl-red border-t-transparent rounded-full mx-auto mb-4"></div>
+        <div className="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
         <p className="text-gray-600">Laddar säljare...</p>
       </div>
     );
@@ -55,19 +55,19 @@ export const SalespeopleList: React.FC = () => {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="bg-white border-l-4 border-dhl-red p-6 shadow-md">
-        <h2 className="text-2xl font-bold text-dhl-red uppercase mb-4">Säljare</h2>
+      <div className="bg-white border-l-4 border-primary p-6 shadow-md">
+        <h2 className="text-2xl font-bold text-primary uppercase mb-4">Säljare</h2>
         
         <input
           type="text"
           placeholder="Sök säljare, email, postnummer..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-dhl-red"
+          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary"
         />
         
         <div className="mt-4 text-sm text-gray-600">
-          Visar <span className="font-semibold text-dhl-red">{filteredSalespeople.length}</span> av{' '}
+          Visar <span className="font-semibold text-primary">{filteredSalespeople.length}</span> av{' '}
           <span className="font-semibold">{salespeople.length}</span> säljare
         </div>
       </div>
@@ -77,7 +77,7 @@ export const SalespeopleList: React.FC = () => {
         {filteredSalespeople.map(sp => (
           <div key={sp.id} className="bg-white border-l-4 border-dhl-yellow p-6 shadow-md hover:shadow-lg transition">
             <div className="flex items-start gap-3 mb-4">
-              <div className="bg-dhl-red text-white p-3 rounded-full">
+              <div className="bg-primary text-white p-3 rounded-full">
                 <User className="w-6 h-6" />
               </div>
               <div className="flex-1">
@@ -90,14 +90,14 @@ export const SalespeopleList: React.FC = () => {
 
             <div className="space-y-2 text-sm mb-4">
               <div className="flex items-center gap-2 text-gray-600">
-                <Mail className="w-4 h-4 text-dhl-red" />
+                <Mail className="w-4 h-4 text-primary" />
                 <a href={`mailto:${sp.email}`} className="hover:text-dhl-blue">
                   {sp.email}
                 </a>
               </div>
               {sp.phone && (
                 <div className="flex items-center gap-2 text-gray-600">
-                  <Phone className="w-4 h-4 text-dhl-red" />
+                  <Phone className="w-4 h-4 text-primary" />
                   <span>{sp.phone}</span>
                 </div>
               )}
@@ -105,7 +105,7 @@ export const SalespeopleList: React.FC = () => {
 
             <div className="border-t border-gray-200 pt-4 mb-4">
               <div className="flex items-center gap-2 mb-2">
-                <MapPin className="w-4 h-4 text-dhl-red" />
+                <MapPin className="w-4 h-4 text-primary" />
                 <span className="font-semibold text-sm">Postnummer:</span>
               </div>
               <div className="flex flex-wrap gap-1">

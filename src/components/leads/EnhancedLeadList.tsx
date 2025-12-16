@@ -159,18 +159,18 @@ export const EnhancedLeadList: React.FC<EnhancedLeadListProps> = ({ leads, onLea
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="bg-white border-l-4 border-dhl-red p-6 shadow-md rounded-lg">
+      <div className="bg-white border-l-4 border-primary p-6 shadow-md rounded-lg">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-3xl font-bold text-dhl-red uppercase">Leads</h2>
+            <h2 className="text-3xl font-bold text-primary uppercase">Leads</h2>
             <p className="text-sm text-gray-600 mt-1">
-              Visar <span className="font-semibold text-dhl-red">{filteredLeads.length}</span> av{' '}
+              Visar <span className="font-semibold text-primary">{filteredLeads.length}</span> av{' '}
               <span className="font-semibold">{leads.length}</span> leads
             </p>
           </div>
           <button
             onClick={exportToCSV}
-            className="flex items-center gap-2 bg-dhl-yellow text-black px-6 py-3 rounded-lg hover:bg-opacity-90 transition font-semibold uppercase text-sm shadow-md"
+            className="flex items-center gap-2 bg-secondary text-black px-6 py-3 rounded-lg hover:bg-opacity-90 transition font-semibold uppercase text-sm shadow-md"
           >
             <Download className="w-4 h-4" />
             Exportera CSV
@@ -187,7 +187,7 @@ export const EnhancedLeadList: React.FC<EnhancedLeadListProps> = ({ leads, onLea
               placeholder="Sök företag, org.nr, stad..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-dhl-red focus:ring-2 focus:ring-dhl-red focus:ring-opacity-20"
+              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-dhl-red focus:ring-opacity-20"
             />
           </div>
 
@@ -197,7 +197,7 @@ export const EnhancedLeadList: React.FC<EnhancedLeadListProps> = ({ leads, onLea
             <select
               value={filterSegment}
               onChange={(e) => setFilterSegment(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-dhl-red appearance-none"
+              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary appearance-none"
             >
               <option value="all">Alla segment</option>
               <option value="DM">DM - Direct Marketing</option>
@@ -212,7 +212,7 @@ export const EnhancedLeadList: React.FC<EnhancedLeadListProps> = ({ leads, onLea
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
-            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-dhl-red"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
           >
             <option value="date">Senast analyserade</option>
             <option value="name">Företagsnamn (A-Ö)</option>
@@ -226,7 +226,7 @@ export const EnhancedLeadList: React.FC<EnhancedLeadListProps> = ({ leads, onLea
               type="checkbox"
               checked={filterWarnings}
               onChange={(e) => setFilterWarnings(e.target.checked)}
-              className="w-4 h-4 text-dhl-red"
+              className="w-4 h-4 text-primary"
             />
             <AlertTriangle className="w-4 h-4 text-red-500" />
             <span className="text-sm font-semibold">Endast varningar</span>
@@ -245,14 +245,14 @@ export const EnhancedLeadList: React.FC<EnhancedLeadListProps> = ({ leads, onLea
               <div
                 key={lead.id}
                 onClick={() => handleLeadClick(lead)}
-                className={`bg-white border-l-4 ${warnings ? 'border-red-500' : 'border-dhl-red'} p-6 shadow-md hover:shadow-xl transition cursor-pointer rounded-lg`}
+                className={`bg-white border-l-4 ${warnings ? 'border-red-500' : 'border-primary'} p-6 shadow-md hover:shadow-xl transition cursor-pointer rounded-lg`}
               >
                 <div className="flex items-start justify-between gap-4">
                   {/* Main Content */}
                   <div className="flex-1">
                     {/* Header */}
                     <div className="flex items-center gap-3 mb-3">
-                      <Building2 className="w-6 h-6 text-dhl-red" />
+                      <Building2 className="w-6 h-6 text-primary" />
                       <h3 className="text-2xl font-bold text-gray-900">{lead.company_name}</h3>
                       
                       <span className={`px-3 py-1 rounded-full text-xs font-bold border ${getSegmentColor(lead.segment)}`}>
@@ -260,7 +260,7 @@ export const EnhancedLeadList: React.FC<EnhancedLeadListProps> = ({ leads, onLea
                       </span>
                       
                       {lead.uses_dhl === 'yes' && (
-                        <span className="bg-dhl-yellow text-black px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+                        <span className="bg-secondary text-black px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
                           <CheckCircle className="w-3 h-3" />
                           DHL
                         </span>
@@ -404,7 +404,7 @@ export const EnhancedLeadList: React.FC<EnhancedLeadListProps> = ({ leads, onLea
                   </div>
 
                   {/* Action Button */}
-                  <button className="bg-dhl-red text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition text-sm font-semibold uppercase shadow-md whitespace-nowrap">
+                  <button className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition text-sm font-semibold uppercase shadow-md whitespace-nowrap">
                     Visa Detaljer
                   </button>
                 </div>

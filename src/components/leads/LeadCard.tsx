@@ -68,7 +68,7 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onClose }) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-dhl-red text-white p-6 flex items-center justify-between">
+        <div className="bg-primary text-white p-6 flex items-center justify-between">
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-2">
               <Building2 className="w-6 h-6" />
@@ -101,8 +101,8 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onClose }) => {
               onClick={() => setActiveTab('overview')}
               className={`px-6 py-3 font-semibold uppercase text-sm transition ${
                 activeTab === 'overview'
-                  ? 'border-b-2 border-dhl-red text-dhl-red bg-white'
-                  : 'text-gray-600 hover:text-dhl-red'
+                  ? 'border-b-2 border-primary text-primary bg-white'
+                  : 'text-gray-600 hover:text-primary'
               }`}
             >
               Översikt
@@ -111,8 +111,8 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onClose }) => {
               onClick={() => setActiveTab('contacts')}
               className={`px-6 py-3 font-semibold uppercase text-sm transition ${
                 activeTab === 'contacts'
-                  ? 'border-b-2 border-dhl-red text-dhl-red bg-white'
-                  : 'text-gray-600 hover:text-dhl-red'
+                  ? 'border-b-2 border-primary text-primary bg-white'
+                  : 'text-gray-600 hover:text-primary'
               }`}
             >
               Kontakter
@@ -121,8 +121,8 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onClose }) => {
               onClick={() => setActiveTab('history')}
               className={`px-6 py-3 font-semibold uppercase text-sm transition ${
                 activeTab === 'history'
-                  ? 'border-b-2 border-dhl-red text-dhl-red bg-white'
-                  : 'text-gray-600 hover:text-dhl-red'
+                  ? 'border-b-2 border-primary text-primary bg-white'
+                  : 'text-gray-600 hover:text-primary'
               }`}
             >
               Historik
@@ -136,11 +136,11 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onClose }) => {
             <div className="space-y-6">
               {/* Kontaktinformation */}
               <section>
-                <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase">Kontaktinformation</h3>
+                <h3 className="text-lg font-bold text-primary mb-4 uppercase">Kontaktinformation</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {lead.address && (
                     <div className="flex items-start gap-3">
-                      <MapPin className="w-5 h-5 text-dhl-red mt-1" />
+                      <MapPin className="w-5 h-5 text-primary mt-1" />
                       <div>
                         <p className="font-semibold text-sm text-gray-600">Adress</p>
                         <p className="text-gray-900">{lead.address}</p>
@@ -150,7 +150,7 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onClose }) => {
                   )}
                   {lead.phoneNumber && (
                     <div className="flex items-start gap-3">
-                      <Phone className="w-5 h-5 text-dhl-red mt-1" />
+                      <Phone className="w-5 h-5 text-primary mt-1" />
                       <div>
                         <p className="font-semibold text-sm text-gray-600">Telefon</p>
                         <p className="text-gray-900">{lead.phoneNumber}</p>
@@ -159,7 +159,7 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onClose }) => {
                   )}
                   {lead.websiteUrl && (
                     <div className="flex items-start gap-3">
-                      <Globe className="w-5 h-5 text-dhl-red mt-1" />
+                      <Globe className="w-5 h-5 text-primary mt-1" />
                       <div>
                         <p className="font-semibold text-sm text-gray-600">Webbplats</p>
                         <a
@@ -176,7 +176,7 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onClose }) => {
                   )}
                   {lead.email && (
                     <div className="flex items-start gap-3">
-                      <Mail className="w-5 h-5 text-dhl-red mt-1" />
+                      <Mail className="w-5 h-5 text-primary mt-1" />
                       <div>
                         <p className="font-semibold text-sm text-gray-600">Email</p>
                         <a href={`mailto:${lead.email}`} className="text-dhl-blue hover:underline">
@@ -190,7 +190,7 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onClose }) => {
 
               {/* Ekonomi */}
               <section>
-                <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase">Ekonomi</h3>
+                <h3 className="text-lg font-bold text-primary mb-4 uppercase">Ekonomi</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="bg-blue-50 border-l-4 border-dhl-blue p-4">
                     <p className="text-sm text-gray-600 mb-1">Omsättning</p>
@@ -209,7 +209,7 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onClose }) => {
 
               {/* Status & Varningar */}
               <section>
-                <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase">Status</h3>
+                <h3 className="text-lg font-bold text-primary mb-4 uppercase">Status</h3>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                     <CheckCircle className="w-5 h-5 text-green-600" />
@@ -242,7 +242,7 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onClose }) => {
               {/* Nyheter */}
               {lead.latestNews && (
                 <section>
-                  <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase">Senaste Nyheter</h3>
+                  <h3 className="text-lg font-bold text-primary mb-4 uppercase">Senaste Nyheter</h3>
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <p className="text-gray-700">{lead.latestNews}</p>
                   </div>
@@ -251,7 +251,7 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onClose }) => {
 
               {/* Tidsstämplar */}
               <section>
-                <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase">Tidsstämplar</h3>
+                <h3 className="text-lg font-bold text-primary mb-4 uppercase">Tidsstämplar</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-gray-500" />
@@ -281,13 +281,13 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onClose }) => {
 
           {activeTab === 'contacts' && (
             <div className="space-y-4">
-              <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase">Beslutsfattare</h3>
+              <h3 className="text-lg font-bold text-primary mb-4 uppercase">Beslutsfattare</h3>
               {lead.decisionMakers && lead.decisionMakers.length > 0 ? (
                 <div className="space-y-3">
                   {lead.decisionMakers.map((dm, index) => (
                     <div key={index} className="border-l-4 border-dhl-yellow bg-gray-50 p-4 rounded-lg">
                       <div className="flex items-start gap-3">
-                        <User className="w-5 h-5 text-dhl-red mt-1" />
+                        <User className="w-5 h-5 text-primary mt-1" />
                         <div className="flex-1">
                           <h4 className="font-bold text-lg">{dm.name}</h4>
                           <p className="text-gray-600 mb-2">{dm.title}</p>
@@ -333,7 +333,7 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onClose }) => {
 
           {activeTab === 'history' && (
             <div className="space-y-4">
-              <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase">Historik</h3>
+              <h3 className="text-lg font-bold text-primary mb-4 uppercase">Historik</h3>
               <div className="space-y-3">
                 <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
                   <Calendar className="w-5 h-5 text-gray-500 mt-1" />
@@ -374,7 +374,7 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onClose }) => {
           >
             Stäng
           </button>
-          <button className="bg-dhl-red text-white px-6 py-2 rounded hover:bg-opacity-90 transition uppercase font-semibold">
+          <button className="bg-primary text-white px-6 py-2 rounded hover:bg-opacity-90 transition uppercase font-semibold">
             Redigera
           </button>
         </div>

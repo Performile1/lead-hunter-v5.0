@@ -238,7 +238,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                 </span>
                 
                 {lead.uses_dhl === 'yes' && (
-                  <span className="bg-dhl-yellow text-black px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                  <span className="bg-secondary text-black px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
                     <CheckCircle className="w-3 h-3" />
                     DHL-KUND
                   </span>
@@ -271,8 +271,8 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                 onClick={() => setActiveTab(tab as any)}
                 className={`px-6 py-3 font-semibold uppercase text-sm transition whitespace-nowrap ${
                   activeTab === tab
-                    ? 'border-b-3 border-dhl-red text-dhl-red bg-white'
-                    : 'text-gray-600 hover:text-dhl-red hover:bg-gray-100'
+                    ? 'border-b-3 border-primary text-primary bg-white'
+                    : 'text-gray-600 hover:text-primary hover:bg-gray-100'
                 }`}
               >
                 {tab === 'overview' && '📊 Översikt'}
@@ -314,7 +314,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
 
               {/* Ekonomi & Kreditvärdighet */}
               <section>
-                <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase flex items-center gap-2">
+                <h3 className="text-lg font-bold text-primary mb-4 uppercase flex items-center gap-2">
                   <DollarSign className="w-5 h-5" />
                   Ekonomi & Kreditvärdighet
                 </h3>
@@ -370,14 +370,14 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
 
               {/* Kontaktinformation */}
               <section>
-                <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase flex items-center gap-2">
+                <h3 className="text-lg font-bold text-primary mb-4 uppercase flex items-center gap-2">
                   <MapPin className="w-5 h-5" />
                   Kontaktinformation
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {lead.address && (
                     <div className="flex items-start gap-3 bg-gray-50 p-4 rounded-lg">
-                      <MapPin className="w-5 h-5 text-dhl-red mt-1" />
+                      <MapPin className="w-5 h-5 text-primary mt-1" />
                       <div>
                         <p className="font-semibold text-sm text-gray-600">Postadress</p>
                         <p className="text-gray-900">{lead.address}</p>
@@ -388,7 +388,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                   
                   {lead.visiting_address && (
                     <div className="flex items-start gap-3 bg-gray-50 p-4 rounded-lg">
-                      <Building2 className="w-5 h-5 text-dhl-red mt-1" />
+                      <Building2 className="w-5 h-5 text-primary mt-1" />
                       <div>
                         <p className="font-semibold text-sm text-gray-600">Besöksadress</p>
                         <p className="text-gray-900">{lead.visiting_address}</p>
@@ -398,7 +398,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                   
                   {lead.warehouse_address && (
                     <div className="flex items-start gap-3 bg-gray-50 p-4 rounded-lg">
-                      <Package className="w-5 h-5 text-dhl-red mt-1" />
+                      <Package className="w-5 h-5 text-primary mt-1" />
                       <div>
                         <p className="font-semibold text-sm text-gray-600">Lageradress</p>
                         <p className="text-gray-900">{lead.warehouse_address}</p>
@@ -408,7 +408,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                   
                   {lead.phone_number && (
                     <div className="flex items-start gap-3 bg-gray-50 p-4 rounded-lg">
-                      <Phone className="w-5 h-5 text-dhl-red mt-1" />
+                      <Phone className="w-5 h-5 text-primary mt-1" />
                       <div>
                         <p className="font-semibold text-sm text-gray-600">Telefon</p>
                         <a href={`tel:${lead.phone_number}`} className="text-dhl-blue hover:underline font-semibold">
@@ -420,7 +420,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                   
                   {lead.website_url && (
                     <div className="flex items-start gap-3 bg-gray-50 p-4 rounded-lg">
-                      <Globe className="w-5 h-5 text-dhl-red mt-1" />
+                      <Globe className="w-5 h-5 text-primary mt-1" />
                       <div>
                         <p className="font-semibold text-sm text-gray-600">Webbplats</p>
                         <a
@@ -438,7 +438,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                   
                   {lead.email_structure && (
                     <div className="flex items-start gap-3 bg-gray-50 p-4 rounded-lg">
-                      <Mail className="w-5 h-5 text-dhl-red mt-1" />
+                      <Mail className="w-5 h-5 text-primary mt-1" />
                       <div>
                         <p className="font-semibold text-sm text-gray-600">Email-struktur</p>
                         <p className="text-gray-900 font-mono text-sm">{lead.email_structure}</p>
@@ -451,7 +451,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
               {/* E-handel & Logistik */}
               {(lead.ecommerce_platform || lead.carriers || lead.markets) && (
                 <section>
-                  <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-primary mb-4 uppercase flex items-center gap-2">
                     <ShoppingCart className="w-5 h-5" />
                     E-handel & Logistik
                   </h3>
@@ -490,7 +490,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
               {/* Nyheter */}
               {lead.latest_news && (
                 <section>
-                  <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-primary mb-4 uppercase flex items-center gap-2">
                     <FileText className="w-5 h-5" />
                     Senaste Nyheter
                   </h3>
@@ -513,7 +513,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
 
               {/* Tidsstämplar */}
               <section>
-                <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase flex items-center gap-2">
+                <h3 className="text-lg font-bold text-primary mb-4 uppercase flex items-center gap-2">
                   <Clock className="w-5 h-5" />
                   Tidsstämplar
                 </h3>
@@ -553,7 +553,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
 
           {activeTab === 'contacts' && (
             <div className="space-y-4">
-              <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase flex items-center gap-2">
+              <h3 className="text-lg font-bold text-primary mb-4 uppercase flex items-center gap-2">
                 <User className="w-5 h-5" />
                 Beslutsfattare
               </h3>
@@ -562,7 +562,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                   {lead.decision_makers.map((dm, index) => (
                     <div key={index} className="border-l-4 border-dhl-yellow bg-gradient-to-r from-yellow-50 to-white p-5 rounded-lg shadow-sm hover:shadow-md transition">
                       <div className="flex items-start gap-3">
-                        <div className="bg-dhl-yellow rounded-full p-2">
+                        <div className="bg-secondary rounded-full p-2">
                           <User className="w-5 h-5 text-white" />
                         </div>
                         <div className="flex-1">
@@ -571,7 +571,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                           <div className="space-y-2 text-sm">
                             {dm.email && (
                               <div className="flex items-center gap-2 bg-white p-2 rounded">
-                                <Mail className="w-4 h-4 text-dhl-red" />
+                                <Mail className="w-4 h-4 text-primary" />
                                 <a href={`mailto:${dm.email}`} className="text-dhl-blue hover:underline">
                                   {dm.email}
                                 </a>
@@ -579,7 +579,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                             )}
                             {dm.direct_phone && (
                               <div className="flex items-center gap-2 bg-white p-2 rounded">
-                                <Phone className="w-4 h-4 text-dhl-red" />
+                                <Phone className="w-4 h-4 text-primary" />
                                 <a href={`tel:${dm.direct_phone}`} className="text-dhl-blue hover:underline">
                                   {dm.direct_phone}
                                 </a>
@@ -587,7 +587,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                             )}
                             {dm.linkedin_url && (
                               <div className="flex items-center gap-2 bg-white p-2 rounded">
-                                <ExternalLink className="w-4 h-4 text-dhl-red" />
+                                <ExternalLink className="w-4 h-4 text-primary" />
                                 <a
                                   href={dm.linkedin_url}
                                   target="_blank"
@@ -615,7 +615,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
 
           {activeTab === 'competitive' && (
             <div className="space-y-6">
-              <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase flex items-center gap-2">
+              <h3 className="text-lg font-bold text-primary mb-4 uppercase flex items-center gap-2">
                 <Target className="w-5 h-5" />
                 Competitive Intelligence
               </h3>
@@ -682,7 +682,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
 
           {activeTab === 'website' && (
             <div className="space-y-6">
-              <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase flex items-center gap-2">
+              <h3 className="text-lg font-bold text-primary mb-4 uppercase flex items-center gap-2">
                 <Search className="w-5 h-5" />
                 Website Scraping - Komplett Analys
               </h3>
@@ -1006,7 +1006,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                   <Search className="w-16 h-16 text-gray-300 mx-auto mb-4" />
                   <p className="text-gray-500 text-lg">Ingen website scraping-data tillgänglig</p>
                   <p className="text-gray-400 text-sm mt-2">Kör website scraping för att analysera företagets webbplats</p>
-                  <button className="mt-4 bg-dhl-red text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition font-semibold uppercase">
+                  <button className="mt-4 bg-primary text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition font-semibold uppercase">
                     Starta Scraping
                   </button>
                 </div>
@@ -1016,7 +1016,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
 
           {activeTab === 'history' && (
             <div className="space-y-4">
-              <h3 className="text-lg font-bold text-dhl-red mb-4 uppercase flex items-center gap-2">
+              <h3 className="text-lg font-bold text-primary mb-4 uppercase flex items-center gap-2">
                 <Calendar className="w-5 h-5" />
                 Historik
               </h3>
@@ -1071,7 +1071,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
             >
               Stäng
             </button>
-            <button className="bg-dhl-red text-white px-6 py-2 rounded hover:bg-opacity-90 transition uppercase font-semibold">
+            <button className="bg-primary text-white px-6 py-2 rounded hover:bg-opacity-90 transition uppercase font-semibold">
               Redigera
             </button>
           </div>

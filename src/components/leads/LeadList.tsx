@@ -86,12 +86,12 @@ export const LeadList: React.FC<LeadListProps> = ({ leads, onLeadClick }) => {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="bg-white border-l-4 border-dhl-red p-6 shadow-md">
+      <div className="bg-white border-l-4 border-primary p-6 shadow-md">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-bold text-dhl-red uppercase">Leads</h2>
+          <h2 className="text-2xl font-bold text-primary uppercase">Leads</h2>
           <button
             onClick={exportToCSV}
-            className="flex items-center gap-2 bg-dhl-yellow text-black px-4 py-2 rounded hover:bg-opacity-90 transition font-semibold uppercase text-sm"
+            className="flex items-center gap-2 bg-secondary text-black px-4 py-2 rounded hover:bg-opacity-90 transition font-semibold uppercase text-sm"
           >
             <Download className="w-4 h-4" />
             Exportera
@@ -108,7 +108,7 @@ export const LeadList: React.FC<LeadListProps> = ({ leads, onLeadClick }) => {
               placeholder="Sök företag, org.nr, stad..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-dhl-red"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary"
             />
           </div>
 
@@ -118,7 +118,7 @@ export const LeadList: React.FC<LeadListProps> = ({ leads, onLeadClick }) => {
             <select
               value={filterSegment}
               onChange={(e) => setFilterSegment(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-dhl-red appearance-none"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary appearance-none"
             >
               <option value="all">Alla segment</option>
               <option value="DM">DM - Direct Marketing</option>
@@ -133,7 +133,7 @@ export const LeadList: React.FC<LeadListProps> = ({ leads, onLeadClick }) => {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as 'name' | 'revenue' | 'date')}
-            className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-dhl-red"
+            className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary"
           >
             <option value="date">Senast analyserade</option>
             <option value="name">Företagsnamn (A-Ö)</option>
@@ -143,7 +143,7 @@ export const LeadList: React.FC<LeadListProps> = ({ leads, onLeadClick }) => {
 
         {/* Results Count */}
         <div className="mt-4 text-sm text-gray-600">
-          Visar <span className="font-semibold text-dhl-red">{filteredLeads.length}</span> av{' '}
+          Visar <span className="font-semibold text-primary">{filteredLeads.length}</span> av{' '}
           <span className="font-semibold">{leads.length}</span> leads
         </div>
       </div>
@@ -155,12 +155,12 @@ export const LeadList: React.FC<LeadListProps> = ({ leads, onLeadClick }) => {
             <div
               key={lead.id}
               onClick={() => handleLeadClick(lead)}
-              className="bg-white border-l-4 border-dhl-red p-6 shadow-md hover:shadow-lg transition cursor-pointer"
+              className="bg-white border-l-4 border-primary p-6 shadow-md hover:shadow-lg transition cursor-pointer"
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <Building2 className="w-5 h-5 text-dhl-red" />
+                    <Building2 className="w-5 h-5 text-primary" />
                     <h3 className="text-xl font-bold text-gray-900">{lead.companyName}</h3>
                     <span className={`px-3 py-1 rounded-full text-xs font-bold ${getSegmentColor(lead.segment)}`}>
                       {lead.segment}
@@ -204,7 +204,7 @@ export const LeadList: React.FC<LeadListProps> = ({ leads, onLeadClick }) => {
                   )}
                 </div>
 
-                <button className="bg-dhl-red text-white px-4 py-2 rounded hover:bg-opacity-90 transition text-sm font-semibold uppercase">
+                <button className="bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition text-sm font-semibold uppercase">
                   Visa
                 </button>
               </div>

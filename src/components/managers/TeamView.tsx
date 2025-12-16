@@ -55,7 +55,7 @@ export const TeamView: React.FC = () => {
   if (loading) {
     return (
       <div className="bg-white p-12 text-center shadow-md">
-        <div className="animate-spin w-12 h-12 border-4 border-dhl-red border-t-transparent rounded-full mx-auto mb-4"></div>
+        <div className="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
         <p className="text-gray-600">Laddar team...</p>
       </div>
     );
@@ -64,8 +64,8 @@ export const TeamView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white border-l-4 border-dhl-red p-6 shadow-md">
-        <h2 className="text-2xl font-bold text-dhl-red uppercase flex items-center gap-2">
+      <div className="bg-white border-l-4 border-primary p-6 shadow-md">
+        <h2 className="text-2xl font-bold text-primary uppercase flex items-center gap-2">
           <Users className="w-6 h-6" />
           Mitt Team
         </h2>
@@ -122,12 +122,12 @@ export const TeamView: React.FC = () => {
       )}
 
       {/* Team Members */}
-      <div className="bg-white border-l-4 border-dhl-red p-6 shadow-md">
+      <div className="bg-white border-l-4 border-primary p-6 shadow-md">
         <h3 className="text-xl font-bold text-gray-900 mb-4 uppercase">Teammedlemmar</h3>
         
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-dhl-red text-white">
+            <thead className="bg-primary text-white">
               <tr>
                 <th className="px-4 py-3 text-left uppercase font-bold text-sm">Namn</th>
                 <th className="px-4 py-3 text-left uppercase font-bold text-sm">Roll</th>
@@ -142,7 +142,7 @@ export const TeamView: React.FC = () => {
                 <tr key={member.id} className={`border-b hover:bg-gray-50 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
-                      <div className="bg-dhl-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">
+                      <div className="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">
                         {member.full_name.charAt(0)}
                       </div>
                       <span className="font-semibold">{member.full_name}</span>

@@ -71,7 +71,7 @@ export const TeamHierarchy: React.FC<TeamHierarchyProps> = ({ managerId, manager
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-dhl-red"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
       </div>
     );
   }
@@ -136,7 +136,7 @@ export const TeamHierarchy: React.FC<TeamHierarchyProps> = ({ managerId, manager
       <div className="flex justify-end">
         <button
           onClick={() => setShowAddMember(!showAddMember)}
-          className="bg-dhl-red text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition font-semibold uppercase flex items-center gap-2 shadow-md"
+          className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition font-semibold uppercase flex items-center gap-2 shadow-md"
         >
           <UserPlus className="w-5 h-5" />
           Lägg till Teammedlem
@@ -145,14 +145,14 @@ export const TeamHierarchy: React.FC<TeamHierarchyProps> = ({ managerId, manager
 
       {/* Add Member Form */}
       {showAddMember && (
-        <div className="bg-white border-2 border-dhl-red p-6 rounded-lg shadow-lg">
-          <h3 className="text-xl font-bold text-dhl-red mb-4">Lägg till Teammedlem</h3>
+        <div className="bg-white border-2 border-primary p-6 rounded-lg shadow-lg">
+          <h3 className="text-xl font-bold text-primary mb-4">Lägg till Teammedlem</h3>
           <form className="space-y-4">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Välj Säljare
               </label>
-              <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-dhl-red">
+              <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
                 <option value="">-- Välj säljare --</option>
                 {/* TODO: Populate from API */}
               </select>
@@ -164,13 +164,13 @@ export const TeamHierarchy: React.FC<TeamHierarchyProps> = ({ managerId, manager
               <input
                 type="text"
                 placeholder="t.ex. Team Lead, Senior, Junior"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-dhl-red"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
               />
             </div>
             <div className="flex gap-3">
               <button
                 type="submit"
-                className="flex-1 bg-dhl-red text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition font-semibold uppercase"
+                className="flex-1 bg-primary text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition font-semibold uppercase"
               >
                 Lägg till
               </button>
@@ -203,7 +203,7 @@ export const TeamHierarchy: React.FC<TeamHierarchyProps> = ({ managerId, manager
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-4 flex-1">
                   {/* Avatar */}
-                  <div className="w-16 h-16 rounded-full bg-dhl-yellow flex items-center justify-center text-white font-bold text-2xl">
+                  <div className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center text-white font-bold text-2xl">
                     {member.full_name.split(' ').map(n => n[0]).join('')}
                   </div>
 
@@ -270,10 +270,10 @@ export const TeamHierarchy: React.FC<TeamHierarchyProps> = ({ managerId, manager
               {expandedMember === member.id && (
                 <div className="mt-4 pt-4 border-t border-gray-200">
                   <div className="flex gap-3">
-                    <button className="flex-1 bg-dhl-red text-white px-4 py-2 rounded hover:bg-opacity-90 transition text-sm font-semibold uppercase">
+                    <button className="flex-1 bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition text-sm font-semibold uppercase">
                       Se Alla Leads
                     </button>
-                    <button className="flex-1 bg-dhl-yellow text-black px-4 py-2 rounded hover:bg-opacity-90 transition text-sm font-semibold uppercase">
+                    <button className="flex-1 bg-secondary text-black px-4 py-2 rounded hover:bg-opacity-90 transition text-sm font-semibold uppercase">
                       Statistik
                     </button>
                   </div>

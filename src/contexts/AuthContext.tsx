@@ -65,14 +65,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const userData = {
         id: data.user.id,
         email: data.user.email,
-        name: data.user.full_name || data.user.name,
+        name: data.user.fullName || data.user.full_name || data.user.name,
         role: data.user.role,
-        tenant_id: data.user.tenant_id || null,
-        tenant_name: data.user.tenant_name,
-        tenant_domain: data.user.tenant_domain,
-        subdomain: data.user.subdomain,
-        terminal_name: data.user.terminal_name,
-        terminal_code: data.user.terminal_code,
+        tenant_id: data.user.tenant?.id || data.user.tenant_id || null,
+        tenant_name: data.user.tenant?.name || data.user.tenant_name,
+        tenant_domain: data.user.tenant?.domain || data.user.tenant_domain,
+        subdomain: data.user.tenant?.subdomain || data.user.subdomain,
+        terminal_name: data.user.terminalName || data.user.terminal_name,
+        terminal_code: data.user.terminalCode || data.user.terminal_code,
+        isSuperAdmin: data.user.isSuperAdmin || false,
       };
 
       console.log('💾 Saving user data:', userData);
@@ -88,8 +89,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('dhl_user');
-    localStorage.removeItem('dhl_token');
+    localStorage.removeItem('eurekai_user');
+    localStorage.removeItem('eurekai_token');
   };
 
   return (

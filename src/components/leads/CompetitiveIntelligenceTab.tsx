@@ -36,7 +36,7 @@ export const CompetitiveIntelligenceTab: React.FC<CompetitiveIntelligenceTabProp
         <p className="text-gray-500 text-lg font-semibold">Ingen competitive intelligence tillgänglig</p>
         <p className="text-gray-400 text-sm mt-2">Kör website scraping för att få insights om konkurrenter</p>
         {websiteUrl && (
-          <button className="mt-4 bg-dhl-red text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition font-semibold uppercase shadow-md">
+          <button className="mt-4 bg-primary text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition font-semibold uppercase shadow-md">
             Starta Website Scraping
           </button>
         )}
@@ -73,7 +73,7 @@ export const CompetitiveIntelligenceTab: React.FC<CompetitiveIntelligenceTabProp
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h3 className="text-2xl font-bold text-dhl-red uppercase flex items-center gap-2">
+        <h3 className="text-2xl font-bold text-primary uppercase flex items-center gap-2">
           <Target className="w-6 h-6" />
           Competitive Intelligence
         </h3>
@@ -152,9 +152,9 @@ export const CompetitiveIntelligenceTab: React.FC<CompetitiveIntelligenceTabProp
       </div>
 
       {/* Säljpitch */}
-      <div className="bg-gradient-to-r from-dhl-yellow to-yellow-100 border-l-4 border-dhl-red p-6 rounded-lg shadow-md">
+      <div className="bg-gradient-to-r from-dhl-yellow to-yellow-100 border-l-4 border-primary p-6 rounded-lg shadow-md">
         <h4 className="font-bold text-xl mb-4 flex items-center gap-2 text-gray-900">
-          <Zap className="w-6 h-6 text-dhl-red" />
+          <Zap className="w-6 h-6 text-primary" />
           Din Säljpitch
         </h4>
         <p className="text-gray-900 leading-relaxed text-lg whitespace-pre-line">
@@ -263,11 +263,11 @@ export const CompetitiveIntelligenceTab: React.FC<CompetitiveIntelligenceTabProp
 
       {/* Action Buttons */}
       <div className="flex gap-4 pt-4 border-t border-gray-200">
-        <button className="flex-1 bg-dhl-red text-white px-6 py-4 rounded-lg hover:bg-opacity-90 transition font-bold uppercase text-lg shadow-lg flex items-center justify-center gap-2">
+        <button className="flex-1 bg-primary text-white px-6 py-4 rounded-lg hover:bg-opacity-90 transition font-bold uppercase text-lg shadow-lg flex items-center justify-center gap-2">
           <Truck className="w-6 h-6" />
           Kontakta Kund
         </button>
-        <button className="flex-1 bg-dhl-yellow text-black px-6 py-4 rounded-lg hover:bg-opacity-90 transition font-bold uppercase text-lg shadow-lg flex items-center justify-center gap-2">
+        <button className="flex-1 bg-secondary text-black px-6 py-4 rounded-lg hover:bg-opacity-90 transition font-bold uppercase text-lg shadow-lg flex items-center justify-center gap-2">
           <Target className="w-6 h-6" />
           Skapa Offert
         </button>

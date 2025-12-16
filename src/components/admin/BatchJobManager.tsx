@@ -139,7 +139,7 @@ export const BatchJobManager: React.FC = () => {
   if (loading) {
     return (
       <div className="bg-white p-12 text-center shadow-md">
-        <div className="animate-spin w-12 h-12 border-4 border-dhl-red border-t-transparent rounded-full mx-auto mb-4"></div>
+        <div className="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
         <p className="text-gray-600">Laddar batch-jobb...</p>
       </div>
     );
@@ -148,10 +148,10 @@ export const BatchJobManager: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white border-l-4 border-dhl-red p-6 shadow-md">
+      <div className="bg-white border-l-4 border-primary p-6 shadow-md">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold text-dhl-red uppercase flex items-center gap-2">
+            <h2 className="text-2xl font-bold text-primary uppercase flex items-center gap-2">
               <Clock className="w-6 h-6" />
               Schemalagda Batch-Jobb
             </h2>
@@ -161,7 +161,7 @@ export const BatchJobManager: React.FC = () => {
           </div>
           <button
             onClick={() => setShowCreateForm(true)}
-            className="flex items-center gap-2 bg-dhl-red text-white px-6 py-3 rounded hover:bg-opacity-90 transition font-semibold uppercase"
+            className="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded hover:bg-opacity-90 transition font-semibold uppercase"
           >
             <Plus className="w-5 h-5" />
             Nytt Jobb
@@ -229,7 +229,7 @@ export const BatchJobManager: React.FC = () => {
                   {/* Details */}
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
                     <div className="flex items-center gap-2 text-sm">
-                      <Clock className="w-4 h-4 text-dhl-red" />
+                      <Clock className="w-4 h-4 text-primary" />
                       <div>
                         <p className="text-gray-600">Schema</p>
                         <p className="font-semibold">{formatSchedule(job.schedule_time, job.schedule_days)}</p>
@@ -237,7 +237,7 @@ export const BatchJobManager: React.FC = () => {
                     </div>
 
                     <div className="flex items-center gap-2 text-sm">
-                      <Calendar className="w-4 h-4 text-dhl-red" />
+                      <Calendar className="w-4 h-4 text-primary" />
                       <div>
                         <p className="text-gray-600">Nästa Körning</p>
                         <p className="font-semibold">
@@ -252,7 +252,7 @@ export const BatchJobManager: React.FC = () => {
                     </div>
 
                     <div className="flex items-center gap-2 text-sm">
-                      <BarChart3 className="w-4 h-4 text-dhl-red" />
+                      <BarChart3 className="w-4 h-4 text-primary" />
                       <div>
                         <p className="text-gray-600">Körningar</p>
                         <p className="font-semibold">{job.total_runs}</p>
@@ -260,7 +260,7 @@ export const BatchJobManager: React.FC = () => {
                     </div>
 
                     <div className="flex items-center gap-2 text-sm">
-                      <Search className="w-4 h-4 text-dhl-red" />
+                      <Search className="w-4 h-4 text-primary" />
                       <div>
                         <p className="text-gray-600">Resultat</p>
                         <p className="font-semibold">
@@ -298,7 +298,7 @@ export const BatchJobManager: React.FC = () => {
                 <div className="flex flex-col gap-2 ml-4">
                   <button
                     onClick={() => executeJob(job.id)}
-                    className="flex items-center gap-2 bg-dhl-red text-white px-4 py-2 rounded hover:bg-opacity-90 transition text-sm font-semibold uppercase"
+                    className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition text-sm font-semibold uppercase"
                   >
                     <Play className="w-4 h-4" />
                     Kör Nu

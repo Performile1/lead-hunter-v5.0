@@ -48,7 +48,7 @@ export const TeamStats: React.FC = () => {
   if (loading) {
     return (
       <div className="bg-white p-12 text-center shadow-md">
-        <div className="animate-spin w-12 h-12 border-4 border-dhl-red border-t-transparent rounded-full mx-auto mb-4"></div>
+        <div className="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
         <p className="text-gray-600">Laddar statistik...</p>
       </div>
     );
@@ -65,15 +65,15 @@ export const TeamStats: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header with Time Range Selector */}
-      <div className="bg-white border-l-4 border-dhl-red p-6 shadow-md">
+      <div className="bg-white border-l-4 border-primary p-6 shadow-md">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-dhl-red uppercase">Team Statistik</h2>
+          <h2 className="text-2xl font-bold text-primary uppercase">Team Statistik</h2>
           <div className="flex gap-2">
             <button
               onClick={() => setTimeRange('week')}
               className={`px-4 py-2 rounded font-semibold text-sm uppercase transition ${
                 timeRange === 'week'
-                  ? 'bg-dhl-red text-white'
+                  ? 'bg-primary text-white'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
@@ -83,7 +83,7 @@ export const TeamStats: React.FC = () => {
               onClick={() => setTimeRange('month')}
               className={`px-4 py-2 rounded font-semibold text-sm uppercase transition ${
                 timeRange === 'month'
-                  ? 'bg-dhl-red text-white'
+                  ? 'bg-primary text-white'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
@@ -93,7 +93,7 @@ export const TeamStats: React.FC = () => {
               onClick={() => setTimeRange('quarter')}
               className={`px-4 py-2 rounded font-semibold text-sm uppercase transition ${
                 timeRange === 'quarter'
-                  ? 'bg-dhl-red text-white'
+                  ? 'bg-primary text-white'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
@@ -162,12 +162,12 @@ export const TeamStats: React.FC = () => {
       {stats.top_performer && (
         <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 border-l-4 border-dhl-yellow p-6 shadow-md">
           <div className="flex items-center gap-4">
-            <div className="bg-dhl-yellow text-black p-4 rounded-full">
+            <div className="bg-secondary text-black p-4 rounded-full">
               <Award className="w-8 h-8" />
             </div>
             <div className="flex-1">
               <h3 className="text-lg font-bold text-gray-900 uppercase mb-1">Top Performer</h3>
-              <p className="text-2xl font-bold text-dhl-red">{stats.top_performer.name}</p>
+              <p className="text-2xl font-bold text-primary">{stats.top_performer.name}</p>
               <div className="flex items-center gap-6 mt-2 text-sm">
                 <span className="text-gray-700">
                   <strong>{stats.top_performer.leads_count}</strong> leads
@@ -182,7 +182,7 @@ export const TeamStats: React.FC = () => {
       )}
 
       {/* Segment Distribution */}
-      <div className="bg-white border-l-4 border-dhl-red p-6 shadow-md">
+      <div className="bg-white border-l-4 border-primary p-6 shadow-md">
         <h3 className="text-xl font-bold text-gray-900 mb-4 uppercase">Segment-Fördelning</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="text-center p-4 bg-gray-50 rounded-lg">

@@ -122,8 +122,8 @@ export const WatchList: React.FC<WatchListProps> = ({ userId }) => {
 
   if (loading) {
     return (
-      <div className="bg-white border-l-4 border-dhl-red p-12 text-center shadow-md">
-        <div className="animate-spin w-12 h-12 border-4 border-dhl-red border-t-transparent rounded-full mx-auto mb-4"></div>
+      <div className="bg-white border-l-4 border-primary p-12 text-center shadow-md">
+        <div className="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
         <p className="text-gray-600">Laddar bevakningar...</p>
       </div>
     );
@@ -132,10 +132,10 @@ export const WatchList: React.FC<WatchListProps> = ({ userId }) => {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="bg-white border-l-4 border-dhl-red p-6 shadow-md">
+      <div className="bg-white border-l-4 border-primary p-6 shadow-md">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold text-dhl-red uppercase flex items-center gap-2">
+            <h2 className="text-2xl font-bold text-primary uppercase flex items-center gap-2">
               <Eye className="w-6 h-6" />
               Mina Bevakningar
             </h2>
@@ -144,7 +144,7 @@ export const WatchList: React.FC<WatchListProps> = ({ userId }) => {
             </p>
           </div>
           <div className="text-right">
-            <p className="text-3xl font-bold text-dhl-red">{watches.length}</p>
+            <p className="text-3xl font-bold text-primary">{watches.length}</p>
             <p className="text-sm text-gray-600">Aktiva bevakningar</p>
           </div>
         </div>
@@ -180,7 +180,7 @@ export const WatchList: React.FC<WatchListProps> = ({ userId }) => {
                   {/* Watch Details */}
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
                     <div className="flex items-center gap-2 text-sm">
-                      <Clock className="w-4 h-4 text-dhl-red" />
+                      <Clock className="w-4 h-4 text-primary" />
                       <div>
                         <p className="text-gray-600">Intervall</p>
                         <p className="font-semibold">{watch.interval_days} dagar</p>
@@ -188,7 +188,7 @@ export const WatchList: React.FC<WatchListProps> = ({ userId }) => {
                     </div>
 
                     <div className="flex items-center gap-2 text-sm">
-                      <Calendar className="w-4 h-4 text-dhl-red" />
+                      <Calendar className="w-4 h-4 text-primary" />
                       <div>
                         <p className="text-gray-600">Nästa körning</p>
                         <p className="font-semibold">{getDaysUntilNext(watch.next_check_date)}</p>
@@ -207,7 +207,7 @@ export const WatchList: React.FC<WatchListProps> = ({ userId }) => {
                     )}
 
                     <div className="flex items-center gap-2 text-sm">
-                      <Mail className="w-4 h-4 text-dhl-red" />
+                      <Mail className="w-4 h-4 text-primary" />
                       <div>
                         <p className="text-gray-600">Notifikation</p>
                         <p className="font-semibold text-xs">{watch.notification_email}</p>
@@ -228,7 +228,7 @@ export const WatchList: React.FC<WatchListProps> = ({ userId }) => {
                   <button
                     onClick={() => executeWatch(watch.id)}
                     disabled={executing === watch.id}
-                    className="flex items-center gap-2 bg-dhl-red text-white px-4 py-2 rounded hover:bg-opacity-90 transition disabled:bg-gray-300 text-sm font-semibold uppercase"
+                    className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition disabled:bg-gray-300 text-sm font-semibold uppercase"
                   >
                     {executing === watch.id ? (
                       <>

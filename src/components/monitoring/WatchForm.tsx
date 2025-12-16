@@ -70,7 +70,7 @@ export const WatchForm: React.FC<WatchFormProps> = ({ leadId, companyName, onWat
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
         {/* Header */}
-        <div className="bg-dhl-red text-white p-6 flex items-center justify-between rounded-t-lg">
+        <div className="bg-primary text-white p-6 flex items-center justify-between rounded-t-lg">
           <div className="flex items-center gap-3">
             <Eye className="w-6 h-6" />
             <h2 className="text-xl font-bold uppercase">Lägg till Bevakning</h2>
@@ -94,13 +94,13 @@ export const WatchForm: React.FC<WatchFormProps> = ({ leadId, companyName, onWat
           {/* Interval */}
           <div>
             <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2 uppercase">
-              <Clock className="w-4 h-4 text-dhl-red" />
+              <Clock className="w-4 h-4 text-primary" />
               Kontrollintervall
             </label>
             <select
               value={intervalDays}
               onChange={(e) => setIntervalDays(Number(e.target.value))}
-              className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-dhl-red"
+              className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-primary"
               required
             >
               <option value={7}>Varje vecka (7 dagar)</option>
@@ -119,7 +119,7 @@ export const WatchForm: React.FC<WatchFormProps> = ({ leadId, companyName, onWat
           {/* Email */}
           <div>
             <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2 uppercase">
-              <Mail className="w-4 h-4 text-dhl-red" />
+              <Mail className="w-4 h-4 text-primary" />
               Email för Notifikationer
             </label>
             <input
@@ -127,7 +127,7 @@ export const WatchForm: React.FC<WatchFormProps> = ({ leadId, companyName, onWat
               value={notificationEmail}
               onChange={(e) => setNotificationEmail(e.target.value)}
               placeholder="din.email@dhl.se"
-              className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-dhl-red"
+              className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-primary"
               required
             />
             <p className="text-xs text-gray-500 mt-1">
@@ -138,7 +138,7 @@ export const WatchForm: React.FC<WatchFormProps> = ({ leadId, companyName, onWat
           {/* Triggers */}
           <div>
             <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3 uppercase">
-              <Eye className="w-4 h-4 text-dhl-red" />
+              <Eye className="w-4 h-4 text-primary" />
               Händelser att Bevaka (Triggers)
             </label>
             <div className="grid grid-cols-2 gap-3">
@@ -243,7 +243,7 @@ export const WatchForm: React.FC<WatchFormProps> = ({ leadId, companyName, onWat
                   onChange={(e) => setRevenueThreshold(Number(e.target.value))}
                   className="flex-1"
                 />
-                <span className="font-bold text-lg text-dhl-red w-16 text-right">{revenueThreshold}%</span>
+                <span className="font-bold text-lg text-primary w-16 text-right">{revenueThreshold}%</span>
               </div>
               <p className="text-xs text-gray-600 mt-1">
                 Notifiera endast om omsättningen ändras med mer än {revenueThreshold}%
@@ -258,11 +258,11 @@ export const WatchForm: React.FC<WatchFormProps> = ({ leadId, companyName, onWat
                 type="checkbox"
                 checked={autoReanalyze}
                 onChange={(e) => setAutoReanalyze(e.target.checked)}
-                className="mt-1 w-5 h-5 text-dhl-red border-gray-300 rounded focus:ring-dhl-red"
+                className="mt-1 w-5 h-5 text-primary border-gray-300 rounded focus:ring-dhl-red"
               />
               <div className="flex-1">
                 <div className="flex items-center gap-2 font-semibold text-gray-900">
-                  <CheckCircle className="w-4 h-4 text-dhl-red" />
+                  <CheckCircle className="w-4 h-4 text-primary" />
                   Automatisk Omanalys
                 </div>
                 <p className="text-sm text-gray-600 mt-1">
@@ -286,7 +286,7 @@ export const WatchForm: React.FC<WatchFormProps> = ({ leadId, companyName, onWat
             <button
               type="submit"
               disabled={submitting}
-              className="flex-1 bg-dhl-red text-white px-6 py-3 rounded hover:bg-opacity-90 transition disabled:bg-gray-300 font-semibold uppercase flex items-center justify-center gap-2"
+              className="flex-1 bg-primary text-white px-6 py-3 rounded hover:bg-opacity-90 transition disabled:bg-gray-300 font-semibold uppercase flex items-center justify-center gap-2"
             >
               {submitting ? (
                 <>
