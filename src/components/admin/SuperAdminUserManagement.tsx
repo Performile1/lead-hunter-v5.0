@@ -41,26 +41,74 @@ export const SuperAdminUserManagement: React.FC = () => {
   const loadData = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('eurekai_token');
       
-      const [usersRes, tenantsRes] = await Promise.all([
-        fetch('${API_BASE_URL}/users', {
-          headers: { 'Authorization': `Bearer ${token}` }
-        }),
-        fetch('${API_BASE_URL}/tenants', {
-          headers: { 'Authorization': `Bearer ${token}` }
-        })
-      ]);
+      // Mock data since API endpoints don't exist yet
+      const mockTenants: Tenant[] = [
+        { id: '1', company_name: 'DHL Express Sweden' },
+        { id: '2', company_name: 'PostNord Logistics' },
+        { id: '3', company_name: 'Bring Logistics' }
+      ];
 
-      if (!usersRes.ok || !tenantsRes.ok) {
-        throw new Error('Failed to load data');
-      }
-
-      const usersData = await usersRes.json();
-      const tenantsData = await tenantsRes.json();
+      const mockUsers: User[] = [
+        {
+          id: '1',
+          full_name: 'Anna Andersson',
+          email: 'anna.andersson@dhl.se',
+          role: 'sales',
+          status: 'active',
+          tenant_id: '1',
+          tenant_name: 'DHL Express Sweden',
+          created_at: new Date('2024-01-20').toISOString(),
+          last_login: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString()
+        },
+        {
+          id: '2',
+          full_name: 'Erik Eriksson',
+          email: 'erik.eriksson@dhl.se',
+          role: 'manager',
+          status: 'active',
+          tenant_id: '1',
+          tenant_name: 'DHL Express Sweden',
+          created_at: new Date('2024-01-20').toISOString(),
+          last_login: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString()
+        },
+        {
+          id: '3',
+          full_name: 'Maria Svensson',
+          email: 'maria.svensson@dhl.se',
+          role: 'sales',
+          status: 'active',
+          tenant_id: '1',
+          tenant_name: 'DHL Express Sweden',
+          created_at: new Date('2024-02-01').toISOString(),
+          last_login: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+        },
+        {
+          id: '4',
+          full_name: 'Johan Johansson',
+          email: 'johan.johansson@postnord.se',
+          role: 'sales',
+          status: 'active',
+          tenant_id: '2',
+          tenant_name: 'PostNord Logistics',
+          created_at: new Date('2024-02-15').toISOString(),
+          last_login: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString()
+        },
+        {
+          id: '5',
+          full_name: 'Lisa Larsson',
+          email: 'lisa.larsson@bring.se',
+          role: 'admin',
+          status: 'active',
+          tenant_id: '3',
+          tenant_name: 'Bring Logistics',
+          created_at: new Date('2024-03-10').toISOString(),
+          last_login: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString()
+        }
+      ];
       
-      setUsers(usersData.users || []);
-      setTenants(tenantsData.tenants || []);
+      setUsers(mockUsers);
+      setTenants(mockTenants);
       setError(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');

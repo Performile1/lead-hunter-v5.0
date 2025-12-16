@@ -38,19 +38,54 @@ export const TenantManagement: React.FC = () => {
   const loadTenants = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('eurekai_token');
-      const response = await fetch('${API_BASE_URL}/tenants', {
-        headers: {
-          'Authorization': `Bearer ${token}`
+      
+      // Mock data since API endpoint doesn't exist yet
+      const mockTenants: Tenant[] = [
+        {
+          id: '1',
+          company_name: 'DHL Express Sweden',
+          domain: 'dhl.se',
+          subdomain: 'dhl',
+          primary_color: '#FFC400',
+          secondary_color: '#000000',
+          search_term: 'DHL',
+          is_active: true,
+          user_count: 15,
+          lead_count: 450,
+          customer_count: 120,
+          created_at: new Date('2024-01-15').toISOString()
+        },
+        {
+          id: '2',
+          company_name: 'PostNord Logistics',
+          domain: 'postnord.se',
+          subdomain: 'postnord',
+          primary_color: '#003087',
+          secondary_color: '#FFD100',
+          search_term: 'PostNord',
+          is_active: true,
+          user_count: 8,
+          lead_count: 280,
+          customer_count: 75,
+          created_at: new Date('2024-02-10').toISOString()
+        },
+        {
+          id: '3',
+          company_name: 'Bring Logistics',
+          domain: 'bring.se',
+          subdomain: 'bring',
+          primary_color: '#00A651',
+          secondary_color: '#FFFFFF',
+          search_term: 'Bring',
+          is_active: true,
+          user_count: 5,
+          lead_count: 150,
+          customer_count: 40,
+          created_at: new Date('2024-03-05').toISOString()
         }
-      });
+      ];
 
-      if (!response.ok) {
-        throw new Error('Failed to load tenants');
-      }
-
-      const data = await response.json();
-      setTenants(data.tenants);
+      setTenants(mockTenants);
       setError(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
