@@ -234,7 +234,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
 
   return (
     <div className="bg-white rounded-none shadow-lg border-t-4 border-black overflow-hidden">
-      <div className="bg-black p-3 text-black flex items-center justify-between border-b border-black/10">
+      <div className="bg-[#FFC400] p-3 text-black flex items-center justify-between border-b-2 border-black">
         <h2 className="text-sm font-bold italic flex items-center gap-2">
           <Search className="w-4 h-4 text-black" />
           Konfigurera Sökning
@@ -242,7 +242,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
         
         <div className="flex items-center gap-2">
           {apiCallCount !== undefined && (
-            <div className="flex items-center gap-1 bg-black/10 px-2 py-0.5 rounded-full" title="Antal API-anrop idag">
+            <div className="flex items-center gap-1 bg-white/30 px-2 py-0.5 rounded-full" title="Antal API-anrop idag">
               <Activity className="w-3 h-3 text-black" />
               <span className="text-[10px] font-bold font-mono">{apiCallCount}</span>
             </div>
@@ -251,7 +251,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
           {onOpenTour && (
             <button 
               onClick={onOpenTour}
-              className="p-1 hover:bg-black/10 rounded-full transition-colors"
+              className="p-1 hover:bg-white/30 rounded-full transition-colors"
               title="Starta Guidad Tur"
             >
               <HelpCircle className="w-4 h-4 text-black" />
@@ -292,6 +292,8 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
           </div>
         </button>
       </div>
+      
+      <div className="p-6">
 
       <form onSubmit={handleSubmit} className="p-3 space-y-3">
         
