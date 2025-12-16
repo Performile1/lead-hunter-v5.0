@@ -135,6 +135,17 @@ const getSourceType = (title: string, domain: string) => {
 };
 
 const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearch, isSearchingLinkedIn, isEnriching, onUpdateLead, onRefreshAnalysis, onReportError, onClose, onConvertToCustomer }) => {
+  // Safety check - prevent white screen if data is invalid
+  if (!data || typeof data !== 'object') {
+    console.error('LeadCard: Invalid data provided', data);
+    return (
+      <div className="bg-red-50 border border-red-200 p-4 rounded">
+        <p className="text-red-800 font-bold">Fel: Ogiltig lead-data</p>
+        <button onClick={onClose} className="mt-2 px-3 py-1 bg-red-600 text-white rounded">Stäng</button>
+      </div>
+    );
+  }
+
   const [roleInput, setRoleInput] = useState(prio1Role || "Logistikchef");
   
   // EDIT MODE STATE
@@ -672,7 +683,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                 {isEditing ? (
                   <div className="space-y-2">
                       {/* DYNAMIC LIST FOR EDITING */}
-                      {(editData.financials?.history || []).map((record, index) => (
+                      {Array.isArray(editData.financials?.history) && (editData.financials?.history || []).map((record, index) => (
                           <div key={index} className="flex gap-1 items-center animate-fadeIn">
                              <input 
                                 type="text" 
@@ -861,7 +872,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                 {isSuperAdmin && data.checkoutPosition && (
                     <div className="space-y-1">
                         <span className="block text-[10px] text-slate-400 uppercase font-bold mb-1">Checkout Providers:</span>
-                        {parseCheckoutProviders(data.checkoutPosition).map((provider, idx) => (
+                        {parseCheckoutProviders(data.checkoutPosition).filter(p => p).map((provider, idx) => (
                             <div key={idx} className="text-[10px] font-bold px-2 py-1.5 rounded flex items-start gap-2 border bg-blue-50 text-blue-800 border-blue-100">
                                 <span className="leading-tight">{provider.position}. {provider.name}</span>
                             </div>
@@ -876,7 +887,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                 <div className="text-xs text-slate-600">
                     <span className="block text-[10px] text-slate-400 uppercase font-bold mb-1">Marknader & Profil</span>
                     <div className="flex flex-wrap gap-1 mb-2">
-                        {safeRender(data.logisticsProfile).split(',').map((tag, i) => (
+                        {safeRender(data.logisticsProfile) && safeRender(data.logisticsProfile).split(',').filter(t => t.trim()).map((tag, i) => (
                         <span key={i} className="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded text-[10px] border border-slate-200">{tag.trim()}</span>
                         ))}
                     </div>
@@ -890,7 +901,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                     <span className="block text-[10px] text-slate-400 uppercase font-bold mb-1 flex items-center gap-1">
                         <Package className="w-3 h-3" /> Leveranstjänster
                     </span>
-                    {data.deliveryServices && data.deliveryServices.length > 0 && (
+                    {data.deliveryServices && Array.isArray(data.deliveryServices) && data.deliveryServices.length > 0 && (
                         <div className="flex flex-wrap gap-1">
                             {data.deliveryServices.map((service, idx) => (
                                 <span key={idx} className="bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded text-[10px] border border-blue-100 font-semibold">
@@ -1100,7 +1111,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                  <Link2 className="w-3 h-3" /> Verifierade Källor
                </span>
                <div className="flex flex-wrap gap-2">
-                  {displayedSources && displayedSources.length > 0 ? (
+                  {displayedSources && Array.isArray(displayedSources) && displayedSources.length > 0 ? (
                       displayedSources.map((link, i) => {
                           const sourceType = getSourceType(link.title || "", link.domain || link.url || "");
                           
@@ -1177,7 +1188,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
              </div>
           ) : (
              <div className="space-y-3">
-            {editData.decisionMakers.map((dm, idx) => (
+            {(editData.decisionMakers || []).map((dm, idx) => (
               <div key={idx} className="bg-white border border-slate-200 p-3 shadow-sm hover:transition-colors group relative">
                 {isEditing && (
                     <button 
