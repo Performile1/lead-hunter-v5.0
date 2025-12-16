@@ -3,6 +3,8 @@
  * Integration with Swedish business data sources
  */
 
+import { scrapeAllabolag, AllabolagScrapedData } from './allabolagScraper';
+
 // ============= ALLABOLAG =============
 export interface AllabolagData {
   orgNumber: string;
@@ -16,16 +18,29 @@ export interface AllabolagData {
   boardMembers: string[];
 }
 
-export async function fetchFromAllabolag(companyName: string): Promise<AllabolagData | null> {
+export async function fetchFromAllabolag(companyName: string, orgNumber?: string): Promise<AllabolagData | null> {
   try {
-    // Allabolag scraping - använd Firecrawl eller Octoparse
-    const url = `https://www.allabolag.se/what/${encodeURIComponent(companyName)}`;
-    
     console.log('📊 Fetching from Allabolag:', companyName);
     
-    // TODO: Implement actual scraping
-    // For now, return null to trigger fallback
-    return null;
+    // Use the new scraper
+    const scrapedData = await scrapeAllabolag(companyName, orgNumber);
+    
+    if (!scrapedData) {
+      return null;
+    }
+
+    // Convert scraped data to AllabolagData format
+    return {
+      orgNumber: scrapedData.orgNumber,
+      companyName: scrapedData.companyName,
+      revenue: scrapedData.revenue.map(r => r.amount),
+      employees: scrapedData.employees || 0,
+      address: scrapedData.address || '',
+      city: scrapedData.city || '',
+      postalCode: scrapedData.postalCode || '',
+      ceo: scrapedData.ceo || '',
+      boardMembers: scrapedData.boardMembers || []
+    };
   } catch (error) {
     console.error('Allabolag error:', error);
     return null;

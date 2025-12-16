@@ -416,7 +416,7 @@ async function fetchFromSource(
 
   switch (source) {
     case 'allabolag':
-      return await fetchFromAllabolag(companyName);
+      return await fetchFromAllabolag(companyName, orgNumber);
     
     case 'ratsit':
       return orgNumber ? await fetchFromRatsit(orgNumber) : null;
