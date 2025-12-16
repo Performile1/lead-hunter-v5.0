@@ -233,7 +233,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
   };
 
   return (
-    <div className="bg-white rounded-none shadow-lg border-t-4 border-black overflow-hidden">
+    <div className="bg-[#FFC400] rounded-none shadow-lg border-t-4 border-black overflow-hidden">
       <div className="bg-[#FFC400] p-3 text-black flex items-center justify-between border-b-2 border-black">
         <h2 className="text-sm font-bold italic flex items-center gap-2">
           <Search className="w-4 h-4 text-black" />
