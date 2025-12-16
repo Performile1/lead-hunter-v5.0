@@ -28,7 +28,7 @@ export const SuperAdminCustomers: React.FC = () => {
   const loadCustomers = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const params = new URLSearchParams();
       if (searchTerm) params.append('search', searchTerm);
       if (filterTenant) params.append('tenant_id', filterTenant);

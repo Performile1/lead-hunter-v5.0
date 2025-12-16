@@ -55,7 +55,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
     try {
       const response = await fetch('${API_BASE_URL}/tenants', {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`
+          'Authorization': `Bearer ${localStorage.getItem('eurekai_token')}`
         }
       });
 
@@ -76,7 +76,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`
+          'Authorization': `Bearer ${localStorage.getItem('eurekai_token')}`
         },
         body: JSON.stringify(formData)
       });
@@ -104,7 +104,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`
+          'Authorization': `Bearer ${localStorage.getItem('eurekai_token')}`
         },
         body: JSON.stringify(formData)
       });
@@ -133,7 +133,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
       const response = await fetch(`${API_BASE_URL}/tenants/${id}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`
+          'Authorization': `Bearer ${localStorage.getItem('eurekai_token')}`
         }
       });
 

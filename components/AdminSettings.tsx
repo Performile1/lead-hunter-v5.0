@@ -92,7 +92,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
     try {
       const response = await fetch('${API_BASE_URL}/settings', {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`
+          'Authorization': `Bearer ${localStorage.getItem('eurekai_token')}`
         }
       });
 
@@ -142,7 +142,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
         const uploadResponse = await fetch('${API_BASE_URL}/settings/upload-logo', {
           method: 'POST',
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`
+            'Authorization': `Bearer ${localStorage.getItem('eurekai_token')}`
           },
           body: formData
         });
@@ -165,7 +165,7 @@ export const AdminSettings: React.FC<{ onBack: () => void; isSuperAdmin?: boolea
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`
+          'Authorization': `Bearer ${localStorage.getItem('eurekai_token')}`
         },
         body: JSON.stringify(updatedSettings)
       });

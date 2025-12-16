@@ -57,7 +57,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
     try {
       const response = await fetch(`${API_BASE_URL}/customers/${customerId}`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`,
+          'Authorization': `Bearer ${localStorage.getItem('eurekai_token')}`,
         },
       });
 
@@ -79,7 +79,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
       const response = await fetch(`${API_BASE_URL}/customers/${customerId}/scrape`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`,
+          'Authorization': `Bearer ${localStorage.getItem('eurekai_token')}`,
         },
       });
 

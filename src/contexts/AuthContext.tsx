@@ -79,7 +79,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       console.log('💾 Saving user data:', userData);
       setUser(userData);
       localStorage.setItem('dhl_user', JSON.stringify(userData));
-      localStorage.setItem('dhl_token', data.token);
+      localStorage.setItem('eurekai_token', data.token);
       console.log('✅ User data saved to localStorage');
     } catch (error) {
       console.error('❌ Login error:', error);

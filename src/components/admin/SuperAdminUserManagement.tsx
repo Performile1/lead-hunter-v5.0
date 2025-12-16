@@ -41,7 +41,7 @@ export const SuperAdminUserManagement: React.FC = () => {
   const loadData = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       
       const [usersRes, tenantsRes] = await Promise.all([
         fetch('${API_BASE_URL}/users', {
@@ -97,7 +97,7 @@ export const SuperAdminUserManagement: React.FC = () => {
 
   const handleSave = async () => {
     try {
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const url = editingUser
         ? `${API_BASE_URL}/users/${editingUser.id}`
         : '${API_BASE_URL}/users';
@@ -133,7 +133,7 @@ export const SuperAdminUserManagement: React.FC = () => {
     }
 
     try {
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const response = await fetch(`${API_BASE_URL}/users/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }

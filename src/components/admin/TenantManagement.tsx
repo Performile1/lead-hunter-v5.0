@@ -38,7 +38,7 @@ export const TenantManagement: React.FC = () => {
   const loadTenants = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const response = await fetch('${API_BASE_URL}/tenants', {
         headers: {
           'Authorization': `Bearer ${token}`
@@ -87,7 +87,7 @@ export const TenantManagement: React.FC = () => {
 
   const handleSave = async () => {
     try {
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const url = editingTenant
         ? `${API_BASE_URL}/tenants/${editingTenant.id}`
         : '${API_BASE_URL}/tenants';
@@ -119,7 +119,7 @@ export const TenantManagement: React.FC = () => {
     }
 
     try {
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const response = await fetch(`${API_BASE_URL}/tenants/${id}`, {
         method: 'DELETE',
         headers: {

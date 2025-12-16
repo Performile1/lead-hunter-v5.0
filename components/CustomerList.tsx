@@ -50,7 +50,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
 
       const response = await fetch(`${API_BASE_URL}/customers?${params}`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('dhl_token')}`,
+          'Authorization': `Bearer ${localStorage.getItem('eurekai_token')}`,
         },
       });
 

@@ -31,7 +31,7 @@ export const TenantUserManagement: React.FC = () => {
   const loadUsers = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const response = await fetch('${API_BASE_URL}/users', {
         headers: {
           'Authorization': `Bearer ${token}`
@@ -77,7 +77,7 @@ export const TenantUserManagement: React.FC = () => {
     e.preventDefault();
     
     try {
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const url = editingUser 
         ? `${API_BASE_URL}/users/${editingUser.id}`
         : '${API_BASE_URL}/users';
@@ -107,7 +107,7 @@ export const TenantUserManagement: React.FC = () => {
     if (!confirm('Är du säker på att du vill ta bort denna användare?')) return;
 
     try {
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const response = await fetch(`${API_BASE_URL}/users/${userId}`, {
         method: 'DELETE',
         headers: {

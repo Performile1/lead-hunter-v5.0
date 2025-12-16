@@ -31,7 +31,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
   const loadAllLeads = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const response = await fetch('${API_BASE_URL}/admin/leads', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -50,7 +50,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
   const searchLeads = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const params = new URLSearchParams();
       if (searchTerm) params.append('search', searchTerm);
       if (filterTenant) params.append('tenant_id', filterTenant);
@@ -75,7 +75,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
     if (!confirm('Anonymisera detta lead för cross-tenant användning?')) return;
 
     try {
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const response = await fetch(`${API_BASE_URL}/admin/leads/${leadId}/anonymize`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
@@ -95,7 +95,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
 
     try {
       setAnalyzing(leadId);
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const response = await fetch(`${API_BASE_URL}/admin/leads/${leadId}/analyze`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }

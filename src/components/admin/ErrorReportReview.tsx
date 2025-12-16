@@ -31,7 +31,7 @@ export const ErrorReportReview: React.FC = () => {
   const loadReports = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const params = filter !== 'all' ? `?status=${filter}` : '';
       
       const response = await fetch(`${API_BASE_URL}/admin/error-reports${params}`, {
@@ -51,7 +51,7 @@ export const ErrorReportReview: React.FC = () => {
 
   const handleStatusUpdate = async (reportId: string, status: 'approved' | 'rejected') => {
     try {
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const response = await fetch(`${API_BASE_URL}/admin/error-reports/${reportId}/status`, {
         method: 'PUT',
         headers: {
@@ -76,7 +76,7 @@ export const ErrorReportReview: React.FC = () => {
     }
 
     try {
-      const token = localStorage.getItem('dhl_token');
+      const token = localStorage.getItem('eurekai_token');
       const response = await fetch(`${API_BASE_URL}/admin/error-reports/${reportId}/correct`, {
         method: 'POST',
         headers: {
