@@ -25,7 +25,7 @@ export const SuperAdminHeader: React.FC<SuperAdminHeaderProps> = ({
   }, []);
 
   return (
-    <header className="bg-black shadow-md sticky top-0 z-50 border-b-4 border-[#8B5CF6]">
+    <header className="bg-[#FFC400] shadow-md sticky top-0 z-50 border-b-4 border-black">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-2">
         <div className="flex items-center justify-between">
           
