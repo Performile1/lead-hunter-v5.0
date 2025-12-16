@@ -82,5 +82,5 @@ export async function batchAnalyzeWithGroq(
  * Kontrollerar om Groq är tillgängligt
  */
 export function isGroqAvailable(): boolean {
-  return !!processEnv.GROQ_API_KEY;
+  return !!GROQ_API_KEY;
 }
