@@ -31,15 +31,81 @@ export const SuperAdminLeadSearch: React.FC = () => {
   const loadAllLeads = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('eurekai_token');
-      const response = await fetch('${API_BASE_URL}/admin/leads', {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-
-      if (!response.ok) throw new Error('Failed to load leads');
       
-      const data = await response.json();
-      setLeads(data.leads || []);
+      // Mock data - leads from all tenants
+      const mockLeads: Lead[] = [
+        {
+          id: '1',
+          company_name: 'Schenker AB',
+          domain: 'schenker.se',
+          tenant_id: '1',
+          tenant_name: 'DHL Express Sweden',
+          ecommerce_platform: 'Shopify',
+          carriers: 'DHL, PostNord',
+          created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+          is_anonymized: false,
+          analysis_status: 'completed',
+          analyzed_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+          checkout_position: 'Top 3'
+        },
+        {
+          id: '2',
+          company_name: 'Lagerhaus Sverige',
+          domain: 'lagerhaus.se',
+          tenant_id: '1',
+          tenant_name: 'DHL Express Sweden',
+          ecommerce_platform: 'WooCommerce',
+          carriers: 'DHL, Bring',
+          created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+          is_anonymized: false,
+          analysis_status: 'completed',
+          analyzed_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+          checkout_position: 'Not visible'
+        },
+        {
+          id: '3',
+          company_name: 'Elgiganten AB',
+          domain: 'elgiganten.se',
+          tenant_id: '2',
+          tenant_name: 'PostNord Logistics',
+          ecommerce_platform: 'Custom',
+          carriers: 'PostNord, Bring, DHL',
+          created_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+          is_anonymized: true,
+          analysis_status: 'completed',
+          analyzed_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+          checkout_position: 'Top 1'
+        },
+        {
+          id: '4',
+          company_name: 'Clas Ohlson',
+          domain: 'clasohlson.se',
+          tenant_id: '1',
+          tenant_name: 'DHL Express Sweden',
+          ecommerce_platform: 'Magento',
+          carriers: 'DHL, PostNord, Bring',
+          created_at: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
+          is_anonymized: false,
+          analysis_status: 'pending',
+          checkout_position: 'Unknown'
+        },
+        {
+          id: '5',
+          company_name: 'Webhallen',
+          domain: 'webhallen.com',
+          tenant_id: '3',
+          tenant_name: 'Bring Logistics',
+          ecommerce_platform: 'Shopify',
+          carriers: 'Bring, PostNord',
+          created_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+          is_anonymized: false,
+          analysis_status: 'completed',
+          analyzed_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+          checkout_position: 'Top 2'
+        }
+      ];
+      
+      setLeads(mockLeads);
     } catch (err) {
       console.error('Load error:', err);
     } finally {
