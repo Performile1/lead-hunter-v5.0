@@ -380,7 +380,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
 
   return (
     <div className="w-full">
-      <div className="bg-slate-100 p-2 border-t-4 border-[#D40511] border-b border-slate-200 flex flex-col items-start gap-3">
+      <div className="bg-slate-100 p-2 border-t-4 border-[#2563EB] border-b border-slate-200 flex flex-col items-start gap-3">
         
         {/* ROW 1: SEARCH & ACTIONS */}
         <div className="w-full flex flex-wrap items-center justify-between gap-3">
@@ -431,7 +431,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                         placeholder="Snabbsök (Globalt)..."
                         value={filters.global}
                         onChange={(e) => handleFilterChange('global', e.target.value)}
-                        className="pl-7 pr-2 py-1 w-48 text-xs border border-slate-300 rounded-sm focus:ring-[#D40511] focus:border-[#D40511]"
+                        className="pl-7 pr-2 py-1 w-48 text-xs border border-slate-300 rounded-sm focus:ring-[#2563EB] focus:border-[#2563EB]"
                       />
                     </div>
 
@@ -451,36 +451,36 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
 
       <div className="bg-white shadow-md w-full overflow-x-auto">
         <div className="min-w-[840px]">
-            <div className="grid grid-cols-[40px_110px_minmax(150px,2fr)_minmax(100px,1fr)_110px_60px_minmax(150px,1.5fr)_90px] bg-[#FFCC00] border-b border-slate-300 text-xs font-black uppercase tracking-wider py-2 gap-2">
+            <div className="grid grid-cols-[40px_110px_minmax(150px,2fr)_minmax(100px,1fr)_110px_60px_minmax(150px,1.5fr)_90px] bg-[#4F46E5] border-b border-slate-300 text-xs font-black uppercase tracking-wider py-2 gap-2">
                 <div className="flex items-center justify-center">
                     <input 
                     type="checkbox" 
-                    className="rounded-sm border-slate-400 text-[#D40511] focus:ring-[#D40511] cursor-pointer"
+                    className="rounded-sm border-slate-400 text-[#2563EB] focus:ring-[#2563EB] cursor-pointer"
                     onChange={toggleSelectAll}
                     checked={filteredAndSortedData.length > 0 && filteredAndSortedData.every(l => selectedIds.has(l.id))}
                     title="Markera ALLA i hela listan"
                     />
                 </div>
                 
-                <button onClick={() => handleSort('org')} className="pl-4 text-left hover:text-[#D40511] flex items-center gap-1 transition-colors">
+                <button onClick={() => handleSort('org')} className="pl-4 text-left hover:text-[#2563EB] flex items-center gap-1 transition-colors">
                     Status/Org {getSortIcon('org')}
                 </button>
-                <button onClick={() => handleSort('companyName')} className="text-left hover:text-[#D40511] flex items-center gap-1 transition-colors">
+                <button onClick={() => handleSort('companyName')} className="text-left hover:text-[#2563EB] flex items-center gap-1 transition-colors">
                     Företag {getSortIcon('companyName')}
                 </button>
-                <button onClick={() => handleSort('city')} className="text-left hover:text-[#D40511] flex items-center gap-1 transition-colors">
+                <button onClick={() => handleSort('city')} className="text-left hover:text-[#2563EB] flex items-center gap-1 transition-colors">
                     Ort {getSortIcon('city')}
                 </button>
-                <button onClick={() => handleSort('revenue')} className="text-left hover:text-[#D40511] flex items-center gap-1 transition-colors">
+                <button onClick={() => handleSort('revenue')} className="text-left hover:text-[#2563EB] flex items-center gap-1 transition-colors">
                     Omsättning {getSortIcon('revenue')}
                 </button>
-                <button onClick={() => handleSort('segment')} className="text-left hover:text-[#D40511] flex items-center gap-1 transition-colors">
+                <button onClick={() => handleSort('segment')} className="text-left hover:text-[#2563EB] flex items-center gap-1 transition-colors">
                     Seg {getSortIcon('segment')}
                 </button>
-                <button onClick={() => handleSort('contact')} className="text-left hover:text-[#D40511] flex items-center gap-1 transition-colors">
+                <button onClick={() => handleSort('contact')} className="text-left hover:text-[#2563EB] flex items-center gap-1 transition-colors">
                     Kontakt {getSortIcon('contact')}
                 </button>
-                <button onClick={() => handleSort('actions')} className="text-right pr-4 hover:text-[#D40511] flex items-center justify-end gap-1 transition-colors">
+                <button onClick={() => handleSort('actions')} className="text-right pr-4 hover:text-[#2563EB] flex items-center justify-end gap-1 transition-colors">
                     Åtgärd {getSortIcon('actions')}
                 </button>
             </div>
@@ -499,7 +499,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                        placeholder="Org / Status..." 
                        value={filters.org}
                        onChange={(e) => handleFilterChange('org', e.target.value)}
-                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:border-[#D40511] focus:ring-[#D40511]"
+                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:border-[#2563EB] focus:ring-[#2563EB]"
                      />
                  </div>
                  <div className="pr-1">
@@ -508,7 +508,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                        placeholder="Företagsnamn..." 
                        value={filters.company}
                        onChange={(e) => handleFilterChange('company', e.target.value)}
-                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:border-[#D40511] focus:ring-[#D40511]"
+                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:border-[#2563EB] focus:ring-[#2563EB]"
                      />
                  </div>
                  <div className="pr-1">
@@ -518,7 +518,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                        placeholder="Ort..." 
                        value={filters.city}
                        onChange={(e) => handleFilterChange('city', e.target.value)}
-                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:border-[#D40511] focus:ring-[#D40511]"
+                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:border-[#2563EB] focus:ring-[#2563EB]"
                      />
                      <datalist id="city-suggestions">
                          {uniqueCities.map(city => <option key={city} value={city} />)}
@@ -530,7 +530,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                        placeholder="Min Oms..." 
                        value={filters.revenue}
                        onChange={(e) => handleFilterChange('revenue', e.target.value)}
-                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:border-[#D40511] focus:ring-[#D40511]"
+                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:border-[#2563EB] focus:ring-[#2563EB]"
                        title="Ange siffra för 'Minst X tkr', eller text för matchning"
                      />
                  </div>
@@ -538,7 +538,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                      <select 
                        value={filters.segment}
                        onChange={(e) => handleFilterChange('segment', e.target.value)}
-                       className="w-full text-[10px] py-0.5 px-0 border-slate-300 rounded-sm focus:border-[#D40511] focus:ring-[#D40511]"
+                       className="w-full text-[10px] py-0.5 px-0 border-slate-300 rounded-sm focus:border-[#2563EB] focus:ring-[#2563EB]"
                      >
                         <option value="ALL">Alla</option>
                         <option value="KAM">KAM</option>
@@ -553,7 +553,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                        placeholder="Namn / Titel..." 
                        value={filters.contact}
                        onChange={(e) => handleFilterChange('contact', e.target.value)}
-                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:border-[#D40511] focus:ring-[#D40511]"
+                       className="w-full text-[10px] py-0.5 px-1 border-slate-300 rounded-sm focus:border-[#2563EB] focus:ring-[#2563EB]"
                      />
                  </div>
                  <div>{/* Action Column Empty */}</div>
@@ -582,7 +582,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                 return (
                 <div 
                     key={lead.id} 
-                    className={`grid grid-cols-[40px_110px_minmax(150px,2fr)_minmax(100px,1fr)_110px_60px_minmax(150px,1.5fr)_90px] hover:bg-slate-50 transition-colors group py-3 items-center gap-2 ${isDownloaded ? 'bg-green-50/30' : ''} ${isSelected ? 'bg-[#D40511]/5' : ''}`}
+                    className={`grid grid-cols-[40px_110px_minmax(150px,2fr)_minmax(100px,1fr)_110px_60px_minmax(150px,1.5fr)_90px] hover:bg-slate-50 transition-colors group py-3 items-center gap-2 ${isDownloaded ? 'bg-green-50/30' : ''} ${isSelected ? 'bg-[#2563EB]/5' : ''}`}
                     onClick={(e) => {
                         if ((e.target as HTMLElement).closest('button') || (e.target as HTMLElement).closest('input')) return;
                         toggleSelect(lead.id);
@@ -591,7 +591,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                     <div className="flex items-center justify-center">
                     <input 
                         type="checkbox" 
-                        className="rounded-sm border-slate-300 text-[#D40511] focus:ring-[#D40511] cursor-pointer"
+                        className="rounded-sm border-slate-300 text-[#2563EB] focus:ring-[#2563EB] cursor-pointer"
                         checked={isSelected}
                         onChange={() => toggleSelect(lead.id)}
                     />
@@ -611,7 +611,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                     </div>
 
                     <div className="min-w-0 pr-2">
-                        <div className="text-xs font-bold text-[#D40511] truncate" title={safeRender(lead.companyName)}>
+                        <div className="text-xs font-bold text-[#2563EB] truncate" title={safeRender(lead.companyName)}>
                             {safeRender(lead.companyName)}
                         </div>
                         {isConflict && (
@@ -652,8 +652,8 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
 
                     <div>
                     <span className={`px-1.5 py-0.5 inline-flex text-[9px] font-bold uppercase rounded-sm border justify-center w-8 ${
-                            lead.segment === 'KAM' ? 'bg-[#D40511] text-white border-red-800' :
-                            lead.segment === 'FS' ? 'bg-[#FFCC00] text-black border-yellow-500' :
+                            lead.segment === 'KAM' ? 'bg-[#2563EB] text-white border-red-800' :
+                            lead.segment === 'FS' ? 'bg-[#4F46E5] text-black border-yellow-500' :
                             lead.segment === 'TS' ? 'bg-green-100 text-green-800 border-green-200' :
                             lead.segment === 'DM' ? 'bg-blue-50 text-blue-800 border-blue-200' :
                             'bg-slate-100 text-slate-500 border-slate-200'
@@ -705,7 +705,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                             className={`p-1.5 rounded-sm transition-colors border ${
                             isAnalyzed 
                                 ? 'bg-slate-800 text-white border-slate-900 hover:bg-black' 
-                                : 'bg-[#D40511] text-white border-[#b0040e] hover:bg-[#a0040d]'
+                                : 'bg-[#2563EB] text-white border-[#b0040e] hover:bg-[#a0040d]'
                             }`}
                             title={isAnalyzed ? `Analys Klar ${lead.analysisDate ? '(' + new Date(lead.analysisDate).toLocaleDateString() + ')' : ''}. Klicka för att öppna.` : "Starta Analys"}
                         >
@@ -740,7 +740,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
              <select 
                value={itemsPerPage}
                onChange={(e) => setItemsPerPage(Number(e.target.value))}
-               className="text-xs border-slate-300 rounded-sm py-1 pl-2 pr-6 focus:ring-[#D40511] focus:border-[#D40511] bg-slate-50"
+               className="text-xs border-slate-300 rounded-sm py-1 pl-2 pr-6 focus:ring-[#2563EB] focus:border-[#2563EB] bg-slate-50"
              >
                <option value={10}>10</option>
                <option value={20}>20</option>

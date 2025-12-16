@@ -62,13 +62,13 @@ export const BackupManager: React.FC<BackupManagerProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-white w-full max-w-4xl shadow-2xl border-t-4 border-[#D40511] flex flex-col max-h-[90vh]">
+      <div className="bg-white w-full max-w-4xl shadow-2xl border-t-4 border-[#2563EB] flex flex-col max-h-[90vh]">
         
         {/* Header */}
         <div className="bg-slate-800 p-4 flex justify-between items-center border-b border-slate-700">
           <div className="flex items-center gap-3">
             <div className="bg-slate-700 p-2 rounded-full">
-               <Folder className="w-6 h-6 text-[#FFCC00]" />
+               <Folder className="w-6 h-6 text-[#4F46E5]" />
             </div>
             <div>
               <h2 className="text-lg font-black italic uppercase text-white">System Backups</h2>
@@ -90,7 +90,7 @@ export const BackupManager: React.FC<BackupManagerProps> = ({
             {/* 1. Create Internal Backup */}
             <div>
               <h3 className="text-sm font-bold text-slate-800 uppercase mb-4 flex items-center gap-2">
-                <Save className="w-4 h-4 text-[#D40511]" />
+                <Save className="w-4 h-4 text-[#2563EB]" />
                 Skapa ny backup
               </h3>
               <form onSubmit={handleCreate} className="space-y-3">
@@ -101,14 +101,14 @@ export const BackupManager: React.FC<BackupManagerProps> = ({
                     value={newBackupName}
                     onChange={(e) => setNewBackupName(e.target.value)}
                     placeholder="t.ex. 'Efter Göteborg Batch'"
-                    className="w-full text-sm border-slate-300 rounded-sm focus:border-[#D40511] focus:ring-[#D40511]"
+                    className="w-full text-sm border-slate-300 rounded-sm focus:border-[#2563EB] focus:ring-[#2563EB]"
                     maxLength={30}
                   />
                 </div>
                 <button 
                   type="submit"
                   disabled={!newBackupName.trim()}
-                  className="w-full flex items-center justify-center gap-2 bg-[#D40511] text-white py-2 px-4 text-xs font-bold uppercase tracking-wider hover:bg-[#a0040d] transition-colors shadow-sm rounded-sm disabled:opacity-50"
+                  className="w-full flex items-center justify-center gap-2 bg-[#2563EB] text-white py-2 px-4 text-xs font-bold uppercase tracking-wider hover:bg-[#a0040d] transition-colors shadow-sm rounded-sm disabled:opacity-50"
                 >
                   <HardDrive className="w-4 h-4" />
                   Spara till Mapp
@@ -119,7 +119,7 @@ export const BackupManager: React.FC<BackupManagerProps> = ({
             {/* 2. Direct File Download (Fallback) */}
             <div className="border-t border-slate-200 pt-6">
                  <h3 className="text-xs font-bold text-slate-800 uppercase mb-3 flex items-center gap-2">
-                     <Download className="w-3 h-3 text-[#D40511]" />
+                     <Download className="w-3 h-3 text-[#2563EB]" />
                      Säkerhetskopiera (Fil)
                  </h3>
                  <button
@@ -183,7 +183,7 @@ export const BackupManager: React.FC<BackupManagerProps> = ({
                   <div key={backup.id} className="bg-white border border-slate-200 p-4 rounded-sm shadow-sm hover:shadow-md transition-shadow group relative">
                     <div className="flex justify-between items-start mb-2">
                        <div className="flex items-center gap-2">
-                          <div className="bg-[#FFCC00] p-1.5 rounded-sm">
+                          <div className="bg-[#4F46E5] p-1.5 rounded-sm">
                             <FileJson className="w-4 h-4 text-black" />
                           </div>
                           <div>

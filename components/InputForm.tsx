@@ -48,13 +48,13 @@ const ChipInput = ({
     <div className="mb-2">
       <label className="block text-xs font-bold text-slate-800 mb-1 flex justify-between">
         <span className="flex items-center gap-1">
-          <Icon className="w-3 h-3 text-[#D40511]" />
+          <Icon className="w-3 h-3 text-[#2563EB]" />
           {label}
         </span>
         <span className="text-[9px] font-normal text-slate-500 italic self-center">Enter för att lägga till</span>
       </label>
       
-      <div className="border border-slate-300 p-1.5 bg-white rounded-none focus-within:ring-1 focus-within:ring-[#D40511] focus-within:border-[#D40511]">
+      <div className="border border-slate-300 p-1.5 bg-white rounded-none focus-within:ring-1 focus-within:ring-[#2563EB] focus-within:border-[#2563EB]">
         <div className="flex flex-wrap gap-1 mb-1">
           {chips.map((chip, index) => (
             <span key={index} className="bg-slate-100 border border-slate-300 text-slate-800 text-[10px] font-semibold px-1.5 py-0.5 flex items-center gap-1 rounded-sm">
@@ -62,7 +62,7 @@ const ChipInput = ({
               <button 
                 type="button" 
                 onClick={() => onRemove(chip)}
-                className="hover:text-[#D40511] focus:outline-none"
+                className="hover:text-[#2563EB] focus:outline-none"
               >
                 <X className="w-2.5 h-2.5" />
               </button>
@@ -233,17 +233,17 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
   };
 
   return (
-    <div className="bg-white rounded-none shadow-lg border-t-4 border-[#D40511] overflow-hidden">
-      <div className="bg-[#FFCC00] p-3 text-black flex items-center justify-between border-b border-[#D40511]/10">
+    <div className="bg-white rounded-none shadow-lg border-t-4 border-[#2563EB] overflow-hidden">
+      <div className="bg-[#4F46E5] p-3 text-black flex items-center justify-between border-b border-[#2563EB]/10">
         <h2 className="text-sm font-bold italic flex items-center gap-2">
-          <Search className="w-4 h-4 text-[#D40511]" />
+          <Search className="w-4 h-4 text-[#2563EB]" />
           Konfigurera Sökning
         </h2>
         
         <div className="flex items-center gap-2">
           {apiCallCount !== undefined && (
             <div className="flex items-center gap-1 bg-black/10 px-2 py-0.5 rounded-full" title="Antal API-anrop idag">
-              <Activity className="w-3 h-3 text-[#D40511]" />
+              <Activity className="w-3 h-3 text-[#2563EB]" />
               <span className="text-[10px] font-bold font-mono">{apiCallCount}</span>
             </div>
           )}
@@ -267,7 +267,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
           onClick={() => handleTabChange('single')}
           className={`flex-1 py-2 px-3 text-xs font-bold transition-colors uppercase tracking-wide ${
             activeTab === 'single' 
-              ? 'bg-white text-[#D40511] border-b-2 border-[#D40511]' 
+              ? 'bg-white text-[#2563EB] border-b-2 border-[#2563EB]' 
               : 'text-slate-500 hover:bg-slate-50 bg-slate-50'
           }`}
         >
@@ -282,7 +282,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
           onClick={() => handleTabChange('batch')}
           className={`flex-1 py-2 px-3 text-xs font-bold transition-colors uppercase tracking-wide ${
             activeTab === 'batch' 
-              ? 'bg-white text-[#D40511] border-b-2 border-[#D40511]' 
+              ? 'bg-white text-[#2563EB] border-b-2 border-[#2563EB]' 
               : 'text-slate-500 hover:bg-slate-50 bg-slate-50'
           }`}
         >
@@ -304,7 +304,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                   Sök på företagsnamn / Org.nr
                 </label>
                 <div className="relative">
-                  <Building2 className="absolute left-2.5 top-2.5 h-4 w-4 text-[#D40511]" />
+                  <Building2 className="absolute left-2.5 top-2.5 h-4 w-4 text-[#2563EB]" />
                   <input
                     id="input-company"
                     type="text"
@@ -312,7 +312,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                     value={formData.companyNameOrOrg}
                     onChange={handleChange}
                     placeholder="t.ex. RevolutionRace AB / 556754-5262"
-                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:border-[#D40511] focus:ring-[#D40511] text-xs border p-2"
+                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:border-[#2563EB] focus:ring-[#2563EB] text-xs border p-2"
                     autoFocus
                   />
                 </div>
@@ -332,7 +332,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                     value={formData.specificPerson || ''}
                     onChange={handleChange}
                     placeholder="t.ex. Anders Andersson"
-                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:border-[#D40511] focus:ring-[#D40511] text-xs border p-2"
+                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:border-[#2563EB] focus:ring-[#2563EB] text-xs border p-2"
                   />
                 </div>
               </div>
@@ -356,7 +356,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                   Geografiskt område
                 </label>
                 <div className="relative">
-                  <MapPin className="absolute left-2.5 top-2.5 h-4 w-4 text-[#D40511]" />
+                  <MapPin className="absolute left-2.5 top-2.5 h-4 w-4 text-[#2563EB]" />
                   <input
                     id="input-geo"
                     type="text"
@@ -364,7 +364,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                     value={formData.geoArea}
                     onChange={handleChange}
                     placeholder="Ort/Postnr"
-                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:border-[#D40511] focus:ring-[#D40511] text-xs border p-2"
+                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:border-[#2563EB] focus:ring-[#2563EB] text-xs border p-2"
                   />
                 </div>
               </div>
@@ -374,13 +374,13 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                   Fraktomsättning (Est.)
                 </label>
                 <div className="relative">
-                  <DollarSign className="absolute left-2.5 top-2.5 h-4 w-4 text-[#D40511]" />
+                  <DollarSign className="absolute left-2.5 top-2.5 h-4 w-4 text-[#2563EB]" />
                   <select
                     id="input-segment"
                     name="financialScope"
                     value={formData.financialScope}
                     onChange={handleChange}
-                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:border-[#D40511] focus:ring-[#D40511] text-xs border p-2 bg-white"
+                    className="pl-8 block w-full rounded-none border-slate-300 shadow-sm focus:border-[#2563EB] focus:ring-[#2563EB] text-xs border p-2 bg-white"
                   >
                     <option value="Alla">Alla (Enklast)</option>
                     <option value="KAM">KAM (≥ 5M)</option>
@@ -408,7 +408,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
             <div>
               <label className="block text-xs font-bold text-slate-800 mb-1 flex justify-between">
                 <span>Antal leads (Mål)</span>
-                {formData.leadCount > 20 && <span className="text-[#D40511] italic text-[10px]">Batch-loop aktiv</span>}
+                {formData.leadCount > 20 && <span className="text-[#2563EB] italic text-[10px]">Batch-loop aktiv</span>}
               </label>
               <div className="flex items-center gap-2">
                  <input
@@ -418,7 +418,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                   max="100"
                   value={formData.leadCount}
                   onChange={handleChange}
-                  className="block w-20 rounded-none border-slate-300 shadow-sm focus:border-[#D40511] focus:ring-[#D40511] text-xs border p-2 text-center font-bold"
+                  className="block w-20 rounded-none border-slate-300 shadow-sm focus:border-[#2563EB] focus:ring-[#2563EB] text-xs border p-2 text-center font-bold"
                 />
                 <input
                   type="range"
@@ -427,7 +427,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
                   max="100"
                   value={formData.leadCount}
                   onChange={handleChange}
-                  className="flex-1 h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#D40511]"
+                  className="flex-1 h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#2563EB]"
                 />
               </div>
               <div className="flex justify-between text-[10px] text-slate-500 mt-0.5 px-1">
@@ -441,7 +441,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
         {/* COMMON INPUTS (ROLES & ICEBREAKER) */}
         <div id="section-roles" className="border-t border-slate-200 pt-3">
           <h3 className="text-xs font-bold text-slate-900 mb-2 flex items-center gap-1 uppercase tracking-wide">
-            <Briefcase className="w-3 h-3 text-[#D40511]" />
+            <Briefcase className="w-3 h-3 text-[#2563EB]" />
             Fokus-Positioner & Sökord
           </h3>
           
@@ -482,7 +482,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
               onChange={handleChange}
               rows={2}
               placeholder="Ämne för inledning..."
-              className="block w-full rounded-none border-slate-300 shadow-sm focus:border-[#D40511] focus:ring-[#D40511] text-xs border p-2"
+              className="block w-full rounded-none border-slate-300 shadow-sm focus:border-[#2563EB] focus:ring-[#2563EB] text-xs border p-2"
             />
           </div>
         </div>
@@ -491,7 +491,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
           <button
             type="submit"
             disabled={isLoading}
-            className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-none shadow-sm text-sm font-bold text-white bg-[#D40511] hover:bg-[#b0040e] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#D40511] transition-all uppercase tracking-wider ${
+            className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-none shadow-sm text-sm font-bold text-white bg-[#2563EB] hover:bg-[#b0040e] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2563EB] transition-all uppercase tracking-wider ${
               isLoading ? 'opacity-75 cursor-not-allowed' : ''
             }`}
           >

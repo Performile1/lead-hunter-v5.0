@@ -12,9 +12,9 @@ import { analyzeCompetitiveIntelligence } from "./competitiveIntelligenceService
 import { detectTriggers } from "./triggerDetectionService";
 import { searchCompanyNews } from "./newsApiService";
 
-const processEnv = {
-  API_KEY: process.env.API_KEY as string,
-};
+// API keys from environment or hardcoded for frontend
+const GEMINI_API_KEY = 'AIzaSyCHHVIjyMPUT6jXyanTE_z1II54f3JSJGg';
+const GROQ_API_KEY = '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';
 
 // --- GLOBAL CACHE CONFIG ---
 const CACHE_KEY = 'dhl_deep_analysis_cache';
@@ -1320,11 +1320,11 @@ function extractGroundingLinks(chunks: any[]): SourceLink[] {
 }
 
 export const generateLeads = async (formData: SearchFormData): Promise<LeadData[]> => {
-  if (!processEnv.API_KEY) {
+  if (!GEMINI_API_KEY) {
     throw new Error("API Key is missing.");
   }
 
-  const ai = new GoogleGenAI({ apiKey: processEnv.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
   const isSingleSearch = formData.companyNameOrOrg.trim().length > 0;
   let userPrompt = "";
   let systemInstruction = "";

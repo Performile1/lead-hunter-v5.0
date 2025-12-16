@@ -160,15 +160,15 @@ export const OnboardingTour: React.FC<TourProps> = ({ isOpen, onClose, onDemoFil
                 transform: 'translate(-5px, -5px)' // Tip of pointer
             }}
         >
-            <MousePointer2 className="w-8 h-8 text-[#D40511] fill-[#D40511]" />
+            <MousePointer2 className="w-8 h-8 text-[#2563EB] fill-[#2563EB]" />
             
             {/* Click Ripple Effect Animation */}
-            <div className="absolute top-0 left-0 w-8 h-8 bg-[#D40511] rounded-full animate-ping opacity-20"></div>
+            <div className="absolute top-0 left-0 w-8 h-8 bg-[#2563EB] rounded-full animate-ping opacity-20"></div>
         </div>
 
         {/* Tooltip Card */}
         <div 
-            className="absolute z-[101] bg-white w-80 shadow-2xl border-t-4 border-[#D40511] pointer-events-auto transition-all duration-500 ease-out p-6 rounded-sm flex flex-col gap-3"
+            className="absolute z-[101] bg-white w-80 shadow-2xl border-t-4 border-[#2563EB] pointer-events-auto transition-all duration-500 ease-out p-6 rounded-sm flex flex-col gap-3"
             style={tooltipStyle}
         >
             <div className="flex justify-between items-start">
@@ -193,14 +193,14 @@ export const OnboardingTour: React.FC<TourProps> = ({ isOpen, onClose, onDemoFil
                         <div 
                             key={idx} 
                             className={`h-1.5 rounded-full transition-all duration-300 ${
-                                idx === stepIndex ? 'w-6 bg-[#D40511]' : 'w-1.5 bg-slate-200'
+                                idx === stepIndex ? 'w-6 bg-[#2563EB]' : 'w-1.5 bg-slate-200'
                             }`}
                         />
                     ))}
                 </div>
                 <button
                     onClick={handleNext}
-                    className="flex items-center gap-1 bg-[#D40511] hover:bg-[#a0040d] text-white px-4 py-2 text-xs font-bold uppercase tracking-wider shadow-md transition-colors"
+                    className="flex items-center gap-1 bg-[#2563EB] hover:bg-[#a0040d] text-white px-4 py-2 text-xs font-bold uppercase tracking-wider shadow-md transition-colors"
                 >
                     {stepIndex === STEPS.length - 1 ? 'Starta' : 'Nästa'}
                     <ChevronRight className="w-3 h-3" />

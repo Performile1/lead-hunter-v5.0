@@ -100,7 +100,7 @@ export const LoginPage: React.FC = () => {
   const searchTerm = tenantInfo?.searchTerm || 'LSA';
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden" style={{ backgroundColor: isSuperAdminLogin ? '#FBBF24' : '#FFCC00' }}>
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden" style={{ backgroundColor: isSuperAdminLogin ? '#FBBF24' : '#4F46E5' }}>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-full h-full" style={{
@@ -113,8 +113,8 @@ export const LoginPage: React.FC = () => {
         {/* Login Card */}
         <div className="bg-white shadow-2xl overflow-hidden">
           {/* Header with Corporate Identity */}
-          <div className="p-8 text-center relative" style={{ backgroundColor: isSuperAdminLogin ? '#8B5CF6' : '#D40511' }}>
-            <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: isSuperAdminLogin ? '#FBBF24' : '#FFCC00' }}></div>
+          <div className="p-8 text-center relative" style={{ backgroundColor: isSuperAdminLogin ? '#8B5CF6' : '#2563EB' }}>
+            <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: isSuperAdminLogin ? '#FBBF24' : '#4F46E5' }}></div>
             <div className="h-20 mx-auto mb-6 flex items-center justify-center">
               {tenantInfo?.logoUrl ? (
                 <img src={tenantInfo.logoUrl} alt={companyName} className="h-16 object-contain" />
@@ -126,8 +126,8 @@ export const LoginPage: React.FC = () => {
                 </div>
               )}
             </div>
-            <div className="inline-block px-6 py-2 transform -skew-x-12" style={{ backgroundColor: isSuperAdminLogin ? '#FBBF24' : '#FFCC00' }}>
-              <h1 className="text-2xl font-black italic uppercase tracking-wider transform skew-x-12" style={{ color: isSuperAdminLogin ? '#8B5CF6' : '#D40511' }}>
+            <div className="inline-block px-6 py-2 transform -skew-x-12" style={{ backgroundColor: isSuperAdminLogin ? '#FBBF24' : '#4F46E5' }}>
+              <h1 className="text-2xl font-black italic uppercase tracking-wider transform skew-x-12" style={{ color: isSuperAdminLogin ? '#8B5CF6' : '#2563EB' }}>
                 {isSuperAdminLogin ? 'Lead Hunter' : companyName}
               </h1>
             </div>
@@ -142,7 +142,7 @@ export const LoginPage: React.FC = () => {
               <h2 className="text-2xl font-black text-black uppercase tracking-wide">
                 Välkommen
               </h2>
-              <div className="w-16 h-1 mx-auto mt-2" style={{ backgroundColor: isSuperAdminLogin ? '#FBBF24' : '#FFCC00' }}></div>
+              <div className="w-16 h-1 mx-auto mt-2" style={{ backgroundColor: isSuperAdminLogin ? '#FBBF24' : '#4F46E5' }}></div>
             </div>
 
             {error && (
@@ -188,7 +188,7 @@ export const LoginPage: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="w-full pl-10 pr-4 py-3 border-2 border-gray-300 focus:border-[#D40511] focus:ring-0 transition-colors font-medium"
+                    className="w-full pl-10 pr-4 py-3 border-2 border-gray-300 focus:border-[#2563EB] focus:ring-0 transition-colors font-medium"
                     placeholder="••••••••"
                     disabled={isLoading}
                   />
@@ -199,9 +199,9 @@ export const LoginPage: React.FC = () => {
                 type="submit"
                 disabled={isLoading}
                 className="w-full text-white font-black py-4 px-6 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-widest text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                style={{ backgroundColor: isSuperAdminLogin ? '#8B5CF6' : '#D40511' }}
+                style={{ backgroundColor: isSuperAdminLogin ? '#8B5CF6' : '#2563EB' }}
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isSuperAdminLogin ? '#7C3AED' : '#a0040d'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = isSuperAdminLogin ? '#8B5CF6' : '#D40511'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = isSuperAdminLogin ? '#8B5CF6' : '#2563EB'}
               >
                 {isLoading ? (
                   <span className="flex items-center justify-center gap-2">
@@ -226,7 +226,7 @@ export const LoginPage: React.FC = () => {
           </div>
 
           {/* Footer Stripe */}
-          <div className="h-2" style={{ background: isSuperAdminLogin ? 'linear-gradient(to right, #8B5CF6, #FBBF24, #8B5CF6)' : 'linear-gradient(to right, #D40511, #FFCC00, #D40511)' }}></div>
+          <div className="h-2" style={{ background: isSuperAdminLogin ? 'linear-gradient(to right, #8B5CF6, #FBBF24, #8B5CF6)' : 'linear-gradient(to right, #2563EB, #4F46E5, #2563EB)' }}></div>
         </div>
 
         {/* Copyright */}

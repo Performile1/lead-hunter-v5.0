@@ -143,7 +143,7 @@ export const TenantUserManagement: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#D40511]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2563EB]"></div>
       </div>
     );
   }
@@ -162,7 +162,7 @@ export const TenantUserManagement: React.FC = () => {
         </div>
         <button
           onClick={handleCreate}
-          className="flex items-center gap-2 bg-[#D40511] hover:bg-[#a0040d] text-white px-4 py-2 rounded font-semibold"
+          className="flex items-center gap-2 bg-[#2563EB] hover:bg-[#a0040d] text-white px-4 py-2 rounded font-semibold"
         >
           <Plus className="w-5 h-5" />
           Ny Användare
@@ -175,9 +175,9 @@ export const TenantUserManagement: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Totalt</p>
-              <p className="text-2xl font-black text-[#D40511] mt-1">{users.length}</p>
+              <p className="text-2xl font-black text-[#2563EB] mt-1">{users.length}</p>
             </div>
-            <Users className="w-8 h-8 text-[#FFCC00]" />
+            <Users className="w-8 h-8 text-[#4F46E5]" />
           </div>
         </div>
         <div className="bg-white border-2 border-gray-200 p-4 rounded shadow-sm">
@@ -304,7 +304,7 @@ export const TenantUserManagement: React.FC = () => {
                   type="text"
                   value={formData.full_name}
                   onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                  className="w-full px-3 py-2 border-2 border-gray-300 rounded focus:ring-2 focus:ring-[#D40511] focus:border-transparent"
+                  className="w-full px-3 py-2 border-2 border-gray-300 rounded focus:ring-2 focus:ring-[#2563EB] focus:border-transparent"
                   required
                 />
               </div>
@@ -317,7 +317,7 @@ export const TenantUserManagement: React.FC = () => {
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full pl-10 pr-3 py-2 border-2 border-gray-300 rounded focus:ring-2 focus:ring-[#D40511] focus:border-transparent"
+                    className="w-full pl-10 pr-3 py-2 border-2 border-gray-300 rounded focus:ring-2 focus:ring-[#2563EB] focus:border-transparent"
                     required
                   />
                 </div>
@@ -333,7 +333,7 @@ export const TenantUserManagement: React.FC = () => {
                     type="password"
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    className="w-full pl-10 pr-3 py-2 border-2 border-gray-300 rounded focus:ring-2 focus:ring-[#D40511] focus:border-transparent"
+                    className="w-full pl-10 pr-3 py-2 border-2 border-gray-300 rounded focus:ring-2 focus:ring-[#2563EB] focus:border-transparent"
                     required={!editingUser}
                   />
                 </div>
@@ -344,7 +344,7 @@ export const TenantUserManagement: React.FC = () => {
                 <select
                   value={formData.role}
                   onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                  className="w-full px-3 py-2 border-2 border-gray-300 rounded focus:ring-2 focus:ring-[#D40511] focus:border-transparent"
+                  className="w-full px-3 py-2 border-2 border-gray-300 rounded focus:ring-2 focus:ring-[#2563EB] focus:border-transparent"
                 >
                   <option value="sales">Säljare</option>
                   <option value="manager">Manager</option>
@@ -358,7 +358,7 @@ export const TenantUserManagement: React.FC = () => {
                 <select
                   value={formData.status}
                   onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                  className="w-full px-3 py-2 border-2 border-gray-300 rounded focus:ring-2 focus:ring-[#D40511] focus:border-transparent"
+                  className="w-full px-3 py-2 border-2 border-gray-300 rounded focus:ring-2 focus:ring-[#2563EB] focus:border-transparent"
                 >
                   <option value="active">Aktiv</option>
                   <option value="inactive">Inaktiv</option>
@@ -375,7 +375,7 @@ export const TenantUserManagement: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-2 bg-[#D40511] hover:bg-[#a0040d] text-white rounded font-semibold"
+                  className="flex-1 px-4 py-2 bg-[#2563EB] hover:bg-[#a0040d] text-white rounded font-semibold"
                 >
                   {editingUser ? 'Uppdatera' : 'Skapa'}
                 </button>

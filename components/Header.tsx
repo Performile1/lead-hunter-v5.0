@@ -60,33 +60,35 @@ export const Header: React.FC<HeaderProps> = ({
   const totalBadgeCount = cacheCount + inclusionCount + exclusionCount;
 
   return (
-    <header className="bg-[#FFCC00] shadow-md sticky top-0 z-50 border-b-4 border-[#D40511]">
+    <header className="bg-[#4F46E5] shadow-md sticky top-0 z-50 border-b-4 border-[#2563EB]">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-2">
         <div className="flex items-center justify-between">
           
           {/* LEFT: LOGO & PROTOCOL SELECTOR */}
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-4">
-              {/* DHL Logo Image - Clickable to Dashboard */}
+              {/* EurekAI Logo - Clickable to Dashboard */}
               {onNavigateToDashboard ? (
                 <button onClick={onNavigateToDashboard} className="hover:opacity-80 transition-opacity">
-                  <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/a/ac/DHL_Logo.svg" 
-                    alt="Lead Hunter" 
-                    className="h-10 w-auto"
-                  />
+                  <div className="flex items-center gap-2">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                      <span className="text-white font-bold text-xl">E</span>
+                    </div>
+                    <span className="text-2xl font-bold text-gray-900">EurekAI</span>
+                  </div>
                 </button>
               ) : (
-                <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/a/ac/DHL_Logo.svg" 
-                  alt="DHL Lead Hunter" 
-                  className="h-10 w-auto"
-                />
+                <div className="flex items-center gap-2">
+                  <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                    <span className="text-white font-bold text-xl">E</span>
+                  </div>
+                  <span className="text-2xl font-bold text-gray-900">EurekAI</span>
+                </div>
               )}
               
               {/* Subtitle */}
-              <div className="hidden lg:block border-l-2 border-[#D40511]/20 pl-4">
-                <div className="text-[#D40511] font-black italic uppercase tracking-widest text-lg leading-none">
+              <div className="hidden lg:block border-l-2 border-[#2563EB]/20 pl-4">
+                <div className="text-[#2563EB] font-black italic uppercase tracking-widest text-lg leading-none">
                   Lead Hunter
                 </div>
                 <div className="text-[10px] text-black font-bold uppercase tracking-wide opacity-80">
@@ -96,9 +98,9 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
 
             {/* Protocol Selector Dropdown */}
-            <div className="hidden xl:flex items-center gap-2 ml-4 border-l border-[#D40511]/10 pl-4">
+            <div className="hidden xl:flex items-center gap-2 ml-4 border-l border-[#2563EB]/10 pl-4">
                <div className="flex items-center gap-2 bg-white/50 px-2 py-1 rounded-sm border border-black/5 hover:bg-white transition-colors">
-                 <Settings2 className="w-4 h-4 text-[#D40511]" />
+                 <Settings2 className="w-4 h-4 text-[#2563EB]" />
                  <div className="flex flex-col">
                    <span className="text-[8px] text-black/60 uppercase font-bold leading-none mb-0.5">Analys Protokoll</span>
                    <select 
@@ -134,7 +136,7 @@ export const Header: React.FC<HeaderProps> = ({
                   <div className="relative">
                     <Settings className="w-4 h-4" />
                     {totalBadgeCount > 0 && (
-                      <span className="absolute -top-1.5 -right-1.5 bg-[#D40511] w-2.5 h-2.5 rounded-full border border-white"></span>
+                      <span className="absolute -top-1.5 -right-1.5 bg-[#2563EB] w-2.5 h-2.5 rounded-full border border-white"></span>
                     )}
                   </div>
                   <span className="text-[10px] font-bold uppercase tracking-wide hidden sm:inline">Verktyg</span>
@@ -142,7 +144,7 @@ export const Header: React.FC<HeaderProps> = ({
                 </button>
 
                 {isMenuOpen && (
-                  <div className="absolute top-full right-0 mt-2 w-64 bg-white shadow-xl border-t-4 border-[#D40511] animate-fadeIn z-[60] rounded-b-sm">
+                  <div className="absolute top-full right-0 mt-2 w-64 bg-white shadow-xl border-t-4 border-[#2563EB] animate-fadeIn z-[60] rounded-b-sm">
                       
                       {/* SYSTEM STATUS ITEM */}
                       <button 
@@ -163,7 +165,7 @@ export const Header: React.FC<HeaderProps> = ({
                         className="w-full text-left px-4 py-3 hover:bg-slate-50 flex items-center justify-between group border-b border-slate-50"
                       >
                         <div className="flex items-center gap-3">
-                           <Database className="w-4 h-4 text-slate-600 group-hover:text-[#D40511]" />
+                           <Database className="w-4 h-4 text-slate-600 group-hover:text-[#2563EB]" />
                            <span className="text-sm font-medium text-slate-800">Reservoir (Cache)</span>
                         </div>
                         {cacheCount > 0 && (
@@ -189,11 +191,11 @@ export const Header: React.FC<HeaderProps> = ({
                         className="w-full text-left px-4 py-3 hover:bg-slate-50 flex items-center justify-between group"
                       >
                         <div className="flex items-center gap-3">
-                           <ShieldBan className="w-4 h-4 text-slate-600 group-hover:text-[#D40511]" />
+                           <ShieldBan className="w-4 h-4 text-slate-600 group-hover:text-[#2563EB]" />
                            <span className="text-sm font-medium text-slate-800">Exkluderingar</span>
                         </div>
                         {exclusionCount > 0 && (
-                           <span className="bg-red-100 text-[#D40511] text-[10px] font-bold px-2 py-0.5 rounded-full">{exclusionCount}</span>
+                           <span className="bg-red-100 text-[#2563EB] text-[10px] font-bold px-2 py-0.5 rounded-full">{exclusionCount}</span>
                         )}
                       </button>
 
@@ -218,7 +220,7 @@ export const Header: React.FC<HeaderProps> = ({
                           onClick={() => { onOpenCronjobs(); setIsMenuOpen(false); }}
                           className="w-full text-left px-4 py-3 hover:bg-slate-50 flex items-center gap-3 group"
                         >
-                           <Clock className="w-4 h-4 text-slate-600 group-hover:text-[#D40511]" />
+                           <Clock className="w-4 h-4 text-slate-600 group-hover:text-[#2563EB]" />
                            <span className="text-sm font-medium text-slate-800">Cronjobs</span>
                            <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded ml-auto font-bold">ALLA ROLLER</span>
                         </button>
@@ -229,7 +231,7 @@ export const Header: React.FC<HeaderProps> = ({
                           onClick={() => { onOpenSettings(); setIsMenuOpen(false); }}
                           className="w-full text-left px-4 py-3 hover:bg-slate-50 flex items-center gap-3 group"
                         >
-                           <Settings className="w-4 h-4 text-slate-600 group-hover:text-[#D40511]" />
+                           <Settings className="w-4 h-4 text-slate-600 group-hover:text-[#2563EB]" />
                            <span className="text-sm font-medium text-slate-800">Systeminställningar</span>
                            <span className="text-[9px] bg-red-100 text-red-700 px-1.5 py-0.5 rounded ml-auto font-bold">ADMIN</span>
                         </button>
@@ -246,7 +248,7 @@ export const Header: React.FC<HeaderProps> = ({
                   onClick={onToggleCustomerList}
                   className={`flex items-center gap-2 px-4 py-2 rounded-sm transition-colors shadow-sm font-bold text-sm uppercase ${
                     showCustomerList 
-                      ? 'bg-[#FFCC00] text-black hover:bg-[#e6b800]' 
+                      ? 'bg-[#4F46E5] text-black hover:bg-[#e6b800]' 
                       : 'bg-white/50 hover:bg-white text-slate-700 border border-black/5'
                   }`}
                   title={showCustomerList ? 'Visa Leads' : 'Visa Kundlista'}
@@ -260,7 +262,7 @@ export const Header: React.FC<HeaderProps> = ({
 
               <button 
                 onClick={onReset}
-                className="flex items-center gap-2 bg-[#D40511] hover:bg-[#a0040d] text-white px-3 py-2 rounded-sm transition-colors shadow-sm"
+                className="flex items-center gap-2 bg-[#2563EB] hover:bg-[#a0040d] text-white px-3 py-2 rounded-sm transition-colors shadow-sm"
                 title="Systemåterställning (Nollställ vyn, behåll data)"
               >
                 <RotateCcw className="w-4 h-4" />
@@ -282,7 +284,7 @@ export const Header: React.FC<HeaderProps> = ({
 
               <button
                 onClick={logout}
-                className="flex items-center gap-2 bg-white/50 hover:bg-white text-slate-700 hover:text-[#D40511] px-3 py-2 rounded-sm transition-colors shadow-sm border border-black/5"
+                className="flex items-center gap-2 bg-white/50 hover:bg-white text-slate-700 hover:text-[#2563EB] px-3 py-2 rounded-sm transition-colors shadow-sm border border-black/5"
                 title="Logga ut"
               >
                 <LogOut className="w-4 h-4" />

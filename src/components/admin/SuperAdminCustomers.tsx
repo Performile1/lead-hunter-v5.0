@@ -102,7 +102,7 @@ export const SuperAdminCustomers: React.FC = () => {
               <p className="text-xs font-bold text-gray-500 uppercase">Totalt Kunder</p>
               <p className="text-3xl font-black text-[#8B5CF6] mt-1">{stats.total}</p>
             </div>
-            <Users className="w-10 h-10 text-[#FFCC00]" />
+            <Users className="w-10 h-10 text-[#4F46E5]" />
           </div>
         </div>
 
@@ -132,7 +132,7 @@ export const SuperAdminCustomers: React.FC = () => {
               <p className="text-xs font-bold text-gray-500 uppercase">Aktiva Tenants</p>
               <p className="text-3xl font-black text-[#8B5CF6] mt-1">{stats.tenants}</p>
             </div>
-            <Building2 className="w-10 h-10 text-[#FFCC00]" />
+            <Building2 className="w-10 h-10 text-[#4F46E5]" />
           </div>
         </div>
       </div>

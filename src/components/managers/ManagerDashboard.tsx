@@ -103,7 +103,7 @@ export const ManagerDashboard: React.FC<ManagerDashboardProps> = ({ leads }) => 
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#D40511]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2563EB]"></div>
       </div>
     );
   }
@@ -124,7 +124,7 @@ export const ManagerDashboard: React.FC<ManagerDashboardProps> = ({ leads }) => 
         </div>
         <button
           onClick={loadMetrics}
-          className="flex items-center gap-2 bg-[#D40511] hover:bg-[#a0040d] text-white px-4 py-2 rounded font-semibold"
+          className="flex items-center gap-2 bg-[#2563EB] hover:bg-[#a0040d] text-white px-4 py-2 rounded font-semibold"
         >
           <Zap className="w-4 h-4" />
           Uppdatera
@@ -137,12 +137,12 @@ export const ManagerDashboard: React.FC<ManagerDashboardProps> = ({ leads }) => 
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Team</p>
-              <p className="text-3xl font-black text-[#D40511] mt-1">
+              <p className="text-3xl font-black text-[#2563EB] mt-1">
                 {metrics.team_size}
               </p>
               <p className="text-xs text-gray-600 mt-1">säljare</p>
             </div>
-            <Users className="w-10 h-10 text-[#FFCC00]" />
+            <Users className="w-10 h-10 text-[#4F46E5]" />
           </div>
         </div>
 
@@ -150,12 +150,12 @@ export const ManagerDashboard: React.FC<ManagerDashboardProps> = ({ leads }) => 
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Leads</p>
-              <p className="text-3xl font-black text-[#D40511] mt-1">
+              <p className="text-3xl font-black text-[#2563EB] mt-1">
                 {metrics.total_leads}
               </p>
               <p className="text-xs text-gray-600 mt-1">totalt</p>
             </div>
-            <Package className="w-10 h-10 text-[#FFCC00]" />
+            <Package className="w-10 h-10 text-[#4F46E5]" />
           </div>
         </div>
 
@@ -163,12 +163,12 @@ export const ManagerDashboard: React.FC<ManagerDashboardProps> = ({ leads }) => 
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Kunder</p>
-              <p className="text-3xl font-black text-[#D40511] mt-1">
+              <p className="text-3xl font-black text-[#2563EB] mt-1">
                 {metrics.total_customers}
               </p>
               <p className="text-xs text-gray-600 mt-1">konverterade</p>
             </div>
-            <CheckCircle className="w-10 h-10 text-[#FFCC00]" />
+            <CheckCircle className="w-10 h-10 text-[#4F46E5]" />
           </div>
         </div>
 
@@ -176,12 +176,12 @@ export const ManagerDashboard: React.FC<ManagerDashboardProps> = ({ leads }) => 
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Konvertering</p>
-              <p className="text-3xl font-black text-[#D40511] mt-1">
+              <p className="text-3xl font-black text-[#2563EB] mt-1">
                 {metrics.team_conversion_rate.toFixed(1)}%
               </p>
               <p className="text-xs text-gray-600 mt-1">team-snitt</p>
             </div>
-            <TrendingUp className="w-10 h-10 text-[#FFCC00]" />
+            <TrendingUp className="w-10 h-10 text-[#4F46E5]" />
           </div>
         </div>
 
@@ -189,12 +189,12 @@ export const ManagerDashboard: React.FC<ManagerDashboardProps> = ({ leads }) => 
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Risk</p>
-              <p className="text-3xl font-black text-[#D40511] mt-1">
+              <p className="text-3xl font-black text-[#2563EB] mt-1">
                 {metrics.at_risk_customers}
               </p>
               <p className="text-xs text-gray-600 mt-1">kunder</p>
             </div>
-            <AlertTriangle className="w-10 h-10 text-[#FFCC00]" />
+            <AlertTriangle className="w-10 h-10 text-[#4F46E5]" />
           </div>
         </div>
       </div>
@@ -202,7 +202,7 @@ export const ManagerDashboard: React.FC<ManagerDashboardProps> = ({ leads }) => 
       {/* Team Pipeline */}
       <div className="bg-white border-2 border-gray-200 p-6 rounded shadow-sm">
         <div className="flex items-center gap-2 mb-4">
-          <BarChart3 className="w-5 h-5 text-[#D40511]" />
+          <BarChart3 className="w-5 h-5 text-[#2563EB]" />
           <h2 className="text-lg font-black text-black uppercase">Team Pipeline</h2>
         </div>
         
@@ -247,7 +247,7 @@ export const ManagerDashboard: React.FC<ManagerDashboardProps> = ({ leads }) => 
       {/* Team Performance */}
       <div className="bg-white border-2 border-gray-200 p-6 rounded shadow-sm">
         <div className="flex items-center gap-2 mb-4">
-          <Award className="w-5 h-5 text-[#D40511]" />
+          <Award className="w-5 h-5 text-[#2563EB]" />
           <h2 className="text-lg font-black text-black uppercase">Team Prestanda</h2>
         </div>
         
@@ -270,7 +270,7 @@ export const ManagerDashboard: React.FC<ManagerDashboardProps> = ({ leads }) => 
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-lg font-black text-[#D40511]">
+                <p className="text-lg font-black text-[#2563EB]">
                   {member.conversion_rate.toFixed(1)}%
                 </p>
                 <p className="text-xs text-gray-600">konvertering</p>
@@ -283,7 +283,7 @@ export const ManagerDashboard: React.FC<ManagerDashboardProps> = ({ leads }) => 
       {/* Actions Needed */}
       <div className="bg-white border-2 border-gray-200 p-6 rounded shadow-sm">
         <div className="flex items-center gap-2 mb-4">
-          <Target className="w-5 h-5 text-[#D40511]" />
+          <Target className="w-5 h-5 text-[#2563EB]" />
           <h2 className="text-lg font-black text-black uppercase">Åtgärder Behövs</h2>
         </div>
         

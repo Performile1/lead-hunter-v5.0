@@ -67,15 +67,15 @@ export const Dashboard: React.FC<DashboardProps> = ({
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FFCC00]/10 to-white p-6">
+    <div className="min-h-screen bg-gradient-to-br from-[#4F46E5]/10 to-white p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         
         {/* Header */}
-        <div className="bg-white rounded-sm shadow-lg p-6 border-t-4 border-[#D40511]">
+        <div className="bg-white rounded-sm shadow-lg p-6 border-t-4 border-[#2563EB]">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-black text-black uppercase tracking-wide flex items-center gap-3">
-                <Activity className="w-8 h-8 text-[#D40511]" />
+                <Activity className="w-8 h-8 text-[#2563EB]" />
                 Dashboard
               </h1>
               <p className="text-sm text-gray-600 font-semibold mt-1">Översikt och snabbåtkomst</p>
@@ -122,23 +122,23 @@ export const Dashboard: React.FC<DashboardProps> = ({
           </div>
 
           {/* Conversion Rate */}
-          <div className="bg-white rounded-sm shadow-md p-6 border-t-4 border-[#D40511] hover:shadow-xl transition-shadow">
+          <div className="bg-white rounded-sm shadow-md p-6 border-t-4 border-[#2563EB] hover:shadow-xl transition-shadow">
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 bg-red-100 rounded-lg">
-                <Zap className="w-6 h-6 text-[#D40511]" />
+                <Zap className="w-6 h-6 text-[#2563EB]" />
               </div>
-              <span className="text-xs font-bold text-[#D40511] bg-red-100 px-2 py-1 rounded">KONVERTERING</span>
+              <span className="text-xs font-bold text-[#2563EB] bg-red-100 px-2 py-1 rounded">KONVERTERING</span>
             </div>
             <h3 className="text-3xl font-black text-gray-900 mb-1">{conversionRate}%</h3>
             <p className="text-sm text-gray-600 font-semibold">Konverteringsgrad</p>
             <div className="mt-3 flex items-center gap-2 text-xs text-gray-500">
-              <Users className="w-4 h-4 text-[#D40511]" />
+              <Users className="w-4 h-4 text-[#2563EB]" />
               <span className="font-bold">{convertedLeads}</span> konverterade leads
             </div>
           </div>
 
           {/* Average Revenue */}
-          <div className="bg-white rounded-sm shadow-md p-6 border-t-4 border-[#FFCC00] hover:shadow-xl transition-shadow">
+          <div className="bg-white rounded-sm shadow-md p-6 border-t-4 border-[#4F46E5] hover:shadow-xl transition-shadow">
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 bg-yellow-100 rounded-lg">
                 <DollarSign className="w-6 h-6 text-yellow-600" />
@@ -157,7 +157,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
         {/* Quick Actions */}
         <div className="bg-white rounded-sm shadow-lg p-6">
           <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <Zap className="w-5 h-5 text-[#D40511]" />
+            <Zap className="w-5 h-5 text-[#2563EB]" />
             Snabbåtkomst
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -211,7 +211,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
           <div className="bg-white rounded-sm shadow-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                <Bell className="w-5 h-5 text-[#D40511]" />
+                <Bell className="w-5 h-5 text-[#2563EB]" />
                 Senaste notifikationer
               </h2>
               <span className="text-xs font-bold text-gray-500 uppercase">Senaste 24h</span>
@@ -226,7 +226,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                         <p className="text-xs text-gray-600">{notif.message}</p>
                       </div>
                       {!notif.read && (
-                        <span className="w-2 h-2 bg-[#D40511] rounded-full animate-pulse"></span>
+                        <span className="w-2 h-2 bg-[#2563EB] rounded-full animate-pulse"></span>
                       )}
                     </div>
                     <p className="text-xs text-gray-400 mt-2">{new Date(notif.timestamp).toLocaleString('sv-SE')}</p>
@@ -245,7 +245,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
           <div className="bg-white rounded-sm shadow-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-[#D40511]" />
+                <Calendar className="w-5 h-5 text-[#2563EB]" />
                 Kommande cronjobs
               </h2>
               <span className="text-xs font-bold text-gray-500 uppercase">Nästa 24h</span>

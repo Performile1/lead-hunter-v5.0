@@ -26,8 +26,8 @@ export const TenantManagement: React.FC = () => {
     company_name: '',
     domain: '',
     subdomain: '',
-    primary_color: '#D40511',
-    secondary_color: '#FFCC00',
+    primary_color: '#2563EB',
+    secondary_color: '#4F46E5',
     checkout_search_term: ''
   });
 
@@ -65,8 +65,8 @@ export const TenantManagement: React.FC = () => {
       company_name: '',
       domain: '',
       subdomain: '',
-      primary_color: '#D40511',
-      secondary_color: '#FFCC00',
+      primary_color: '#2563EB',
+      secondary_color: '#4F46E5',
       checkout_search_term: ''
     });
     setShowModal(true);

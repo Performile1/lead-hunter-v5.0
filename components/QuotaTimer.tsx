@@ -62,7 +62,7 @@ export const QuotaTimer: React.FC<QuotaTimerProps> = ({ onComplete, customWaitSe
       <div className="flex items-start gap-4">
         <div className="p-3 bg-orange-100 rounded-full">
           {isReady ? (
-            <RefreshCw className="w-8 h-8 text-[#D40511] animate-pulse" />
+            <RefreshCw className="w-8 h-8 text-[#2563EB] animate-pulse" />
           ) : (
             <Clock className="w-8 h-8 text-[#ffb700]" />
           )}
@@ -85,7 +85,7 @@ export const QuotaTimer: React.FC<QuotaTimerProps> = ({ onComplete, customWaitSe
             <div className="mb-4">
               <div className="flex justify-between text-xs font-bold text-slate-500 mb-1">
                 <span>Tid till återställning:</span>
-                <span className="font-mono text-lg text-[#D40511]">{formatTime(seconds)}</span>
+                <span className="font-mono text-lg text-[#2563EB]">{formatTime(seconds)}</span>
               </div>
               <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
                  <div 
@@ -99,7 +99,7 @@ export const QuotaTimer: React.FC<QuotaTimerProps> = ({ onComplete, customWaitSe
           {isReady && (
             <button
               onClick={onComplete}
-              className="flex items-center gap-2 bg-[#D40511] text-white px-6 py-2 text-sm font-bold uppercase tracking-wider hover:bg-[#a0040d] transition-colors shadow-sm rounded-sm"
+              className="flex items-center gap-2 bg-[#2563EB] text-white px-6 py-2 text-sm font-bold uppercase tracking-wider hover:bg-[#a0040d] transition-colors shadow-sm rounded-sm"
             >
               <RefreshCw className="w-4 h-4" />
               Återställ & Sök

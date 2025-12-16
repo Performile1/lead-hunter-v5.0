@@ -175,7 +175,7 @@ export const SuperAdminDashboard: React.FC = () => {
           </div>
         </button>
         
-        <button onClick={() => setCurrentView('users')} className="bg-gradient-to-r from-[#FFCC00] to-[#FFD700] text-black p-6 rounded-lg shadow-lg hover:shadow-xl transition-all text-left">
+        <button onClick={() => setCurrentView('users')} className="bg-gradient-to-r from-[#4F46E5] to-[#FFD700] text-black p-6 rounded-lg shadow-lg hover:shadow-xl transition-all text-left">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-semibold opacity-90">Hantera</p>
@@ -317,7 +317,7 @@ export const SuperAdminDashboard: React.FC = () => {
                 {displayData.system_health.active_tenants}
               </p>
             </div>
-            <Building2 className="w-10 h-10 text-[#FFCC00]" />
+            <Building2 className="w-10 h-10 text-[#4F46E5]" />
           </div>
         </div>
 
@@ -329,7 +329,7 @@ export const SuperAdminDashboard: React.FC = () => {
                 {displayData.system_health.active_users}
               </p>
             </div>
-            <Users className="w-10 h-10 text-[#FFCC00]" />
+            <Users className="w-10 h-10 text-[#4F46E5]" />
           </div>
         </div>
 
@@ -341,7 +341,7 @@ export const SuperAdminDashboard: React.FC = () => {
                 {displayData.system_health.total_leads.toLocaleString()}
               </p>
             </div>
-            <Package className="w-10 h-10 text-[#FFCC00]" />
+            <Package className="w-10 h-10 text-[#4F46E5]" />
           </div>
         </div>
 
@@ -353,7 +353,7 @@ export const SuperAdminDashboard: React.FC = () => {
                 {displayData.system_health.total_customers.toLocaleString()}
               </p>
             </div>
-            <TrendingUp className="w-10 h-10 text-[#FFCC00]" />
+            <TrendingUp className="w-10 h-10 text-[#4F46E5]" />
           </div>
         </div>
       </div>
@@ -399,7 +399,7 @@ export const SuperAdminDashboard: React.FC = () => {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
                   <div
-                    className="bg-[#FFCC00] h-2 rounded-full transition-all"
+                    className="bg-[#4F46E5] h-2 rounded-full transition-all"
                     style={{ width: `${provider.percentage}%` }}
                   ></div>
                 </div>

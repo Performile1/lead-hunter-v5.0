@@ -13,7 +13,7 @@ export const DailyBriefing: React.FC<DailyBriefingProps> = ({ isOpen, onClose, c
 
   return (
     <div className="fixed inset-0 bg-black/60 z-[90] flex items-center justify-center p-4 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-slate-900 w-full max-w-lg shadow-2xl border-t-4 border-[#D40511] relative text-slate-300 font-mono">
+      <div className="bg-slate-900 w-full max-w-lg shadow-2xl border-t-4 border-[#2563EB] relative text-slate-300 font-mono">
         <button 
           onClick={onClose}
           className="absolute top-3 right-3 p-1 hover:bg-slate-800 rounded-sm text-slate-500 hover:text-white transition-colors"
@@ -23,7 +23,7 @@ export const DailyBriefing: React.FC<DailyBriefingProps> = ({ isOpen, onClose, c
 
         <div className="p-6">
           <div className="flex items-center gap-3 mb-6 border-b border-slate-700 pb-4">
-             <Terminal className="w-6 h-6 text-[#FFCC00]" />
+             <Terminal className="w-6 h-6 text-[#4F46E5]" />
              <div>
                <h2 className="text-xl font-bold text-white uppercase tracking-wider">Systemstatus</h2>
                <div className="text-[10px] text-slate-500">LEAD HUNTER v5.0 // SESSION START</div>
@@ -55,13 +55,13 @@ export const DailyBriefing: React.FC<DailyBriefingProps> = ({ isOpen, onClose, c
              </div>
           </div>
 
-          <div className="bg-[#D40511]/10 border border-[#D40511]/30 p-4 text-xs leading-relaxed text-slate-200 italic mb-6">
+          <div className="bg-[#2563EB]/10 border border-[#2563EB]/30 p-4 text-xs leading-relaxed text-slate-200 italic mb-6">
              "Välkommen tillbaka. Systemet är redo för dagens jakt. Kom ihåg att kontrollera exkluderingslistan innan du startar större batch-körningar."
           </div>
 
           <button
             onClick={onClose}
-            className="w-full bg-[#D40511] hover:bg-[#a0040d] text-white py-3 px-6 text-sm font-bold uppercase tracking-wider shadow-lg transition-colors"
+            className="w-full bg-[#2563EB] hover:bg-[#a0040d] text-white py-3 px-6 text-sm font-bold uppercase tracking-wider shadow-lg transition-colors"
           >
             Starta Session
           </button>

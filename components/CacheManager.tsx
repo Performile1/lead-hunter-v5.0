@@ -386,8 +386,8 @@ export const CacheManager: React.FC<CacheManagerProps> = ({
                       <div key={idx} className={`bg-white border p-3 flex items-center justify-between hover:shadow-md transition-shadow group ${isActive ? 'border-green-200 bg-green-50/20' : 'border-slate-200'}`}>
                         <div className="flex items-center gap-4 overflow-hidden">
                           <span className={`flex-shrink-0 w-16 text-center text-[10px] font-bold px-1 py-0.5 border ${
-                            lead.segment === 'KAM' ? 'bg-[#D40511] text-white border-red-800' :
-                            lead.segment === 'FS' ? 'bg-[#FFCC00] text-black border-yellow-500' :
+                            lead.segment === 'KAM' ? 'bg-[#2563EB] text-white border-red-800' :
+                            lead.segment === 'FS' ? 'bg-[#4F46E5] text-black border-yellow-500' :
                             lead.segment === 'TS' ? 'bg-green-100 text-green-800 border-green-200' :
                             lead.segment === 'DM' ? 'bg-blue-50 text-blue-800 border-blue-200' :
                             'bg-slate-100 text-slate-500 border-slate-200'
@@ -498,7 +498,7 @@ export const CacheManager: React.FC<CacheManagerProps> = ({
                 value={importText}
                 onChange={(e) => setImportText(e.target.value)}
                 placeholder={`Förhandsgranskning av import visas här...`}
-                className="flex-1 w-full p-4 border border-slate-300 rounded-sm font-mono text-xs focus:ring-[#D40511] focus:border-[#D40511] resize-none mb-4 shadow-inner bg-white"
+                className="flex-1 w-full p-4 border border-slate-300 rounded-sm font-mono text-xs focus:ring-[#2563EB] focus:border-[#2563EB] resize-none mb-4 shadow-inner bg-white"
                 readOnly
              />
 
@@ -509,7 +509,7 @@ export const CacheManager: React.FC<CacheManagerProps> = ({
                 <button
                   onClick={handleImport}
                   disabled={!importText.trim()}
-                  className="flex items-center gap-2 bg-[#D40511] text-white px-6 py-3 text-sm font-bold uppercase tracking-wider hover:bg-[#a0040d] transition-colors shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center gap-2 bg-[#2563EB] text-white px-6 py-3 text-sm font-bold uppercase tracking-wider hover:bg-[#a0040d] transition-colors shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Upload className="w-4 h-4" />
                   Spara till Reservoar

@@ -41,15 +41,15 @@ export const DHLNotification: React.FC<DHLNotificationProps> = ({
       case 'error':
         return {
           bg: 'bg-red-50',
-          border: 'border-[#D40511]',
-          icon: <XCircle className="w-6 h-6 text-[#D40511]" />,
-          titleColor: 'text-[#D40511]',
+          border: 'border-[#2563EB]',
+          icon: <XCircle className="w-6 h-6 text-[#2563EB]" />,
+          titleColor: 'text-[#2563EB]',
           messageColor: 'text-red-700'
         };
       case 'warning':
         return {
           bg: 'bg-yellow-50',
-          border: 'border-[#FFCC00]',
+          border: 'border-[#4F46E5]',
           icon: <AlertTriangle className="w-6 h-6 text-yellow-600" />,
           titleColor: 'text-yellow-900',
           messageColor: 'text-yellow-700'

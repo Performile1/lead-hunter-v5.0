@@ -191,12 +191,12 @@ export const InclusionManager: React.FC<InclusionManagerProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-white w-full max-w-3xl shadow-2xl border-t-4 border-[#D40511] flex flex-col max-h-[90vh]">
+      <div className="bg-white w-full max-w-3xl shadow-2xl border-t-4 border-[#2563EB] flex flex-col max-h-[90vh]">
         
         {/* Header */}
         <div className="bg-white p-4 flex justify-between items-center border-b border-slate-200">
           <h2 className="text-lg font-black italic uppercase flex items-center gap-2 text-black">
-            <Target className="w-6 h-6 text-[#D40511]" />
+            <Target className="w-6 h-6 text-[#2563EB]" />
             Riktad Sökning (Inkludering)
           </h2>
           <button onClick={onClose} className="p-1 hover:bg-black/10 rounded-full transition-colors">
@@ -215,7 +215,7 @@ export const InclusionManager: React.FC<InclusionManagerProps> = ({
               </div>
               
               <textarea
-                className="flex-1 w-full p-3 text-xs border border-slate-300 focus:border-[#D40511] focus:ring-[#D40511] rounded-sm font-mono resize-none mb-2"
+                className="flex-1 w-full p-3 text-xs border border-slate-300 focus:border-[#2563EB] focus:ring-[#2563EB] rounded-sm font-mono resize-none mb-2"
                 placeholder="Exempel:&#10;SNI 47.91&#10;Sportartiklar&#10;SNI 46.73"
                 value={textInput}
                 onChange={(e) => setTextInput(e.target.value)}
@@ -238,7 +238,7 @@ export const InclusionManager: React.FC<InclusionManagerProps> = ({
                     placeholder="Sök på bransch (t.ex. 'Bygg', 'IT', 'Vård', 'Handel')..." 
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-9 pr-4 py-2 text-sm border border-slate-300 focus:border-[#D40511] focus:ring-[#D40511] rounded-sm"
+                    className="w-full pl-9 pr-4 py-2 text-sm border border-slate-300 focus:border-[#2563EB] focus:ring-[#2563EB] rounded-sm"
                   />
                 </div>
              </div>
@@ -260,14 +260,14 @@ export const InclusionManager: React.FC<InclusionManagerProps> = ({
                        className={`w-full text-left text-xs px-3 py-2 border rounded-sm flex items-center justify-between group transition-all ${
                          isActive 
                            ? 'bg-green-100 border-green-300 text-green-800 cursor-default' 
-                           : 'bg-white border-slate-200 hover:border-[#D40511] hover:text-[#D40511] shadow-sm'
+                           : 'bg-white border-slate-200 hover:border-[#2563EB] hover:text-[#2563EB] shadow-sm'
                        }`}
                      >
                        <div className="flex flex-col">
                          <span className="font-bold text-slate-900">SNI {item.code}</span>
                          <span className="text-[10px] text-slate-500">{item.label}</span>
                        </div>
-                       {isActive ? <Check className="w-3 h-3 text-green-600" /> : <Plus className="w-3 h-3 opacity-0 group-hover:opacity-100 text-[#D40511]" />}
+                       {isActive ? <Check className="w-3 h-3 text-green-600" /> : <Plus className="w-3 h-3 opacity-0 group-hover:opacity-100 text-[#2563EB]" />}
                      </button>
                    );
                  })
@@ -280,13 +280,13 @@ export const InclusionManager: React.FC<InclusionManagerProps> = ({
         <div className="p-4 bg-slate-50 border-t border-slate-200 flex justify-between items-center">
             <button 
                onClick={() => setTextInput('')}
-               className="text-xs text-slate-500 hover:text-[#D40511] font-bold uppercase"
+               className="text-xs text-slate-500 hover:text-[#2563EB] font-bold uppercase"
             >
               Rensa Val
             </button>
             <button
               onClick={handleSave}
-              className="flex items-center gap-2 bg-[#D40511] text-white px-6 py-2 text-xs font-bold uppercase tracking-wider hover:bg-[#a0040d] transition-colors shadow-sm"
+              className="flex items-center gap-2 bg-[#2563EB] text-white px-6 py-2 text-xs font-bold uppercase tracking-wider hover:bg-[#a0040d] transition-colors shadow-sm"
             >
               <Check className="w-4 h-4" />
               Spara Sökkriterier

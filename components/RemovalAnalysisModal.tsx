@@ -21,7 +21,7 @@ export const RemovalAnalysisModal: React.FC<RemovalAnalysisModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-white w-full max-w-lg shadow-2xl border-t-4 border-[#D40511] relative rounded-sm">
+      <div className="bg-white w-full max-w-lg shadow-2xl border-t-4 border-[#2563EB] relative rounded-sm">
         <button 
           onClick={onClose}
           className="absolute top-3 right-3 p-1 hover:bg-slate-100 rounded-full text-slate-500 transition-colors"
@@ -31,7 +31,7 @@ export const RemovalAnalysisModal: React.FC<RemovalAnalysisModalProps> = ({
 
         <div className="p-6">
           <h2 className="text-lg font-black italic uppercase flex items-center gap-2 text-black mb-2">
-            <Trash2 className="w-5 h-5 text-[#D40511]" />
+            <Trash2 className="w-5 h-5 text-[#2563EB]" />
             Ta bort {count} företag
           </h2>
           <p className="text-sm text-slate-600 mb-6">
@@ -42,9 +42,9 @@ export const RemovalAnalysisModal: React.FC<RemovalAnalysisModalProps> = ({
             
             <button
               onClick={() => onConfirm('DUPLICATE')}
-              className="flex items-center gap-4 p-4 border border-slate-200 hover:border-[#FFCC00] hover:bg-yellow-50 transition-all text-left group"
+              className="flex items-center gap-4 p-4 border border-slate-200 hover:border-[#4F46E5] hover:bg-yellow-50 transition-all text-left group"
             >
-              <div className="bg-yellow-100 p-2 rounded-full group-hover:bg-[#FFCC00] transition-colors">
+              <div className="bg-yellow-100 p-2 rounded-full group-hover:bg-[#4F46E5] transition-colors">
                 <Copy className="w-5 h-5 text-yellow-700 group-hover:text-black" />
               </div>
               <div>
@@ -81,10 +81,10 @@ export const RemovalAnalysisModal: React.FC<RemovalAnalysisModalProps> = ({
 
             <button
               onClick={() => onConfirm('NOT_RELEVANT')}
-              className="flex items-center gap-4 p-4 border border-slate-200 hover:border-[#D40511] hover:bg-red-50 transition-all text-left group"
+              className="flex items-center gap-4 p-4 border border-slate-200 hover:border-[#2563EB] hover:bg-red-50 transition-all text-left group"
             >
-              <div className="bg-red-100 p-2 rounded-full group-hover:bg-[#D40511] transition-colors">
-                <Ban className="w-5 h-5 text-[#D40511] group-hover:text-white" />
+              <div className="bg-red-100 p-2 rounded-full group-hover:bg-[#2563EB] transition-colors">
+                <Ban className="w-5 h-5 text-[#2563EB] group-hover:text-white" />
               </div>
               <div>
                 <span className="block text-sm font-bold text-slate-800 uppercase">Ej Relevant / Konkurs</span>
