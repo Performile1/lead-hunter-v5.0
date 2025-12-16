@@ -100,7 +100,7 @@ export const LoginPage: React.FC = () => {
   const searchTerm = tenantInfo?.searchTerm || 'LSA';
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden" style={{ backgroundColor: isSuperAdminLogin ? '#FBBF24' : '#4F46E5' }}>
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-white">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-full h-full" style={{
@@ -113,8 +113,8 @@ export const LoginPage: React.FC = () => {
         {/* Login Card */}
         <div className="bg-white shadow-2xl overflow-hidden">
           {/* Header with Corporate Identity */}
-          <div className="p-8 text-center relative" style={{ backgroundColor: isSuperAdminLogin ? '#8B5CF6' : '#2563EB' }}>
-            <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: isSuperAdminLogin ? '#FBBF24' : '#4F46E5' }}></div>
+          <div className="p-8 text-center relative bg-[#FFC400]">
+            <div className="absolute top-0 left-0 w-full h-1 bg-black"></div>
             <div className="h-20 mx-auto mb-6 flex items-center justify-center">
               {tenantInfo?.logoUrl ? (
                 <img src={tenantInfo.logoUrl} alt={companyName} className="h-16 object-contain" />
@@ -126,8 +126,8 @@ export const LoginPage: React.FC = () => {
                 </div>
               )}
             </div>
-            <div className="inline-block px-6 py-2 transform -skew-x-12" style={{ backgroundColor: isSuperAdminLogin ? '#FBBF24' : '#4F46E5' }}>
-              <h1 className="text-2xl font-black italic uppercase tracking-wider transform skew-x-12" style={{ color: isSuperAdminLogin ? '#8B5CF6' : '#2563EB' }}>
+            <div className="inline-block px-6 py-2 transform -skew-x-12 bg-black">
+              <h1 className="text-2xl font-black italic uppercase tracking-wider transform skew-x-12 text-[#FFC400]">
                 {isSuperAdminLogin ? 'Lead Hunter' : companyName}
               </h1>
             </div>
