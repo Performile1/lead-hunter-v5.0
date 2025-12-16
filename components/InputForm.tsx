@@ -292,10 +292,8 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
           </div>
         </button>
       </div>
-      
-      <div className="p-6">
 
-      <form onSubmit={handleSubmit} className="p-3 space-y-3">
+      <form onSubmit={handleSubmit} className="p-6 space-y-3">
         
         {/* MODE 1: SINGLE COMPANY */}
         {activeTab === 'single' && (
