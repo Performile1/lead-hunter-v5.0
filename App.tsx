@@ -21,6 +21,7 @@ import { RemovalAnalysisModal, RemovalReason } from './components/RemovalAnalysi
 import { CustomerList } from './components/CustomerList';
 import { CustomerDetail } from './components/CustomerDetail';
 import { CronJobsPanel } from './src/components/admin/CronJobsPanel';
+import { TenantDashboard } from './src/components/admin/TenantDashboard';
 import { DashboardRouter } from './components/DashboardRouter';
 import { AdminSettings } from './components/AdminSettings'; 
 import { generateLeads, findPersonOnLinkedIn, generateDeepDiveSequential } from './services/geminiService';
