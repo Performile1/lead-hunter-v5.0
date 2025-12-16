@@ -119,7 +119,7 @@ export const LoginPage: React.FC = () => {
               {tenantInfo?.logoUrl ? (
                 <img src={tenantInfo.logoUrl} alt={companyName} className="h-16 object-contain" />
               ) : (
-                <div className="text-white font-bold" style={{ fontFamily: "'Delivery', 'Arial Black', sans-serif" }}>
+                <div className="text-black font-bold" style={{ fontFamily: "'Delivery', 'Arial Black', sans-serif" }}>
                   <div className="flex items-center justify-center">
                     <span style={{ fontSize: '48px', letterSpacing: '2px' }}>{searchTerm}</span>
                   </div>
@@ -131,7 +131,7 @@ export const LoginPage: React.FC = () => {
                 {isSuperAdminLogin ? 'Lead Hunter' : companyName}
               </h1>
             </div>
-            <p className="text-xs text-white font-bold uppercase tracking-widest mt-3 opacity-90">
+            <p className="text-xs text-black font-bold uppercase tracking-widest mt-3 opacity-90">
               Sales Intelligence Platform
             </p>
           </div>
@@ -198,7 +198,7 @@ export const LoginPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full text-white font-black py-4 px-6 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-widest text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                className="w-full text-black font-black py-4 px-6 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-widest text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 style={{ backgroundColor: isSuperAdminLogin ? '#8B5CF6' : '#2563EB' }}
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isSuperAdminLogin ? '#7C3AED' : '#a0040d'}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = isSuperAdminLogin ? '#8B5CF6' : '#2563EB'}
