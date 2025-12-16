@@ -97,7 +97,7 @@ export const LoginPage: React.FC = () => {
   };
 
   const companyName = tenantInfo?.name || 'Lead Hunter';
-  const searchTerm = tenantInfo?.searchTerm || 'LSA';
+  const searchTerm = tenantInfo?.searchTerm || 'EurekAI';
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-white">
@@ -142,7 +142,7 @@ export const LoginPage: React.FC = () => {
               <h2 className="text-2xl font-black text-black uppercase tracking-wide">
                 Välkommen
               </h2>
-              <div className="w-16 h-1 mx-auto mt-2" style={{ backgroundColor: isSuperAdminLogin ? '#FBBF24' : '#4F46E5' }}></div>
+              <div className="w-16 h-1 mx-auto mt-2 bg-[#FFC400]"></div>
             </div>
 
             {error && (
@@ -167,7 +167,7 @@ export const LoginPage: React.FC = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     className="w-full pl-10 pr-4 py-3 border-2 border-gray-300 focus:ring-0 transition-colors font-medium"
-                    style={{ borderColor: 'rgb(209 213 219)', outlineColor: tenantInfo?.primaryColor || '#8B5CF6' }}
+                    style={{ borderColor: 'rgb(209 213 219)', outlineColor: tenantInfo?.primaryColor || '#FFC400' }}
                     placeholder={isSuperAdminLogin ? 'admin@leadhunter.com' : `din.email@${tenantInfo?.domain || 'company.se'}`}
                     disabled={isLoading}
                   />
@@ -199,9 +199,6 @@ export const LoginPage: React.FC = () => {
                 type="submit"
                 disabled={isLoading}
                 className="w-full text-black font-black py-4 px-6 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-widest text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                style={{ backgroundColor: isSuperAdminLogin ? '#8B5CF6' : '#2563EB' }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isSuperAdminLogin ? '#7C3AED' : '#a0040d'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = isSuperAdminLogin ? '#8B5CF6' : '#2563EB'}
               >
                 {isLoading ? (
                   <span className="flex items-center justify-center gap-2">
@@ -216,7 +213,7 @@ export const LoginPage: React.FC = () => {
 
             {isSuperAdminLogin && (
               <div className="mt-8 pt-6 border-t-2 border-gray-100">
-                <div className="bg-[#FBBF24]/10 p-4 border-l-4 border-[#FBBF24]">
+                <div className="bg-[#FFC400]/10 p-4 border-l-4 border-[#FFC400]">
                   <p className="text-xs font-bold text-black uppercase tracking-wide mb-2">Super Admin:</p>
                   <p className="text-sm font-semibold text-black">admin@leadhunter.com</p>
                   <p className="text-xs text-gray-600 mt-1">Lösenord: <span className="font-semibold">LeadHunter2024!</span></p>
@@ -226,7 +223,7 @@ export const LoginPage: React.FC = () => {
           </div>
 
           {/* Footer Stripe */}
-          <div className="h-2" style={{ background: isSuperAdminLogin ? 'linear-gradient(to right, #8B5CF6, #FBBF24, #8B5CF6)' : 'linear-gradient(to right, #2563EB, #4F46E5, #2563EB)' }}></div>
+          <div className="h-2 bg-[#FFC400]"></div>
         </div>
 
         {/* Copyright */}
