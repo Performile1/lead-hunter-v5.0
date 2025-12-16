@@ -4,23 +4,23 @@
  */
 
 :root {
-  /* EurekAI Primary Colors - Modern Professional Palette */
-  --primary-blue: #2563EB;      /* Vibrant blue for primary actions */
-  --primary-indigo: #4F46E5;    /* Deep indigo for accents */
+  /* EurekAI Primary Colors - Black & Yellow */
+  --primary: #FFC400;           /* Yellow for energy/discovery */
+  --secondary: #000000;         /* Black for text/structure */
   
   /* Grayscale */
   --black: #000000;
-  --dark-gray: #1F2937;
-  --medium-gray: #6B7280;
-  --light-gray: #D1D5DB;
+  --dark-gray: #333333;
+  --medium-gray: #808080;
+  --light-gray: #F4F4F4;
   --white: #FFFFFF;
   
-  /* Feedback & Alert Colors - Standard UX */
-  --success: #4CAF50;
-  --warning: #FF9800;
-  --error: #F44336;
-  --info: #4BC6B8;
-  --cyan: #06B6D4;
+  /* UI Feedback Colors */
+  --success: #4CAF50;           /* Green */
+  --warning: #FF9800;           /* Orange */
+  --error: #F44336;             /* Red */
+  --info: #4BC6B8;              /* Teal for data/growth */
+  --accent: #4BC6B8;            /* Teal accent */
   
   /* Typography */
   --font-family-base: 'Helvetica Neue', Helvetica, Arial, sans-serif;
