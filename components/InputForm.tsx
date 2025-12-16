@@ -491,7 +491,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, isLoading, protocolMode
           <button
             type="submit"
             disabled={isLoading}
-            className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-none shadow-sm text-sm font-bold text-white bg-black hover:bg-[#b0040e] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2563EB] transition-all uppercase tracking-wider ${
+            className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-none shadow-sm text-sm font-bold text-white bg-black hover:bg-[#FFC400] hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2563EB] transition-all uppercase tracking-wider ${
               isLoading ? 'opacity-75 cursor-not-allowed' : ''
             }`}
           >

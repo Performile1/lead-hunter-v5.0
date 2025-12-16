@@ -637,7 +637,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
             <div className={`font-mono font-bold px-3 py-1 rounded-sm inline-block shadow-sm text-xs ${
                 isCreditWarning 
                 ? 'bg-red-600 text-white animate-pulse' 
-                : 'bg-black text-black'
+                : 'bg-[#FFC400] text-black'
             }`}>
                 {safeRender(data.creditRatingLabel) || '-'}
             </div>
