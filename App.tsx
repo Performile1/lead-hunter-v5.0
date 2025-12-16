@@ -223,8 +223,11 @@ const AppContent: React.FC = () => {
   // ADMIN SETTINGS STATE
   const [showAdminSettings, setShowAdminSettings] = useState(false);
   
-  // DASHBOARD STATE
-  const [showDashboard, setShowDashboard] = useState(true);
+  // DASHBOARD STATE - Only show dashboard for super admin by default
+  const [showDashboard, setShowDashboard] = useState(() => {
+    // Super admin sees dashboard, tenant admin sees lead search
+    return user?.isSuperAdmin === true;
+  });
 
   const [formDataState, setFormDataState] = useState<SearchFormData | null>(() => {
     try {
@@ -1170,7 +1173,7 @@ const AppContent: React.FC = () => {
             setShowAdminSettings(false);
             setShowDashboard(true);
           }}
-          isSuperAdmin={user?.role === 'super_admin' || user?.is_super_admin}
+          isSuperAdmin={user?.isSuperAdmin === true}
         />
       ) : showCustomerList ? (
         selectedCustomerId ? (
