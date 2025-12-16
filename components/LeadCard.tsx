@@ -425,10 +425,10 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
   const isLoadingPeople = isEnriching && data.decisionMakers.length === 0;
 
   return (
-    <div className="bg-white rounded-none shadow-md border-t-4 overflow-hidden mb-6 transition-all hover:shadow-xl w-full relative">
+    <div className="bg-white rounded-none shadow-md overflow-hidden mb-6 transition-all hover:shadow-xl w-full relative">
       
       {/* Header */}
-      <div className="bg-[#FFC400] border-b-2 p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-gray-100 border-t-4 border-t-[#FFC400] p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-3 mb-2 flex-wrap">
             {isEditing ? (
