@@ -451,7 +451,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
 
       <div className="bg-white shadow-md w-full overflow-x-auto">
         <div className="min-w-[840px]">
-            <div className="grid grid-cols-[40px_110px_minmax(150px,2fr)_minmax(100px,1fr)_110px_60px_minmax(150px,1.5fr)_90px] bg-black border-b border-slate-300 text-xs font-black uppercase tracking-wider py-2 gap-2">
+            <div className="grid grid-cols-[40px_110px_minmax(150px,2fr)_minmax(100px,1fr)_110px_60px_minmax(150px,1.5fr)_90px] bg-white border-b-2 border-black text-xs font-black uppercase tracking-wider py-2 gap-2">
                 <div className="flex items-center justify-center">
                     <input 
                     type="checkbox" 
@@ -461,25 +461,25 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                     />
                 </div>
                 
-                <button onClick={() => handleSort('org')} className="pl-4 text-left hover:text-black flex items-center gap-1 transition-colors font-bold">
+                <button onClick={() => handleSort('org')} className="pl-4 text-left text-black hover:text-gray-600 flex items-center gap-1 transition-colors font-bold">
                     Org {getSortIcon('org')}
                 </button>
-                <button onClick={() => handleSort('companyName')} className="text-left hover:text-black flex items-center gap-1 transition-colors font-bold">
+                <button onClick={() => handleSort('companyName')} className="text-left text-black hover:text-gray-600 flex items-center gap-1 transition-colors font-bold">
                     Företag {getSortIcon('companyName')}
                 </button>
-                <button onClick={() => handleSort('city')} className="text-left hover:text-black flex items-center gap-1 transition-colors font-bold">
+                <button onClick={() => handleSort('city')} className="text-left text-black hover:text-gray-600 flex items-center gap-1 transition-colors font-bold">
                     Ort {getSortIcon('city')}
                 </button>
-                <button onClick={() => handleSort('revenue')} className="text-left hover:text-black flex items-center gap-1 transition-colors font-bold">
+                <button onClick={() => handleSort('revenue')} className="text-left text-black hover:text-gray-600 flex items-center gap-1 transition-colors font-bold">
                     Oms {getSortIcon('revenue')}
                 </button>
-                <button onClick={() => handleSort('segment')} className="text-left hover:text-black flex items-center gap-1 transition-colors font-bold">
+                <button onClick={() => handleSort('segment')} className="text-left text-black hover:text-gray-600 flex items-center gap-1 transition-colors font-bold">
                     Seg {getSortIcon('segment')}
                 </button>
-                <button onClick={() => handleSort('contact')} className="text-left hover:text-black flex items-center gap-1 transition-colors font-bold">
+                <button onClick={() => handleSort('contact')} className="text-left text-black hover:text-gray-600 flex items-center gap-1 transition-colors font-bold">
                     Kontakt {getSortIcon('contact')}
                 </button>
-                <button onClick={() => handleSort('actions')} className="text-right pr-4 hover:text-black flex items-center justify-end gap-1 transition-colors font-bold">
+                <button onClick={() => handleSort('actions')} className="text-right pr-4 text-black hover:text-gray-600 flex items-center justify-end gap-1 transition-colors font-bold">
                     Åtgärd {getSortIcon('actions')}
                 </button>
             </div>
