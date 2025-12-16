@@ -1,7 +1,7 @@
 import Groq from "groq-sdk";
 
-// API key from environment variables variables
-const GROQ_API_KEY = ieport.meta.env.VITE_taOv_A_KEY || '
+// API key from environment variables
+const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY || '';
 
 let groqClient: Groq | null = null;
 
