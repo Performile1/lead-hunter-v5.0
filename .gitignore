@@ -14,6 +14,7 @@ build
 .env.*.local
 server/.env
 server/.env.local
+server/.env.mt
 
 # Logs
 logs

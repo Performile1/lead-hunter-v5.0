@@ -5,6 +5,7 @@
 
 import { scrapeWithFirecrawl } from './firecrawlService';
 import { scrapeWithOctoparse } from './octoparseService';
+import { queueRequest } from './requestQueue';
 
 export interface AllabolagScrapedData {
   orgNumber: string;
@@ -49,11 +50,16 @@ export async function scrapeAllabolag(
     let scrapeMethod = '';
 
     try {
-      const firecrawlResult = await scrapeWithFirecrawl(url, {
-        formats: ['markdown', 'html'],
-        onlyMainContent: true,
-        waitFor: 2000
-      });
+      const firecrawlResult = await queueRequest(
+        () => scrapeWithFirecrawl(url, {
+          formats: ['markdown', 'html'],
+          onlyMainContent: true,
+          waitFor: 2000
+        }),
+        'firecrawl',
+        5,
+        2
+      );
 
       if (firecrawlResult?.markdown) {
         scrapedContent = firecrawlResult.markdown;
@@ -66,7 +72,13 @@ export async function scrapeAllabolag(
     // Fallback to Octoparse
     if (!scrapedContent) {
       try {
-        const octoparseResult = await scrapeWithOctoparse(url);
+        const octoparseResult = await queueRequest(
+          () => scrapeWithOctoparse(url),
+          'octoparse',
+          4,
+          2
+        );
+        
         if (octoparseResult?.data) {
           scrapedContent = JSON.stringify(octoparseResult.data);
           scrapeMethod = 'Octoparse';
