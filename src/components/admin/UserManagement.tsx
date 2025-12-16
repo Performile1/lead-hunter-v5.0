@@ -182,7 +182,7 @@ export const UserManagement: React.FC = () => {
         </div>
         <button
           onClick={() => setShowCreateModal(true)}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700"
+          className="bg-black text-white px-4 py-2 rounded-none flex items-center gap-2 hover:bg-gray-800 border-2 border-black"
         >
           <Plus className="w-5 h-5" />
           Skapa Användare
@@ -190,7 +190,7 @@ export const UserManagement: React.FC = () => {
       </div>
 
       {/* Users Table */}
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="bg-white rounded-none shadow overflow-hidden border-2 border-black"
         <table className="w-full">
           <thead className="bg-gray-50">
             <tr>
@@ -282,7 +282,7 @@ export const UserManagement: React.FC = () => {
       {/* Create User Modal */}
       {showCreateModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-none p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto border-2 border-black"
             <h3 className="text-xl font-bold mb-4">Skapa Ny Användare</h3>
             
             <form onSubmit={handleCreateUser}>
@@ -297,7 +297,7 @@ export const UserManagement: React.FC = () => {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                    className="w-full px-3 py-2 border-2 border-black rounded-none"
                     placeholder="anvandare@dhl.se"
                   />
                 </div>
@@ -312,7 +312,7 @@ export const UserManagement: React.FC = () => {
                     required
                     value={formData.full_name}
                     onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                    className="w-full px-3 py-2 border-2 border-black rounded-none"
                     placeholder="Anna Andersson"
                   />
                 </div>
@@ -328,7 +328,7 @@ export const UserManagement: React.FC = () => {
                     minLength={8}
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                    className="w-full px-3 py-2 border-2 border-black rounded-none"
                   />
                 </div>
 
@@ -340,7 +340,7 @@ export const UserManagement: React.FC = () => {
                   <select
                     value={formData.role}
                     onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                    className="w-full px-3 py-2 border-2 border-black rounded-none"
                   >
                     <option value="fs">FS - Field Sales</option>
                     <option value="ts">TS - Telesales</option>
@@ -363,7 +363,7 @@ export const UserManagement: React.FC = () => {
                         type="text"
                         value={formData.terminal_name || ''}
                         onChange={(e) => setFormData({ ...formData, terminal_name: e.target.value })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                        className="w-full px-3 py-2 border-2 border-black rounded-none"
                         placeholder="DHL Stockholm"
                       />
                     </div>
@@ -375,7 +375,7 @@ export const UserManagement: React.FC = () => {
                         type="text"
                         value={formData.terminal_code || ''}
                         onChange={(e) => setFormData({ ...formData, terminal_code: e.target.value })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                        className="w-full px-3 py-2 border-2 border-black rounded-none"
                         placeholder="STO"
                       />
                     </div>
@@ -395,7 +395,7 @@ export const UserManagement: React.FC = () => {
                         ...formData, 
                         regions: e.target.value.split(',').map(r => r.trim()).filter(Boolean)
                       })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                      className="w-full px-3 py-2 border-2 border-black rounded-none"
                       placeholder="Stockholm, Göteborg, Malmö"
                     />
                   </div>
@@ -414,7 +414,7 @@ export const UserManagement: React.FC = () => {
                         ...formData, 
                         postal_codes: e.target.value.split(',').map(p => p.trim()).filter(Boolean)
                       })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                      className="w-full px-3 py-2 border-2 border-black rounded-none"
                       placeholder="100, 101, 102"
                     />
                     <p className="text-xs text-gray-500 mt-1">
@@ -427,7 +427,7 @@ export const UserManagement: React.FC = () => {
               <div className="flex gap-3 mt-6">
                 <button
                   type="submit"
-                  className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+                  className="flex-1 bg-black text-white px-4 py-2 rounded-none hover:bg-gray-800 border-2 border-black"
                 >
                   Skapa Användare
                 </button>
@@ -437,7 +437,7 @@ export const UserManagement: React.FC = () => {
                     setShowCreateModal(false);
                     resetForm();
                   }}
-                  className="flex-1 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300"
+                  className="flex-1 bg-white text-black px-4 py-2 rounded-none hover:bg-gray-100 border-2 border-black"
                 >
                   Avbryt
                 </button>

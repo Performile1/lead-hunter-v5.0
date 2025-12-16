@@ -164,7 +164,7 @@ export const SuperAdminDashboard: React.FC = () => {
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-        <button onClick={() => setCurrentView('tenants')} className="bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all text-left">
+        <button onClick={() => setCurrentView('tenants')} className="bg-[#FFC400] text-black p-6 rounded-none shadow-lg hover:shadow-xl transition-all text-left border-2 border-black">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-semibold opacity-90">Hantera</p>
@@ -175,7 +175,7 @@ export const SuperAdminDashboard: React.FC = () => {
           </div>
         </button>
         
-        <button onClick={() => setCurrentView('users')} className="bg-gradient-to-r from-[#4F46E5] to-[#FFD700] text-black p-6 rounded-lg shadow-lg hover:shadow-xl transition-all text-left">
+        <button onClick={() => setCurrentView('users')} className="bg-black text-white p-6 rounded-none shadow-lg hover:shadow-xl transition-all text-left border-2 border-black hover:bg-gray-800">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-semibold opacity-90">Hantera</p>
@@ -186,7 +186,7 @@ export const SuperAdminDashboard: React.FC = () => {
           </div>
         </button>
         
-        <button onClick={() => setCurrentView('leads')} className="bg-gradient-to-r from-green-500 to-green-600 text-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all text-left">
+        <button onClick={() => setCurrentView('leads')} className="bg-white text-black p-6 rounded-none shadow-lg hover:shadow-xl transition-all text-left border-2 border-black">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-semibold opacity-90">Sök</p>
@@ -197,7 +197,7 @@ export const SuperAdminDashboard: React.FC = () => {
           </div>
         </button>
         
-        <button onClick={() => setCurrentView('customers')} className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all text-left">
+        <button onClick={() => setCurrentView('customers')} className="bg-white text-black p-6 rounded-none shadow-lg hover:shadow-xl transition-all text-left border-2 border-black">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-semibold opacity-90">Visa</p>
@@ -208,7 +208,7 @@ export const SuperAdminDashboard: React.FC = () => {
           </div>
         </button>
         
-        <button onClick={() => setCurrentView('errors')} className="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all text-left">
+        <button onClick={() => setCurrentView('errors')} className="bg-white text-black p-6 rounded-none shadow-lg hover:shadow-xl transition-all text-left border-2 border-black">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-semibold opacity-90">Granska</p>
@@ -219,7 +219,7 @@ export const SuperAdminDashboard: React.FC = () => {
           </div>
         </button>
         
-        <button onClick={() => setCurrentView('settings')} className="bg-gradient-to-r from-gray-700 to-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all text-left">
+        <button onClick={() => setCurrentView('settings')} className="bg-white text-black p-6 rounded-none shadow-lg hover:shadow-xl transition-all text-left border-2 border-black">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-semibold opacity-90">System</p>

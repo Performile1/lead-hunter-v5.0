@@ -42,7 +42,7 @@ export const SuperAdminSettings: React.FC = () => {
       </div>
 
       {/* General Settings */}
-      <div className="bg-white border-2 border-gray-200 rounded-lg p-6">
+      <div className="bg-white border-2 border-black rounded-none p-6">
         <div className="flex items-center gap-2 mb-4">
           <Settings className="w-5 h-5 text-[#8B5CF6]" />
           <h2 className="text-lg font-black text-black uppercase">Allmänna Inställningar</h2>
@@ -94,7 +94,7 @@ export const SuperAdminSettings: React.FC = () => {
       </div>
 
       {/* Tenant Limits */}
-      <div className="bg-white border-2 border-gray-200 rounded-lg p-6">
+      <div className="bg-white border-2 border-black rounded-none p-6">
         <div className="flex items-center gap-2 mb-4">
           <Shield className="w-5 h-5 text-[#8B5CF6]" />
           <h2 className="text-lg font-black text-black uppercase">Tenant Gränser</h2>
@@ -134,7 +134,7 @@ export const SuperAdminSettings: React.FC = () => {
       </div>
 
       {/* Notifications */}
-      <div className="bg-white border-2 border-gray-200 rounded-lg p-6">
+      <div className="bg-white border-2 border-black rounded-none p-6">
         <div className="flex items-center gap-2 mb-4">
           <Bell className="w-5 h-5 text-[#8B5CF6]" />
           <h2 className="text-lg font-black text-black uppercase">Notifikationer</h2>
@@ -176,7 +176,7 @@ export const SuperAdminSettings: React.FC = () => {
       </div>
 
       {/* Backup & Maintenance */}
-      <div className="bg-white border-2 border-gray-200 rounded-lg p-6">
+      <div className="bg-white border-2 border-black rounded-none p-6">
         <div className="flex items-center gap-2 mb-4">
           <Database className="w-5 h-5 text-[#8B5CF6]" />
           <h2 className="text-lg font-black text-black uppercase">Backup & Underhåll</h2>
@@ -210,7 +210,7 @@ export const SuperAdminSettings: React.FC = () => {
       </div>
 
       {/* System Info */}
-      <div className="bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white rounded-lg p-6">
+      <div className="bg-[#FFC400] text-black rounded-none p-6 border-2 border-black">
         <div className="flex items-center gap-2 mb-4">
           <Key className="w-5 h-5" />
           <h2 className="text-lg font-black uppercase">System Information</h2>

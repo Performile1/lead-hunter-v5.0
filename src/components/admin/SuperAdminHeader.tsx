@@ -64,7 +64,7 @@ export const SuperAdminHeader: React.FC<SuperAdminHeaderProps> = ({
           <div className="flex items-center gap-3">
              
              {/* ADMIN BADGE */}
-             <div className="flex items-center gap-2 bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white px-4 py-2 rounded-sm shadow-sm">
+             <div className="flex items-center gap-2 bg-[#FFC400] text-black px-4 py-2 rounded-none shadow-sm border-2 border-black">
                <Shield className="w-4 h-4" />
                <span className="text-xs font-bold uppercase tracking-wide hidden sm:inline">Super Admin</span>
              </div>
