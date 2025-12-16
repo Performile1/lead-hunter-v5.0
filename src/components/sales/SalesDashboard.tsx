@@ -234,9 +234,9 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
           </div>
           
           <div className="text-center">
-            <div className="bg-purple-100 border-2 border-purple-300 rounded-lg p-4">
-              <p className="text-2xl font-black text-purple-700">{metrics.pipeline.qualified}</p>
-              <p className="text-xs font-bold text-purple-600 mt-1 uppercase">Kvalificerade</p>
+            <div className="bg-purple-100 border-2 border-yellow-300 rounded-lg p-4">
+              <p className="text-2xl font-black text-black">{metrics.pipeline.qualified}</p>
+              <p className="text-xs font-bold text-gray-700 mt-1 uppercase">Kvalificerade</p>
             </div>
           </div>
           

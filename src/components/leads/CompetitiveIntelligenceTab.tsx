@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { 
   Target, Award, Zap, AlertTriangle, TrendingUp, TrendingDown,
   CheckCircle, XCircle, ExternalLink, DollarSign, Package, Truck
@@ -247,15 +247,15 @@ export const CompetitiveIntelligenceTab: React.FC<CompetitiveIntelligenceTabProp
           )}
           
           {intelligence.estimated_annual_value && (
-            <div className="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-lg">
+            <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-lg">
               <div className="flex items-center gap-3 mb-2">
-                <DollarSign className="w-6 h-6 text-purple-600" />
-                <p className="text-sm font-semibold text-purple-700">Estimerat Årligt Värde</p>
+                <DollarSign className="w-6 h-6 text-gray-700" />
+                <p className="text-sm font-semibold text-black">Estimerat Årligt Värde</p>
               </div>
               <p className="text-4xl font-bold text-purple-900">
                 {intelligence.estimated_annual_value.toLocaleString('sv-SE')} kr
               </p>
-              <p className="text-sm text-purple-600 mt-1">potentiell årsomsättning</p>
+              <p className="text-sm text-gray-700 mt-1">potentiell årsomsättning</p>
             </div>
           )}
         </div>

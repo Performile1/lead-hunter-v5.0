@@ -77,7 +77,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
     switch (segment) {
       case 'ecommerce': return 'bg-blue-100 text-blue-800 border-blue-300';
       case 'retail': return 'bg-green-100 text-green-800 border-green-300';
-      case 'wholesale': return 'bg-purple-100 text-purple-800 border-purple-300';
+      case 'wholesale': return 'bg-[#FFC400] text-black border-yellow-300';
       case 'manufacturing': return 'bg-orange-100 text-orange-800 border-orange-300';
       case 'logistics': return 'bg-yellow-100 text-yellow-800 border-yellow-300';
       default: return 'bg-gray-100 text-gray-600 border-gray-300';

@@ -142,7 +142,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
                 <h1 className="text-3xl font-black text-black uppercase">{customer.company_name}</h1>
                 {customer.customer_tier && (
                   <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase border ${
-                    customer.customer_tier === 'platinum' ? 'bg-purple-100 text-purple-800 border-purple-300' :
+                    customer.customer_tier === 'platinum' ? 'bg-[#FFC400] text-black border-yellow-300' :
                     customer.customer_tier === 'gold' ? 'bg-yellow-100 text-yellow-800 border-yellow-300' :
                     customer.customer_tier === 'silver' ? 'bg-gray-100 text-gray-800 border-gray-300' :
                     'bg-orange-100 text-orange-800 border-orange-300'
@@ -183,8 +183,8 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
                 {customer.annual_contract_value ? `${(customer.annual_contract_value / 1000).toFixed(0)}k SEK` : 'N/A'}
               </p>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border border-purple-200">
-              <p className="text-xs text-purple-600 font-bold uppercase mb-1">Status</p>
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border border-yellow-200">
+              <p className="text-xs text-gray-700 font-bold uppercase mb-1">Status</p>
               <p className="text-lg font-black text-purple-900 capitalize">{customer.customer_status}</p>
             </div>
           </div>

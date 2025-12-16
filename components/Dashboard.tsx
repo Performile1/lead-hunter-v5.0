@@ -192,15 +192,15 @@ export const Dashboard: React.FC<DashboardProps> = ({
             {/* Cronjobs Button */}
             <button
               onClick={onNavigateToCronjobs}
-              className="p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-sm border-2 border-purple-200 hover:border-purple-400 hover:shadow-lg transition-all group"
+              className="p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-sm border-2 border-yellow-200 hover:border-purple-400 hover:shadow-lg transition-all group"
             >
               <div className="flex items-center justify-between mb-3">
-                <Clock className="w-8 h-8 text-purple-600" />
-                <ArrowRight className="w-5 h-5 text-purple-400 group-hover:text-purple-600 group-hover:translate-x-1 transition-all" />
+                <Clock className="w-8 h-8 text-gray-700" />
+                <ArrowRight className="w-5 h-5 text-purple-400 group-hover:text-gray-700 group-hover:translate-x-1 transition-all" />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-1">Cronjobs</h3>
               <p className="text-sm text-gray-600">Automatisera uppgifter</p>
-              <div className="mt-3 text-xs font-bold text-purple-600">{cronjobs.filter(c => c.enabled).length} aktiva jobb</div>
+              <div className="mt-3 text-xs font-bold text-gray-700">{cronjobs.filter(c => c.enabled).length} aktiva jobb</div>
             </button>
           </div>
         </div>

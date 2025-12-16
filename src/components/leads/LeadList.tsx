@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Search, Filter, Download, Building2, MapPin, TrendingUp, Calendar } from 'lucide-react';
 import { LeadCard } from './LeadCard';
 
@@ -29,7 +29,7 @@ export const LeadList: React.FC<LeadListProps> = ({ leads, onLeadClick }) => {
       DM: 'bg-gray-100 text-gray-800',
       TS: 'bg-green-100 text-green-800',
       FS: 'bg-blue-100 text-blue-800',
-      KAM: 'bg-purple-100 text-purple-800',
+      KAM: 'bg-[#FFC400] text-black',
       UNKNOWN: 'bg-yellow-100 text-yellow-800'
     };
     return colors[segment] || colors.UNKNOWN;

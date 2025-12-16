@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Users, UserPlus, UserMinus, TrendingUp, Target, Award, ChevronDown, ChevronRight } from 'lucide-react';
 
 interface TeamMember {
@@ -112,13 +112,13 @@ export const TeamHierarchy: React.FC<TeamHierarchyProps> = ({ managerId, manager
           <p className="text-3xl font-bold text-green-900">{totalStats.active_leads}</p>
         </div>
 
-        <div className="bg-purple-50 border-l-4 border-purple-500 p-4 rounded-lg">
+        <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-lg">
           <div className="flex items-center gap-2 mb-2">
-            <Award className="w-5 h-5 text-purple-600" />
-            <p className="text-sm font-semibold text-purple-700">Konverterade</p>
+            <Award className="w-5 h-5 text-gray-700" />
+            <p className="text-sm font-semibold text-black">Konverterade</p>
           </div>
           <p className="text-3xl font-bold text-purple-900">{totalStats.converted_leads}</p>
-          <p className="text-xs text-purple-600 mt-1">{avgConversionRate.toFixed(1)}% avg</p>
+          <p className="text-xs text-gray-700 mt-1">{avgConversionRate.toFixed(1)}% avg</p>
         </div>
 
         <div className="bg-yellow-50 border-l-4 border-dhl-yellow p-4 rounded-lg">
@@ -215,7 +215,7 @@ export const TeamHierarchy: React.FC<TeamHierarchyProps> = ({ managerId, manager
                         {member.role}
                       </span>
                       {member.role_in_team && (
-                        <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold">
+                        <span className="px-3 py-1 bg-[#FFC400] text-black rounded-full text-xs font-semibold">
                           {member.role_in_team}
                         </span>
                       )}
@@ -234,7 +234,7 @@ export const TeamHierarchy: React.FC<TeamHierarchyProps> = ({ managerId, manager
                       </div>
                       <div>
                         <p className="text-xs text-gray-500">Konverterade</p>
-                        <p className="text-2xl font-bold text-purple-600">{member.stats.converted_leads}</p>
+                        <p className="text-2xl font-bold text-gray-700">{member.stats.converted_leads}</p>
                       </div>
                       <div>
                         <p className="text-xs text-gray-500">Conv. Rate</p>

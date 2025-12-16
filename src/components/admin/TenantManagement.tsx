@@ -195,7 +195,7 @@ export const TenantManagement: React.FC = () => {
         </div>
         <button
           onClick={handleCreate}
-          className="flex items-center gap-2 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white px-4 py-2 rounded font-semibold"
+          className="flex items-center gap-2 bg-[#FFC400] hover:bg-black text-white px-4 py-2 rounded font-semibold"
         >
           <Plus className="w-4 h-4" />
           Skapa Tenant
@@ -394,7 +394,7 @@ export const TenantManagement: React.FC = () => {
             <div className="flex gap-3 mt-6">
               <button
                 onClick={handleSave}
-                className="flex-1 flex items-center justify-center gap-2 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white px-4 py-2 rounded font-semibold"
+                className="flex-1 flex items-center justify-center gap-2 bg-[#FFC400] hover:bg-black text-white px-4 py-2 rounded font-semibold"
               >
                 <Save className="w-4 h-4" />
                 {editingTenant ? 'Uppdatera' : 'Skapa'}

@@ -155,7 +155,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
       DM: 'bg-gray-100 text-gray-800 border-gray-300',
       TS: 'bg-green-100 text-green-800 border-green-300',
       FS: 'bg-blue-100 text-blue-800 border-blue-300',
-      KAM: 'bg-purple-100 text-purple-800 border-purple-300',
+      KAM: 'bg-[#FFC400] text-black border-yellow-300',
       UNKNOWN: 'bg-yellow-100 text-yellow-800 border-yellow-300'
     };
     return colors[segment] || colors.UNKNOWN;
@@ -457,7 +457,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {lead.ecommerce_platform && (
-                      <div className="bg-purple-50 border-l-4 border-purple-500 p-4 rounded-lg">
+                      <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-lg">
                         <p className="text-sm text-gray-700 mb-1 font-semibold">E-handelsplattform</p>
                         <p className="text-lg font-bold text-gray-900">{lead.ecommerce_platform}</p>
                       </div>
@@ -623,17 +623,17 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
               {lead.competitive_intelligence ? (
                 <>
                   {/* Opportunity Score */}
-                  <div className="bg-gradient-to-r from-purple-50 to-blue-50 border-2 border-purple-300 p-6 rounded-lg">
+                  <div className="bg-gradient-to-r from-purple-50 to-blue-50 border-2 border-yellow-300 p-6 rounded-lg">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm text-gray-600 mb-1">Opportunity Score</p>
-                        <p className="text-5xl font-bold text-purple-600">
+                        <p className="text-5xl font-bold text-gray-700">
                           {lead.competitive_intelligence.opportunity_score}/100
                         </p>
                       </div>
                       <div className="text-right">
                         <Award className="w-16 h-16 text-purple-400 mb-2" />
-                        <p className="text-sm font-semibold text-purple-700">
+                        <p className="text-sm font-semibold text-black">
                           {lead.competitive_intelligence.opportunity_score >= 80 ? '🔥 KONTAKTA NU!' :
                            lead.competitive_intelligence.opportunity_score >= 60 ? '⭐ Kontakta snart' :
                            lead.competitive_intelligence.opportunity_score >= 40 ? '👀 Bevaka' : '❌ Låg prioritet'}
@@ -709,12 +709,12 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                   {/* E-handel & Checkout */}
                   <section>
                     <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
-                      <ShoppingCart className="w-5 h-5 text-purple-600" />
+                      <ShoppingCart className="w-5 h-5 text-gray-700" />
                       E-handel & Checkout
                     </h4>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       {lead.website_analysis.ecommerce_platform && (
-                        <div className="bg-purple-50 border-l-4 border-purple-500 p-4 rounded-lg">
+                        <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-lg">
                           <p className="text-sm text-gray-600 mb-1">E-handelsplattform</p>
                           <p className="text-xl font-bold text-purple-900">{lead.website_analysis.ecommerce_platform}</p>
                         </div>
@@ -893,7 +893,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                         <p className="text-lg font-bold">{lead.website_analysis.shipping_terms.express_available ? '✅ Ja' : '❌ Nej'}</p>
                       </div>
                       
-                      <div className={`border-l-4 p-4 rounded-lg ${lead.website_analysis.shipping_terms.international_shipping ? 'bg-purple-50 border-purple-500' : 'bg-gray-50 border-gray-400'}`}>
+                      <div className={`border-l-4 p-4 rounded-lg ${lead.website_analysis.shipping_terms.international_shipping ? 'bg-yellow-50 border-yellow-500' : 'bg-gray-50 border-gray-400'}`}>
                         <p className="text-sm text-gray-600 mb-1">International</p>
                         <p className="text-lg font-bold">{lead.website_analysis.shipping_terms.international_shipping ? '✅ Ja' : '❌ Nej'}</p>
                       </div>
@@ -933,7 +933,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                   {lead.website_analysis.technologies.length > 0 && (
                     <section>
                       <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
-                        <Code className="w-5 h-5 text-purple-600" />
+                        <Code className="w-5 h-5 text-gray-700" />
                         Teknologier ({lead.website_analysis.technologies.length})
                       </h4>
                       <div className="space-y-3">
@@ -989,7 +989,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                         )}
                         
                         {lead.website_analysis.financial_metrics.profit_margin && (
-                          <div className="bg-purple-50 border-l-4 border-purple-500 p-4 rounded-lg">
+                          <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-lg">
                             <p className="text-sm text-gray-600 mb-1">Vinstmarginal</p>
                             <p className="text-2xl font-bold text-purple-900">{lead.website_analysis.financial_metrics.profit_margin}%</p>
                           </div>
@@ -1041,7 +1041,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                 )}
                 
                 {lead.assigned_salesperson && (
-                  <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4 border-purple-500">
+                  <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4 border-yellow-500">
                     <User className="w-5 h-5 text-purple-500 mt-1" />
                     <div>
                       <p className="font-semibold">Tilldelad säljare</p>

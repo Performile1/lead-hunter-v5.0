@@ -1123,7 +1123,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                               badgeColor = 'bg-green-50 text-green-700 border-green-100';
                               typeLabel = 'Omdöme';
                           } else if (sourceType === 'news') {
-                              badgeColor = 'bg-purple-50 text-purple-700 border-purple-100';
+                              badgeColor = 'bg-yellow-50 text-black border-purple-100';
                               typeLabel = 'Nyheter';
                           } else if (sourceType === 'social') {
                               badgeColor = 'bg-[#0077b5]/10 text-[#0077b5] border-[#0077b5]/20';

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Zap, Target, Layers, Users, Clock, DollarSign, CheckCircle } from 'lucide-react';
 
 interface Protocol {
@@ -122,7 +122,7 @@ export const ProtocolSelector: React.FC<ProtocolSelectorProps> = ({
   const getProtocolColor = (id: string) => {
     switch (id) {
       case 'deep_pro':
-        return 'border-purple-500 bg-purple-50';
+        return 'border-yellow-500 bg-yellow-50';
       case 'deep':
         return 'border-blue-500 bg-blue-50';
       case 'quick':

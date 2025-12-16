@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Search, Filter, Download, Eye, AlertCircle, RefreshCw, CheckCircle, XCircle } from 'lucide-react';
 
 interface Lead {
@@ -247,7 +247,7 @@ export const SuperAdminLeadSearch: React.FC = () => {
             <button
               onClick={searchLeads}
               disabled={loading}
-              className="flex-1 flex items-center justify-center gap-2 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white px-4 py-2 rounded font-semibold disabled:opacity-50"
+              className="flex-1 flex items-center justify-center gap-2 bg-[#FFC400] hover:bg-black text-white px-4 py-2 rounded font-semibold disabled:opacity-50"
             >
               <Search className="w-4 h-4" />
               {loading ? 'Söker...' : 'Sök'}

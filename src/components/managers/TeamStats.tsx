@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { TrendingUp, TrendingDown, DollarSign, Target, Calendar, Award } from 'lucide-react';
 
 interface TeamStats {
@@ -200,9 +200,9 @@ export const TeamStats: React.FC = () => {
             <p className="text-3xl font-bold text-blue-600">{stats.segment_distribution.FS}</p>
             <p className="text-xs text-gray-500 mt-1">Field Sales</p>
           </div>
-          <div className="text-center p-4 bg-purple-50 rounded-lg">
+          <div className="text-center p-4 bg-yellow-50 rounded-lg">
             <p className="text-sm text-gray-600 mb-2">KAM</p>
-            <p className="text-3xl font-bold text-purple-600">{stats.segment_distribution.KAM}</p>
+            <p className="text-3xl font-bold text-gray-700">{stats.segment_distribution.KAM}</p>
             <p className="text-xs text-gray-500 mt-1">Key Account</p>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Clock, Play, Trash2, Plus, Calendar, Search, BarChart3, Settings } from 'lucide-react';
 
 interface BatchJob {
@@ -121,7 +121,7 @@ export const BatchJobManager: React.FC = () => {
     switch (type) {
       case 'search': return 'bg-blue-100 text-blue-800';
       case 'analysis': return 'bg-green-100 text-green-800';
-      case 'both': return 'bg-purple-100 text-purple-800';
+      case 'both': return 'bg-[#FFC400] text-black';
       default: return 'bg-gray-100 text-gray-800';
     }
   };
@@ -180,9 +180,9 @@ export const BatchJobManager: React.FC = () => {
               {jobs.filter(j => j.is_active).length}
             </p>
           </div>
-          <div className="bg-purple-50 p-4 rounded-lg">
+          <div className="bg-yellow-50 p-4 rounded-lg">
             <p className="text-sm text-gray-600">Totalt Leads Hittade</p>
-            <p className="text-3xl font-bold text-purple-600">
+            <p className="text-3xl font-bold text-gray-700">
               {jobs.reduce((sum, j) => sum + j.total_leads_found, 0)}
             </p>
           </div>

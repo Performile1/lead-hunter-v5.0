@@ -118,7 +118,7 @@ export const TenantDashboard: React.FC = () => {
     const colors = {
       basic: 'bg-gray-100 text-gray-800 border-gray-300',
       professional: 'bg-blue-100 text-blue-800 border-blue-300',
-      enterprise: 'bg-purple-100 text-purple-800 border-purple-300'
+      enterprise: 'bg-[#FFC400] text-black border-yellow-300'
     };
     return colors[tier as keyof typeof colors] || colors.basic;
   };
@@ -306,9 +306,9 @@ export const TenantDashboard: React.FC = () => {
             <p className="text-sm font-bold text-green-600 mt-1">Nya leads</p>
           </div>
           
-          <div className="text-center p-4 bg-purple-50 rounded border border-purple-200">
-            <p className="text-3xl font-black text-purple-700">{metrics.activity.customers_this_month}</p>
-            <p className="text-sm font-bold text-purple-600 mt-1">Nya kunder</p>
+          <div className="text-center p-4 bg-yellow-50 rounded border border-yellow-200">
+            <p className="text-3xl font-black text-black">{metrics.activity.customers_this_month}</p>
+            <p className="text-sm font-bold text-gray-700 mt-1">Nya kunder</p>
           </div>
         </div>
       </div>

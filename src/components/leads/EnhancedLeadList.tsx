@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { 
   Search, Filter, Download, Building2, MapPin, TrendingUp, TrendingDown, Calendar,
   AlertTriangle, Shield, DollarSign, CheckCircle, Target, Package
@@ -68,7 +68,7 @@ export const EnhancedLeadList: React.FC<EnhancedLeadListProps> = ({ leads, onLea
       DM: 'bg-gray-100 text-gray-800 border-gray-300',
       TS: 'bg-green-100 text-green-800 border-green-300',
       FS: 'bg-blue-100 text-blue-800 border-blue-300',
-      KAM: 'bg-purple-100 text-purple-800 border-purple-300',
+      KAM: 'bg-[#FFC400] text-black border-yellow-300',
       UNKNOWN: 'bg-yellow-100 text-yellow-800 border-yellow-300'
     };
     return colors[segment] || colors.UNKNOWN;
@@ -321,12 +321,12 @@ export const EnhancedLeadList: React.FC<EnhancedLeadListProps> = ({ leads, onLea
 
                       {/* Opportunity Score */}
                       {lead.competitive_intelligence && (
-                        <div className="bg-purple-50 p-3 rounded-lg border-l-2 border-purple-500">
+                        <div className="bg-yellow-50 p-3 rounded-lg border-l-2 border-yellow-500">
                           <div className="flex items-center gap-1 text-xs text-gray-600 mb-1">
                             <Target className="w-3 h-3" />
                             <span>Opportunity</span>
                           </div>
-                          <p className="text-lg font-bold text-purple-600">
+                          <p className="text-lg font-bold text-gray-700">
                             {lead.competitive_intelligence.opportunity_score}/100
                           </p>
                         </div>
@@ -362,7 +362,7 @@ export const EnhancedLeadList: React.FC<EnhancedLeadListProps> = ({ leads, onLea
                       )}
                       
                       {lead.ecommerce_platform && (
-                        <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded font-semibold">
+                        <span className="bg-[#FFC400] text-black px-2 py-1 rounded font-semibold">
                           {lead.ecommerce_platform}
                         </span>
                       )}

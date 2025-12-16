@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Tag, ArrowRight, CheckCircle, AlertCircle } from 'lucide-react';
 
 interface Lead {
@@ -32,7 +32,7 @@ const SEGMENTS = {
   KAM: {
     name: 'Key Account Manager',
     description: 'Fraktomsättning: 5M+ kr/år (~100+ MSEK bolag)',
-    color: 'bg-purple-100 text-purple-800 border-purple-300'
+    color: 'bg-[#FFC400] text-black border-yellow-300'
   },
   UNKNOWN: {
     name: 'Oklassificerad',

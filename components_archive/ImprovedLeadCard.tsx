@@ -577,18 +577,18 @@ export const ImprovedLeadCard: React.FC<ImprovedLeadCardProps> = ({
             
             {/* Competitive Intelligence */}
             {lead.competitive_intelligence && (
-              <div className="bg-purple-50 border border-purple-200 p-3 shadow-sm">
+              <div className="bg-yellow-50 border border-yellow-200 p-3 shadow-sm">
                 <div className="flex items-start gap-2 mb-2">
-                  <Target className="w-4 h-4 text-purple-600 mt-0.5" />
-                  <span className="text-xs font-bold text-purple-800 uppercase">
+                  <Target className="w-4 h-4 text-gray-700 mt-0.5" />
+                  <span className="text-xs font-bold text-black uppercase">
                     Opportunity Score
                   </span>
                 </div>
                 <div className="text-center mb-3">
-                  <div className="text-4xl font-black text-purple-600">
+                  <div className="text-4xl font-black text-gray-700">
                     {lead.competitive_intelligence.opportunity_score}
                   </div>
-                  <div className="text-xs text-purple-700 font-bold">
+                  <div className="text-xs text-black font-bold">
                     {lead.competitive_intelligence.opportunity_score >= 80 ? '🔥 KONTAKTA NU!' :
                      lead.competitive_intelligence.opportunity_score >= 60 ? '⭐ Kontakta snart' :
                      lead.competitive_intelligence.opportunity_score >= 40 ? '👀 Bevaka' : '❌ Låg prioritet'}
@@ -596,7 +596,7 @@ export const ImprovedLeadCard: React.FC<ImprovedLeadCardProps> = ({
                 </div>
                 {lead.competitive_intelligence.sales_pitch && (
                   <div className="bg-white border border-purple-100 p-2 rounded-sm">
-                    <div className="text-[10px] font-bold text-purple-700 mb-1">Säljpitch:</div>
+                    <div className="text-[10px] font-bold text-black mb-1">Säljpitch:</div>
                     <div className="text-[10px] text-slate-700 italic leading-relaxed">
                       {lead.competitive_intelligence.sales_pitch}
                     </div>

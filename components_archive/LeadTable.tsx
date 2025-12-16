@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { 
   Search, ChevronUp, ChevronDown, TriangleAlert, Download, 
   Eye, Trash2, X, AlertCircle
@@ -133,7 +133,7 @@ export const LeadTable: React.FC<LeadTableProps> = ({
       new: 'bg-blue-100 text-blue-800 border-blue-200',
       analyzing: 'bg-yellow-100 text-yellow-800 border-yellow-200',
       analyzed: 'bg-green-100 text-green-800 border-green-200',
-      contacted: 'bg-purple-100 text-purple-800 border-purple-200'
+      contacted: 'bg-[#FFC400] text-black border-yellow-200'
     };
     return colors[status] || colors.new;
   };

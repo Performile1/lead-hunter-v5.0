@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Eye, Play, Trash2, Clock, Calendar, Mail, AlertCircle, CheckCircle } from 'lucide-react';
 
 interface Watch {
@@ -97,7 +97,7 @@ export const WatchList: React.FC<WatchListProps> = ({ userId }) => {
       DM: 'bg-gray-100 text-gray-800',
       TS: 'bg-green-100 text-green-800',
       FS: 'bg-blue-100 text-blue-800',
-      KAM: 'bg-purple-100 text-purple-800'
+      KAM: 'bg-[#FFC400] text-black'
     };
     return colors[segment] || 'bg-gray-100 text-gray-800';
   };

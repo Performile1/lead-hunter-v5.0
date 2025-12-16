@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { Bell, X, CheckCircle, AlertTriangle, Info, Clock, User } from 'lucide-react';
 
 interface Notification {
@@ -86,7 +86,7 @@ export const NotificationCenter: React.FC = () => {
       case 'cronjob_complete':
         return <CheckCircle className="w-4 h-4 text-green-600" />;
       case 'customer_update':
-        return <Info className="w-4 h-4 text-purple-600" />;
+        return <Info className="w-4 h-4 text-gray-700" />;
       case 'message':
         return <Bell className="w-4 h-4 text-yellow-600" />;
       case 'warning':

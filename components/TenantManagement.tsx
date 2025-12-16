@@ -189,7 +189,7 @@ export const TenantManagement: React.FC<TenantManagementProps> = ({ isSuperAdmin
     const colors = {
       basic: 'bg-gray-100 text-gray-800',
       professional: 'bg-blue-100 text-blue-800',
-      enterprise: 'bg-purple-100 text-purple-800'
+      enterprise: 'bg-[#FFC400] text-black'
     };
     return colors[tier as keyof typeof colors] || colors.basic;
   };

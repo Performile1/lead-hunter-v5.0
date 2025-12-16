@@ -207,7 +207,7 @@ export const SuperAdminUserManagement: React.FC = () => {
 
   const getRoleBadge = (role: string) => {
     const colors = {
-      super_admin: 'bg-purple-100 text-purple-800 border-purple-300',
+      super_admin: 'bg-[#FFC400] text-black border-yellow-300',
       admin: 'bg-red-100 text-red-800 border-red-300',
       manager: 'bg-blue-100 text-blue-800 border-blue-300',
       sales: 'bg-green-100 text-green-800 border-green-300',
@@ -231,7 +231,7 @@ export const SuperAdminUserManagement: React.FC = () => {
         </div>
         <button
           onClick={handleCreate}
-          className="flex items-center gap-2 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white px-4 py-2 rounded font-semibold"
+          className="flex items-center gap-2 bg-[#FFC400] hover:bg-black text-white px-4 py-2 rounded font-semibold"
         >
           <Plus className="w-4 h-4" />
           Skapa Användare
@@ -401,7 +401,7 @@ export const SuperAdminUserManagement: React.FC = () => {
             <div className="flex gap-3 mt-6">
               <button
                 onClick={handleSave}
-                className="flex-1 flex items-center justify-center gap-2 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white px-4 py-2 rounded font-semibold"
+                className="flex-1 flex items-center justify-center gap-2 bg-[#FFC400] hover:bg-black text-white px-4 py-2 rounded font-semibold"
               >
                 <Save className="w-4 h-4" />
                 {editingUser ? 'Uppdatera' : 'Skapa'}

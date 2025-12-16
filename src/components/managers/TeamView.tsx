@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Users, TrendingUp, Package, Award, Calendar } from 'lucide-react';
 
 interface TeamMember {
@@ -107,9 +107,9 @@ export const TeamView: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white border-l-4 border-purple-500 p-6 shadow-md">
+          <div className="bg-white border-l-4 border-yellow-500 p-6 shadow-md">
             <div className="flex items-center gap-3 mb-2">
-              <Award className="w-8 h-8 text-purple-600" />
+              <Award className="w-8 h-8 text-gray-700" />
               <div>
                 <p className="text-sm text-gray-600">Snitt Leads/Person</p>
                 <p className="text-3xl font-bold text-gray-900">

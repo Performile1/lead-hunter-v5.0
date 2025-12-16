@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { AlertTriangle, CheckCircle, XCircle, Edit2, Trash2 } from 'lucide-react';
 
 interface ErrorReport {
@@ -148,7 +148,7 @@ export const ErrorReportReview: React.FC = () => {
             onClick={() => setFilter(f as any)}
             className={`px-4 py-2 rounded font-semibold text-sm uppercase ${
               filter === f
-                ? 'bg-[#8B5CF6] text-white'
+                ? 'bg-[#FFC400] text-white'
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
             }`}
           >
@@ -179,7 +179,7 @@ export const ErrorReportReview: React.FC = () => {
                     <span className={`px-2 py-1 text-xs font-semibold rounded ${getStatusBadge(report.status)}`}>
                       {report.status}
                     </span>
-                    <span className="px-2 py-1 text-xs font-semibold rounded bg-purple-100 text-purple-800">
+                    <span className="px-2 py-1 text-xs font-semibold rounded bg-[#FFC400] text-black">
                       {getErrorTypeName(report.error_type)}
                     </span>
                   </div>
@@ -206,7 +206,7 @@ export const ErrorReportReview: React.FC = () => {
                     </button>
                     <button
                       onClick={() => setSelectedReport(report)}
-                      className="p-2 text-[#8B5CF6] hover:bg-purple-50 rounded"
+                      className="p-2 text-[#8B5CF6] hover:bg-yellow-50 rounded"
                       title="Korrigera"
                     >
                       <Edit2 className="w-5 h-5" />
@@ -283,7 +283,7 @@ export const ErrorReportReview: React.FC = () => {
             <div className="flex gap-3 mt-6">
               <button
                 onClick={() => handleCorrection(selectedReport.id)}
-                className="flex-1 flex items-center justify-center gap-2 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white px-4 py-2 rounded font-semibold"
+                className="flex-1 flex items-center justify-center gap-2 bg-[#FFC400] hover:bg-black text-white px-4 py-2 rounded font-semibold"
               >
                 <Edit2 className="w-4 h-4" />
                 Applicera Korrigering

@@ -357,7 +357,7 @@ export const SuperAdminDashboard: React.FC = () => {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
                   <div
-                    className="bg-[#8B5CF6] h-2 rounded-full transition-all"
+                    className="bg-[#FFC400] h-2 rounded-full transition-all"
                     style={{ width: `${platform.percentage}%` }}
                   ></div>
                 </div>
