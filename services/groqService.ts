@@ -1,8 +1,7 @@
 import Groq from "groq-sdk";
 
-const processEnv = {
-  GROQ_API_KEY: process.env.GROQ_API_KEY as string,
-};
+// API key from environment
+const GROQ_API_KEY = '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';
 
 let groqClient: Groq | null = null;
 
@@ -11,11 +10,12 @@ let groqClient: Groq | null = null;
  */
 function getGroqClient(): Groq {
   if (!groqClient) {
-    if (!processEnv.GROQ_API_KEY) {
-      throw new Error("GROQ_API_KEY saknas i .env.local");
+    if (!GROQ_API_KEY) {
+      throw new Error("GROQ_API_KEY saknas");
     }
     groqClient = new Groq({
-      apiKey: processEnv.GROQ_API_KEY
+      apiKey: GROQ_API_KEY,
+      dangerouslyAllowBrowser: true // Allow browser usage
     });
   }
   return groqClient;
