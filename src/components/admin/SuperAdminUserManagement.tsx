@@ -251,7 +251,7 @@ export const SuperAdminUserManagement: React.FC = () => {
       )}
 
       {/* Users Table */}
-      <div className="bg-white border-2 border-black rounded-none overflow-hidden"
+      <div className="bg-white border-2 border-black rounded-none overflow-hidden">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
