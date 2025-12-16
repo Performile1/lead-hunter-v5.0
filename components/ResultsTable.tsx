@@ -380,7 +380,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
 
   return (
     <div className="w-full">
-      <div className="bg-slate-100 p-2 border-t-4 border-black border-b border-slate-200 flex flex-col items-start gap-3">
+      <div className="bg-[#FFC400] p-2 border-t-4 border-black border-b-2 border-black flex flex-col items-start gap-3">
         
         {/* ROW 1: SEARCH & ACTIONS */}
         <div className="w-full flex flex-wrap items-center justify-between gap-3">
@@ -458,34 +458,33 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                     className="rounded-sm border-slate-400 text-black focus:ring-[#2563EB] cursor-pointer"
                     onChange={toggleSelectAll}
                     checked={filteredAndSortedData.length > 0 && filteredAndSortedData.every(l => selectedIds.has(l.id))}
-                    title="Markera ALLA i hela listan"
                     />
                 </div>
                 
-                <button onClick={() => handleSort('org')} className="pl-4 text-left hover:text-black flex items-center gap-1 transition-colors">
-                    Status/Org {getSortIcon('org')}
+                <button onClick={() => handleSort('org')} className="pl-4 text-left hover:text-black flex items-center gap-1 transition-colors font-bold">
+                    Org {getSortIcon('org')}
                 </button>
-                <button onClick={() => handleSort('companyName')} className="text-left hover:text-black flex items-center gap-1 transition-colors">
+                <button onClick={() => handleSort('companyName')} className="text-left hover:text-black flex items-center gap-1 transition-colors font-bold">
                     Företag {getSortIcon('companyName')}
                 </button>
-                <button onClick={() => handleSort('city')} className="text-left hover:text-black flex items-center gap-1 transition-colors">
+                <button onClick={() => handleSort('city')} className="text-left hover:text-black flex items-center gap-1 transition-colors font-bold">
                     Ort {getSortIcon('city')}
                 </button>
-                <button onClick={() => handleSort('revenue')} className="text-left hover:text-black flex items-center gap-1 transition-colors">
-                    Omsättning {getSortIcon('revenue')}
+                <button onClick={() => handleSort('revenue')} className="text-left hover:text-black flex items-center gap-1 transition-colors font-bold">
+                    Oms {getSortIcon('revenue')}
                 </button>
-                <button onClick={() => handleSort('segment')} className="text-left hover:text-black flex items-center gap-1 transition-colors">
+                <button onClick={() => handleSort('segment')} className="text-left hover:text-black flex items-center gap-1 transition-colors font-bold">
                     Seg {getSortIcon('segment')}
                 </button>
-                <button onClick={() => handleSort('contact')} className="text-left hover:text-black flex items-center gap-1 transition-colors">
+                <button onClick={() => handleSort('contact')} className="text-left hover:text-black flex items-center gap-1 transition-colors font-bold">
                     Kontakt {getSortIcon('contact')}
                 </button>
-                <button onClick={() => handleSort('actions')} className="text-right pr-4 hover:text-black flex items-center justify-end gap-1 transition-colors">
+                <button onClick={() => handleSort('actions')} className="text-right pr-4 hover:text-black flex items-center justify-end gap-1 transition-colors font-bold">
                     Åtgärd {getSortIcon('actions')}
                 </button>
             </div>
 
-            <div className="grid grid-cols-[40px_110px_minmax(150px,2fr)_minmax(100px,1fr)_110px_60px_minmax(150px,1.5fr)_90px] bg-[#FFC400] border-b-2 border-black py-1.5 gap-2 sticky top-0 z-10">
+            <div className="grid grid-cols-[40px_110px_minmax(150px,2fr)_minmax(100px,1fr)_110px_60px_minmax(150px,1.5fr)_90px] bg-slate-50 border-b border-slate-200 py-1.5 gap-2 sticky top-0 z-10">
                  <div className="flex items-center justify-center">
                     {(filters.org || filters.company || filters.city || filters.revenue || filters.segment !== 'ALL' || filters.contact) && (
                         <button onClick={clearAllFilters} className="text-red-600 hover:bg-red-50 p-1 rounded-sm" title="Rensa alla filter">
