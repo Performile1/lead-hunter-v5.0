@@ -485,7 +485,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                 </button>
             </div>
 
-            <div className="grid grid-cols-[40px_110px_minmax(150px,2fr)_minmax(100px,1fr)_110px_60px_minmax(150px,1.5fr)_90px] bg-slate-50 border-b border-slate-200 py-1.5 gap-2 sticky top-0 z-10">
+            <div className="grid grid-cols-[40px_110px_minmax(150px,2fr)_minmax(100px,1fr)_110px_60px_minmax(150px,1.5fr)_90px] bg-[#FFC400] border-b-2 border-black py-1.5 gap-2 sticky top-0 z-10">
                  <div className="flex items-center justify-center">
                     {(filters.org || filters.company || filters.city || filters.revenue || filters.segment !== 'ALL' || filters.contact) && (
                         <button onClick={clearAllFilters} className="text-red-600 hover:bg-red-50 p-1 rounded-sm" title="Rensa alla filter">
