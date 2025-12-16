@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { Users, Plus, Edit2, Trash2, X, Save, AlertCircle, Shield } from 'lucide-react';
+import { API_BASE_URL } from '../../utils/api';
 
 interface User {
   id: string;

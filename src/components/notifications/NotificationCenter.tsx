@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect, useRef } from 'react';
 import { Bell, X, CheckCircle, AlertTriangle, Info, Clock, User } from 'lucide-react';
+import { API_BASE_URL } from '../../utils/api';
 
 interface Notification {
   id: string;

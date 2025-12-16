@@ -2,6 +2,7 @@
 import { Search, Filter, Download, Eye, AlertCircle, RefreshCw, CheckCircle, XCircle, LayoutGrid, List } from 'lucide-react';
 import { LeadCard } from '../leads/LeadCard';
 import { LeadData, Segment } from '../../../types';
+import { API_BASE_URL } from '../../utils/api';
 
 interface Lead {
   id: string;

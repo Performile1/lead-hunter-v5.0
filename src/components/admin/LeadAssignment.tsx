@@ -1,6 +1,7 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { UserPlus, Users, Building2, CheckCircle } from 'lucide-react';
 import { showSuccess, showError } from '../common/DHLNotification';
+import { API_BASE_URL } from '../../utils/api';
 
 interface User {
   id: string;

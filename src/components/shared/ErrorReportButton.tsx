@@ -1,5 +1,6 @@
 ﻿import React, { useState } from 'react';
 import { AlertTriangle, X, Send } from 'lucide-react';
+import { API_BASE_URL } from '../../utils/api';
 
 interface ErrorReportButtonProps {
   entityType: 'lead' | 'customer';

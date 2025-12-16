@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { Building2, Plus, Edit2, Trash2, X, Save, AlertCircle } from 'lucide-react';
+import { API_BASE_URL } from '../../utils/api';
 
 interface Tenant {
   id: string;

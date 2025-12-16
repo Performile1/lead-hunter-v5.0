@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { AlertTriangle, CheckCircle, XCircle, Edit2, Trash2 } from 'lucide-react';
+import { API_BASE_URL } from '../../utils/api';
 
 interface ErrorReport {
   id: string;

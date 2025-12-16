@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { Users, Search, Filter, Building2, Package } from 'lucide-react';
+import { API_BASE_URL } from '../../utils/api';
 
 interface Customer {
   id: string;

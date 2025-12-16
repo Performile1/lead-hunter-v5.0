@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+﻿import React, { createContext, useContext, useState, useEffect } from 'react';
+import { API_BASE_URL } from '../utils/api';
 
 // API Configuration - inline to ensure it works
 const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
