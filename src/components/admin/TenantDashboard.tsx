@@ -141,13 +141,6 @@ export const TenantDashboard: React.FC = () => {
             {metrics.subscription_tier}
           </span>
           <button
-            onClick={() => setCurrentView('settings')}
-            className="flex items-center gap-2 bg-dhl-red hover:bg-red-700 text-white px-4 py-2 rounded font-semibold"
-          >
-            <Settings className="w-4 h-4" />
-            Inställningar
-          </button>
-          <button
             onClick={loadMetrics}
             className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-4 py-2 rounded font-semibold"
           >

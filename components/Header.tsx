@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ShieldBan, Target, RotateCcw, Settings2, Database, Save, Settings, ChevronDown, Terminal, Activity, FolderOpen, LogOut, User, Clock, Search, Zap, ShieldCheck, HardDrive } from 'lucide-react';
 import { useAuth } from '../src/contexts/AuthContext';
+import { isSuperAdmin, isTenantAdmin } from '../utils/roleUtils';
 import { NotificationCenter } from '../src/components/notifications/NotificationCenter';
 
 interface HeaderProps {
@@ -267,6 +268,23 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <RotateCcw className="w-4 h-4" />
               </button>
+
+              <div className="w-px h-6 bg-black/10 mx-1"></div>
+
+              {/* SETTINGS BUTTON - Role-based */}
+              {(isSuperAdmin(user) || isTenantAdmin(user)) && onNavigateToDashboard && (
+                <button
+                  onClick={() => {
+                    onNavigateToDashboard();
+                    // Settings will be accessible from dashboard
+                  }}
+                  className="flex items-center gap-2 bg-dhl-red hover:bg-red-700 text-white px-3 py-2 rounded-sm transition-colors shadow-sm"
+                  title={isSuperAdmin(user) ? 'Super Admin Inställningar' : 'Företagsinställningar'}
+                >
+                  <Settings className="w-4 h-4" />
+                  <span className="text-xs font-bold uppercase tracking-wide hidden sm:inline">Inställningar</span>
+                </button>
+              )}
 
               <div className="w-px h-6 bg-black/10 mx-1"></div>
 
