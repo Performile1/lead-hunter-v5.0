@@ -41,20 +41,21 @@ Password: Test123!
 1. **Gemini:** https://aistudio.google.com/app/apikey (GRATIS)
 2. **Groq:** https://console.groq.com/keys (GRATIS)
 
-### Lägg till i server/.env:
+### Lägg till i .env (root):
 ```bash
-notepad server\.env
+notepad .env
 
-# Lägg till:
-GEMINI_API_KEY=AIzaSy...din_nyckel
-GROQ_API_KEY=gsk_...din_nyckel
+# Lägg till (VIKTIGT: VITE_ prefix krävs):
+VITE_GEMINI_API_KEY=AIzaSy...din_nyckel
+VITE_GROQ_API_KEY=gsk_...din_nyckel
 ```
 
-### Starta om backend:
+### Starta om frontend:
 ```bash
-cd server
 npm run dev
 ```
+
+**OBS:** Se **[API_CONFIGURATION_COMPLETE_GUIDE.md](API_CONFIGURATION_COMPLETE_GUIDE.md)** för fullständig guide
 
 ### Nu hämtas automatiskt:
 - ✅ **Kontaktpersoner** (VD, CFO, Logistics Manager)

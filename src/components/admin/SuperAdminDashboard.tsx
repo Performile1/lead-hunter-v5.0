@@ -11,6 +11,9 @@ import { SuperAdminSettings } from './SuperAdminSettings';
 import { SuperAdminLeadSearch } from './SuperAdminLeadSearch';
 import { SuperAdminCustomers } from './SuperAdminCustomers';
 import { ErrorReportReview } from './ErrorReportReview';
+import APIKeysPanel from './APIKeysPanel';
+import ScrapingConfigPanel from './ScrapingConfigPanel';
+import QuotaManagementPanel from './QuotaManagementPanel';
 import { API_BASE_URL } from '../../utils/api';
 
 interface AnalyticsData {
@@ -36,7 +39,7 @@ export const SuperAdminDashboard: React.FC = () => {
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [currentView, setCurrentView] = useState<'dashboard' | 'tenants' | 'users' | 'settings' | 'customers' | 'errors'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'tenants' | 'users' | 'settings' | 'customers' | 'errors' | 'api-keys' | 'scraping' | 'quota'>('dashboard');
 
   useEffect(() => {
     loadAnalytics();
@@ -147,6 +150,39 @@ export const SuperAdminDashboard: React.FC = () => {
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
+        <button onClick={() => setCurrentView('api-keys')} className="bg-[#D40511] text-white p-6 rounded-none shadow-lg hover:shadow-xl transition-all text-left hover:bg-red-700">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-semibold opacity-90">Hantera</p>
+              <p className="text-2xl font-black mt-1">API-nycklar</p>
+              <p className="text-xs opacity-75 mt-2">Testa & konfigurera</p>
+            </div>
+            <Settings className="w-12 h-12 opacity-80" />
+          </div>
+        </button>
+        
+        <button onClick={() => setCurrentView('scraping')} className="bg-[#FFC400] text-black p-6 rounded-none shadow-lg hover:shadow-xl transition-all text-left">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-semibold opacity-90">Konfigurera</p>
+              <p className="text-2xl font-black mt-1">Scraping</p>
+              <p className="text-xs opacity-75 mt-2">Puppeteer & AI</p>
+            </div>
+            <Globe className="w-12 h-12 opacity-80" />
+          </div>
+        </button>
+        
+        <button onClick={() => setCurrentView('quota')} className="bg-black text-white p-6 rounded-none shadow-lg hover:shadow-xl transition-all text-left hover:bg-gray-800">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-semibold opacity-90">Övervaka</p>
+              <p className="text-2xl font-black mt-1">Quota</p>
+              <p className="text-xs opacity-75 mt-2">Realtidsövervakning</p>
+            </div>
+            <Activity className="w-12 h-12 opacity-80" />
+          </div>
+        </button>
+        
         <button onClick={() => setCurrentView('tenants')} className="bg-[#FFC400] text-black p-6 rounded-none shadow-lg hover:shadow-xl transition-all text-left ">
           <div className="flex items-center justify-between">
             <div>
@@ -284,6 +320,42 @@ export const SuperAdminDashboard: React.FC = () => {
             ← Tillbaka till Dashboard
           </button>
           <ErrorReportReview />
+        </div>
+      )}
+
+      {currentView === 'api-keys' && (
+        <div>
+          <button 
+            onClick={() => setCurrentView('dashboard')} 
+            className="mb-4 text-[#FFC400] hover:underline font-semibold"
+          >
+            ← Tillbaka till Dashboard
+          </button>
+          <APIKeysPanel />
+        </div>
+      )}
+
+      {currentView === 'scraping' && (
+        <div>
+          <button 
+            onClick={() => setCurrentView('dashboard')} 
+            className="mb-4 text-[#FFC400] hover:underline font-semibold"
+          >
+            ← Tillbaka till Dashboard
+          </button>
+          <ScrapingConfigPanel />
+        </div>
+      )}
+
+      {currentView === 'quota' && (
+        <div>
+          <button 
+            onClick={() => setCurrentView('dashboard')} 
+            className="mb-4 text-[#FFC400] hover:underline font-semibold"
+          >
+            ← Tillbaka till Dashboard
+          </button>
+          <QuotaManagementPanel />
         </div>
       )}
 
