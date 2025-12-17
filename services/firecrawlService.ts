@@ -207,3 +207,76 @@ export async function extractStructuredData(url: string, schema: any): Promise<a
     throw error;
   }
 }
+
+/**
+ * Search the web using Firecrawl
+ */
+export async function searchWithFirecrawl(query: string, options?: {
+  limit?: number;
+  lang?: string;
+  country?: string;
+}): Promise<{
+  success: boolean;
+  data?: Array<{
+    url: string;
+    title: string;
+    description: string;
+    content?: string;
+  }>;
+}> {
+  if (!isFirecrawlAvailable()) {
+    throw new Error('Firecrawl API key not configured');
+  }
+
+  try {
+    const response = await fetch(`${FIRECRAWL_BASE_URL}/search`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${FIRECRAWL_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        query,
+        limit: options?.limit || 10,
+        lang: options?.lang || 'sv',
+        country: options?.country || 'SE'
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Firecrawl API error: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Firecrawl search error:', error);
+    throw error;
+  }
+}
+
+/**
+ * Search for company information using Firecrawl
+ */
+export async function searchCompanyInfo(companyName: string): Promise<Array<{
+  url: string;
+  title: string;
+  description: string;
+  content?: string;
+}>> {
+  if (!isFirecrawlAvailable()) {
+    console.warn('Firecrawl not configured');
+    return [];
+  }
+
+  try {
+    const result = await searchWithFirecrawl(
+      `${companyName} Sweden företag kontakt`,
+      { limit: 5, lang: 'sv', country: 'SE' }
+    );
+
+    return result.success && result.data ? result.data : [];
+  } catch (error) {
+    console.error('Company info search error:', error);
+    return [];
+  }
+}
