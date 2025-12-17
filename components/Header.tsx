@@ -238,14 +238,26 @@ export const Header: React.FC<HeaderProps> = ({
                         </button>
                       )}
 
-                      {(isSuperAdmin(user) || isTenantAdmin(user)) && onNavigateToDashboard && (
+                      {user && onNavigateToDashboard && (
                         <button 
                           onClick={() => { onNavigateToDashboard(); setIsMenuOpen(false); }}
                           className="w-full text-left px-4 py-3 hover:bg-slate-50 flex items-center gap-3 group"
                         >
                            <Settings className="w-4 h-4 text-slate-600 group-hover:text-[#FFC400]" />
-                           <span className="text-sm font-medium text-slate-800">{isSuperAdmin(user) ? 'Super Admin Inställningar' : 'Företagsinställningar'}</span>
-                           <span className="text-[9px] bg-yellow-100 text-yellow-700 px-1.5 py-0.5 rounded ml-auto font-bold">{isSuperAdmin(user) ? 'SUPER' : 'TENANT'}</span>
+                           <span className="text-sm font-medium text-slate-800">
+                             {isSuperAdmin(user) ? 'Super Admin Inställningar' : 
+                              isTenantAdmin(user) ? 'Företagsinställningar' :
+                              user.role === 'manager' ? 'Manager Inställningar' :
+                              user.role === 'terminal_manager' ? 'Terminal Inställningar' :
+                              'Mina Inställningar'}
+                           </span>
+                           <span className="text-[9px] bg-yellow-100 text-yellow-700 px-1.5 py-0.5 rounded ml-auto font-bold">
+                             {isSuperAdmin(user) ? 'SUPER' : 
+                              isTenantAdmin(user) ? 'TENANT' :
+                              user.role === 'manager' ? 'MANAGER' :
+                              user.role === 'terminal_manager' ? 'TERMINAL' :
+                              'SALES'}
+                           </span>
                         </button>
                       )}
 
