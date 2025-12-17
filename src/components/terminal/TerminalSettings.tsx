@@ -96,6 +96,70 @@ export const TerminalSettings: React.FC<TerminalSettingsProps> = ({ onBack }) =>
 const TerminalTab: React.FC = () => {
   return (
     <div className="space-y-6">
+      {/* Personal Information */}
+      <div>
+        <h3 className="text-lg font-bold text-black mb-4">Personlig Information</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Namn
+            </label>
+            <input
+              type="text"
+              defaultValue="Erik Eriksson"
+              className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:border-black focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              E-post för notiser
+            </label>
+            <input
+              type="email"
+              defaultValue="erik.eriksson@dhl.com"
+              className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:border-black focus:outline-none"
+              placeholder="din.email@dhl.com"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Telefon
+            </label>
+            <input
+              type="tel"
+              defaultValue="070-234 56 78"
+              className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:border-black focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Adress
+            </label>
+            <input
+              type="text"
+              defaultValue="Terminalvägen 1, Stockholm"
+              className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:border-black focus:outline-none"
+            />
+          </div>
+          <div className="md:col-span-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Ansvarig för Terminal(er)
+            </label>
+            <select
+              multiple
+              className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:border-black focus:outline-none"
+              size={3}
+            >
+              <option value="sto" selected>Stockholm Terminal</option>
+              <option value="gbg">Göteborg Terminal</option>
+              <option value="mmo">Malmö Terminal</option>
+              <option value="upp">Uppsala Terminal</option>
+            </select>
+            <p className="text-xs text-gray-500 mt-1">Håll Ctrl/Cmd för att välja flera</p>
+          </div>
+        </div>
+      </div>
+
       <div>
         <h3 className="text-lg font-bold text-black mb-4">Terminal Information</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

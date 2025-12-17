@@ -121,12 +121,13 @@ const ProfileTab: React.FC = () => {
           </div>
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              E-post
+              E-post för notiser
             </label>
             <input
               type="email"
               defaultValue="anna.andersson@dhl.com"
               className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:border-black focus:outline-none"
+              placeholder="din.email@dhl.com"
             />
           </div>
           <div>
@@ -136,6 +137,16 @@ const ProfileTab: React.FC = () => {
             <input
               type="tel"
               defaultValue="070-123 45 67"
+              className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:border-black focus:outline-none"
+            />
+          </div>
+          <div className="md:col-span-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Adress
+            </label>
+            <input
+              type="text"
+              defaultValue="Terminalvägen 1, Stockholm"
               className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:border-black focus:outline-none"
             />
           </div>
@@ -157,13 +168,19 @@ const ProfileTab: React.FC = () => {
           </div>
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Terminal
+              Tillhör Terminal(er)
             </label>
-            <select className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:border-black focus:outline-none">
-              <option selected>Stockholm Terminal</option>
-              <option>Göteborg Terminal</option>
-              <option>Malmö Terminal</option>
+            <select
+              multiple
+              className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:border-black focus:outline-none"
+              size={3}
+            >
+              <option value="sto" selected>Stockholm Terminal</option>
+              <option value="gbg">Göteborg Terminal</option>
+              <option value="mmo">Malmö Terminal</option>
+              <option value="upp">Uppsala Terminal</option>
             </select>
+            <p className="text-xs text-gray-500 mt-1">Håll Ctrl/Cmd för att välja flera</p>
           </div>
         </div>
       </div>
