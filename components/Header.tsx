@@ -278,7 +278,7 @@ export const Header: React.FC<HeaderProps> = ({
                     onNavigateToDashboard();
                     // Settings will be accessible from dashboard
                   }}
-                  className="flex items-center gap-2 bg-dhl-red hover:bg-red-700 text-white px-3 py-2 rounded-sm transition-colors shadow-sm"
+                  className="flex items-center gap-2 bg-black hover:bg-white hover:text-black text-[#FFC400] px-3 py-2 rounded-sm transition-colors shadow-sm border-2 border-[#FFC400]"
                   title={isSuperAdmin(user) ? 'Super Admin Inställningar' : 'Företagsinställningar'}
                 >
                   <Settings className="w-4 h-4" />
