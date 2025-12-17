@@ -4,6 +4,7 @@ import {
   AlertCircle, CheckCircle, Clock, BarChart3,
   Activity, Zap, Award, Search, UserPlus, Settings
 } from 'lucide-react';
+import { TenantSettings } from './TenantSettings';
 
 interface TenantMetrics {
   subscription_tier: string;
@@ -29,7 +30,7 @@ interface TenantMetrics {
 export const TenantDashboard: React.FC = () => {
   const [metrics, setMetrics] = useState<TenantMetrics | null>(null);
   const [loading, setLoading] = useState(true);
-  const [currentView, setCurrentView] = useState<'dashboard' | 'users'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'users' | 'settings'>('dashboard');
 
   useEffect(() => {
     loadMetrics();
@@ -140,6 +141,13 @@ export const TenantDashboard: React.FC = () => {
             {metrics.subscription_tier}
           </span>
           <button
+            onClick={() => setCurrentView('settings')}
+            className="flex items-center gap-2 bg-dhl-red hover:bg-red-700 text-white px-4 py-2 rounded font-semibold"
+          >
+            <Settings className="w-4 h-4" />
+            Inställningar
+          </button>
+          <button
             onClick={loadMetrics}
             className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-4 py-2 rounded font-semibold"
           >
@@ -149,6 +157,22 @@ export const TenantDashboard: React.FC = () => {
         </div>
       </div>
 
+      {/* Settings View */}
+      {currentView === 'settings' && (
+        <div>
+          <button 
+            onClick={() => setCurrentView('dashboard')} 
+            className="mb-4 text-dhl-red hover:underline font-semibold"
+          >
+            ← Tillbaka till Dashboard
+          </button>
+          <TenantSettings />
+        </div>
+      )}
+
+      {/* Dashboard View */}
+      {currentView === 'dashboard' && (
+      <>
       {/* Upgrade Warning */}
       {metrics.needs_upgrade && (
         <div className="bg-orange-50 border-2 border-orange-300 p-4 rounded flex items-center gap-3">
@@ -312,6 +336,8 @@ export const TenantDashboard: React.FC = () => {
           </div>
         </div>
       </div>
+      </>
+      )}
     </div>
   );
 };
