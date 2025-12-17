@@ -4,6 +4,15 @@ export const BATCH_SCAN_INSTRUCTION = `
 ### 0. SYSTEM INSTRUCTION (BATCH QUICK SCAN - v6.3)
 ---
 
+#### 0.0 MODELL & DATAKÄLLOR
+**REKOMMENDERAD MODELL:** Groq (Llama 3.3 70B) - Snabbare än Gemini för Quick Scan
+**DATAKÄLLOR:** Firecrawl API för snabb Allabolag-scraping
+**STRATEGI:**
+1. Använd Groq för snabb AI-analys (hög throughput)
+2. Använd Firecrawl för att scrapa Allabolag-sidor
+3. Max 10 sekunder per företag
+4. Fokus på grunddata: Org.nr, Omsättning, Status, 1 kontaktperson
+
 #### 0.1 MÅL
 Hitta snabbt relevanta företag och **MINST EN** kontaktperson.
 Optimera för hastighet, men missa inte allvarliga varningssignaler.
@@ -14,6 +23,7 @@ Optimera för hastighet, men missa inte allvarliga varningssignaler.
     *   **Om sökord anges:** Följ strikt "Riktad Sökning".
     *   **Om inga sökord anges:** Sök fritt efter aktiva B2B-företag i regionen.
 2.  **EKONOMI:** Hämta Senaste Omsättning från Allabolag.se eller Ratsit.se.
+    *   **FIRECRAWL-METOD:** Använd Firecrawl för snabb scraping av Allabolag-sidan.
     *   **FORMAT:** Ange belopp i **TKR** med mellanslag (t.ex. "150 000 tkr").
     *   Om tillgängligt, hämta även föregående års omsättning för trendanalys.
 3.  **STATUS & KREDIT (VIKTIGT):**
@@ -24,7 +34,8 @@ Optimera för hastighet, men missa inte allvarliga varningssignaler.
     *   TS (250k - 750k), FS (750k - <5M), KAM (>= 5M).
     *   Lämna fraktbudget-beräkning till systemet.
 6.  **BESLUTSFATTARE (KRAV):** Du MÅSTE identifiera minst 1 person (VD, Ägare, Logistikansvarig).
-    *   **LinkedIn:** Endast exakta URLs.
+    *   **SÖKMETOD:** Google-sökning: "[Företagsnamn] [Titel] site:linkedin.com/in/"
+    *   **LinkedIn:** Endast exakta URLs som börjar med https://www.linkedin.com/in/.
     *   Returnera ALDRIG "Okänd".
 7.  **F-SKATT:**
     *   Kontrollera om bolaget är godkänt för F-skatt ("Registrerad").
@@ -39,6 +50,15 @@ export const BATCH_DEEP_INSTRUCTION = `
 ### 0. SYSTEM INSTRUCTION (BATCH DEEP ANALYSIS - v6.6)
 ---
 
+#### 0.0 MODELL & DATAKÄLLOR
+**REKOMMENDERAD MODELL:** Gemini (Google) - Noggrannare för djupanalys
+**DATAKÄLLOR:** Firecrawl API för strukturerad scraping + NewsAPI för nyheter
+**STRATEGI:**
+1. Använd Gemini för noggrann AI-analys
+2. Använd Firecrawl för Allabolag + webbplats-scraping
+3. Använd NewsAPI för företagsnyheter
+4. Google-sökning för LinkedIn-profiler (INTE LinkedIn-scraping)
+
 #### 0.1 MÅL
 Utför en **DJUP OCH GRUNDLIG ANALYS** på flera företag samtidigt (B2B).
 Detta protokoll prioriterar KVALITET över HASTIGHET.
@@ -49,6 +69,7 @@ Detta protokoll prioriterar KVALITET över HASTIGHET.
     *   Följ användarens angivna "Riktad Sökning".
     *   Om tomt: Sök brett (General Search) på bolag i området.
 2.  **EKONOMI:** 
+    *   **FIRECRAWL-METOD:** Scrapa Allabolag-sidan med Firecrawl för strukturerad data.
     *   Källa: Sök specifikt på Allabolag.se eller Ratsit.se för varje bolag.
     *   Hämta omsättning för **BÅDE nuvarande och föregående bokslut** om möjligt.
     *   Format: **TKR** (t.ex. "150 000 tkr").
@@ -57,12 +78,17 @@ Detta protokoll prioriterar KVALITET över HASTIGHET.
     *   Hitta Växelnummer (Hitta.se/Allabolag).
     *   Försök hitta Mobilnummer till beslutsfattare.
 4.  **LOGISTIK-ANALYS (VIKTIGT):**
+    *   **FIRECRAWL-METOD:** Scrapa företagets webbplats (/leverans, /frakt, /kopvillkor).
     *   Du MÅSTE söka efter specifika logistikadresser (Lager/Retur).
-    *   Du MÅSTE identifiera transportörer via \`site:url\`.
-5.  **PERSONER & LINKEDIN:**
-    *   Använd Hybrid-metoden (Titel + Funktion).
+    *   Du MÅSTE identifiera transportörer via Firecrawl eller \`site:url\`.
+5.  **PERSONER & LINKEDIN (GOOGLE-SÖKNING):**
+    *   **SÖKMETOD:** Google-sökning: "[Företagsnamn] [Titel] site:linkedin.com/in/"
+    *   **VIKTIGT:** Använd INTE LinkedIn-scraping. Använd endast Google-sökning.
     *   **LinkedIn:** Returnera endast EXAKTA URLs som börjar med \`https://www.linkedin.com/in/\`. Lämna tomt om osäker.
     *   Hitta minst 1, helst 2 beslutsfattare.
+6.  **NYHETER (NEWSAPI):**
+    *   Använd NewsAPI för att söka företagsnyheter (senaste 30 dagarna).
+    *   Fokus: Expansion, tillväxt, investeringar, logistik.
 
 #### 0.3 UTDATA (JSON)
 Returnera en lista med KOMPLETTA JSON-objekt enligt samma struktur som Single Deep Dive.

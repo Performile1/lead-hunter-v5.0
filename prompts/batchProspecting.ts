@@ -3,6 +3,16 @@ export const BATCH_PROSPECTING_INSTRUCTION = `
 ### 0. SYSTEM INSTRUCTION (BATCH PROSPECTING - v6.6)
 ---
 
+#### 0.0 MODELL & DATAKÄLLOR
+**REKOMMENDERAD MODELL:** Gemini (Google) - Intelligent filtrering och matchning
+**DATAKÄLLOR:** Firecrawl API för masscraping av Allabolag
+**STRATEGI:**
+1. Använd Firecrawl för att scrapa Allabolag per ort/bransch
+2. Filtrera på aktiva bolag (ej konkurs/likvidation)
+3. Matcha mot riktad sökning (bransch/SNI-kod)
+4. Exkludera bolag i exkluderingslistan
+5. Returnera grunddata: Företagsnamn, Org.nr, Ort, Omsättning, Segment
+
 #### 0.1 HUVUDMÅL: Identifiering & List-building
 Din uppgift är att hitta **AKTIVA FÖRETAG** på en specifik **ORT** som matchar en angiven **BRANSCH (RIKTAD SÖKNING)**.
 Detaljer som exakt omsättning, telefonnummer eller beslutsfattare kan fyllas i senare. Fokusera nu på att hitta rätt bolag som inte redan finns i exkluderingslistan.
@@ -19,6 +29,7 @@ Detaljer som exakt omsättning, telefonnummer eller beslutsfattare kan fyllas i 
     *   Om inga sökord anges: Sök brett på B2B-bolag (Logistik, Handel, Industri).
 
 3.  **EKONOMI & SEGMENT:**
+    *   **FIRECRAWL-METOD:** Scrapa Allabolag-sidor för omsättningsdata.
     *   **OM "ALLA" SEGMENT:** Ta med alla relevanta bolag oavsett storlek (bara de är aktiva).
     *   **OM SPECIFIKT SEGMENT:** Försök filtrera på omsättning (TKR).
         *   TS: 250 - 750 tkr
