@@ -1,6 +1,7 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { Building2, Search, Filter, Plus, TrendingDown, AlertTriangle, CheckCircle, Clock, Eye, RefreshCw, ArrowLeft } from 'lucide-react';
 import { CustomerCard } from './CustomerCard';
+import { API_BASE_URL } from '../src/utils/api';
 
 interface Customer {
   id: string;

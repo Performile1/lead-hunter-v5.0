@@ -55,7 +55,8 @@ export const DEEP_STEP_1_CORE = `
     *   *Exempel:* "5 000 000 kr" -> skriv "5000" i JSON.
     *   *Exempel:* "5 000 tkr" -> skriv "5000" i JSON.
     *   *Exempel:* "5 000 KSEK" -> skriv "5000" i JSON.
-    *   Hämta Senaste året (t.ex. 2023/2024) OCH Föregående.
+    *   Hämta Senaste året (prioritera 2024, annars 2023) OCH Föregående.
+    *   **VIKTIGT:** Ange ALLTID vilket år omsättningen gäller (2024, 2023, etc.)
     *   **Beräkning:** Om du hittar belopp i Kronor, dividera med 1000.
 5.  **KREDITVÄRDIGHET (VIKTIGT):**
     *   Sök efter "Kreditbetyg", "Riskklass", "Soliditet" eller "Betalningsanmärkningar" på Allabolag/Ratsit/Syna.
