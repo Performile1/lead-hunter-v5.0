@@ -238,6 +238,17 @@ export const Header: React.FC<HeaderProps> = ({
                         </button>
                       )}
 
+                      {(isSuperAdmin(user) || isTenantAdmin(user)) && onNavigateToDashboard && (
+                        <button 
+                          onClick={() => { onNavigateToDashboard(); setIsMenuOpen(false); }}
+                          className="w-full text-left px-4 py-3 hover:bg-slate-50 flex items-center gap-3 group"
+                        >
+                           <Settings className="w-4 h-4 text-slate-600 group-hover:text-[#FFC400]" />
+                           <span className="text-sm font-medium text-slate-800">{isSuperAdmin(user) ? 'Super Admin Inställningar' : 'Företagsinställningar'}</span>
+                           <span className="text-[9px] bg-yellow-100 text-yellow-700 px-1.5 py-0.5 rounded ml-auto font-bold">{isSuperAdmin(user) ? 'SUPER' : 'TENANT'}</span>
+                        </button>
+                      )}
+
                   </div>
                 )}
              </div>
@@ -268,23 +279,6 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <RotateCcw className="w-4 h-4" />
               </button>
-
-              <div className="w-px h-6 bg-black/10 mx-1"></div>
-
-              {/* SETTINGS BUTTON - Role-based */}
-              {(isSuperAdmin(user) || isTenantAdmin(user)) && onNavigateToDashboard && (
-                <button
-                  onClick={() => {
-                    onNavigateToDashboard();
-                    // Settings will be accessible from dashboard
-                  }}
-                  className="flex items-center gap-2 bg-black hover:bg-white hover:text-black text-[#FFC400] px-3 py-2 rounded-sm transition-colors shadow-sm border-2 border-[#FFC400]"
-                  title={isSuperAdmin(user) ? 'Super Admin Inställningar' : 'Företagsinställningar'}
-                >
-                  <Settings className="w-4 h-4" />
-                  <span className="text-xs font-bold uppercase tracking-wide hidden sm:inline">Inställningar</span>
-                </button>
-              )}
 
               <div className="w-px h-6 bg-black/10 mx-1"></div>
 
