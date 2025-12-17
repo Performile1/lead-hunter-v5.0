@@ -2,8 +2,9 @@
 import { 
   Target, TrendingUp, Clock, CheckCircle, 
   AlertCircle, Package, Users, BarChart3,
-  Calendar, Award, Zap
+  Calendar, Award, Zap, Settings
 } from 'lucide-react';
+import { SalesSettings } from './SalesSettings';
 
 interface SalesMetrics {
   my_leads: {
@@ -42,6 +43,7 @@ interface SalesDashboardProps {
 export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigateToLeads, onNavigateToCustomers }) => {
   const [metrics, setMetrics] = useState<SalesMetrics | null>(null);
   const [loading, setLoading] = useState(true);
+  const [currentView, setCurrentView] = useState<'dashboard' | 'settings'>('dashboard');
 
   useEffect(() => {
     loadMetrics();
@@ -127,6 +129,11 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
 
   if (!metrics) return null;
 
+  // Show settings view
+  if (currentView === 'settings') {
+    return <SalesSettings onBack={() => setCurrentView('dashboard')} />;
+  }
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
@@ -139,13 +146,22 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
             Översikt över dina leads och prestanda
           </p>
         </div>
-        <button
-          onClick={loadMetrics}
-          className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-4 py-2 rounded font-semibold"
-        >
-          <Zap className="w-4 h-4" />
-          Uppdatera
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setCurrentView('settings')}
+            className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black border-2 border-black px-4 py-2 rounded font-semibold"
+          >
+            <Settings className="w-4 h-4" />
+            Inställningar
+          </button>
+          <button
+            onClick={loadMetrics}
+            className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-4 py-2 rounded font-semibold"
+          >
+            <Zap className="w-4 h-4" />
+            Uppdatera
+          </button>
+        </div>
       </div>
 
       {/* KPI Cards */}

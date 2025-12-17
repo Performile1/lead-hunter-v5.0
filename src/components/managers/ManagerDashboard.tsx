@@ -2,8 +2,9 @@
 import { 
   Users, TrendingUp, Target, AlertTriangle,
   Award, BarChart3, Clock, CheckCircle,
-  Package, Activity, Zap
+  Package, Activity, Zap, Settings
 } from 'lucide-react';
+import { ManagerSettings } from './ManagerSettings';
 
 interface TeamMember {
   id: string;
@@ -37,6 +38,7 @@ interface ManagerDashboardProps {
 export const ManagerDashboard: React.FC<ManagerDashboardProps> = ({ leads }) => {
   const [metrics, setMetrics] = useState<ManagerMetrics | null>(null);
   const [loading, setLoading] = useState(true);
+  const [currentView, setCurrentView] = useState<'dashboard' | 'settings'>('dashboard');
 
   useEffect(() => {
     loadMetrics();
@@ -110,6 +112,11 @@ export const ManagerDashboard: React.FC<ManagerDashboardProps> = ({ leads }) => 
 
   if (!metrics) return null;
 
+  // Show settings view
+  if (currentView === 'settings') {
+    return <ManagerSettings onBack={() => setCurrentView('dashboard')} />;
+  }
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
@@ -122,13 +129,22 @@ export const ManagerDashboard: React.FC<ManagerDashboardProps> = ({ leads }) => 
             Översikt över ditt teams prestanda
           </p>
         </div>
-        <button
-          onClick={loadMetrics}
-          className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-4 py-2 rounded font-semibold"
-        >
-          <Zap className="w-4 h-4" />
-          Uppdatera
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setCurrentView('settings')}
+            className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black border-2 border-black px-4 py-2 rounded font-semibold"
+          >
+            <Settings className="w-4 h-4" />
+            Inställningar
+          </button>
+          <button
+            onClick={loadMetrics}
+            className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-4 py-2 rounded font-semibold"
+          >
+            <Zap className="w-4 h-4" />
+            Uppdatera
+          </button>
+        </div>
       </div>
 
       {/* KPI Cards */}

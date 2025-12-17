@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { LayoutDashboard, Users, MapPin, TrendingUp } from 'lucide-react';
+import { LayoutDashboard, Users, MapPin, TrendingUp, Settings } from 'lucide-react';
 import { LeadAssignment } from './LeadAssignment';
+import { TerminalSettings } from './TerminalSettings';
 
 interface TerminalDashboardProps {
   terminalName: string;
@@ -8,12 +9,13 @@ interface TerminalDashboardProps {
 }
 
 export const TerminalDashboard: React.FC<TerminalDashboardProps> = ({ terminalName, terminalCode }) => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'assignments' | 'salespeople'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'assignments' | 'salespeople' | 'settings'>('overview');
 
   const tabs = [
     { id: 'overview' as const, label: 'Översikt', icon: LayoutDashboard },
     { id: 'assignments' as const, label: 'Tilldela Leads', icon: Users },
     { id: 'salespeople' as const, label: 'Säljare', icon: MapPin },
+    { id: 'settings' as const, label: 'Inställningar', icon: Settings },
   ];
 
   return (
@@ -65,6 +67,7 @@ export const TerminalDashboard: React.FC<TerminalDashboardProps> = ({ terminalNa
         {activeTab === 'overview' && <OverviewTab />}
         {activeTab === 'assignments' && <LeadAssignment />}
         {activeTab === 'salespeople' && <SalespeopleTab />}
+        {activeTab === 'settings' && <TerminalSettings onBack={() => setActiveTab('overview')} />}
       </div>
     </div>
   );
