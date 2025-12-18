@@ -4,6 +4,13 @@ import { query, transaction } from '../config/database.js';
 import { authenticate, requireRole } from '../middleware/auth.js';
 import { asyncHandler } from '../middleware/errorHandler.js';
 import { sanitizeInput, auditLog, encryptData, decryptData } from '../middleware/security.js';
+import { syncToVercel, getVercelEnvVars } from '../services/vercelSyncService.js';
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const router = express.Router();
 
@@ -550,5 +557,140 @@ async function updateVercelEnvVars(envVars) {
     return false;
   }
 }
+
+/**
+ * GET /api/admin/env-vars
+ * Hämta environment variables (maskerade)
+ */
+router.get('/env-vars',
+  asyncHandler(async (req, res) => {
+    try {
+      // Läs .env-fil
+      const envPath = path.join(__dirname, '../../.env');
+      let envVars = {};
+
+      try {
+        const envContent = await fs.readFile(envPath, 'utf-8');
+        const lines = envContent.split('\n');
+        
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (trimmed && !trimmed.startsWith('#')) {
+            const [key, ...valueParts] = trimmed.split('=');
+            if (key) {
+              const value = valueParts.join('=');
+              // Maskera värden för säkerhet
+              envVars[key.trim()] = value ? '••••••••' : '';
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error reading .env file:', error);
+      }
+
+      // Lägg till viktiga keys om de saknas
+      const importantKeys = [
+        'GROQ_API_KEY',
+        'GEMINI_API_KEY',
+        'OPENAI_API_KEY',
+        'ANTHROPIC_API_KEY',
+        'FIRECRAWL_API_KEY',
+        'DATABASE_URL',
+        'JWT_SECRET'
+      ];
+
+      for (const key of importantKeys) {
+        if (!envVars[key]) {
+          envVars[key] = '';
+        }
+      }
+
+      res.json({ envVars });
+    } catch (error) {
+      console.error('Error fetching env vars:', error);
+      res.status(500).json({ error: 'Failed to fetch environment variables' });
+    }
+  })
+);
+
+/**
+ * POST /api/admin/env-vars
+ * Uppdatera environment variables och synka till Vercel
+ */
+router.post('/env-vars',
+  sanitizeInput,
+  auditLog('update_env_vars'),
+  asyncHandler(async (req, res) => {
+    const { envVars } = req.body;
+
+    if (!envVars || typeof envVars !== 'object') {
+      return res.status(400).json({ error: 'Invalid envVars format' });
+    }
+
+    try {
+      // 1. Uppdatera .env-fil lokalt
+      const envPath = path.join(__dirname, '../../.env');
+      let envContent = '';
+
+      try {
+        envContent = await fs.readFile(envPath, 'utf-8');
+      } catch (error) {
+        console.log('.env file not found, creating new one');
+      }
+
+      const lines = envContent.split('\n');
+      const updatedLines = [];
+      const processedKeys = new Set();
+
+      // Uppdatera befintliga rader
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith('#')) {
+          updatedLines.push(line);
+          continue;
+        }
+
+        const [key] = trimmed.split('=');
+        const cleanKey = key.trim();
+
+        if (envVars[cleanKey] !== undefined && !envVars[cleanKey].includes('••••')) {
+          updatedLines.push(`${cleanKey}=${envVars[cleanKey]}`);
+          processedKeys.add(cleanKey);
+        } else {
+          updatedLines.push(line);
+        }
+      }
+
+      // Lägg till nya keys
+      for (const [key, value] of Object.entries(envVars)) {
+        if (!processedKeys.has(key) && value && !value.includes('••••')) {
+          updatedLines.push(`${key}=${value}`);
+        }
+      }
+
+      // Skriv tillbaka till .env
+      await fs.writeFile(envPath, updatedLines.join('\n'), 'utf-8');
+
+      // 2. Synka till Vercel
+      const vercelSuccess = await syncToVercel(envVars);
+
+      if (vercelSuccess) {
+        res.json({ 
+          success: true, 
+          message: 'API-nycklar sparade lokalt och uppdaterade i Vercel!' 
+        });
+      } else {
+        res.json({ 
+          success: true, 
+          message: 'API-nycklar sparade lokalt. Vercel-synk misslyckades (kontrollera credentials).',
+          warning: 'Vercel sync failed'
+        });
+      }
+    } catch (error) {
+      console.error('Error saving env vars:', error);
+      res.status(500).json({ error: 'Failed to save environment variables' });
+    }
+  })
+);
 
 export default router;
