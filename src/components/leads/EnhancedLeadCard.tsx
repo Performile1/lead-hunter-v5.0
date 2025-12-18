@@ -1,10 +1,11 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { 
   X, Building2, MapPin, Phone, Globe, Mail, Calendar, User, TrendingUp, TrendingDown,
   AlertCircle, CheckCircle, ExternalLink, DollarSign, Package, ShoppingCart, 
   Award, AlertTriangle, Shield, BarChart3, Target, Zap, Clock, FileText,
   Truck, CreditCard, Home, Box, Store, Flag, Code, Search
 } from 'lucide-react';
+import { FinancialGauge } from '../common/FinancialGauge';
 
 interface Lead {
   id: string;
@@ -35,6 +36,12 @@ interface Lead {
     revenue_history?: Array<{ year: string; revenue: number }>;
     revenue_change_percent?: number;
     previous_year_revenue?: number;
+  };
+  financial_metrics?: {
+    kassalikviditet?: number;
+    vinstmarginal?: number;
+    soliditet?: number;
+    year?: string;
   };
   
   // Juridiskt & Kredit

@@ -11,6 +11,14 @@
       "destination": "/api/leads/shared-pool.js"
     },
     {
+      "source": "/api/leads/background-pool",
+      "destination": "/api/leads/background-pool.js"
+    },
+    {
+      "source": "/api/leads/:id/financial-metrics",
+      "destination": "/api/leads/financial-metrics.js"
+    },
+    {
       "source": "/api/admin/(.*)",
       "destination": "/server/routes/admin.js"
     },

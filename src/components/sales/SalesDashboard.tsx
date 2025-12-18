@@ -2,9 +2,10 @@
 import { 
   Target, TrendingUp, Clock, CheckCircle, 
   AlertCircle, Package, Users, BarChart3,
-  Calendar, Award, Zap, Settings
+  Calendar, Award, Zap, Settings, Share2
 } from 'lucide-react';
 import { SalesSettings } from './SalesSettings';
+import { SharedLeadPool } from '../leads/SharedLeadPool';
 
 interface SalesMetrics {
   my_leads: {
@@ -43,7 +44,7 @@ interface SalesDashboardProps {
 export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigateToLeads, onNavigateToCustomers }) => {
   const [metrics, setMetrics] = useState<SalesMetrics | null>(null);
   const [loading, setLoading] = useState(true);
-  const [currentView, setCurrentView] = useState<'dashboard' | 'settings'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'settings' | 'shared-pool'>('dashboard');
 
   useEffect(() => {
     loadMetrics();
@@ -134,6 +135,20 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
     return <SalesSettings onBack={() => setCurrentView('dashboard')} />;
   }
 
+  if (currentView === 'shared-pool') {
+    return (
+      <div className="p-6">
+        <button 
+          onClick={() => setCurrentView('dashboard')} 
+          className="mb-4 text-dhl-red hover:underline font-semibold"
+        >
+          ← Tillbaka till Dashboard
+        </button>
+        <SharedLeadPool />
+      </div>
+    );
+  }
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
@@ -146,13 +161,22 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
             Översikt över dina leads och prestanda
           </p>
         </div>
-        <button
-          onClick={loadMetrics}
-          className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-4 py-2 rounded font-semibold"
-        >
-          <Zap className="w-4 h-4" />
-          Uppdatera
-        </button>
+        <div className="flex gap-3">
+          <button
+            onClick={() => setCurrentView('shared-pool')}
+            className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded font-semibold"
+          >
+            <Share2 className="w-4 h-4" />
+            Delad Lead-Pool
+          </button>
+          <button
+            onClick={loadMetrics}
+            className="flex items-center gap-2 bg-black hover:bg-[#FFC400] hover:text-black text-white px-4 py-2 rounded font-semibold"
+          >
+            <Zap className="w-4 h-4" />
+            Uppdatera
+          </button>
+        </div>
       </div>
 
       {/* KPI Cards */}

@@ -37,10 +37,21 @@ export async function scrapeWebsite(url) {
     const staticAnalysis = await scrapeStatic(url);
     Object.assign(analysis, staticAnalysis);
 
-    // 2. Ny checkout detection: Firecrawl → Puppeteer → Gemini
+    // 2. Ny checkout detection: Firecrawl → Puppeteer → Gemini (med timeout)
     console.log('🎯 Starting advanced checkout detection...');
-    const checkoutAnalysis = await detectCheckoutCarriers(url);
-    Object.assign(analysis, checkoutAnalysis);
+    try {
+      const checkoutAnalysis = await withTimeout(
+        detectCheckoutCarriers(url),
+        20000, // 20 sekunder timeout
+        'Checkout detection'
+      );
+      Object.assign(analysis, checkoutAnalysis);
+    } catch (error) {
+      console.error('Checkout detection timeout:', error);
+      analysis.detection_method = 'timeout';
+      analysis.confidence = 'low';
+      analysis.error = 'Timeout after 20s';
+    }
 
     // 3. Upptäck teknologier
     analysis.technologies = await detectTechnologies(url);
