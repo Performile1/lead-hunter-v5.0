@@ -61,12 +61,17 @@ export const SuperAdminLeadViewer: React.FC = () => {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        setLeads(data.leads || []);
+      if (!response.ok) {
+        console.error('Failed to load leads:', response.status, response.statusText);
+        setLeads([]);
+        return;
       }
+
+      const data = await response.json();
+      setLeads(data.leads || []);
     } catch (error) {
       console.error('Failed to load leads:', error);
+      setLeads([]);
     } finally {
       setLoading(false);
     }

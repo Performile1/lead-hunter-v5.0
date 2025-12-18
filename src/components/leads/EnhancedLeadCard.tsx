@@ -21,7 +21,9 @@ interface Lead {
   return_address?: string;
   
   // Kontakt
+  phone?: string;
   phone_number?: string;
+  domain?: string;
   website_url?: string;
   email_structure?: string;
   
@@ -225,14 +227,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                 <h2 className="text-3xl font-bold uppercase">{lead.company_name}</h2>
               </div>
               
-              <div className="flex flex-wrap items-center gap-3 text-sm">
-                {lead.org_number && (
-                  <span className="flex items-center gap-1 bg-white bg-opacity-20 px-3 py-1 rounded">
-                    <span className="opacity-90">Org.nr:</span>
-                    <span className="font-semibold">{lead.org_number}</span>
-                  </span>
-                )}
-                
+              <div className="flex flex-wrap items-center gap-3 text-sm mb-3">
                 <span className={`px-4 py-1 rounded-full text-sm font-bold border-2 ${getSegmentColor(lead.segment)}`}>
                   {lead.segment}
                 </span>
@@ -249,6 +244,43 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                     <AlertTriangle className="w-3 h-3" />
                     VARNING
                   </span>
+                )}
+              </div>
+
+              {/* Company Details Row */}
+              <div className="flex flex-wrap items-center gap-4 text-sm">
+                {lead.org_number && (
+                  <span className="flex items-center gap-1 bg-white bg-opacity-20 px-3 py-1 rounded">
+                    <span className="font-semibold">{lead.org_number}</span>
+                  </span>
+                )}
+                
+                {lead.parent_company && (
+                  <span className="flex items-center gap-1 bg-white bg-opacity-20 px-3 py-1 rounded">
+                    <span className="opacity-90">(Dotterbolag till {lead.parent_company})</span>
+                  </span>
+                )}
+                
+                {lead.domain && (
+                  <a 
+                    href={`https://${lead.domain}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 bg-white bg-opacity-20 px-3 py-1 rounded hover:bg-opacity-30 transition"
+                  >
+                    <Globe className="w-3 h-3" />
+                    <span className="font-semibold">{lead.domain}</span>
+                  </a>
+                )}
+                
+                {lead.phone && (
+                  <a 
+                    href={`tel:${lead.phone}`}
+                    className="flex items-center gap-1 bg-white bg-opacity-20 px-3 py-1 rounded hover:bg-opacity-30 transition"
+                  >
+                    <Phone className="w-3 h-3" />
+                    <span className="font-semibold">{lead.phone}</span>
+                  </a>
                 )}
               </div>
             </div>

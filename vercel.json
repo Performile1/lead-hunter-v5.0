@@ -1,4 +1,22 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/api/admin/leads/all",
+      "destination": "/api/admin/leads/all.js"
+    },
+    {
+      "source": "/api/leads/shared-pool",
+      "destination": "/api/leads/shared-pool.js"
+    },
+    {
+      "source": "/api/admin/(.*)",
+      "destination": "/server/routes/admin.js"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "/server/index.js"
+    }
+  ]
 }
