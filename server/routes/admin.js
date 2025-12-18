@@ -333,6 +333,106 @@ router.get('/activity-logs',
   })
 );
 
+/**
+ * GET /api/admin/env-vars
+ * Hämta environment variables (maskerade)
+ */
+router.get('/env-vars',
+  asyncHandler(async (req, res) => {
+    // Only super admin can access
+    if (req.user.tenant_id) {
+      return res.status(403).json({ error: 'Endast super admin kan hantera environment variables' });
+    }
+
+    const envVars = {
+      GROQ_API_KEY: process.env.GROQ_API_KEY ? maskApiKey(process.env.GROQ_API_KEY) : '',
+      GEMINI_API_KEY: process.env.GEMINI_API_KEY ? maskApiKey(process.env.GEMINI_API_KEY) : '',
+      OPENAI_API_KEY: process.env.OPENAI_API_KEY ? maskApiKey(process.env.OPENAI_API_KEY) : '',
+      ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY ? maskApiKey(process.env.ANTHROPIC_API_KEY) : '',
+      DATABASE_URL: process.env.DATABASE_URL ? maskDatabaseUrl(process.env.DATABASE_URL) : '',
+      JWT_SECRET: process.env.JWT_SECRET ? '••••••••••••••••' : ''
+    };
+
+    res.json({ envVars });
+  })
+);
+
+/**
+ * POST /api/admin/env-vars
+ * Uppdatera environment variables
+ */
+router.post('/env-vars',
+  sanitizeInput,
+  auditLog('update_env_vars'),
+  asyncHandler(async (req, res) => {
+    // Only super admin can update
+    if (req.user.tenant_id) {
+      return res.status(403).json({ error: 'Endast super admin kan uppdatera environment variables' });
+    }
+
+    const { envVars } = req.body;
+
+    if (!envVars || typeof envVars !== 'object') {
+      return res.status(400).json({ error: 'Ogiltigt format för environment variables' });
+    }
+
+    // Import required modules
+    const fs = await import('fs');
+    const path = await import('path');
+
+    // Update .env file locally
+    const envPath = path.join(process.cwd(), '.env');
+    let envContent = '';
+
+    try {
+      if (fs.existsSync(envPath)) {
+        envContent = fs.readFileSync(envPath, 'utf8');
+      }
+    } catch (error) {
+      console.error('Error reading .env file:', error);
+    }
+
+    // Update or add each environment variable
+    Object.keys(envVars).forEach(key => {
+      const value = envVars[key];
+      if (value && !value.includes('••••')) {
+        const regex = new RegExp(`^${key}=.*$`, 'm');
+        if (regex.test(envContent)) {
+          envContent = envContent.replace(regex, `${key}=${value}`);
+        } else {
+          envContent += `\n${key}=${value}`;
+        }
+        process.env[key] = value;
+      }
+    });
+
+    // Write back to .env file
+    try {
+      fs.writeFileSync(envPath, envContent.trim() + '\n', 'utf8');
+    } catch (error) {
+      console.error('Error writing .env file:', error);
+    }
+
+    // Update Vercel if configured
+    let vercelUpdated = false;
+    if (process.env.VERCEL_TOKEN && process.env.VERCEL_PROJECT_ID) {
+      try {
+        vercelUpdated = await updateVercelEnvVars(envVars);
+      } catch (error) {
+        console.error('Error updating Vercel:', error);
+      }
+    }
+
+    res.json({
+      success: true,
+      message: vercelUpdated 
+        ? 'Environment variables uppdaterade lokalt och i Vercel!' 
+        : 'Environment variables uppdaterade lokalt.',
+      vercelUpdated
+    });
+  })
+);
+
 // Helper functions for testing LLMs
 async function testGemini(apiKey, model) {
   // Implementera Gemini test
@@ -352,6 +452,103 @@ async function testOpenAI(apiKey, model) {
 async function testClaude(apiKey, model) {
   // Implementera Claude test
   return 'Claude test lyckades';
+}
+
+// Helper function to mask API keys
+function maskApiKey(key) {
+  if (!key || key.length < 8) return '••••••••';
+  return key.substring(0, 4) + '••••••••' + key.substring(key.length - 4);
+}
+
+// Helper function to mask database URL
+function maskDatabaseUrl(url) {
+  if (!url) return '';
+  try {
+    const urlObj = new URL(url);
+    if (urlObj.password) {
+      urlObj.password = '••••••••';
+    }
+    return urlObj.toString();
+  } catch {
+    return '••••••••';
+  }
+}
+
+// Update Vercel environment variables
+async function updateVercelEnvVars(envVars) {
+  const token = process.env.VERCEL_TOKEN;
+  const projectId = process.env.VERCEL_PROJECT_ID;
+  const teamId = process.env.VERCEL_TEAM_ID;
+
+  if (!token || !projectId) {
+    return false;
+  }
+
+  const baseUrl = teamId 
+    ? `https://api.vercel.com/v10/projects/${projectId}/env?teamId=${teamId}`
+    : `https://api.vercel.com/v10/projects/${projectId}/env`;
+
+  try {
+    // Get existing env vars
+    const getResponse = await fetch(baseUrl, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!getResponse.ok) {
+      return false;
+    }
+
+    const existingVars = await getResponse.json();
+
+    // Update or create each env var
+    for (const [key, value] of Object.entries(envVars)) {
+      if (!value || value.includes('••••')) continue;
+
+      const envVarId = existingVars.envs?.find(v => v.key === key)?.id;
+
+      if (envVarId) {
+        // Update existing
+        const updateUrl = teamId
+          ? `https://api.vercel.com/v9/projects/${projectId}/env/${envVarId}?teamId=${teamId}`
+          : `https://api.vercel.com/v9/projects/${projectId}/env/${envVarId}`;
+
+        await fetch(updateUrl, {
+          method: 'PATCH',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            value,
+            target: ['production', 'preview', 'development']
+          })
+        });
+      } else {
+        // Create new
+        await fetch(baseUrl, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            key,
+            value,
+            type: 'encrypted',
+            target: ['production', 'preview', 'development']
+          })
+        });
+      }
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error updating Vercel env vars:', error);
+    return false;
+  }
 }
 
 export default router;

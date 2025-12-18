@@ -11,9 +11,9 @@ export const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#4F46E5] to-[#FFD700] flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-4 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#FFC400] mx-auto mb-4"></div>
           <p className="text-black font-bold">Laddar...</p>
         </div>
       </div>

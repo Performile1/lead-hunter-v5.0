@@ -1,5 +1,6 @@
-﻿import React, { useState } from 'react';
-import { Settings, Database, Shield, Bell, Mail, Key, Save } from 'lucide-react';
+﻿import React, { useState, useEffect } from 'react';
+import { Settings, Database, Shield, Bell, Mail, Key, Save, Eye, EyeOff, RefreshCw, CheckCircle, AlertCircle } from 'lucide-react';
+import { API_BASE_URL } from '../../utils/api';
 
 export const SuperAdminSettings: React.FC = () => {
   const [settings, setSettings] = useState({
@@ -14,6 +15,84 @@ export const SuperAdminSettings: React.FC = () => {
     backupFrequency: 'daily',
     logRetentionDays: 90
   });
+
+  const [apiKeys, setApiKeys] = useState({
+    GROQ_API_KEY: '',
+    GEMINI_API_KEY: '',
+    OPENAI_API_KEY: '',
+    ANTHROPIC_API_KEY: '',
+    DATABASE_URL: '',
+    JWT_SECRET: ''
+  });
+
+  const [showKeys, setShowKeys] = useState({
+    GROQ_API_KEY: false,
+    GEMINI_API_KEY: false,
+    OPENAI_API_KEY: false,
+    ANTHROPIC_API_KEY: false,
+    DATABASE_URL: false,
+    JWT_SECRET: false
+  });
+
+  const [saving, setSaving] = useState(false);
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [statusMessage, setStatusMessage] = useState('');
+
+  useEffect(() => {
+    loadApiKeys();
+  }, []);
+
+  const loadApiKeys = async () => {
+    try {
+      const token = localStorage.getItem('eurekai_token');
+      const response = await fetch(`${API_BASE_URL}/admin/env-vars`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setApiKeys(data.envVars || {});
+      }
+    } catch (error) {
+      console.error('Error loading API keys:', error);
+    }
+  };
+
+  const handleSaveApiKeys = async () => {
+    setSaving(true);
+    setSaveStatus('idle');
+    
+    try {
+      const token = localStorage.getItem('eurekai_token');
+      const response = await fetch(`${API_BASE_URL}/admin/env-vars`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ envVars: apiKeys })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setSaveStatus('success');
+        setStatusMessage(data.message || 'API-nycklar sparade och uppdaterade i Vercel!');
+        setTimeout(() => setSaveStatus('idle'), 5000);
+      } else {
+        const error = await response.json();
+        setSaveStatus('error');
+        setStatusMessage(error.error || 'Kunde inte spara API-nycklar');
+      }
+    } catch (error) {
+      setSaveStatus('error');
+      setStatusMessage('Nätverksfel vid sparande');
+      console.error('Error saving API keys:', error);
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const handleSave = () => {
     alert('Inställningar sparade! (Backend integration behövs)');
@@ -39,6 +118,83 @@ export const SuperAdminSettings: React.FC = () => {
           <Save className="w-4 h-4" />
           Spara Ändringar
         </button>
+      </div>
+
+      {/* API Keys Management */}
+      <div className="bg-white rounded-none p-6 border-l-4 border-[#FFC400]">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <Key className="w-5 h-5 text-[#FFC400]" />
+            <h2 className="text-lg font-black text-black uppercase">API-nycklar & Environment Variables</h2>
+          </div>
+          <button
+            onClick={handleSaveApiKeys}
+            disabled={saving}
+            className="flex items-center gap-2 bg-[#FFC400] hover:bg-black text-black hover:text-white px-4 py-2 rounded font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {saving ? (
+              <>
+                <RefreshCw className="w-4 h-4 animate-spin" />
+                Sparar...
+              </>
+            ) : (
+              <>
+                <Save className="w-4 h-4" />
+                Spara & Uppdatera Vercel
+              </>
+            )}
+          </button>
+        </div>
+
+        {saveStatus !== 'idle' && (
+          <div className={`mb-4 p-3 rounded flex items-center gap-2 ${
+            saveStatus === 'success' ? 'bg-green-50 text-green-800 border border-green-200' : 'bg-red-50 text-red-800 border border-red-200'
+          }`}>
+            {saveStatus === 'success' ? (
+              <CheckCircle className="w-5 h-5" />
+            ) : (
+              <AlertCircle className="w-5 h-5" />
+            )}
+            <span className="font-semibold text-sm">{statusMessage}</span>
+          </div>
+        )}
+
+        <div className="space-y-4">
+          {Object.keys(apiKeys).map((keyName) => (
+            <div key={keyName}>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                {keyName.replace(/_/g, ' ')}
+              </label>
+              <div className="relative">
+                <input
+                  type={showKeys[keyName as keyof typeof showKeys] ? 'text' : 'password'}
+                  value={apiKeys[keyName as keyof typeof apiKeys]}
+                  onChange={(e) => setApiKeys({ ...apiKeys, [keyName]: e.target.value })}
+                  placeholder={`Ange ${keyName}`}
+                  className="w-full px-3 py-2 pr-10 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent font-mono text-sm"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowKeys({ ...showKeys, [keyName]: !showKeys[keyName as keyof typeof showKeys] })}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                >
+                  {showKeys[keyName as keyof typeof showKeys] ? (
+                    <EyeOff className="w-4 h-4" />
+                  ) : (
+                    <Eye className="w-4 h-4" />
+                  )}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded">
+          <p className="text-xs text-yellow-800">
+            <strong>⚠️ Viktigt:</strong> När du sparar uppdateras både .env-filen lokalt och environment variables i Vercel. 
+            Detta kan ta några sekunder. Vercel kommer automatiskt att redeployera applikationen med de nya värdena.
+          </p>
+        </div>
       </div>
 
       {/* General Settings */}

@@ -79,7 +79,7 @@ export const TeamHierarchy: React.FC<TeamHierarchyProps> = ({ managerId, manager
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-dhl-red to-red-700 text-white p-6 rounded-lg shadow-lg">
+      <div className="bg-dhl-red text-white p-6 rounded-lg shadow-lg">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-3xl font-bold uppercase mb-2">Mitt Team</h2>

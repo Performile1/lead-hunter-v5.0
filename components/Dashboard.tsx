@@ -67,7 +67,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#4F46E5]/10 to-white p-6">
+    <div className="min-h-screen bg-slate-50 p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         
         {/* Header */}
@@ -164,7 +164,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
             {/* Leads Button */}
             <button
               onClick={onNavigateToLeads}
-              className="p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-sm border-2 border-blue-200 hover:border-blue-400 hover:shadow-lg transition-all group"
+              className="p-6 bg-blue-50 rounded-sm border-2 border-blue-200 hover:border-blue-400 hover:shadow-lg transition-all group"
             >
               <div className="flex items-center justify-between mb-3">
                 <Target className="w-8 h-8 text-blue-600" />
@@ -178,7 +178,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
             {/* Customers Button */}
             <button
               onClick={onNavigateToCustomers}
-              className="p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-sm border-2 border-green-200 hover:border-green-400 hover:shadow-lg transition-all group"
+              className="p-6 bg-green-50 rounded-sm border-2 border-green-200 hover:border-green-400 hover:shadow-lg transition-all group"
             >
               <div className="flex items-center justify-between mb-3">
                 <Building2 className="w-8 h-8 text-green-600" />
@@ -192,7 +192,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
             {/* Cronjobs Button */}
             <button
               onClick={onNavigateToCronjobs}
-              className="p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-sm border-2 border-yellow-200 hover:border-purple-400 hover:shadow-lg transition-all group"
+              className="p-6 bg-purple-50 rounded-sm border-2 border-yellow-200 hover:border-purple-400 hover:shadow-lg transition-all group"
             >
               <div className="flex items-center justify-between mb-3">
                 <Clock className="w-8 h-8 text-gray-700" />

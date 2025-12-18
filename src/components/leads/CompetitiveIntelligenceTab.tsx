@@ -152,7 +152,7 @@ export const CompetitiveIntelligenceTab: React.FC<CompetitiveIntelligenceTabProp
       </div>
 
       {/* Säljpitch */}
-      <div className="bg-gradient-to-r from-dhl-yellow to-yellow-100 border-l-4 border-primary p-6 rounded-lg shadow-md">
+      <div className="bg-yellow-100 border-l-4 border-primary p-6 rounded-lg shadow-md">
         <h4 className="font-bold text-xl mb-4 flex items-center gap-2 text-gray-900">
           <Zap className="w-6 h-6 text-primary" />
           Din Säljpitch

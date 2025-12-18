@@ -160,7 +160,7 @@ export const TeamStats: React.FC = () => {
 
       {/* Top Performer */}
       {stats.top_performer && (
-        <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 border-l-4 border-dhl-yellow p-6 shadow-md">
+        <div className="bg-yellow-50 border-l-4 border-dhl-yellow p-6 shadow-md">
           <div className="flex items-center gap-4">
             <div className="bg-secondary text-black p-4 rounded-full">
               <Award className="w-8 h-8" />

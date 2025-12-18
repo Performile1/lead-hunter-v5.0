@@ -217,7 +217,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg shadow-xl max-w-6xl w-full max-h-[95vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-dhl-red to-red-700 text-white p-6">
+        <div className="bg-dhl-red text-white p-6">
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-3">
@@ -320,7 +320,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                   {/* Omsättning med förändring */}
-                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 border-l-4 border-blue-500 p-4 rounded-lg">
+                  <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
                     <p className="text-sm text-gray-700 mb-1 font-semibold">Omsättning {lead.revenue_year}</p>
                     <p className="text-3xl font-bold text-gray-900">{formatCurrency(lead.revenue_tkr)}</p>
                     {revenueChange !== null && (
@@ -339,7 +339,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                   </div>
 
                   {/* Fraktbudget */}
-                  <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 border-l-4 border-dhl-yellow p-4 rounded-lg">
+                  <div className="bg-yellow-50 border-l-4 border-dhl-yellow p-4 rounded-lg">
                     <p className="text-sm text-gray-700 mb-1 font-semibold">Fraktbudget (5%)</p>
                     <p className="text-3xl font-bold text-gray-900">{formatCurrency(lead.freight_budget_tkr)}</p>
                     <p className="text-xs text-gray-600 mt-2">Estimerad årlig fraktkostnad</p>
@@ -358,7 +358,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                   </div>
 
                   {/* Likviditet */}
-                  <div className="bg-gradient-to-br from-green-50 to-green-100 border-l-4 border-green-500 p-4 rounded-lg">
+                  <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-lg">
                     <p className="text-sm text-gray-700 mb-1 font-semibold">Likviditet</p>
                     <p className="text-3xl font-bold text-gray-900">{lead.liquidity || 'N/A'}</p>
                     {lead.trend_risk && (
@@ -560,7 +560,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
               {lead.decision_makers && lead.decision_makers.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {lead.decision_makers.map((dm, index) => (
-                    <div key={index} className="border-l-4 border-dhl-yellow bg-gradient-to-r from-yellow-50 to-white p-5 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div key={index} className="border-l-4 border-dhl-yellow bg-yellow-50 p-5 rounded-lg shadow-sm hover:shadow-md transition">
                       <div className="flex items-start gap-3">
                         <div className="bg-secondary rounded-full p-2">
                           <User className="w-5 h-5 text-white" />
@@ -623,7 +623,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
               {lead.competitive_intelligence ? (
                 <>
                   {/* Opportunity Score */}
-                  <div className="bg-gradient-to-r from-purple-50 to-blue-50 border-2 border-yellow-300 p-6 rounded-lg">
+                  <div className="bg-purple-50 border-2 border-yellow-300 p-6 rounded-lg">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm text-gray-600 mb-1">Opportunity Score</p>

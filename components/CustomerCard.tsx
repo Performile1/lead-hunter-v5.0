@@ -166,7 +166,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#4F46E5]/10 to-white p-6 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 p-6 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 mx-auto mb-4"></div>
           <p className="text-slate-600">Laddar kunddata...</p>
@@ -177,7 +177,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
 
   if (!customer) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#4F46E5]/10 to-white p-6">
+      <div className="min-h-screen bg-slate-50 p-6">
         <div className="max-w-5xl mx-auto">
           <div className="bg-red-50 border-l-4 border-red-500 p-4">
             <p className="text-red-700">Kunde inte hitta kund</p>
@@ -191,7 +191,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({ customerId, onClose,
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#4F46E5]/10 to-white p-6">
+    <div className="min-h-screen bg-slate-50 p-6">
       <div className="max-w-5xl mx-auto">
         
         {/* Header Card */}

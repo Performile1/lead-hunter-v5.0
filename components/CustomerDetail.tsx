@@ -97,7 +97,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#4F46E5]/10 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="animate-spin rounded-full h-16 w-16 border-b-4"></div>
       </div>
     );
@@ -105,7 +105,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
 
   if (!customer) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#4F46E5]/10 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
           <AlertTriangle className="w-20 h-20 text-red-500 mx-auto mb-4" />
           <p className="text-xl font-bold text-gray-600">Kund hittades inte</p>
@@ -121,7 +121,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
   const previousMonitoring = monitoringHistory[1];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#4F46E5]/10 to-white p-6">
+    <div className="min-h-screen bg-slate-50 p-6">
       <div className="max-w-7xl mx-auto">
         
         {/* Back Button */}
@@ -218,7 +218,7 @@ export const CustomerDetail: React.FC<CustomerDetailProps> = ({ customerId, onBa
             {activeTab === 'overview' && (
               <div className="space-y-6">
                 {/* Checkout Position */}
-                <div className="bg-gradient-to-br from-[#4F46E5]/20 to-white p-6 rounded-lg ">
+                <div className="bg-white p-6 rounded-lg border border-slate-200">
                   <h3 className="text-xl font-black text-black uppercase mb-4 flex items-center gap-2">
                     <Package className="w-6 h-6 text-black" />
                     Checkout-position

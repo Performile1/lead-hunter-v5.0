@@ -208,11 +208,11 @@ export const SuperAdminDashboard: React.FC = () => {
         <button onClick={() => setCurrentView('leads')} className="bg-white text-black p-6 rounded-none shadow-lg hover:shadow-xl transition-all text-left ">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-semibold opacity-90">Sök</p>
-              <p className="text-2xl font-black mt-1">Leads</p>
-              <p className="text-xs opacity-75 mt-2">Alla leads</p>
+              <p className="text-sm font-semibold opacity-90">Visa</p>
+              <p className="text-2xl font-black mt-1">Alla Leads</p>
+              <p className="text-xs opacity-75 mt-2">Från databas</p>
             </div>
-            <Search className="w-12 h-12 opacity-80" />
+            <Database className="w-12 h-12 opacity-80" />
           </div>
         </button>
         
@@ -295,7 +295,7 @@ export const SuperAdminDashboard: React.FC = () => {
           >
             ← Tillbaka till Dashboard
           </button>
-          <SuperAdminLeadSearch />
+          <SuperAdminLeadViewer />
         </div>
       )}
 

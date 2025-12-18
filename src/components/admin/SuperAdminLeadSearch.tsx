@@ -19,29 +19,28 @@ interface Lead {
   checkout_position?: string;
 }
 
-export const SuperAdminLeadSearch: React.FC = () => {
+export const SuperAdminLeadViewer: React.FC = () => {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(false);
   const [analyzing, setAnalyzing] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState('');
   const [filterTenant, setFilterTenant] = useState('');
+  const [filterCarrier, setFilterCarrier] = useState('');
   const [showAnonymizedOnly, setShowAnonymizedOnly] = useState(false);
   const [viewMode, setViewMode] = useState<'table' | 'cards'>('cards');
 
   useEffect(() => {
-    loadAllLeads();
+    loadAllLeadsFromDatabase();
   }, []);
 
-  const loadAllLeads = async () => {
+  const loadAllLeadsFromDatabase = async () => {
     try {
       setLoading(true);
+      const token = localStorage.getItem('eurekai_token');
       
-      // Mock data - leads from all tenants
-      const mockLeads: Lead[] = [
-        {
-          id: '1',
-          company_name: 'Schenker AB',
-          domain: 'schenker.se',
+      // Fetch ALL leads from database (no search, just database query)
+      const response = await fetch(`${API_BASE_URL}/admin/leads/all`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
           tenant_id: '1',
           tenant_name: 'DHL Express Sweden',
           ecommerce_platform: 'Shopify',

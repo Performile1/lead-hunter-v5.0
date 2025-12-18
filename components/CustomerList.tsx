@@ -109,7 +109,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ onBack, userRole = '
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#4F46E5]/10 to-white p-6">
+    <div className="min-h-screen bg-slate-50 p-6">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
