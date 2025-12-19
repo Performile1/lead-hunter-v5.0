@@ -1285,6 +1285,8 @@ const AppContent: React.FC = () => {
                     onReportError={handleReportError}
                     onConvertToCustomer={handleConvertToCustomer}
                     onClose={() => setDeepDiveLead(null)}
+                    isSuperAdmin={user?.role === 'admin' && !user?.tenant_id}
+                    tenantSearchTerm={user?.tenant_id ? 'DHL' : undefined}
                  />
                </div>
              )}
