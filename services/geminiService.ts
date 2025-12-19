@@ -860,17 +860,17 @@ export const generateDeepDiveSequential = async (
   console.log(`📥 Steg 1 svar mottaget`);
   
   // Extract text from response - handle both direct text and parts array
-  let responseText = step1Response.text;
-  if (!responseText && step1Response.candidates?.[0]?.content?.parts) {
+  let step1Text = step1Response.text;
+  if (!step1Text && step1Response.candidates?.[0]?.content?.parts) {
     // When using grounding tools, text might be in parts array
     const parts = step1Response.candidates[0].content.parts;
-    responseText = parts.map((p: any) => p.text || '').join('');
+    step1Text = parts.map((p: any) => p.text || '').join('');
   }
   
-  console.log(`   Text längd: ${responseText?.length || 0} tecken`);
-  console.log(`   Första 200 tecken: ${responseText?.substring(0, 200) || 'TOMT'}`);
+  console.log(`   Text längd: ${step1Text?.length || 0} tecken`);
+  console.log(`   Första 200 tecken: ${step1Text?.substring(0, 200) || 'TOMT'}`);
 
-  if (!responseText) {
+  if (!step1Text) {
     console.error(`❌ Inget svar från Gemini API i Steg 1`);
     console.error(`   Företag: ${formData.companyNameOrOrg}`);
     console.error(`   Modell: ${model}`);
@@ -878,10 +878,7 @@ export const generateDeepDiveSequential = async (
     throw new Error("Inget svar i Steg 1 - Gemini API returnerade tomt svar. Försök igen eller kontrollera API-status.");
   }
   
-  // Use extracted text for further processing
-  step1Response.text = responseText;
-  
-  const step1Json = extractJSON(step1Response.text);
+  const step1Json = extractJSON(step1Text);
   console.log(`📊 JSON extraherat från Steg 1:`, step1Json);
   
   if (!step1Json || step1Json.length === 0) {
