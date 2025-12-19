@@ -33,6 +33,10 @@ import notificationsRoutes from './routes/notifications.js';
 import analyticsRoutes from './routes/analytics.js';
 import errorReportsRoutes from './routes/errorReports.js';
 import adminLeadsRoutes from './routes/adminLeads.js';
+import batchAnalysisRoutes from './routes/batchAnalysis.js';
+
+// Services
+import { startScheduler as startBatchScheduler } from './services/batchSchedulerService.js';
 
 dotenv.config();
 
@@ -113,6 +117,7 @@ app.use('/api/notifications', notificationsRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/error-reports', errorReportsRoutes);
 app.use('/api/admin', adminLeadsRoutes);
+app.use('/api/batch-analysis', batchAnalysisRoutes);
 
 // ============================================
 // ERROR HANDLING
@@ -136,6 +141,9 @@ app.listen(PORT, () => {
   
   // Start customer monitoring scheduler
   startMonitoringScheduler();
+  
+  // Start batch analysis scheduler
+  startBatchScheduler();
 });
 
 // Graceful shutdown
