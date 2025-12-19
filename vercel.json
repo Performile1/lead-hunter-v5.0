@@ -3,6 +3,18 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
+      "source": "/api/notifications",
+      "destination": "/api/notifications.js"
+    },
+    {
+      "source": "/api/customers",
+      "destination": "/api/customers.js"
+    },
+    {
+      "source": "/api/analytics/overview",
+      "destination": "/api/analytics/overview.js"
+    },
+    {
       "source": "/api/admin/leads/all",
       "destination": "/api/admin/leads/all.js"
     },
