@@ -324,22 +324,70 @@ router.get('/overview',
     }
     
     try {
-      // Hämta system health först (enklare query)
-      const systemHealth = await query(`
-        SELECT 
-          (SELECT COUNT(*) FROM tenants) as active_tenants,
-          (SELECT COUNT(*) FROM users WHERE status = 'active') as active_users,
-          (SELECT COUNT(*) FROM leads) as total_leads,
-          (SELECT COUNT(*) FROM customers) as total_customers
-      `);
+      // Hämta alla metrics parallellt
+      const [platforms, checkout, carriers, deliveryMethods, systemHealth] = await Promise.all([
+        // E-handelsplattformar
+        query(`
+          SELECT 
+            ecommerce_platform as platform,
+            COUNT(*) as count,
+            ROUND(COUNT(*) * 100.0 / NULLIF(SUM(COUNT(*)) OVER(), 0), 2) as percentage
+          FROM leads
+          WHERE ecommerce_platform IS NOT NULL AND ecommerce_platform != ''
+          GROUP BY ecommerce_platform
+          ORDER BY count DESC
+          LIMIT 10
+        `),
+        // Checkout providers
+        query(`
+          SELECT 
+            UNNEST(checkout_providers) as provider,
+            COUNT(*) as count
+          FROM leads
+          WHERE checkout_providers IS NOT NULL AND array_length(checkout_providers, 1) > 0
+          GROUP BY provider
+          ORDER BY count DESC
+          LIMIT 10
+        `),
+        // Carriers (shipping providers)
+        query(`
+          SELECT 
+            TRIM(UNNEST(STRING_TO_ARRAY(carriers, ','))) as carrier,
+            COUNT(*) as count
+          FROM leads
+          WHERE carriers IS NOT NULL AND carriers != ''
+          GROUP BY carrier
+          HAVING TRIM(UNNEST(STRING_TO_ARRAY(carriers, ','))) != ''
+          ORDER BY count DESC
+          LIMIT 10
+        `),
+        // Delivery methods
+        query(`
+          SELECT 
+            UNNEST(delivery_services) as method,
+            COUNT(*) as count
+          FROM leads
+          WHERE delivery_services IS NOT NULL AND array_length(delivery_services, 1) > 0
+          GROUP BY method
+          ORDER BY count DESC
+          LIMIT 10
+        `),
+        // System health
+        query(`
+          SELECT 
+            (SELECT COUNT(*) FROM tenants WHERE is_active = true) as active_tenants,
+            (SELECT COUNT(*) FROM users WHERE status = 'active') as active_users,
+            (SELECT COUNT(*) FROM leads) as total_leads,
+            (SELECT COUNT(*) FROM customers) as total_customers
+        `)
+      ]);
 
-      // Returnera enkel data - mer komplexa queries kan läggas till senare
       res.json({
-        platforms: [],
-        checkout_providers: [],
-        carriers: [],
-        delivery_methods: [],
-        recent_activity: [],
+        platforms: platforms.rows,
+        checkout_providers: checkout.rows,
+        carriers: carriers.rows,
+        delivery_methods: deliveryMethods.rows,
+        recent_activity: [], // TODO: Implement activity log
         system_health: systemHealth.rows[0] || {
           active_tenants: 0,
           active_users: 0,
@@ -464,5 +512,138 @@ router.get('/overview-full',
   })
 );
 */
+
+/**
+ * GET /api/analytics/tenant-segments
+ * Segment distribution for tenant (Manager/Terminal dashboards)
+ */
+router.get('/tenant-segments',
+  asyncHandler(async (req, res) => {
+    const tenantId = req.tenantId;
+    const { region, terminal_id } = req.query;
+    
+    if (!tenantId) {
+      return res.status(400).json({ error: 'Tenant ID required' });
+    }
+    
+    try {
+      // Base query för tenant
+      let baseWhere = 'WHERE l.tenant_id = $1';
+      const params = [tenantId];
+      let paramIndex = 2;
+      
+      // Filter för terminal chef (specifik terminal)
+      if (terminal_id) {
+        baseWhere += ` AND l.assigned_terminal_id = $${paramIndex}`;
+        params.push(terminal_id);
+        paramIndex++;
+      }
+      
+      // Filter för manager (specifik region/postnummer)
+      if (region) {
+        baseWhere += ` AND SUBSTRING(l.postal_code, 1, 2) = $${paramIndex}`;
+        params.push(region);
+        paramIndex++;
+      }
+      
+      // Hämta alla metrics parallellt
+      const [platforms, checkout, carriers, deliveryMethods, segments] = await Promise.all([
+        // E-handelsplattformar
+        query(`
+          SELECT 
+            ecommerce_platform as platform,
+            COUNT(*) as count,
+            ROUND(COUNT(*) * 100.0 / NULLIF(SUM(COUNT(*)) OVER(), 0), 2) as percentage
+          FROM leads l
+          ${baseWhere}
+            AND ecommerce_platform IS NOT NULL AND ecommerce_platform != ''
+          GROUP BY ecommerce_platform
+          ORDER BY count DESC
+          LIMIT 10
+        `, params),
+        
+        // Checkout providers
+        query(`
+          SELECT 
+            UNNEST(checkout_providers) as provider,
+            COUNT(*) as count
+          FROM leads l
+          ${baseWhere}
+            AND checkout_providers IS NOT NULL AND array_length(checkout_providers, 1) > 0
+          GROUP BY provider
+          ORDER BY count DESC
+          LIMIT 10
+        `, params),
+        
+        // Carriers (shipping providers)
+        query(`
+          SELECT 
+            TRIM(UNNEST(STRING_TO_ARRAY(carriers, ','))) as carrier,
+            COUNT(*) as count
+          FROM leads l
+          ${baseWhere}
+            AND carriers IS NOT NULL AND carriers != ''
+          GROUP BY carrier
+          HAVING TRIM(UNNEST(STRING_TO_ARRAY(carriers, ','))) != ''
+          ORDER BY count DESC
+          LIMIT 10
+        `, params),
+        
+        // Delivery methods
+        query(`
+          SELECT 
+            UNNEST(delivery_services) as method,
+            COUNT(*) as count
+          FROM leads l
+          ${baseWhere}
+            AND delivery_services IS NOT NULL AND array_length(delivery_services, 1) > 0
+          GROUP BY method
+          ORDER BY count DESC
+          LIMIT 10
+        `, params),
+        
+        // Segment distribution
+        query(`
+          SELECT 
+            segment,
+            COUNT(*) as count,
+            ROUND(COUNT(*) * 100.0 / NULLIF(SUM(COUNT(*)) OVER(), 0), 2) as percentage
+          FROM leads l
+          ${baseWhere}
+            AND segment IS NOT NULL AND segment != ''
+          GROUP BY segment
+          ORDER BY count DESC
+        `, params)
+      ]);
+      
+      res.json({
+        platforms: platforms.rows,
+        checkout_providers: checkout.rows,
+        carriers: carriers.rows,
+        delivery_methods: deliveryMethods.rows,
+        segments: segments.rows,
+        filters: {
+          tenant_id: tenantId,
+          terminal_id: terminal_id || null,
+          region: region || null
+        }
+      });
+    } catch (error) {
+      console.error('Tenant segments analytics error:', error);
+      res.json({
+        platforms: [],
+        checkout_providers: [],
+        carriers: [],
+        delivery_methods: [],
+        segments: [],
+        filters: {
+          tenant_id: tenantId,
+          terminal_id: terminal_id || null,
+          region: region || null
+        }
+      });
+    }
+  })
+);
 
 export default router;
