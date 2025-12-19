@@ -110,46 +110,28 @@ FROM information_schema.routines
 WHERE routine_schema = 'public'
 ORDER BY routine_name;
 
--- 8. Snabb översikt - Alla tabeller med radantal
-SELECT 
-  'tenants' as table_name, COUNT(*) as row_count FROM tenants
-UNION ALL
-SELECT 'users', COUNT(*) FROM users
-UNION ALL
-SELECT 'user_settings', COUNT(*) FROM user_settings
-UNION ALL
-SELECT 'leads', COUNT(*) FROM leads
-UNION ALL
-SELECT 'customers', COUNT(*) FROM customers
-UNION ALL
-SELECT 'monitoring_history', COUNT(*) FROM monitoring_history
-UNION ALL
-SELECT 'customer_notes', COUNT(*) FROM customer_notes
-UNION ALL
-SELECT 'cronjobs', COUNT(*) FROM cronjobs
-UNION ALL
-SELECT 'tenant_usage', COUNT(*) FROM tenant_usage
-UNION ALL
-SELECT 'error_reports', COUNT(*) FROM error_reports
-UNION ALL
-SELECT 'tenant_settings', COUNT(*) FROM tenant_settings
-UNION ALL
-SELECT 'audit_logs', COUNT(*) FROM audit_logs
-UNION ALL
-SELECT 'api_quota', COUNT(*) FROM api_quota
-UNION ALL
-SELECT 'shared_lead_access', COUNT(*) FROM shared_lead_access
-UNION ALL
-SELECT 'lead_deep_analysis', COUNT(*) FROM lead_deep_analysis
-UNION ALL
-SELECT 'notifications', COUNT(*) FROM notifications
-UNION ALL
-SELECT 'email_queue', COUNT(*) FROM email_queue
-UNION ALL
-SELECT 'batch_analysis_jobs', COUNT(*) FROM batch_analysis_jobs
-UNION ALL
-SELECT 'batch_analysis_items', COUNT(*) FROM batch_analysis_items
-ORDER BY table_name;
+-- 8. Snabb översikt - Alla tabeller med radantal (endast existerande tabeller)
+DO $$
+DECLARE
+  table_record RECORD;
+  row_count INTEGER;
+BEGIN
+  RAISE NOTICE '============================================';
+  RAISE NOTICE 'ROW COUNTS FOR ALL TABLES';
+  RAISE NOTICE '============================================';
+  
+  FOR table_record IN 
+    SELECT tablename 
+    FROM pg_tables 
+    WHERE schemaname = 'public'
+    ORDER BY tablename
+  LOOP
+    EXECUTE format('SELECT COUNT(*) FROM %I', table_record.tablename) INTO row_count;
+    RAISE NOTICE '%-40s : %s rows', table_record.tablename, row_count;
+  END LOOP;
+  
+  RAISE NOTICE '============================================';
+END $$;
 
 -- 9. Kolla vilka migrations som har körts (om du har en migrations tabell)
 -- Om du inte har en migrations tabell, skippa denna
