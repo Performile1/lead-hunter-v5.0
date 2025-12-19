@@ -858,16 +858,28 @@ export const generateDeepDiveSequential = async (
   });
 
   console.log(`📥 Steg 1 svar mottaget`);
-  console.log(`   Text längd: ${step1Response.text?.length || 0} tecken`);
-  console.log(`   Första 200 tecken: ${step1Response.text?.substring(0, 200) || 'TOMT'}`);
+  
+  // Extract text from response - handle both direct text and parts array
+  let responseText = step1Response.text;
+  if (!responseText && step1Response.candidates?.[0]?.content?.parts) {
+    // When using grounding tools, text might be in parts array
+    const parts = step1Response.candidates[0].content.parts;
+    responseText = parts.map((p: any) => p.text || '').join('');
+  }
+  
+  console.log(`   Text längd: ${responseText?.length || 0} tecken`);
+  console.log(`   Första 200 tecken: ${responseText?.substring(0, 200) || 'TOMT'}`);
 
-  if (!step1Response.text) {
+  if (!responseText) {
     console.error(`❌ Inget svar från Gemini API i Steg 1`);
     console.error(`   Företag: ${formData.companyNameOrOrg}`);
     console.error(`   Modell: ${model}`);
     console.error(`   Response object:`, JSON.stringify(step1Response, null, 2));
     throw new Error("Inget svar i Steg 1 - Gemini API returnerade tomt svar. Försök igen eller kontrollera API-status.");
   }
+  
+  // Use extracted text for further processing
+  step1Response.text = responseText;
   
   const step1Json = extractJSON(step1Response.text);
   console.log(`📊 JSON extraherat från Steg 1:`, step1Json);
