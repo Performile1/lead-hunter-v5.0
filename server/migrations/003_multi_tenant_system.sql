@@ -39,9 +39,28 @@ CREATE TABLE IF NOT EXISTS tenants (
   created_by UUID REFERENCES users(id)
 );
 
+-- Ensure all columns exist (in case table was partially created)
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS logo_url VARCHAR(500);
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS primary_color VARCHAR(7) DEFAULT '#D40511';
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS secondary_color VARCHAR(7) DEFAULT '#FFCC00';
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS checkout_search_term VARCHAR(255);
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS main_competitor VARCHAR(255);
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS subscription_tier VARCHAR(50) DEFAULT 'basic';
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS max_users INTEGER DEFAULT 10;
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS max_leads_per_month INTEGER DEFAULT 1000;
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS max_customers INTEGER DEFAULT 500;
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS google_api_key_encrypted TEXT;
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS gemini_api_key_encrypted TEXT;
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS linkedin_api_key_encrypted TEXT;
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS is_active BOOLEAN DEFAULT true;
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS trial_ends_at TIMESTAMP;
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT NOW();
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP DEFAULT NOW();
+ALTER TABLE tenants ADD COLUMN IF NOT EXISTS created_by UUID REFERENCES users(id);
+
 -- Index för snabb sökning
-CREATE INDEX idx_tenants_domain ON tenants(domain);
-CREATE INDEX idx_tenants_active ON tenants(is_active);
+CREATE INDEX IF NOT EXISTS idx_tenants_domain ON tenants(domain);
+CREATE INDEX IF NOT EXISTS idx_tenants_active ON tenants(is_active);
 
 COMMENT ON TABLE tenants IS 'Multi-tenant: Olika transportföretag som använder systemet';
 COMMENT ON COLUMN tenants.domain IS 'Företagets domän (t.ex. dhl.se, postnord.se)';
@@ -136,7 +155,7 @@ CREATE TABLE IF NOT EXISTS user_settings (
   UNIQUE(user_id)
 );
 
-CREATE INDEX idx_user_settings_user ON user_settings(user_id);
+CREATE INDEX IF NOT EXISTS idx_user_settings_user ON user_settings(user_id);
 
 COMMENT ON TABLE user_settings IS 'Personliga inställningar för varje användare';
 
@@ -284,8 +303,8 @@ CREATE TABLE IF NOT EXISTS tenant_usage (
   UNIQUE(tenant_id, month)
 );
 
-CREATE INDEX idx_tenant_usage_tenant ON tenant_usage(tenant_id);
-CREATE INDEX idx_tenant_usage_month ON tenant_usage(month);
+CREATE INDEX IF NOT EXISTS idx_tenant_usage_tenant ON tenant_usage(tenant_id);
+CREATE INDEX IF NOT EXISTS idx_tenant_usage_month ON tenant_usage(month);
 
 COMMENT ON TABLE tenant_usage IS 'Spårar användning per tenant för limits och fakturering';
 

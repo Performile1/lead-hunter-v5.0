@@ -256,9 +256,9 @@ export const SharedLeadPool: React.FC = () => {
               className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#FFC400] focus:border-transparent"
             >
               <option value="">Alla segment</option>
-              <option value="tier1">Tier 1 - KAM (&gt;50 MSEK)</option>
+              <option value="tier1">Tier 1 - KAM ({'>'}50 MSEK)</option>
               <option value="tier2">Tier 2 (10-50 MSEK)</option>
-              <option value="tier3">Tier 3 (&lt;10 MSEK)</option>
+              <option value="tier3">Tier 3 ({'<'}10 MSEK)</option>
               <option value="tier4">Tier 4 (Prospekt)</option>
             </select>
           </div>

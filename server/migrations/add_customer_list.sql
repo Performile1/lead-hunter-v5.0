@@ -226,16 +226,16 @@ WHERE
 ORDER BY cms.next_run_at ASC;
 
 -- ============================================
--- GRANTS
+-- GRANTS (Commented out - not needed in Supabase)
 -- ============================================
 
-GRANT ALL PRIVILEGES ON customers TO dhl_user;
-GRANT ALL PRIVILEGES ON customer_monitoring_history TO dhl_user;
-GRANT ALL PRIVILEGES ON customer_notes TO dhl_user;
-GRANT ALL PRIVILEGES ON customer_monitoring_schedule TO dhl_user;
-GRANT ALL PRIVILEGES ON customer_monitoring_history_id_seq TO dhl_user;
-GRANT ALL PRIVILEGES ON customer_notes_id_seq TO dhl_user;
-GRANT ALL PRIVILEGES ON customer_monitoring_schedule_id_seq TO dhl_user;
+-- GRANT ALL PRIVILEGES ON customers TO dhl_user;
+-- GRANT ALL PRIVILEGES ON customer_monitoring_history TO dhl_user;
+-- GRANT ALL PRIVILEGES ON customer_notes TO dhl_user;
+-- GRANT ALL PRIVILEGES ON customer_monitoring_schedule TO dhl_user;
+-- GRANT ALL PRIVILEGES ON customer_monitoring_history_id_seq TO dhl_user;
+-- GRANT ALL PRIVILEGES ON customer_notes_id_seq TO dhl_user;
+-- GRANT ALL PRIVILEGES ON customer_monitoring_schedule_id_seq TO dhl_user;
 
 -- ============================================
 -- COMMENTS
