@@ -1,12 +1,11 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+﻿import React, { createContext, useContext, useState, useEffect } from 'react';
+import { API_BASE_URL } from '../utils/api';
 
-// API Configuration
+// API Configuration - inline to ensure it works
 const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
 const API_BASE_URL = isProduction 
   ? '/api'
   : 'http://localhost:3001/api';
-
-const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes in milliseconds
 
 interface User {
   id: string;
@@ -34,35 +33,15 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [lastActivity, setLastActivity] = useState<number>(Date.now());
 
-  // Check session on mount - FORCE LOGOUT IF EXPIRED
   useEffect(() => {
     const storedUser = localStorage.getItem('dhl_user');
-    const storedLastActivity = localStorage.getItem('last_activity');
-    
-    if (storedUser && storedLastActivity) {
-      const lastActivityTime = parseInt(storedLastActivity, 10);
-      const timeSinceLastActivity = Date.now() - lastActivityTime;
-      
-      if (timeSinceLastActivity < SESSION_TIMEOUT) {
-        try {
-          setUser(JSON.parse(storedUser));
-          setLastActivity(lastActivityTime);
-          console.log('✅ Session restored');
-        } catch (e) {
-          console.error('❌ Failed to parse stored user:', e);
-          localStorage.clear();
-        }
-      } else {
-        // Session expired - CLEAR EVERYTHING
-        console.log('🔒 Session expired due to inactivity');
-        localStorage.clear();
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (e) {
+        localStorage.removeItem('dhl_user');
       }
-    } else {
-      // No session found - CLEAR EVERYTHING to be safe
-      console.log('🔒 No valid session found');
-      localStorage.clear();
     }
     setIsLoading(false);
   }, []);
@@ -102,8 +81,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(userData);
       localStorage.setItem('dhl_user', JSON.stringify(userData));
       localStorage.setItem('eurekai_token', data.token);
-      localStorage.setItem('last_activity', Date.now().toString());
-      setLastActivity(Date.now());
       console.log('✅ User data saved to localStorage');
     } catch (error) {
       console.error('❌ Login error:', error);
@@ -112,59 +89,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const logout = () => {
-    console.log('🚪 Logging out user - clearing ALL localStorage');
     setUser(null);
-    // Clear ALL localStorage to ensure clean logout
-    localStorage.clear();
+    localStorage.removeItem('eurekai_user');
+    localStorage.removeItem('eurekai_token');
   };
-
-  const updateActivity = () => {
-    const now = Date.now();
-    setLastActivity(now);
-    if (user) {
-      localStorage.setItem('last_activity', now.toString());
-    }
-  };
-
-  // Track user activity
-  useEffect(() => {
-    if (!user) return;
-
-    const events = ['mousedown', 'keydown', 'scroll', 'touchstart', 'click'];
-    
-    const handleActivity = () => {
-      updateActivity();
-    };
-
-    events.forEach(event => {
-      window.addEventListener(event, handleActivity, { passive: true });
-    });
-
-    // Initial activity update
-    updateActivity();
-
-    return () => {
-      events.forEach(event => {
-        window.removeEventListener(event, handleActivity);
-      });
-    };
-  }, [user]);
-
-  // Check for session timeout
-  useEffect(() => {
-    if (!user) return;
-
-    const checkTimeout = setInterval(() => {
-      const timeSinceLastActivity = Date.now() - lastActivity;
-      
-      if (timeSinceLastActivity >= SESSION_TIMEOUT) {
-        console.log('🔒 Auto-logout due to 30 minutes of inactivity');
-        logout();
-      }
-    }, 60000); // Check every minute
-
-    return () => clearInterval(checkTimeout);
-  }, [user, lastActivity]);
 
   return (
     <AuthContext.Provider
