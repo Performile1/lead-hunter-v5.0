@@ -24,7 +24,7 @@ interface DashboardProps {
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({
-  leads,
+  leads = [],
   onNavigateToLeads,
   onNavigateToCustomers,
   onNavigateToCronjobs
@@ -32,22 +32,26 @@ export const Dashboard: React.FC<DashboardProps> = ({
   const [notifications, setNotifications] = useState<any[]>([]);
   const [cronjobs, setCronjobs] = useState<any[]>([]);
 
+  // Ensure leads is always an array
+  const safeLeads = Array.isArray(leads) ? leads : [];
+
   // Calculate KPIs
-  const totalLeads = leads.length;
-  const activeLeads = leads.filter(l => l.legalStatus === 'Aktivt').length;
-  const convertedLeads = leads.filter(l => l.source === 'converted').length;
+  const totalLeads = safeLeads.length;
+  const activeLeads = safeLeads.filter(l => l?.legalStatus === 'Aktivt').length;
+  const convertedLeads = safeLeads.filter(l => l?.source === 'converted').length;
   const conversionRate = totalLeads > 0 ? ((convertedLeads / totalLeads) * 100).toFixed(1) : '0';
   
   // Recent leads (last 7 days)
   const sevenDaysAgo = new Date();
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-  const recentLeads = leads.filter(l => {
+  const recentLeads = safeLeads.filter(l => {
+    if (!l) return false;
     const leadDate = new Date(l.analysisDate || l.timestamp || 0);
     return leadDate >= sevenDaysAgo;
   }).length;
 
   // Average revenue
-  const leadsWithRevenue = leads.filter(l => l.revenue && l.revenue > 0);
+  const leadsWithRevenue = safeLeads.filter(l => l && l.revenue && l.revenue > 0);
   const avgRevenue = leadsWithRevenue.length > 0
     ? Math.round(leadsWithRevenue.reduce((sum, l) => sum + (l.revenue || 0), 0) / leadsWithRevenue.length)
     : 0;
