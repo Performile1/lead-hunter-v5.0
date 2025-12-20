@@ -1,9 +1,12 @@
 interface User {
   role: 'admin' | 'manager' | 'terminal_manager' | 'fs' | 'ts' | 'kam' | 'dm';
   tenant_id: string | null;
+  isSuperAdmin?: boolean;
 }
 
 export const isSuperAdmin = (user: User | null): boolean => {
+  // Check explicit isSuperAdmin flag first, then fallback to role + tenant_id check
+  if (user?.isSuperAdmin === true) return true;
   return user?.role === 'admin' && user?.tenant_id === null;
 };
 
