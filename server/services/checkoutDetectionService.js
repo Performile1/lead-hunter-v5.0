@@ -73,13 +73,22 @@ export async function detectCheckoutCarriers(url, companyName) {
  */
 async function tryFirecrawl(url) {
   try {
-    // Försök hitta checkout-URL
+    // Försök hitta checkout-URL - utökad lista
     const checkoutUrls = [
       url,
       `${url}/checkout`,
       `${url}/kassa`,
+      `${url}/cart`,
+      `${url}/varukorg`,
       `${url}/cart/checkout`,
-      `${url}/varukorg/kassa`
+      `${url}/varukorg/kassa`,
+      `${url}/checkout/shipping`,
+      `${url}/kassa/frakt`,
+      `${url}/checkout/delivery`,
+      // Produktsidor som fallback (visar ofta fraktalternativ)
+      `${url}/products`,
+      `${url}/produkter`,
+      `${url}/shop`
     ];
 
     for (const checkoutUrl of checkoutUrls) {
@@ -95,7 +104,8 @@ async function tryFirecrawl(url) {
             url: checkoutUrl,
             formats: ['markdown', 'html'],
             onlyMainContent: false,
-            waitFor: 3000 // Vänta på dynamiskt innehåll
+            waitFor: 5000, // Ökat till 5 sekunder för dynamiskt innehåll
+            timeout: 30000 // 30 sekunder timeout istället för 15
           })
         });
 

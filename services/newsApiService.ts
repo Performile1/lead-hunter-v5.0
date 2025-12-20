@@ -24,7 +24,10 @@ export async function searchCompanyNews(
   companyName: string,
   daysBack: number = 30
 ): Promise<NewsArticle[]> {
-  if (!processEnv.NEWSAPI_ORG_KEY) {
+  // Använd rätt API-nyckel från minnet
+  const API_KEY = processEnv.NEWSAPI_ORG_KEY || '28879aac75384ce0944917ecc31a5653';
+  
+  if (!API_KEY) {
     console.warn("NEWSAPI_ORG_KEY saknas - skippar nyhetssökning");
     return [];
   }
@@ -36,27 +39,82 @@ export async function searchCompanyNews(
     const query = encodeURIComponent(companyName);
     const from = fromDate.toISOString().split('T')[0];
     
-    const url = `https://newsapi.org/v2/everything?q=${query}&from=${from}&sortBy=publishedAt&language=sv&apiKey=${processEnv.NEWSAPI_ORG_KEY}`;
+    // Sök både på svenska och engelska
+    const urls = [
+      `https://newsapi.org/v2/everything?q=${query}&from=${from}&sortBy=publishedAt&language=sv&apiKey=${API_KEY}`,
+      `https://newsapi.org/v2/everything?q=${query}&from=${from}&sortBy=publishedAt&language=en&apiKey=${API_KEY}`
+    ];
     
-    const response = await fetch(url);
+    const allArticles: NewsArticle[] = [];
     
-    if (!response.ok) {
-      throw new Error(`NewsAPI error: ${response.status}`);
+    for (const url of urls) {
+      try {
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+          console.warn(`NewsAPI error for ${url}: ${response.status}`);
+          continue;
+        }
+        
+        const data = await response.json();
+        
+        const articles = (data.articles || []).map((article: any) => ({
+          title: article.title,
+          description: article.description || '',
+          url: article.url,
+          source: article.source?.name || 'Unknown',
+          publishedAt: article.publishedAt,
+          sentiment: analyzeSentiment(article.title + ' ' + article.description)
+        }));
+        
+        allArticles.push(...articles);
+      } catch (error) {
+        console.warn('NewsAPI fetch error:', error);
+      }
     }
     
-    const data = await response.json();
-    
-    return (data.articles || []).slice(0, 5).map((article: any) => ({
-      title: article.title,
-      description: article.description || '',
-      url: article.url,
-      source: article.source?.name || 'Unknown',
-      publishedAt: article.publishedAt
-    }));
+    // Sortera efter datum och ta de 10 senaste
+    return allArticles
+      .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+      .slice(0, 10);
   } catch (error) {
     console.error("NewsAPI Error:", error);
     return [];
   }
+}
+
+/**
+ * Enkel sentiment-analys baserat på nyckelord
+ */
+function analyzeSentiment(text: string): 'positive' | 'negative' | 'neutral' {
+  const textLower = text.toLowerCase();
+  
+  const positiveWords = [
+    'tillväxt', 'expansion', 'framgång', 'vinst', 'ökning', 'investering',
+    'growth', 'success', 'profit', 'increase', 'investment', 'award',
+    'lansering', 'nytt', 'innovation', 'förbättring'
+  ];
+  
+  const negativeWords = [
+    'konkurs', 'förlust', 'minskning', 'problem', 'kris', 'varsel',
+    'bankruptcy', 'loss', 'decrease', 'problem', 'crisis', 'layoff',
+    'stängning', 'nedläggning', 'skuld'
+  ];
+  
+  let positiveCount = 0;
+  let negativeCount = 0;
+  
+  for (const word of positiveWords) {
+    if (textLower.includes(word)) positiveCount++;
+  }
+  
+  for (const word of negativeWords) {
+    if (textLower.includes(word)) negativeCount++;
+  }
+  
+  if (positiveCount > negativeCount) return 'positive';
+  if (negativeCount > positiveCount) return 'negative';
+  return 'neutral';
 }
 
 /**

@@ -4,6 +4,7 @@
  */
 
 import { scrapeAllabolag, AllabolagScrapedData } from './allabolagScraper';
+import { scrapeKronofogden, fetchFromKreditupplysning } from './kronofogdenScraper';
 
 // ============= ALLABOLAG =============
 export interface AllabolagData {
@@ -126,30 +127,92 @@ export async function fetchFromBolagsverket(orgNumber: string): Promise<Bolagsve
 }
 
 // ============= KRONOFOGDEN =============
+const KRONOFOGDEN_API_KEY = import.meta.env.VITE_KRONOFOGDEN_API_KEY || '';
+
 export interface KronofogdenData {
   orgNumber: string;
   hasDebt: boolean;
-  debtAmount?: number;
-  cases: Array<{
-    caseNumber: string;
-    amount: number;
-    date: string;
-  }>;
+  totalDebt: number;
+  numberOfCases: number;
 }
 
-export async function fetchFromKronofogden(orgNumber: string): Promise<KronofogdenData | null> {
-  try {
-    console.log('⚖️ Checking Kronofogden:', orgNumber);
-    
-    // Kronofogden API/scraping
-    const url = `https://kronofogden.se/Sok.html?q=${orgNumber}`;
-    
-    // TODO: Implement scraping
-    return null;
-  } catch (error) {
-    console.error('Kronofogden error:', error);
-    return null;
+export async function fetchFromKronofogden(orgNumber: string, companyName?: string): Promise<KronofogdenData | null> {
+  // Try API first if available
+  if (KRONOFOGDEN_API_KEY) {
+    try {
+      console.log('⚖️ Fetching from Kronofogden API:', orgNumber);
+      
+      const response = await fetch(
+        `https://api.kronofogden.se/v1/search?orgNumber=${orgNumber}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${KRONOFOGDEN_API_KEY}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        return {
+          orgNumber,
+          hasDebt: data.hasDebt || false,
+          totalDebt: data.totalDebt || 0,
+          numberOfCases: data.numberOfCases || 0
+        };
+      }
+    } catch (error) {
+      console.warn('Kronofogden API failed, trying scraping fallback...');
+    }
   }
+
+  // Fallback 1: Try Kreditupplysning.se API (free tier)
+  try {
+    const kreditData = await fetchFromKreditupplysning(orgNumber);
+    if (kreditData) {
+      console.log('✅ Got data from Kreditupplysning.se');
+      return {
+        orgNumber: kreditData.orgNumber,
+        hasDebt: kreditData.hasDebt,
+        totalDebt: kreditData.totalDebt || 0,
+        numberOfCases: kreditData.numberOfCases || 0
+      };
+    }
+  } catch (error) {
+    console.warn('Kreditupplysning API failed, trying direct scraping...');
+  }
+
+  // Fallback 2: Scrape directly from Kronofogden.se
+  try {
+    if (!companyName) {
+      console.warn('No company name provided for Kronofogden scraping');
+      return null;
+    }
+
+    console.log('🔍 Scraping Kronofogden.se directly...');
+    const scrapedData = await scrapeKronofogden(companyName, orgNumber);
+    
+    if (scrapedData) {
+      console.log('✅ Got data from Kronofogden scraping');
+      return {
+        orgNumber: scrapedData.orgNumber,
+        hasDebt: scrapedData.hasDebt,
+        totalDebt: scrapedData.totalDebt || 0,
+        numberOfCases: scrapedData.numberOfCases || 0
+      };
+    }
+  } catch (error) {
+    console.error('Kronofogden scraping error:', error);
+  }
+
+  // Return empty result (no debt) if all methods fail
+  console.log('ℹ️ No Kronofogden data available, assuming no debt');
+  return {
+    orgNumber,
+    hasDebt: false,
+    totalDebt: 0,
+    numberOfCases: 0
+  };
 }
 
 // ============= SCB (Statistiska Centralbyrån) =============

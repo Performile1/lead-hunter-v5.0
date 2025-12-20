@@ -22,6 +22,17 @@ export interface AllabolagScrapedData {
   boardMembers: string[];
   foundedYear?: string;
   legalForm?: string;
+  soliditet?: number;
+  kassalikviditet?: number;
+  resultat?: Array<{
+    year: string;
+    amount: number;
+  }>;
+  egetKapital?: Array<{
+    year: string;
+    amount: number;
+  }>;
+  skuldsattningsgrad?: number;
 }
 
 /**
@@ -209,6 +220,103 @@ function parseAllabolagContent(
       data.legalForm = legalFormMatch[1].trim();
     }
 
+    // Extract soliditet (equity ratio) - percentage
+    const soliditetMatch = content.match(/(?:Soliditet)[\s:]*([\d,\.]+)\s*%/i);
+    if (soliditetMatch) {
+      const soliditet = parseFloat(soliditetMatch[1].replace(',', '.'));
+      if (!isNaN(soliditet) && soliditet >= 0 && soliditet <= 100) {
+        data.soliditet = soliditet;
+      }
+    }
+
+    // Extract kassalikviditet (cash liquidity) - percentage
+    const kassalikviditetMatch = content.match(/(?:Kassalikviditet|Likviditet)[\s:]*([\d,\.]+)\s*%/i);
+    if (kassalikviditetMatch) {
+      const kassalikviditet = parseFloat(kassalikviditetMatch[1].replace(',', '.'));
+      if (!isNaN(kassalikviditet) && kassalikviditet >= 0) {
+        data.kassalikviditet = kassalikviditet;
+      }
+    }
+
+    // Extract resultat (profit/loss) - similar to revenue extraction
+    const resultatPatterns = [
+      /(?:Resultat|Årets resultat)[\s:]*(\d{4})[\s:]*([\d\s.,]+)[\s]*(tkr|MSEK|KSEK|kr)?/gi,
+      /(\d{4})[\s]*[-–][\s]*Resultat[\s:]*([\d\s.,]+)[\s]*(tkr|MSEK|KSEK|kr)?/gi
+    ];
+
+    const resultatData: Array<{ year: string; amount: number }> = [];
+    
+    for (const pattern of resultatPatterns) {
+      let match;
+      while ((match = pattern.exec(content)) !== null) {
+        const year = match[1];
+        let amount = match[2].replace(/[\s]/g, '').replace(',', '.');
+        const unit = match[3]?.toLowerCase() || 'kr';
+
+        let numAmount = parseFloat(amount);
+        
+        if (unit.includes('msek')) {
+          numAmount = numAmount * 1000000;
+        } else if (unit.includes('ksek') || unit.includes('tkr')) {
+          numAmount = numAmount * 1000;
+        }
+
+        if (!isNaN(numAmount)) {
+          resultatData.push({ year, amount: numAmount });
+        }
+      }
+    }
+
+    if (resultatData.length > 0) {
+      data.resultat = resultatData
+        .sort((a, b) => parseInt(b.year) - parseInt(a.year))
+        .slice(0, 3);
+    }
+
+    // Extract eget kapital (equity)
+    const egetKapitalPatterns = [
+      /(?:Eget kapital)[\s:]*(\d{4})[\s:]*([\d\s.,]+)[\s]*(tkr|MSEK|KSEK|kr)?/gi,
+      /(\d{4})[\s]*[-–][\s]*Eget kapital[\s:]*([\d\s.,]+)[\s]*(tkr|MSEK|KSEK|kr)?/gi
+    ];
+
+    const egetKapitalData: Array<{ year: string; amount: number }> = [];
+    
+    for (const pattern of egetKapitalPatterns) {
+      let match;
+      while ((match = pattern.exec(content)) !== null) {
+        const year = match[1];
+        let amount = match[2].replace(/[\s]/g, '').replace(',', '.');
+        const unit = match[3]?.toLowerCase() || 'kr';
+
+        let numAmount = parseFloat(amount);
+        
+        if (unit.includes('msek')) {
+          numAmount = numAmount * 1000000;
+        } else if (unit.includes('ksek') || unit.includes('tkr')) {
+          numAmount = numAmount * 1000;
+        }
+
+        if (!isNaN(numAmount) && numAmount > 0) {
+          egetKapitalData.push({ year, amount: numAmount });
+        }
+      }
+    }
+
+    if (egetKapitalData.length > 0) {
+      data.egetKapital = egetKapitalData
+        .sort((a, b) => parseInt(b.year) - parseInt(a.year))
+        .slice(0, 3);
+    }
+
+    // Extract skuldsättningsgrad (debt ratio) - percentage
+    const skuldsattningMatch = content.match(/(?:Skuldsättningsgrad|Skuldsättning)[\s:]*([\d,\.]+)\s*%/i);
+    if (skuldsattningMatch) {
+      const skuldsattning = parseFloat(skuldsattningMatch[1].replace(',', '.'));
+      if (!isNaN(skuldsattning) && skuldsattning >= 0) {
+        data.skuldsattningsgrad = skuldsattning;
+      }
+    }
+
     // Validate required fields
     if (!data.orgNumber) {
       console.warn('⚠️ No org number found in Allabolag data');
@@ -218,7 +326,11 @@ function parseAllabolagContent(
     console.log('✅ Parsed Allabolag data:', {
       orgNumber: data.orgNumber,
       revenue: data.revenue?.length || 0,
-      employees: data.employees
+      employees: data.employees,
+      soliditet: data.soliditet,
+      kassalikviditet: data.kassalikviditet,
+      resultat: data.resultat?.length || 0,
+      egetKapital: data.egetKapital?.length || 0
     });
 
     return data as AllabolagScrapedData;
