@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 
 const processEnv = {
-  CLAUDE_API_KEY: process.env.CLAUDE_API_KEY as string,
+  CLAUDE_API_KEY: import.meta.env.VITE_CLAUDE_API_KEY as string,
 };
 
 let claudeClient: Anthropic | null = null;

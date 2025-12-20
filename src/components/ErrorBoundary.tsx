@@ -80,7 +80,7 @@ export class ErrorBoundary extends Component<Props, State> {
             </div>
 
             {/* Technical Details (Collapsible) */}
-            {process.env.NODE_ENV === 'development' && this.state.errorInfo && (
+            {import.meta.env.DEV && this.state.errorInfo && (
               <details className="mb-6">
                 <summary className="cursor-pointer text-sm font-semibold text-gray-700 hover:text-black">
                   Tekniska detaljer (utvecklarläge)

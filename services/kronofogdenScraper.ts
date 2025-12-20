@@ -202,7 +202,7 @@ export async function fetchFromKreditupplysning(
     // Note: This is a placeholder for Kreditupplysning.se API
     // You would need to sign up for their API and get a key
     
-    const KREDITUPPLYSNING_API_KEY = process.env.KREDITUPPLYSNING_API_KEY;
+    const KREDITUPPLYSNING_API_KEY = import.meta.env.VITE_KREDITUPPLYSNING_API_KEY;
     
     if (!KREDITUPPLYSNING_API_KEY) {
       console.warn('Kreditupplysning API key not configured');

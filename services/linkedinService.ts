@@ -43,7 +43,7 @@ export async function searchDecisionMakers(
     const searchQuery = `${companyName} ${title}`;
     const response = await fetch(`https://api.linkedin.com/v2/search?q=${searchQuery}`, {
       headers: {
-        'Authorization': `Bearer ${process.env.LINKEDIN_ACCESS_TOKEN}`
+        'Authorization': `Bearer ${import.meta.env.VITE_LINKEDIN_ACCESS_TOKEN}`
       }
     });
     

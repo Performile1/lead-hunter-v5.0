@@ -43,11 +43,11 @@ interface SalesforceOpportunity {
  * @returns Access token
  */
 async function authenticate(): Promise<string | null> {
-  const clientId = process.env.SALESFORCE_CLIENT_ID;
-  const clientSecret = process.env.SALESFORCE_CLIENT_SECRET;
-  const username = process.env.SALESFORCE_USERNAME;
-  const password = process.env.SALESFORCE_PASSWORD;
-  const securityToken = process.env.SALESFORCE_SECURITY_TOKEN;
+  const clientId = import.meta.env.VITE_SALESFORCE_CLIENT_ID;
+  const clientSecret = import.meta.env.VITE_SALESFORCE_CLIENT_SECRET;
+  const username = import.meta.env.VITE_SALESFORCE_USERNAME;
+  const password = import.meta.env.VITE_SALESFORCE_PASSWORD;
+  const securityToken = import.meta.env.VITE_SALESFORCE_SECURITY_TOKEN;
 
   if (!clientId || !clientSecret || !username || !password) {
     console.warn('⚠️ Salesforce credentials not configured');
@@ -92,7 +92,7 @@ export async function createAccount(lead: any): Promise<string | null> {
   if (!accessToken) return null;
 
   try {
-    const instanceUrl = process.env.SALESFORCE_INSTANCE_URL || 'https://yourinstance.salesforce.com';
+    const instanceUrl = import.meta.env.VITE_SALESFORCE_INSTANCE_URL || 'https://yourinstance.salesforce.com';
 
     const accountData = {
       Name: lead.companyName || lead.company_name,
@@ -142,7 +142,7 @@ export async function createContact(
   if (!accessToken) return null;
 
   try {
-    const instanceUrl = process.env.SALESFORCE_INSTANCE_URL || 'https://yourinstance.salesforce.com';
+    const instanceUrl = import.meta.env.VITE_SALESFORCE_INSTANCE_URL || 'https://yourinstance.salesforce.com';
 
     const nameParts = decisionMaker.name.split(' ');
     const firstName = nameParts[0];
@@ -195,7 +195,7 @@ export async function createOpportunity(
   if (!accessToken) return null;
 
   try {
-    const instanceUrl = process.env.SALESFORCE_INSTANCE_URL || 'https://yourinstance.salesforce.com';
+    const instanceUrl = import.meta.env.VITE_SALESFORCE_INSTANCE_URL || 'https://yourinstance.salesforce.com';
 
     const opportunityData = {
       Name: `${lead.companyName || lead.company_name} - DHL Logistics`,
@@ -280,7 +280,7 @@ export async function searchAccount(companyName: string): Promise<SalesforceAcco
   if (!accessToken) return null;
 
   try {
-    const instanceUrl = process.env.SALESFORCE_INSTANCE_URL || 'https://yourinstance.salesforce.com';
+    const instanceUrl = import.meta.env.VITE_SALESFORCE_INSTANCE_URL || 'https://yourinstance.salesforce.com';
     const query = `SELECT Id, Name, Website, Phone, BillingCity FROM Account WHERE Name LIKE '%${companyName}%' LIMIT 1`;
     
     const response = await fetch(
@@ -314,7 +314,7 @@ export async function updateAccount(accountId: string, updates: Partial<Salesfor
   if (!accessToken) return false;
 
   try {
-    const instanceUrl = process.env.SALESFORCE_INSTANCE_URL || 'https://yourinstance.salesforce.com';
+    const instanceUrl = import.meta.env.VITE_SALESFORCE_INSTANCE_URL || 'https://yourinstance.salesforce.com';
 
     const response = await fetch(`${instanceUrl}/services/data/v57.0/sobjects/Account/${accountId}`, {
       method: 'PATCH',

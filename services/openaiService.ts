@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
 
 const processEnv = {
-  OPENAI_API_KEY: process.env.OPENAI_API_KEY as string,
+  OPENAI_API_KEY: import.meta.env.VITE_OPENAI_API_KEY as string,
 };
 
 let openaiClient: OpenAI | null = null;
@@ -83,7 +83,7 @@ export async function analyzeWithOpenAIAndSearch(
  * Tavily Search API (för web search)
  */
 async function searchWithTavily(query: string): Promise<any> {
-  const TAVILY_API_KEY = process.env.TAVILY_API_KEY;
+  const TAVILY_API_KEY = import.meta.env.VITE_TAVILY_API_KEY;
   
   if (!TAVILY_API_KEY) {
     console.warn("TAVILY_API_KEY saknas - skippar web search");

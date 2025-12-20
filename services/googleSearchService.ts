@@ -32,8 +32,8 @@ export async function search(
     exactTerms?: string;
   } = {}
 ): Promise<GoogleSearchResponse | null> {
-  const apiKey = process.env.GOOGLE_API_KEY;
-  const searchEngineId = process.env.GOOGLE_SEARCH_ENGINE_ID;
+  const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
+  const searchEngineId = import.meta.env.VITE_GOOGLE_SEARCH_ENGINE_ID;
 
   if (!apiKey || !searchEngineId) {
     console.warn('⚠️ Google API credentials not configured');

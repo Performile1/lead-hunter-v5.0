@@ -4,8 +4,8 @@
  */
 
 const processEnv = {
-  NEWS_API_KEY: process.env.NEWS_API_KEY as string,
-  NEWSAPI_ORG_KEY: process.env.NEWSAPI_ORG_KEY as string,
+  NEWS_API_KEY: import.meta.env.VITE_NEWS_API_KEY as string,
+  NEWSAPI_ORG_KEY: import.meta.env.VITE_NEWSAPI_ORG_KEY as string,
 };
 
 export interface NewsArticle {

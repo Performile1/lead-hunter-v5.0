@@ -50,7 +50,7 @@ export async function verifyEmail(email: string): Promise<EmailVerificationResul
     const response = await axios.get(`${HUNTER_API_BASE}/email-verifier`, {
       params: {
         email: email,
-        api_key: process.env.HUNTER_API_KEY
+        api_key: import.meta.env.VITE_HUNTER_API_KEY
       }
     });
 
@@ -97,7 +97,7 @@ export async function findEmail(
         domain: domain,
         first_name: firstName,
         last_name: lastName,
-        api_key: process.env.HUNTER_API_KEY
+        api_key: import.meta.env.VITE_HUNTER_API_KEY
       }
     });
 
@@ -141,7 +141,7 @@ export async function getDomainPattern(domain: string): Promise<string | null> {
     const response = await axios.get(`${HUNTER_API_BASE}/domain-search`, {
       params: {
         domain: domain,
-        api_key: process.env.HUNTER_API_KEY,
+        api_key: import.meta.env.VITE_HUNTER_API_KEY,
         limit: 1
       }
     });
@@ -267,7 +267,7 @@ export async function checkQuota(): Promise<{
   try {
     const response = await axios.get(`${HUNTER_API_BASE}/account`, {
       params: {
-        api_key: process.env.HUNTER_API_KEY
+        api_key: import.meta.env.VITE_HUNTER_API_KEY
       }
     });
 

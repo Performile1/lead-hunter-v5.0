@@ -20,8 +20,8 @@ export interface ContactPerson {
   confidence: 'high' | 'medium' | 'low';
 }
 
-const HUNTER_API_KEY = process.env.HUNTER_API_KEY || process.env.VITE_HUNTER_API_KEY;
-const APOLLO_API_KEY = process.env.APOLLO_API_KEY;
+const HUNTER_API_KEY = import.meta.env.VITE_HUNTER_API_KEY;
+const APOLLO_API_KEY = import.meta.env.VITE_APOLLO_API_KEY;
 
 /**
  * Hämta kontaktpersoner för ett företag
