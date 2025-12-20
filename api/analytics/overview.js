@@ -1,9 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '',
-  process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY || ''
-);
+const jwt = require('jsonwebtoken');
+const { query } = require('../_lib/database');
 
 export default async function handler(req, res) {
   // Enable CORS
@@ -30,46 +26,54 @@ export default async function handler(req, res) {
 
     const token = authHeader.replace('Bearer ', '');
     
-    // Verify token with Supabase
-    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
-    
-    if (authError || !user) {
+    // Verify JWT token
+    let decoded;
+    try {
+      decoded = jwt.verify(token, process.env.JWT_SECRET);
+    } catch (err) {
       return res.status(401).json({ error: 'Invalid token' });
     }
 
-    // Get user's tenant_id and role
-    const { data: userData } = await supabase
-      .from('users')
-      .select('tenant_id, role')
-      .eq('id', user.id)
-      .single();
+    const userId = decoded.userId;
+    const tenantId = decoded.tenantId;
+    const isSuperAdmin = decoded.isSuperAdmin;
 
-    if (!userData) {
-      return res.status(404).json({ error: 'User not found' });
+    // Build WHERE clause based on user role
+    let whereClause = '';
+    const params = [];
+    
+    if (!isSuperAdmin && tenantId) {
+      whereClause = 'WHERE tenant_id = $1';
+      params.push(tenantId);
     }
 
     // Fetch analytics data
-    const [
-      { count: totalLeads },
-      { count: totalCustomers },
-      { count: totalUsers },
-      { data: recentLeads }
-    ] = await Promise.all([
-      supabase.from('leads').select('*', { count: 'exact', head: true }).eq('tenant_id', userData.tenant_id),
-      supabase.from('customers').select('*', { count: 'exact', head: true }).eq('tenant_id', userData.tenant_id),
-      supabase.from('users').select('*', { count: 'exact', head: true }).eq('tenant_id', userData.tenant_id),
-      supabase.from('leads').select('*').eq('tenant_id', userData.tenant_id).order('created_at', { ascending: false }).limit(10)
-    ]);
+    const leadsResult = await query(
+      `SELECT COUNT(*) as count FROM leads ${whereClause}`,
+      params
+    );
 
-    const overview = {
-      totalLeads: totalLeads || 0,
-      totalCustomers: totalCustomers || 0,
-      totalUsers: totalUsers || 0,
-      recentLeads: recentLeads || [],
-      timestamp: new Date().toISOString()
-    };
+    const customersResult = await query(
+      `SELECT COUNT(*) as count FROM customers ${whereClause}`,
+      params
+    );
 
-    return res.status(200).json(overview);
+    const usersResult = await query(
+      `SELECT COUNT(*) as count FROM users ${whereClause}`,
+      params
+    );
+
+    const recentLeadsResult = await query(
+      `SELECT * FROM leads ${whereClause} ORDER BY created_at DESC LIMIT 5`,
+      params
+    );
+
+    return res.status(200).json({
+      total_leads: parseInt(leadsResult.rows[0]?.count || 0),
+      total_customers: parseInt(customersResult.rows[0]?.count || 0),
+      total_users: parseInt(usersResult.rows[0]?.count || 0),
+      recent_leads: recentLeadsResult.rows || []
+    });
   } catch (error) {
     console.error('Analytics overview API error:', error);
     return res.status(500).json({ error: 'Internal server error' });

@@ -1,9 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '',
-  process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY || ''
-);
+const jwt = require('jsonwebtoken');
+const { query } = require('./_lib/database');
 
 export default async function handler(req, res) {
   // Enable CORS
@@ -26,72 +22,63 @@ export default async function handler(req, res) {
 
     const token = authHeader.replace('Bearer ', '');
     
-    // Verify token with Supabase
-    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
-    
-    if (authError || !user) {
+    // Verify JWT token
+    let decoded;
+    try {
+      decoded = jwt.verify(token, process.env.JWT_SECRET);
+    } catch (err) {
       return res.status(401).json({ error: 'Invalid token' });
     }
 
-    // Get user's tenant_id
-    const { data: userData } = await supabase
-      .from('users')
-      .select('tenant_id, role')
-      .eq('id', user.id)
-      .single();
-
-    if (!userData) {
-      return res.status(404).json({ error: 'User not found' });
-    }
+    const userId = decoded.userId;
+    const tenantId = decoded.tenantId;
 
     if (req.method === 'GET') {
-      const { status, assigned_to, team } = req.query;
+      const { status, assigned_to } = req.query;
+      
+      let sql = 'SELECT * FROM customers WHERE 1=1';
+      const params = [];
+      let paramCount = 1;
 
-      let query = supabase
-        .from('customers')
-        .select('*')
-        .eq('tenant_id', userData.tenant_id);
+      // Filter by tenant
+      if (tenantId) {
+        sql += ` AND tenant_id = $${paramCount}`;
+        params.push(tenantId);
+        paramCount++;
+      }
 
       // Filter by status
       if (status) {
-        query = query.eq('customer_status', status);
+        sql += ` AND status = $${paramCount}`;
+        params.push(status);
+        paramCount++;
       }
 
       // Filter by assignment
       if (assigned_to === 'me') {
-        query = query.eq('account_manager_id', user.id);
+        sql += ` AND assigned_to = $${paramCount}`;
+        params.push(userId);
+        paramCount++;
       }
 
-      const { data, error } = await query.order('created_at', { ascending: false });
+      sql += ' ORDER BY created_at DESC';
 
-      if (error) {
-        console.error('Error fetching customers:', error);
-        return res.status(500).json({ error: 'Failed to fetch customers' });
-      }
-
-      return res.status(200).json(data || []);
+      const result = await query(sql, params);
+      return res.status(200).json(result.rows || []);
     }
 
     if (req.method === 'POST') {
       // Create new customer
-      const customerData = {
-        ...req.body,
-        tenant_id: userData.tenant_id,
-        created_by: user.id
-      };
+      const { company_name, org_number, segment, status } = req.body;
+      
+      const result = await query(
+        `INSERT INTO customers (company_name, org_number, segment, status, tenant_id, created_by, created_at) 
+         VALUES ($1, $2, $3, $4, $5, $6, NOW()) 
+         RETURNING *`,
+        [company_name, org_number, segment, status || 'active', tenantId, userId]
+      );
 
-      const { data, error } = await supabase
-        .from('customers')
-        .insert([customerData])
-        .select()
-        .single();
-
-      if (error) {
-        console.error('Error creating customer:', error);
-        return res.status(500).json({ error: 'Failed to create customer' });
-      }
-
-      return res.status(201).json(data);
+      return res.status(201).json(result.rows[0]);
     }
 
     return res.status(405).json({ error: 'Method not allowed' });

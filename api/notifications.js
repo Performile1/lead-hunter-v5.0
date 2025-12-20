@@ -1,9 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '',
-  process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY || ''
-);
+const jwt = require('jsonwebtoken');
+const { query } = require('./_lib/database');
 
 export default async function handler(req, res) {
   // Enable CORS
@@ -26,28 +22,27 @@ export default async function handler(req, res) {
 
     const token = authHeader.replace('Bearer ', '');
     
-    // Verify token with Supabase
-    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
-    
-    if (authError || !user) {
+    // Verify JWT token
+    let decoded;
+    try {
+      decoded = jwt.verify(token, process.env.JWT_SECRET);
+    } catch (err) {
       return res.status(401).json({ error: 'Invalid token' });
     }
 
+    const userId = decoded.userId;
+
     if (req.method === 'GET') {
       // Fetch notifications for user
-      const { data, error } = await supabase
-        .from('notifications')
-        .select('*')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false })
-        .limit(50);
+      const result = await query(
+        `SELECT * FROM notifications 
+         WHERE user_id = $1 
+         ORDER BY created_at DESC 
+         LIMIT 50`,
+        [userId]
+      );
 
-      if (error) {
-        console.error('Error fetching notifications:', error);
-        return res.status(500).json({ error: 'Failed to fetch notifications' });
-      }
-
-      return res.status(200).json(data || []);
+      return res.status(200).json(result.rows || []);
     }
 
     if (req.method === 'POST') {
@@ -55,31 +50,25 @@ export default async function handler(req, res) {
       
       if (id && req.url.includes('/read')) {
         // Mark notification as read
-        const { error } = await supabase
-          .from('notifications')
-          .update({ read: true, read_at: new Date().toISOString() })
-          .eq('id', id)
-          .eq('user_id', user.id);
-
-        if (error) {
-          return res.status(500).json({ error: 'Failed to mark as read' });
-        }
+        await query(
+          `UPDATE notifications 
+           SET read = true, read_at = NOW() 
+           WHERE id = $1 AND user_id = $2`,
+          [id, userId]
+        );
 
         return res.status(200).json({ success: true });
       }
 
       // Create new notification
-      const { data, error } = await supabase
-        .from('notifications')
-        .insert([{ ...req.body, user_id: user.id }])
-        .select()
-        .single();
+      const result = await query(
+        `INSERT INTO notifications (user_id, title, message, type, created_at) 
+         VALUES ($1, $2, $3, $4, NOW()) 
+         RETURNING *`,
+        [userId, req.body.title, req.body.message, req.body.type || 'info']
+      );
 
-      if (error) {
-        return res.status(500).json({ error: 'Failed to create notification' });
-      }
-
-      return res.status(201).json(data);
+      return res.status(201).json(result.rows[0]);
     }
 
     return res.status(405).json({ error: 'Method not allowed' });
