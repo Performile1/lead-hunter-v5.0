@@ -4,8 +4,8 @@
  */
 
 const processEnv = {
-  BUILTWITH_API_KEY: process.env.BUILTWITH_API_KEY as string,
-  WAPPALYZER_API_KEY: process.env.WAPPALYZER_API_KEY as string,
+  BUILTWITH_API_KEY: import.meta.env.VITE_BUILTWITH_API_KEY as string,
+  WAPPALYZER_API_KEY: import.meta.env.VITE_WAPPALYZER_API_KEY as string,
 };
 
 export interface TechStack {
