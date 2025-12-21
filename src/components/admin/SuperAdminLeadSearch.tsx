@@ -23,6 +23,7 @@ export const SuperAdminLeadViewer: React.FC = () => {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(false);
   const [analyzing, setAnalyzing] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
   const [filterTenant, setFilterTenant] = useState('');
   const [filterCarrier, setFilterCarrier] = useState('');
   const [showAnonymizedOnly, setShowAnonymizedOnly] = useState(false);
@@ -41,6 +42,19 @@ export const SuperAdminLeadViewer: React.FC = () => {
       const response = await fetch(`${API_BASE_URL}/admin/leads/all`, {
         headers: {
           'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setLeads(data.leads || []);
+      } else {
+        // Fallback to mock data if API fails
+        const mockLeads: Lead[] = [
+        {
+          id: '1',
+          company_name: 'Revolutionrace AB',
+          domain: 'revolutionrace.se',
           tenant_id: '1',
           tenant_name: 'DHL Express Sweden',
           ecommerce_platform: 'Shopify',
@@ -109,12 +123,16 @@ export const SuperAdminLeadViewer: React.FC = () => {
       ];
       
       setLeads(mockLeads);
+      }
     } catch (err) {
       console.error('Load error:', err);
     } finally {
       setLoading(false);
     }
   };
+
+  // Alias for backward compatibility
+  const loadAllLeads = loadAllLeadsFromDatabase;
 
   const searchLeads = async () => {
     try {
