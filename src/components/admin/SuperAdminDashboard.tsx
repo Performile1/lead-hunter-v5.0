@@ -374,7 +374,7 @@ export const SuperAdminDashboard: React.FC = () => {
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Aktiva Tenants</p>
               <p className="text-3xl font-black text-[#FFC400] mt-1">
-                {displayData.system_health.active_tenants}
+                {displayData?.system_health?.active_tenants || 0}
               </p>
             </div>
             <Building2 className="w-10 h-10 text-[#4F46E5]" />
@@ -386,7 +386,7 @@ export const SuperAdminDashboard: React.FC = () => {
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Aktiva Användare</p>
               <p className="text-3xl font-black text-[#FFC400] mt-1">
-                {displayData.system_health.active_users}
+                {displayData?.system_health?.active_users || 0}
               </p>
             </div>
             <Users className="w-10 h-10 text-[#4F46E5]" />
@@ -398,7 +398,7 @@ export const SuperAdminDashboard: React.FC = () => {
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Totalt Leads</p>
               <p className="text-3xl font-black text-[#FFC400] mt-1">
-                {displayData.system_health.total_leads.toLocaleString()}
+                {(displayData?.system_health?.total_leads || 0).toLocaleString()}
               </p>
             </div>
             <Package className="w-10 h-10 text-[#4F46E5]" />
@@ -410,7 +410,7 @@ export const SuperAdminDashboard: React.FC = () => {
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase">Totalt Kunder</p>
               <p className="text-3xl font-black text-[#FFC400] mt-1">
-                {displayData.system_health.total_customers.toLocaleString()}
+                {(displayData?.system_health?.total_customers || 0).toLocaleString()}
               </p>
             </div>
             <TrendingUp className="w-10 h-10 text-[#4F46E5]" />
@@ -427,7 +427,7 @@ export const SuperAdminDashboard: React.FC = () => {
             <h2 className="text-lg font-black text-black uppercase">E-handelsplattformar</h2>
           </div>
           <div className="space-y-3">
-            {displayData.platforms.slice(0, 5).map((platform, idx) => (
+            {(displayData?.platforms || []).slice(0, 5).map((platform, idx) => (
               <div key={idx}>
                 <div className="flex justify-between text-sm mb-1">
                   <span className="font-semibold">{platform.platform}</span>
@@ -527,10 +527,10 @@ export const SuperAdminDashboard: React.FC = () => {
             <h2 className="text-lg font-black text-black uppercase">Tenant Aktivitet (Senaste 24h)</h2>
           </div>
         <div className="space-y-2 max-h-96 overflow-y-auto">
-          {displayData.recent_activity.length === 0 ? (
+          {(displayData?.recent_activity || []).length === 0 ? (
             <p className="text-gray-500 text-sm">Ingen aktivitet senaste 24h</p>
           ) : (
-            displayData.recent_activity.map((activity, idx) => (
+            (displayData?.recent_activity || []).map((activity, idx) => (
               <div
                 key={idx}
                 className="flex items-center justify-between p-3 bg-gray-50 rounded border border-gray-200 hover:bg-gray-100 transition-colors"
