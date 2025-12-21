@@ -134,7 +134,7 @@ const getSourceType = (title: string, domain: string) => {
     return 'general';
 };
 
-const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearch, isSearchingLinkedIn, isEnriching, onUpdateLead, onRefreshAnalysis, onReportError, onClose, onConvertToCustomer }) => {
+const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearch, isSearchingLinkedIn, isEnriching, onUpdateLead, onRefreshAnalysis, onReportError, onClose, onConvertToCustomer, isSuperAdmin, tenantSearchTerm }) => {
   // Safety check - prevent white screen if data is invalid
   if (!data || typeof data !== 'object') {
     console.error('LeadCard: Invalid data provided', data);
