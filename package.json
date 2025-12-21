@@ -10,18 +10,16 @@
   },
   "dependencies": {
     "@google/genai": "^1.30.0",
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
     "algoliasearch": "^4.24.0",
     "crawl4ai": "^1.0.1",
     "groq-sdk": "^0.8.0",
     "lucide-react": "^0.555.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "xlsx": "latest"
-  },
-  "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
     "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "vite": "^6.2.0",
+    "xlsx": "latest"
   }
 }
