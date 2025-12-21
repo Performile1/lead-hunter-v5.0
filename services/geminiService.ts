@@ -11,6 +11,7 @@ import { analyzeSmart, LLMRequest } from "./llmOrchestrator";
 import { analyzeCompetitiveIntelligence } from "./competitiveIntelligenceService";
 import { detectTriggers } from "./triggerDetectionService";
 import { searchCompanyNews } from "./newsApiService";
+import { API_BASE_URL } from "../src/utils/api";
 
 // API keys from environment variables
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
