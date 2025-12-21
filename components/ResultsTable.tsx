@@ -566,9 +566,18 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
                 const isConflict = hasGroupConflict(lead);
                 const isDownloaded = isAlreadyDownloaded(lead.companyName);
                 
-                // Enhanced Analyzed Check: Check if we have an analysis date
-                // Fallback to other fields only if date is missing but data is clearly enriched
-                const isAnalyzed = !!lead.analysisDate || (!!lead.logisticsProfile && lead.logisticsProfile.length > 0) || (lead.decisionMakers && lead.decisionMakers.length > 0);
+                // Enhanced Analyzed Check: Only consider a lead "analyzed" if it has substantial data
+                // Reservoir leads with minimal data should show "Analyze" button
+                const hasSubstantialData = (
+                    (lead.revenue && lead.revenue.length > 0 && !lead.revenue.includes('Okänd')) ||
+                    (lead.legalStatus && lead.legalStatus.length > 0 && !lead.legalStatus.includes('Okänd')) ||
+                    (lead.creditRatingLabel && lead.creditRatingLabel.length > 0) ||
+                    (lead.logisticsProfile && lead.logisticsProfile.length > 0) ||
+                    (lead.decisionMakers && lead.decisionMakers.length > 0) ||
+                    (lead.carriers && lead.carriers.length > 0) ||
+                    (lead.ecommercePlatform && lead.ecommercePlatform.length > 0)
+                );
+                const isAnalyzed = !!lead.analysisDate && hasSubstantialData;
                 
                 const isSelected = selectedIds.has(lead.id);
                 const city = extractCity(lead.address);
