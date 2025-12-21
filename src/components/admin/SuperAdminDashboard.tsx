@@ -41,6 +41,9 @@ export const SuperAdminDashboard: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [currentView, setCurrentView] = useState<'dashboard' | 'tenants' | 'users' | 'settings' | 'customers' | 'errors' | 'api-keys' | 'scraping' | 'quota'>('dashboard');
 
+  // DEBUG: Verify new version is loaded
+  console.log('🎯 SuperAdminDashboard v5.0.4 loaded with defensive programming');
+
   useEffect(() => {
     loadAnalytics();
   }, []);
@@ -115,17 +118,19 @@ export const SuperAdminDashboard: React.FC = () => {
     }
   };
 
-  const calculatePercentage = (items: Array<{ count: number }>) => {
-    const total = items.reduce((sum, item) => sum + Number(item.count), 0);
-    return items.map(item => ({
+  const calculatePercentage = (items: Array<{ count: number }> | undefined) => {
+    // Safety check: ensure items is an array
+    const safeItems = Array.isArray(items) ? items : [];
+    const total = safeItems.reduce((sum, item) => sum + Number(item?.count || 0), 0);
+    return safeItems.map(item => ({
       ...item,
-      percentage: total > 0 ? ((Number(item.count) / total) * 100).toFixed(1) : '0'
+      percentage: total > 0 ? ((Number(item?.count || 0) / total) * 100).toFixed(1) : '0'
     }));
   };
 
-  const carriersWithPercentage = calculatePercentage(displayData.carriers);
-  const checkoutWithPercentage = calculatePercentage(displayData.checkout_providers);
-  const deliveryWithPercentage = calculatePercentage(displayData.delivery_methods);
+  const carriersWithPercentage = calculatePercentage(displayData?.carriers);
+  const checkoutWithPercentage = calculatePercentage(displayData?.checkout_providers);
+  const deliveryWithPercentage = calculatePercentage(displayData?.delivery_methods);
 
   return (
     <div className="p-6 space-y-6">
