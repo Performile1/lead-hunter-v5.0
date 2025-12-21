@@ -150,12 +150,29 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
   
   // EDIT MODE STATE
   const [isEditing, setIsEditing] = useState(false);
-  const [editData, setEditData] = useState<LeadData>(data);
+  
+  // Ensure data has required structure for Reservoir leads
+  const safeData = {
+    ...data,
+    decisionMakers: data.decisionMakers || [],
+    sourceLinks: data.sourceLinks || [],
+    deliveryServices: data.deliveryServices || [],
+    financials: data.financials || { history: [] }
+  };
+  
+  const [editData, setEditData] = useState<LeadData>(safeData);
 
   // Sync editData when prop data changes, but not if user is actively editing
   useEffect(() => {
     if (!isEditing) {
-      setEditData(data);
+      const safeData = {
+        ...data,
+        decisionMakers: data.decisionMakers || [],
+        sourceLinks: data.sourceLinks || [],
+        deliveryServices: data.deliveryServices || [],
+        financials: data.financials || { history: [] }
+      };
+      setEditData(safeData);
     }
   }, [data, isEditing]);
 
@@ -683,7 +700,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
                 {isEditing ? (
                   <div className="space-y-2">
                       {/* DYNAMIC LIST FOR EDITING */}
-                      {Array.isArray(editData.financials?.history) && (editData.financials?.history || []).map((record, index) => (
+                      {Array.isArray(editData.financials?.history) && editData.financials.history.length > 0 && editData.financials.history.map((record, index) => (
                           <div key={index} className="flex gap-1 items-center animate-fadeIn">
                              <input 
                                 type="text" 
@@ -1188,7 +1205,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ data, prio1Role, onRunLinkedInSearc
              </div>
           ) : (
              <div className="space-y-3">
-            {(editData.decisionMakers || []).map((dm, idx) => (
+            {Array.isArray(editData.decisionMakers) && editData.decisionMakers.map((dm, idx) => (
               <div key={idx} className="bg-white border border-slate-200 p-3 shadow-sm hover:transition-colors group relative">
                 {isEditing && (
                     <button 
