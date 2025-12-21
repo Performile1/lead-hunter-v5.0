@@ -641,11 +641,21 @@ async function generateWithRetry(ai: GoogleGenAI, model: string, prompt: string,
 
   for (let i = 0; i < retries; i++) {
     try {
-      return await ai.models.generateContent({
+      const modelInstance = ai.getGenerativeModel({
         model,
-        contents: prompt,
-        config: currentConfig
+        systemInstruction: currentConfig.systemInstruction,
+        generationConfig: {
+          temperature: currentConfig.temperature || 0.2,
+          topP: currentConfig.topP || 0.95,
+          topK: currentConfig.topK || 40,
+          maxOutputTokens: currentConfig.maxOutputTokens || 8192,
+          responseMimeType: currentConfig.responseMimeType
+        },
+        tools: currentConfig.tools
       });
+      
+      const result = await modelInstance.generateContent(prompt);
+      return result.response;
     } catch (error: any) {
       // DETECT QUOTA/OVERLOAD ERRORS (429, 503) AGGRESSIVELY
       const errString = (error.toString() || '').toLowerCase();
@@ -1100,9 +1110,10 @@ Returnera ENDAST JSON, ingen annan text.`;
 
       // Parallella anrop: Gemini checkout + Backend scraping + Tech analysis
       const [checkoutInfo, scrapingResponse, techStack] = await Promise.all([
-        generateWithRetry(checkoutPrompt, {
+        generateWithRetry(ai, model, checkoutPrompt, {
           temperature: 0.1,
-          maxOutputTokens: 500
+          maxOutputTokens: 500,
+          tools: [{ googleSearch: {} }]
         }).catch(err => {
           console.warn('Gemini checkout analysis failed:', err);
           return null;
