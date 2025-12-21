@@ -33,7 +33,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
   const [cronjobs, setCronjobs] = useState<any[]>([]);
 
   // DEBUG: Verify new version is loaded
-  console.log('🎯 Dashboard v5.0.2 loaded - leads:', Array.isArray(leads) ? `array[${leads.length}]` : typeof leads);
+  console.log('🎯 Dashboard v5.0.4 loaded - leads:', Array.isArray(leads) ? `array[${leads.length}]` : typeof leads);
 
   // Ensure leads is always an array
   const safeLeads = Array.isArray(leads) ? leads : [];

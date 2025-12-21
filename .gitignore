@@ -61,3 +61,7 @@ coverage/
 
 # Vercel
 .vercel
+
+# Environment variable files with API keys
+VERCEL_ENV_READY_TO_COPY.txt
+VERCEL_QUICK_SETUP.md
