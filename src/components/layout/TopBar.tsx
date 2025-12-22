@@ -37,15 +37,14 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenTools }) => {
         <div className="flex items-center justify-between h-16">
           {/* Logo & Title */}
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-[#FFC400] rounded flex items-center justify-center">
-                <span className="text-black font-black text-xl">LH</span>
-              </div>
-              <div>
-                <h1 className="text-lg font-black text-black uppercase tracking-tight">
-                  Lead Hunter
-                </h1>
-                <p className="text-xs text-gray-500">
+            <div className="flex items-center gap-3">
+              <img 
+                src="/eurekai-logo.svg" 
+                alt="EUREKAI" 
+                className="h-8 w-auto"
+              />
+              <div className="border-l border-gray-300 pl-3">
+                <p className="text-xs text-gray-500 font-medium">
                   {isSuperAdmin ? 'SuperAdmin' : user?.tenant_name || 'Dashboard'}
                 </p>
               </div>

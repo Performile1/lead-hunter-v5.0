@@ -113,25 +113,26 @@ export const LoginPage: React.FC = () => {
         {/* Login Card */}
         <div className="bg-white shadow-2xl overflow-hidden">
           {/* Header with Corporate Identity */}
-          <div className="p-8 text-center relative bg-[#FFC400]">
-            <div className="absolute top-0 left-0 w-full h-1 bg-black"></div>
-            <div className="h-20 mx-auto mb-6 flex items-center justify-center">
+          <div className="p-8 text-center relative bg-white border-b-2 border-gray-200">
+            <div className="h-20 mx-auto mb-4 flex items-center justify-center">
               {tenantInfo?.logoUrl ? (
                 <img src={tenantInfo.logoUrl} alt={companyName} className="h-16 object-contain" />
               ) : (
-                <div className="text-black font-bold" style={{ fontFamily: "'Delivery', 'Arial Black', sans-serif" }}>
-                  <div className="flex items-center justify-center">
-                    <span style={{ fontSize: '48px', letterSpacing: '2px' }}>{searchTerm}</span>
-                  </div>
-                </div>
+                <img 
+                  src="/eurekai-logo.svg" 
+                  alt="EUREKAI" 
+                  className="h-12 w-auto"
+                />
               )}
             </div>
-            <div className="inline-block px-6 py-2 transform -skew-x-12 bg-black">
-              <h1 className="text-2xl font-black italic uppercase tracking-wider transform skew-x-12 text-[#FFC400]">
-                {isSuperAdminLogin ? 'Lead Hunter' : companyName}
-              </h1>
-            </div>
-            <p className="text-xs text-black font-bold uppercase tracking-widest mt-3 opacity-90">
+            {!isSuperAdminLogin && (
+              <div className="mt-4">
+                <h1 className="text-xl font-bold text-gray-800">
+                  {companyName}
+                </h1>
+              </div>
+            )}
+            <p className="text-xs text-gray-600 font-medium uppercase tracking-wide mt-3">
               Sales Intelligence Platform
             </p>
           </div>
