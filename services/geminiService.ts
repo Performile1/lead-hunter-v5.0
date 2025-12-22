@@ -12,6 +12,7 @@ import { analyzeCompetitiveIntelligence } from "./competitiveIntelligenceService
 import { detectTriggers } from "./triggerDetectionService";
 import { searchCompanyNews } from "./newsApiService";
 import { API_BASE_URL } from "../src/utils/api";
+import { scrapeWebsiteContent, isFirecrawlAvailable } from "./firecrawlService";
 
 // API keys from environment variables
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
@@ -693,10 +694,13 @@ async function generateWithRetry(ai: GoogleGenAI, model: string, prompt: string,
                     currentConfig.temperature || 0.2
                 );
                 
-                // Returnera i samma format som Gemini
+                // Returnera i samma format som Gemini response
                 return {
-                    text: groqResponse,
+                    text: () => groqResponse,
                     candidates: [{
+                        content: {
+                            parts: [{ text: groqResponse }]
+                        },
                         groundingMetadata: { groundingChunks: [] }
                     }]
                 };
@@ -870,8 +874,8 @@ export const generateDeepDiveSequential = async (
 
   console.log(`📥 Steg 1 svar mottaget`);
   
-  // Extract text from response - handle both direct text and parts array
-  let step1Text = step1Response.text;
+  // Extract text from response - handle both Gemini and Groq formats
+  let step1Text = typeof step1Response.text === 'function' ? step1Response.text() : step1Response.text;
   if (!step1Text && step1Response.candidates?.[0]?.content?.parts) {
     // When using grounding tools, text might be in parts array
     const parts = step1Response.candidates[0].content.parts;
@@ -982,8 +986,9 @@ export const generateDeepDiveSequential = async (
         temperature: 0.4
       });
 
-      if (step2Response.text) {
-        const step2Json = extractJSON(step2Response.text);
+      const step2Text = typeof step2Response.text === 'function' ? step2Response.text() : step2Response.text;
+      if (step2Text) {
+        const step2Json = extractJSON(step2Text);
         if (step2Json && step2Json.length > 0) {
            const step2Raw = step2Json[0];
            const groundingChunks2 = step2Response.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
@@ -1047,8 +1052,9 @@ export const generateDeepDiveSequential = async (
         temperature: 0.2
       });
 
-      if (step3Response.text) {
-          const step3Json = extractJSON(step3Response.text);
+      const step3Text = typeof step3Response.text === 'function' ? step3Response.text() : step3Response.text;
+      if (step3Text) {
+          const step3Json = extractJSON(step3Text);
           if (step3Json && step3Json.length > 0) {
               const step3Raw = step3Json[0];
               const groundingChunks3 = step3Response.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
@@ -1124,6 +1130,9 @@ Returnera ENDAST JSON, ingen annan text.`;
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ url: currentData.websiteUrl }),
+        }).catch(err => {
+          console.warn('⚠️ Website scraping failed for', currentData.websiteUrl, ':', err.message);
+          return null;
         }),
         analyzeWebsiteTech(currentData.websiteUrl).catch(err => {
           console.warn('Tech analysis failed:', err);
@@ -1131,11 +1140,37 @@ Returnera ENDAST JSON, ingen annan text.`;
         })
       ]);
 
-      if (!scrapingResponse.ok) {
-        throw new Error(`Scraping API returned ${scrapingResponse.status}`);
+      // Try to get website data from backend scraping or fallback to Firecrawl
+      let websiteData: any = { shipping_providers: [], shipping_providers_with_position: [] };
+      
+      if (scrapingResponse && scrapingResponse.ok) {
+        websiteData = await scrapingResponse.json();
+        console.log('✅ Backend scraping successful');
+      } else {
+        // Fallback to Firecrawl if available
+        console.log('🔄 Trying Firecrawl fallback...');
+        if (isFirecrawlAvailable()) {
+          try {
+            const firecrawlData = await scrapeWebsiteContent(currentData.websiteUrl);
+            // Extract shipping providers from Firecrawl content
+            const content = firecrawlData.content.toLowerCase();
+            const providers = ['dhl', 'postnord', 'bring', 'schenker', 'ups', 'fedex', 'budbee', 'instabox'];
+            const foundProviders = providers.filter(p => content.includes(p));
+            
+            websiteData = {
+              shipping_providers: foundProviders,
+              shipping_providers_with_position: foundProviders.map((name, index) => ({ name, position: index + 1 })),
+              content: firecrawlData.content,
+              source: 'firecrawl'
+            };
+            console.log(`✅ Firecrawl fallback successful: ${foundProviders.length} providers found`);
+          } catch (firecrawlErr) {
+            console.warn('Firecrawl fallback also failed:', firecrawlErr);
+          }
+        } else {
+          console.warn('⚠️ Firecrawl not available, no scraping data');
+        }
       }
-
-      const websiteData = await scrapingResponse.json();
       
       // Parse Gemini checkout info
       let geminiCheckoutData = null;
