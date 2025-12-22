@@ -6,6 +6,7 @@ import { analyzeWebsiteTech } from "./techAnalysisService";
 import { searchCompanyNews } from "./newsApiService";
 import { analyzeCompetitiveIntelligence } from "./competitiveIntelligenceService";
 import { detectTriggers } from "./triggerDetectionService";
+import { searchTrustpilot, formatTrustpilotSummary } from "./trustpilotService";
 import { API_BASE_URL } from "../src/utils/api";
 import { scrapeCompanyWebsite, isFirecrawlAvailable } from "./firecrawlService";
 import { DEEP_STEP_1_CORE, DEEP_STEP_2_LOGISTICS, DEEP_STEP_3_PEOPLE } from "../prompts/deepAnalysis";
@@ -368,6 +369,42 @@ export const generateDeepDiveWithGroq = async (
     }
   } catch (error: any) {
     console.warn(`⚠️ News & Triggers failed:`, error.message);
+  }
+
+  // --- STEP 7: TRUSTPILOT REVIEWS (FOKUS PÅ LEVERANS) ---
+  try {
+    console.log(`⭐ Searching Trustpilot for ${currentData.companyName}`);
+    
+    const trustpilotData = await searchTrustpilot(currentData.companyName);
+    
+    if (trustpilotData) {
+      // Spara Trustpilot-data i currentData
+      currentData.trustpilotRating = trustpilotData.overallRating;
+      currentData.trustpilotReviews = trustpilotData.totalReviews;
+      currentData.trustpilotUrl = trustpilotData.url;
+      
+      // Lägg till leveransomdömen i reviews
+      if (trustpilotData.deliveryReviews.length > 0) {
+        const deliverySummary = formatTrustpilotSummary(trustpilotData);
+        console.log(`✅ Trustpilot: ${trustpilotData.deliveryReviews.length} leveransomdömen`);
+        console.log(`   Sentiment: ${trustpilotData.deliverySentiment}`);
+        
+        // Lägg till i recentNews för att visa i UI
+        currentData.recentNews = currentData.recentNews || [];
+        currentData.recentNews.push({
+          title: `Trustpilot: ${trustpilotData.deliveryReviews.length} leveransomdömen (${trustpilotData.deliverySentiment})`,
+          url: trustpilotData.url,
+          date: new Date().toISOString(),
+          source: 'Trustpilot'
+        });
+      } else {
+        console.log(`ℹ️ Trustpilot: ${trustpilotData.totalReviews} omdömen, men inga om leverans`);
+      }
+    } else {
+      console.log(`ℹ️ No Trustpilot data found for ${currentData.companyName}`);
+    }
+  } catch (error: any) {
+    console.warn(`⚠️ Trustpilot search failed:`, error.message);
   }
 
   // --- FINALIZE ---
