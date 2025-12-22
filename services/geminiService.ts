@@ -1,4 +1,4 @@
-﻿import { GoogleGenAI } from "@google/genai";
+﻿import { GoogleGenerativeAI } from "@google/generative-ai";
 import { SearchFormData, LeadData, Segment, DecisionMaker, SourceLink, FinancialRecord } from "../types";
 import { DEEP_STEP_1_CORE, DEEP_STEP_2_LOGISTICS, DEEP_STEP_3_PEOPLE, DEEP_ANALYSIS_INSTRUCTION } from "../prompts/deepAnalysis";
 import { BATCH_SCAN_INSTRUCTION, BATCH_DEEP_INSTRUCTION } from "../prompts/quickScan";
@@ -767,7 +767,7 @@ async function generateWithRetry(ai: GoogleGenAI, model: string, prompt: string,
  */
 export const findPersonOnLinkedIn = async (companyName: string, role: string): Promise<DecisionMaker | null> => {
    if (!GEMINI_API_KEY) throw new Error("API Key missing");
-   const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+   const ai = new GoogleGenerativeAI(GEMINI_API_KEY);
    
    // SWITCH TO FLASH TO SAVE QUOTA
    const model = "gemini-2.5-flash"; 
@@ -834,7 +834,7 @@ export const generateDeepDiveSequential = async (
   onPartialUpdate: (lead: LeadData) => void
 ): Promise<LeadData> => {
   if (!GEMINI_API_KEY) throw new Error("API Key missing");
-  const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+  const ai = new GoogleGenerativeAI(GEMINI_API_KEY);
   
   // --- CACHE CHECK ---
   const cached = getFromCache(formData.companyNameOrOrg);
@@ -1494,7 +1494,7 @@ export const generateLeads = async (formData: SearchFormData): Promise<LeadData[
     throw new Error("API Key is missing.");
   }
 
-  const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+  const ai = new GoogleGenerativeAI(GEMINI_API_KEY);
   const isSingleSearch = formData.companyNameOrOrg.trim().length > 0;
   let userPrompt = "";
   let systemInstruction = "";
