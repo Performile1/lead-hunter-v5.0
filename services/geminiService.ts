@@ -866,10 +866,13 @@ export const generateDeepDiveSequential = async (
   console.log(`🔍 Startar Steg 1 analys för: ${formData.companyNameOrOrg}`);
   console.log(`   Modell: ${model}`);
   
+  // OPTIMIZATION: Step 1 uses Pure LLM (no Search Grounding) to save quota
+  // Basic company data (org nr, revenue, address) is available on public sites without search
   const step1Response = await generateWithRetry(ai, model, step1Prompt, {
     systemInstruction: DEEP_STEP_1_CORE,
-    tools: [{ googleSearch: {} }],
-    temperature: 0.1
+    // NO TOOLS - Pure LLM is faster and cheaper for basic data
+    temperature: 0.1,
+    responseMimeType: 'application/json'
   });
 
   console.log(`📥 Steg 1 svar mottaget`);
@@ -980,11 +983,18 @@ export const generateDeepDiveSequential = async (
       Returnera ENDAST JSON med nya fält. Skriv inte över tomma fält.
       `;
 
+      // OPTIMIZATION: Step 2 uses Search Grounding only if website data is missing
+      // If we already have website data from scraping, use Pure LLM to analyze it
+      const useSearchForStep2 = !currentData.websiteUrl || currentData.websiteUrl === "Kunde inte hittas";
+      
       const step2Response = await generateWithRetry(ai, model, step2Prompt, {
         systemInstruction: DEEP_STEP_2_LOGISTICS,
-        tools: [{ googleSearch: {} }],
-        temperature: 0.4
+        tools: useSearchForStep2 ? [{ googleSearch: {} }] : undefined,
+        temperature: 0.4,
+        responseMimeType: useSearchForStep2 ? undefined : 'application/json'
       });
+      
+      console.log(`📊 Steg 2: ${useSearchForStep2 ? 'Search Grounding' : 'Pure LLM'} mode`);
 
       const step2Text = typeof step2Response.text === 'function' ? step2Response.text() : step2Response.text;
       if (step2Text) {
@@ -1046,11 +1056,15 @@ export const generateDeepDiveSequential = async (
       Returnera ENDAST JSON med nya fält.
       `;
 
+      // OPTIMIZATION: Step 3 always uses Search Grounding for LinkedIn/contact search
+      // This is necessary to find decision makers
       const step3Response = await generateWithRetry(ai, model, step3Prompt, {
         systemInstruction: DEEP_STEP_3_PEOPLE,
         tools: [{ googleSearch: {} }],
         temperature: 0.2
       });
+      
+      console.log(`📊 Steg 3: Search Grounding mode (required for contact search)`);
 
       const step3Text = typeof step3Response.text === 'function' ? step3Response.text() : step3Response.text;
       if (step3Text) {
@@ -1114,103 +1128,110 @@ Sök på: "${currentData.companyName} checkout frakt leverans" och "${currentDat
 
 Returnera ENDAST JSON, ingen annan text.`;
 
-      // Parallella anrop: Gemini checkout + Backend scraping + Tech analysis
-      const [checkoutInfo, scrapingResponse, techStack] = await Promise.all([
-        generateWithRetry(ai, model, checkoutPrompt, {
-          temperature: 0.1,
-          maxOutputTokens: 500,
-          tools: [{ googleSearch: {} }]
-        }).catch(err => {
-          console.warn('Gemini checkout analysis failed:', err);
-          return null;
-        }),
-        fetch(`${API_BASE_URL}/scrape/website`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ url: currentData.websiteUrl }),
-        }).catch(err => {
-          console.warn('⚠️ Website scraping failed for', currentData.websiteUrl, ':', err.message);
-          return null;
-        }),
-        analyzeWebsiteTech(currentData.websiteUrl).catch(err => {
-          console.warn('Tech analysis failed:', err);
-          return null;
-        })
-      ]);
-
-      // Try to get website data from backend scraping or fallback to Firecrawl
+      // NEW SCRAPING PRIORITY: Firecrawl -> Crawl4AI -> Puppeteer -> Gemini (last resort)
+      // Tech analysis runs in parallel
       let websiteData: any = { shipping_providers: [], shipping_providers_with_position: [] };
+      let scrapingSource = 'none';
       
-      if (scrapingResponse && scrapingResponse.ok) {
-        websiteData = await scrapingResponse.json();
-        console.log('✅ Backend scraping successful');
-      } else {
-        // Fallback to Firecrawl if available
-        console.log('🔄 Trying Firecrawl fallback...');
-        if (isFirecrawlAvailable()) {
-          try {
-            const firecrawlData = await scrapeWebsiteContent(currentData.websiteUrl);
-            // Extract shipping providers from Firecrawl content
-            const content = firecrawlData.content.toLowerCase();
-            const providers = ['dhl', 'postnord', 'bring', 'schenker', 'ups', 'fedex', 'budbee', 'instabox'];
-            const foundProviders = providers.filter(p => content.includes(p));
-            
-            websiteData = {
-              shipping_providers: foundProviders,
-              shipping_providers_with_position: foundProviders.map((name, index) => ({ name, position: index + 1 })),
-              content: firecrawlData.content,
-              source: 'firecrawl'
-            };
-            console.log(`✅ Firecrawl fallback successful: ${foundProviders.length} providers found`);
-          } catch (firecrawlErr) {
-            console.warn('Firecrawl fallback also failed:', firecrawlErr);
-          }
-        } else {
-          console.warn('⚠️ Firecrawl not available, no scraping data');
-        }
-      }
-      
-      // Parse Gemini checkout info
-      let geminiCheckoutData = null;
-      if (checkoutInfo) {
+      const techStack = await analyzeWebsiteTech(currentData.websiteUrl).catch(err => {
+        console.warn('Tech analysis failed:', err);
+        return null;
+      });
+
+      // 1. TRY FIRECRAWL FIRST (Primary - specialized scraping)
+      if (isFirecrawlAvailable()) {
+        console.log('🔥 Trying Firecrawl (primary scraping method)...');
         try {
-          const cleanJson = checkoutInfo.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-          geminiCheckoutData = JSON.parse(cleanJson);
-          console.log(`✅ Gemini checkout analysis: ${geminiCheckoutData.shipping_providers?.length || 0} transportörer (${geminiCheckoutData.confidence} confidence)`);
-        } catch (e) {
-          console.warn('Failed to parse Gemini checkout data:', e);
+          const firecrawlData = await scrapeWebsiteContent(currentData.websiteUrl);
+          const content = firecrawlData.content.toLowerCase();
+          const providers = ['dhl', 'postnord', 'bring', 'schenker', 'ups', 'fedex', 'budbee', 'instabox'];
+          const foundProviders = providers.filter(p => content.includes(p));
+          
+          websiteData = {
+            shipping_providers: foundProviders,
+            shipping_providers_with_position: foundProviders.map((name, index) => ({ name, position: index + 1 })),
+            content: firecrawlData.content,
+            metadata: firecrawlData.metadata
+          };
+          scrapingSource = 'firecrawl';
+          console.log(`✅ Firecrawl successful: ${foundProviders.length} providers found`);
+        } catch (firecrawlErr) {
+          console.warn('⚠️ Firecrawl failed:', firecrawlErr);
         }
       }
+
+      // 2. TRY CRAWL4AI (Fallback 1 - AI-powered, free)
+      if (scrapingSource === 'none') {
+        console.log('🤖 Trying Crawl4AI (fallback 1)...');
+        // TODO: Implement Crawl4AI when configured
+        // For now, skip to next fallback
+        console.log('⚠️ Crawl4AI not yet configured, skipping...');
+      }
+
+      // 3. TRY BACKEND PUPPETEER (Fallback 2 - full control)
+      if (scrapingSource === 'none') {
+        console.log('🎭 Trying Backend Puppeteer (fallback 2)...');
+        try {
+          const scrapingResponse = await fetch(`${API_BASE_URL}/scrape/website`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: currentData.websiteUrl }),
+          });
+          
+          if (scrapingResponse.ok) {
+            websiteData = await scrapingResponse.json();
+            scrapingSource = 'puppeteer';
+            console.log('✅ Backend Puppeteer successful');
+          } else {
+            console.warn(`⚠️ Puppeteer failed: ${scrapingResponse.status}`);
+          }
+        } catch (puppeteerErr) {
+          console.warn('⚠️ Puppeteer error:', puppeteerErr);
+        }
+      }
+
+      console.log(`📊 Scraping completed via: ${scrapingSource}`);
       
-      // HYBRID MERGE: Använd Gemini data om tillgänglig och hög confidence, annars Puppeteer
+      // 4. TRY GEMINI SEARCH GROUNDING (Last resort - expensive but reliable)
+      // Only use Gemini if all scraping methods failed to find providers
       let finalShippingProviders = websiteData.shipping_providers || [];
       let finalShippingWithPosition = websiteData.shipping_providers_with_position || [];
-      let checkoutDataSource = 'scraping';
+      let checkoutDataSource = scrapingSource;
       
-      if (geminiCheckoutData && geminiCheckoutData.shipping_providers && geminiCheckoutData.shipping_providers.length > 0) {
-        if (geminiCheckoutData.confidence === 'high' || geminiCheckoutData.confidence === 'medium') {
-          // Använd Gemini data (mer tillförlitlig ordning)
-          finalShippingProviders = geminiCheckoutData.shipping_providers;
-          finalShippingWithPosition = geminiCheckoutData.shipping_providers.map((name: string, index: number) => ({
-            name,
-            position: index + 1
-          }));
-          checkoutDataSource = `gemini (${geminiCheckoutData.confidence})`;
-          console.log(`✅ Using Gemini checkout data (${geminiCheckoutData.confidence} confidence)`);
-        } else if (finalShippingProviders.length === 0) {
-          // Puppeteer hittade inget, använd Gemini även med low confidence
-          finalShippingProviders = geminiCheckoutData.shipping_providers;
-          finalShippingWithPosition = geminiCheckoutData.shipping_providers.map((name: string, index: number) => ({
-            name,
-            position: index + 1
-          }));
-          checkoutDataSource = `gemini (${geminiCheckoutData.confidence})`;
-          console.log(`⚠️ Using Gemini checkout data as fallback (${geminiCheckoutData.confidence} confidence)`);
+      if (finalShippingProviders.length === 0 && scrapingSource !== 'none') {
+        console.log('🔍 No providers found via scraping, trying Gemini Search Grounding (last resort)...');
+        try {
+          const checkoutInfo = await generateWithRetry(ai, model, checkoutPrompt, {
+            temperature: 0.1,
+            maxOutputTokens: 500,
+            tools: [{ googleSearch: {} }]
+          });
+          
+          const checkoutText = typeof checkoutInfo.text === 'function' ? checkoutInfo.text() : checkoutInfo.text;
+          if (checkoutText) {
+            const cleanJson = checkoutText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+            const geminiCheckoutData = JSON.parse(cleanJson);
+            
+            if (geminiCheckoutData.shipping_providers && geminiCheckoutData.shipping_providers.length > 0) {
+              finalShippingProviders = geminiCheckoutData.shipping_providers;
+              finalShippingWithPosition = geminiCheckoutData.shipping_providers.map((name: string, index: number) => ({
+                name,
+                position: index + 1
+              }));
+              checkoutDataSource = `gemini-grounding (${geminiCheckoutData.confidence})`;
+              console.log(`✅ Gemini found ${geminiCheckoutData.shipping_providers.length} providers (${geminiCheckoutData.confidence} confidence)`);
+            }
+          }
+        } catch (geminiErr) {
+          console.warn('⚠️ Gemini checkout analysis also failed:', geminiErr);
+          // Continue without checkout data
         }
+      } else if (finalShippingProviders.length > 0) {
+        console.log(`✅ Using ${finalShippingProviders.length} providers from ${scrapingSource}`);
+      } else {
+        console.warn('⚠️ No checkout data available from any source');
       }
-      
+
       // Override websiteData with final merged data
       websiteData.shipping_providers = finalShippingProviders;
       websiteData.shipping_providers_with_position = finalShippingWithPosition;
