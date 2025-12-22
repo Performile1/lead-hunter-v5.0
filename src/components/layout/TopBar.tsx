@@ -39,7 +39,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenTools }) => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-3">
               <img 
-                src="/eurekai-logo.svg" 
+                src="/eurakai-logo.png" 
                 alt="EUREKAI" 
                 className="h-8 w-auto"
               />

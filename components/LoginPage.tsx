@@ -113,27 +113,28 @@ export const LoginPage: React.FC = () => {
         {/* Login Card */}
         <div className="bg-white shadow-2xl overflow-hidden">
           {/* Header with Corporate Identity */}
-          <div className="p-8 text-center relative bg-white border-b-2 border-gray-200">
+          <div className="p-8 text-center relative bg-[#FFC400]">
+            <div className="absolute top-0 left-0 w-full h-1 bg-black"></div>
             <div className="h-20 mx-auto mb-4 flex items-center justify-center">
               {tenantInfo?.logoUrl ? (
                 <img src={tenantInfo.logoUrl} alt={companyName} className="h-16 object-contain" />
               ) : (
                 <img 
-                  src="/eurekai-logo.svg" 
+                  src="/eurakai-logo.png" 
                   alt="EUREKAI" 
-                  className="h-12 w-auto"
+                  className="h-16 w-auto"
                 />
               )}
             </div>
             {!isSuperAdminLogin && (
               <div className="mt-4">
-                <h1 className="text-xl font-bold text-gray-800">
+                <h1 className="text-xl font-bold text-black">
                   {companyName}
                 </h1>
               </div>
             )}
-            <p className="text-xs text-gray-600 font-medium uppercase tracking-wide mt-3">
-              Sales Intelligence Platform
+            <p className="text-xs text-black font-bold uppercase tracking-widest mt-3">
+              Lead Hunter and Sales Analysis
             </p>
           </div>
 
@@ -199,7 +200,7 @@ export const LoginPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full text-black font-black py-4 px-6 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-widest text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                className="w-full bg-[#FFC400] hover:bg-[#FFD633] text-black font-black py-4 px-6 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-widest text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 {isLoading ? (
                   <span className="flex items-center justify-center gap-2">
