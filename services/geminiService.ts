@@ -12,7 +12,7 @@ import { analyzeCompetitiveIntelligence } from "./competitiveIntelligenceService
 import { detectTriggers } from "./triggerDetectionService";
 import { searchCompanyNews } from "./newsApiService";
 import { API_BASE_URL } from "../src/utils/api";
-import { scrapeWebsiteContent, isFirecrawlAvailable } from "./firecrawlService";
+import { scrapeCompanyWebsite, isFirecrawlAvailable } from "./firecrawlService";
 
 // API keys from environment variables
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
@@ -1229,7 +1229,7 @@ Returnera ENDAST JSON, ingen annan text.`;
       if (isFirecrawlAvailable()) {
         console.log('🔥 Trying Firecrawl (primary scraping method)...');
         try {
-          const firecrawlData = await scrapeWebsiteContent(currentData.websiteUrl);
+          const firecrawlData = await scrapeCompanyWebsite(currentData.websiteUrl);
           const content = firecrawlData.content.toLowerCase();
           const providers = ['dhl', 'postnord', 'bring', 'schenker', 'ups', 'fedex', 'budbee', 'instabox'];
           const foundProviders = providers.filter(p => content.includes(p));

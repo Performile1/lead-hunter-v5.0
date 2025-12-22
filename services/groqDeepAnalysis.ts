@@ -5,7 +5,7 @@ import { normalizeOrgNumber, validateOrgNumber } from "./bolagsverketService";
 import { analyzeWebsiteTech } from "./techAnalysisService";
 import { searchCompanyNews } from "./newsApiService";
 import { API_BASE_URL } from "../src/utils/api";
-import { scrapeWebsiteContent, isFirecrawlAvailable } from "./firecrawlService";
+import { scrapeCompanyWebsite, isFirecrawlAvailable } from "./firecrawlService";
 import { DEEP_STEP_1_CORE, DEEP_STEP_2_LOGISTICS, DEEP_STEP_3_PEOPLE } from "../prompts/deepAnalysis";
 import { mapAiResponseToLeadData, extractJSON, extractGroundingLinks } from "./geminiService";
 
@@ -195,7 +195,7 @@ export const generateDeepDiveWithGroq = async (
       if (isFirecrawlAvailable()) {
         console.log('🔥 Trying Firecrawl...');
         try {
-          const firecrawlData = await scrapeWebsiteContent(currentData.websiteUrl);
+          const firecrawlData = await scrapeCompanyWebsite(currentData.websiteUrl);
           const content = firecrawlData.content.toLowerCase();
           const providers = ['dhl', 'postnord', 'bring', 'schenker', 'ups', 'fedex', 'budbee', 'instabox'];
           const foundProviders = providers.filter(p => content.includes(p));
