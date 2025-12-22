@@ -1131,15 +1131,29 @@ export const generateDeepDiveSequential = async (
   // --- SAFETY PAUSE 2 ---
   await new Promise(resolve => setTimeout(resolve, delayTime));
 
-  // --- STEP 3: PEOPLE & NEWS (Smart Merge) ---
+  // --- STEP 3: PEOPLE & NEWS (Smart Merge med focusRole1, focusRole2, focusRole3) ---
   try {
+      // Använd focusRole1, focusRole2, focusRole3 från formData
+      const roles = [
+        formData.focusRole1 || 'Logistikchef',
+        formData.focusRole2 || 'VD',
+        formData.focusRole3 || 'Ekonomichef'
+      ].filter(r => r && r.trim().length > 0);
+
       const step3Prompt = `
       KONTEXT (Redan känt):
       Företag: ${currentData.companyName}
       Logistik: ${currentData.logisticsProfile}
 
       INSTRUKTION: Kör STEG 3 (Människor & Insikter).
-      Sök efter Beslutsfattare (Logistikchef, VD), Nyheter och Omdömen.
+      
+      SÖK EFTER DESSA ROLLER (PRIORITETSORDNING):
+      1. ${roles[0]}
+      2. ${roles[1]}
+      3. ${roles[2]}
+      
+      Hitta beslutsfattare för varje roll via LinkedIn-sökning.
+      Sök också efter Nyheter och Omdömen om företaget.
       Returnera ENDAST JSON med nya fält.
       `;
 
@@ -1152,6 +1166,7 @@ export const generateDeepDiveSequential = async (
       });
       
       console.log(`📊 Steg 3: Search Grounding mode (required for contact search)`);
+      console.log(`   Söker roller: ${roles.join(', ')}`);
 
       const step3Text = typeof step3Response.text === 'function' ? step3Response.text() : step3Response.text;
       if (step3Text) {
