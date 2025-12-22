@@ -866,24 +866,63 @@ export const generateDeepDiveSequential = async (
   console.log(`🔍 Startar Steg 1 analys för: ${formData.companyNameOrOrg}`);
   console.log(`   Modell: ${model}`);
   
-  // OPTIMIZATION: Step 1 uses Pure LLM (no Search Grounding) to save quota
-  // Basic company data (org nr, revenue, address) is available on public sites without search
-  const step1Response = await generateWithRetry(ai, model, step1Prompt, {
-    systemInstruction: DEEP_STEP_1_CORE,
-    // NO TOOLS - Pure LLM is faster and cheaper for basic data
-    temperature: 0.1,
-    responseMimeType: 'application/json'
-  });
+  // OPTIMIZATION: Step 1 uses GROQ as PRIMARY (free, fast, powerful)
+  // Fallback to Gemini Pure LLM if Groq fails
+  let step1Response: any;
+  let step1Text = '';
+  
+  if (isGroqAvailable()) {
+    console.log(`🚀 Steg 1: Använder GROQ (primär - gratis & snabb)`);
+    try {
+      const groqResponse = await analyzeWithGroq(
+        DEEP_STEP_1_CORE,
+        step1Prompt,
+        0.1
+      );
+      
+      // Format Groq response to match Gemini structure
+      step1Response = {
+        text: () => groqResponse,
+        candidates: [{
+          content: { parts: [{ text: groqResponse }] },
+          groundingMetadata: { groundingChunks: [] }
+        }]
+      };
+      step1Text = groqResponse;
+      console.log(`✅ Groq Steg 1 lyckades`);
+    } catch (groqError: any) {
+      console.warn(`⚠️ Groq Steg 1 misslyckades:`, groqError.message);
+      console.log(`🔄 Fallback till Gemini Pure LLM...`);
+      
+      // Fallback to Gemini Pure LLM
+      step1Response = await generateWithRetry(ai, model, step1Prompt, {
+        systemInstruction: DEEP_STEP_1_CORE,
+        temperature: 0.1,
+        responseMimeType: 'application/json'
+      });
+      
+      step1Text = typeof step1Response.text === 'function' ? step1Response.text() : step1Response.text;
+      if (!step1Text && step1Response.candidates?.[0]?.content?.parts) {
+        const parts = step1Response.candidates[0].content.parts;
+        step1Text = parts.map((p: any) => p.text || '').join('');
+      }
+    }
+  } else {
+    console.log(`⚠️ Groq inte tillgänglig, använder Gemini Pure LLM`);
+    step1Response = await generateWithRetry(ai, model, step1Prompt, {
+      systemInstruction: DEEP_STEP_1_CORE,
+      temperature: 0.1,
+      responseMimeType: 'application/json'
+    });
+    
+    step1Text = typeof step1Response.text === 'function' ? step1Response.text() : step1Response.text;
+    if (!step1Text && step1Response.candidates?.[0]?.content?.parts) {
+      const parts = step1Response.candidates[0].content.parts;
+      step1Text = parts.map((p: any) => p.text || '').join('');
+    }
+  }
 
   console.log(`📥 Steg 1 svar mottaget`);
-  
-  // Extract text from response - handle both Gemini and Groq formats
-  let step1Text = typeof step1Response.text === 'function' ? step1Response.text() : step1Response.text;
-  if (!step1Text && step1Response.candidates?.[0]?.content?.parts) {
-    // When using grounding tools, text might be in parts array
-    const parts = step1Response.candidates[0].content.parts;
-    step1Text = parts.map((p: any) => p.text || '').join('');
-  }
   
   console.log(`   Text längd: ${step1Text?.length || 0} tecken`);
   console.log(`   Första 200 tecken: ${step1Text?.substring(0, 200) || 'TOMT'}`);
@@ -983,20 +1022,68 @@ export const generateDeepDiveSequential = async (
       Returnera ENDAST JSON med nya fält. Skriv inte över tomma fält.
       `;
 
-      // OPTIMIZATION: Step 2 uses Search Grounding only if website data is missing
-      // If we already have website data from scraping, use Pure LLM to analyze it
-      const useSearchForStep2 = !currentData.websiteUrl || currentData.websiteUrl === "Kunde inte hittas";
+      // OPTIMIZATION: Step 2 uses GROQ as PRIMARY (free, fast)
+      // Fallback to Gemini if Groq fails or if we need Search Grounding
+      let step2Response: any;
+      let step2Text = '';
+      const needsSearch = !currentData.websiteUrl || currentData.websiteUrl === "Kunde inte hittas";
       
-      const step2Response = await generateWithRetry(ai, model, step2Prompt, {
-        systemInstruction: DEEP_STEP_2_LOGISTICS,
-        tools: useSearchForStep2 ? [{ googleSearch: {} }] : undefined,
-        temperature: 0.4,
-        responseMimeType: useSearchForStep2 ? undefined : 'application/json'
-      });
-      
-      console.log(`📊 Steg 2: ${useSearchForStep2 ? 'Search Grounding' : 'Pure LLM'} mode`);
-
-      const step2Text = typeof step2Response.text === 'function' ? step2Response.text() : step2Response.text;
+      if (isGroqAvailable() && !needsSearch) {
+        console.log(`🚀 Steg 2: Använder GROQ (primär - gratis & snabb)`);
+        try {
+          const groqResponse = await analyzeWithGroq(
+            DEEP_STEP_2_LOGISTICS,
+            step2Prompt,
+            0.4
+          );
+          
+          // Format Groq response to match Gemini structure
+          step2Response = {
+            text: () => groqResponse,
+            candidates: [{
+              content: { parts: [{ text: groqResponse }] },
+              groundingMetadata: { groundingChunks: [] }
+            }]
+          };
+          step2Text = groqResponse;
+          console.log(`✅ Groq Steg 2 lyckades`);
+        } catch (groqError: any) {
+          console.warn(`⚠️ Groq Steg 2 misslyckades:`, groqError.message);
+          console.log(`🔄 Fallback till Gemini...`);
+          
+          // Fallback to Gemini
+          step2Response = await generateWithRetry(ai, model, step2Prompt, {
+            systemInstruction: DEEP_STEP_2_LOGISTICS,
+            temperature: 0.4,
+            responseMimeType: 'application/json'
+          });
+          
+          step2Text = typeof step2Response.text === 'function' ? step2Response.text() : step2Response.text;
+          if (!step2Text && step2Response.candidates?.[0]?.content?.parts) {
+            const parts = step2Response.candidates[0].content.parts;
+            step2Text = parts.map((p: any) => p.text || '').join('');
+          }
+        }
+      } else {
+        if (needsSearch) {
+          console.log(`🔍 Steg 2: Använder Gemini Search Grounding (website URL saknas)`);
+        } else {
+          console.log(`⚠️ Groq inte tillgänglig, använder Gemini`);
+        }
+        
+        step2Response = await generateWithRetry(ai, model, step2Prompt, {
+          systemInstruction: DEEP_STEP_2_LOGISTICS,
+          tools: needsSearch ? [{ googleSearch: {} }] : undefined,
+          temperature: 0.4,
+          responseMimeType: needsSearch ? undefined : 'application/json'
+        });
+        
+        step2Text = typeof step2Response.text === 'function' ? step2Response.text() : step2Response.text;
+        if (!step2Text && step2Response.candidates?.[0]?.content?.parts) {
+          const parts = step2Response.candidates[0].content.parts;
+          step2Text = parts.map((p: any) => p.text || '').join('');
+        }
+      }
       if (step2Text) {
         const step2Json = extractJSON(step2Text);
         if (step2Json && step2Json.length > 0) {
