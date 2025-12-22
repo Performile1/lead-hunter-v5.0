@@ -32,28 +32,100 @@ export const generateDeepDiveWithGroq = async (
 
   const delayTime = 2000; // Delay mellan steg
 
-  // --- STEP 1: CORE DATA ---
-  const step1Prompt = `
-  INPUT: ${formData.companyNameOrOrg}
-  INSTRUKTION: Kör STEG 1 (Core Data) enligt DEEP DIVE protokoll.
+  // --- STEP 1: CORE DATA (HYBRID: FIRECRAWL + GEMINI + GROQ) ---
+  // STRATEGI:
+  // 1. Firecrawl scraping av Allabolag (primär - strukturerad data)
+  // 2. Crawl4AI scraping (fallback 1)
+  // 3. Gemini med web search (fallback 2 - om scraping misslyckas)
+  // 4. Groq analyserar scrapad data (snabb & gratis)
   
-  VIKTIGT: 
-  1. Hämta organisationsnummer (XXXXXX-XXXX).
-  2. Du måste verifiera att organisationsnumret tillhör just "${formData.companyNameOrOrg}".
-  3. KORSREFERENS (STRIKT): Om du hittar ett org.nr, bekräfta att det står bredvid texten "${formData.companyNameOrOrg}" i sökresultaten. 
-  4. Om du hittar en träff på ett annat bolagsnamn (t.ex. moderbolag eller liknande namn), och inte exakt "${formData.companyNameOrOrg}", IGNORERA DET eller returnera tomt Org.nr.
-  5. Returnera ENDAST JSON-objektet. Inga markdown-block (\`\`\`).
-  `;
-
-  console.log(`🔍 Steg 1: Groq Core Data Analysis...`);
+  console.log(`🔍 Steg 1: Core Data Analysis (Firecrawl + Groq)...`);
   
+  let scrapedData: any = null;
   let step1Text = '';
-  try {
-    step1Text = await analyzeWithGroq(DEEP_STEP_1_CORE, step1Prompt, 0.1);
-    console.log(`✅ Groq Steg 1 lyckades (${step1Text.length} tecken)`);
-  } catch (error: any) {
-    console.error(`❌ Groq Steg 1 misslyckades:`, error.message);
-    throw new Error(`Groq Deep Analysis Steg 1 misslyckades: ${error.message}`);
+  
+  // --- TRY 1: FIRECRAWL SCRAPING ---
+  if (isFirecrawlAvailable()) {
+    try {
+      console.log(`🔥 Försöker scrapa Allabolag med Firecrawl...`);
+      const allabolagUrl = `https://www.allabolag.se/what/${encodeURIComponent(formData.companyNameOrOrg)}`;
+      
+      const firecrawlResult = await scrapeCompanyWebsite(allabolagUrl);
+      
+      if (firecrawlResult && firecrawlResult.markdown) {
+        scrapedData = firecrawlResult.markdown;
+        console.log(`✅ Firecrawl lyckades - ${scrapedData.length} tecken scrapad`);
+        
+        // Använd Groq för att analysera scrapad data
+        const groqPrompt = `
+        Analysera följande data från Allabolag och extrahera företagsinformation:
+        
+        ${scrapedData.substring(0, 4000)}
+        
+        Hitta och returnera:
+        - Organisationsnummer (XXXXXX-XXXX format)
+        - Företagsnamn
+        - Adress
+        - Omsättning (senaste 2 åren)
+        - Juridisk status
+        - Kreditbetyg
+        
+        Returnera ENDAST JSON enligt DEEP_STEP_1_CORE format.
+        `;
+        
+        step1Text = await analyzeWithGroq(DEEP_STEP_1_CORE, groqPrompt, 0.1);
+        console.log(`✅ Groq analyserade Firecrawl-data (${step1Text.length} tecken)`);
+      }
+    } catch (firecrawlError: any) {
+      console.warn(`⚠️ Firecrawl misslyckades:`, firecrawlError.message);
+    }
+  }
+  
+  // --- TRY 2: CRAWL4AI SCRAPING (TODO: Implementera) ---
+  if (!scrapedData) {
+    console.log(`ℹ️ Crawl4AI inte implementerat ännu, hoppar över...`);
+  }
+  
+  // --- TRY 3: GEMINI WEB SEARCH (FALLBACK) ---
+  if (!step1Text) {
+    try {
+      console.log(`🔍 Fallback till Gemini med Web Search...`);
+      
+      const { generateWithRetry } = await import('./geminiService');
+      const { GoogleGenerativeAI } = await import('@google/generative-ai');
+      
+      const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
+      if (!GEMINI_API_KEY) {
+        throw new Error("Gemini API Key saknas. Groq Deep Analysis kräver Gemini för Steg 1 (web search).");
+      }
+      
+      const ai = new GoogleGenerativeAI(GEMINI_API_KEY);
+      const model = "gemini-2.0-flash-exp";
+      
+      const step1Prompt = `
+      INPUT: ${formData.companyNameOrOrg}
+      INSTRUKTION: Kör STEG 1 (Core Data) enligt DEEP DIVE protokoll.
+      
+      VIKTIGT: 
+      1. Använd Google Search för att hitta organisationsnummer (XXXXXX-XXXX) på Allabolag eller Ratsit.
+      2. Du måste verifiera att organisationsnumret tillhör just "${formData.companyNameOrOrg}".
+      3. KORSREFERENS (STRIKT): Om du hittar ett org.nr, bekräfta att det står bredvid texten "${formData.companyNameOrOrg}" i sökresultaten. 
+      4. Om du hittar en träff på ett annat bolagsnamn (t.ex. moderbolag eller liknande namn), och inte exakt "${formData.companyNameOrOrg}", IGNORERA DET eller returnera tomt Org.nr.
+      5. Returnera ENDAST JSON-objektet. Inga markdown-block (\`\`\`).
+      `;
+      
+      const response = await generateWithRetry(ai, model, step1Prompt, {
+        systemInstruction: DEEP_STEP_1_CORE,
+        tools: [{ googleSearch: {} }], // Web search för org.nummer
+        temperature: 0.1
+      });
+      
+      step1Text = typeof response.text === 'function' ? response.text() : response.text;
+      console.log(`✅ Gemini Steg 1 lyckades (${step1Text.length} tecken)`);
+    } catch (error: any) {
+      console.error(`❌ Gemini Steg 1 misslyckades:`, error.message);
+      throw new Error(`Groq Deep Analysis Steg 1 misslyckades: ${error.message}`);
+    }
   }
 
   const step1Json = extractJSON(step1Text);
