@@ -4,6 +4,8 @@ import { checkKronofogden as checkKronofogdenNew, formatKronofogdenResult } from
 import { normalizeOrgNumber, validateOrgNumber } from "./bolagsverketService";
 import { analyzeWebsiteTech } from "./techAnalysisService";
 import { searchCompanyNews } from "./newsApiService";
+import { analyzeCompetitiveIntelligence } from "./competitiveIntelligenceService";
+import { detectTriggers } from "./triggerDetectionService";
 import { API_BASE_URL } from "../src/utils/api";
 import { scrapeCompanyWebsite, isFirecrawlAvailable } from "./firecrawlService";
 import { DEEP_STEP_1_CORE, DEEP_STEP_2_LOGISTICS, DEEP_STEP_3_PEOPLE } from "../prompts/deepAnalysis";
@@ -262,12 +264,121 @@ export const generateDeepDiveWithGroq = async (
     }
   }
 
+  // --- STEP 5: AI & SÄLJANALYS (COMPETITIVE INTELLIGENCE) ---
+  if (currentData.websiteAnalysis) {
+    try {
+      console.log(`🎯 Analyzing competitive intelligence for ${currentData.companyName}`);
+      
+      const competitiveIntel = analyzeCompetitiveIntelligence(
+        currentData.websiteAnalysis as any,
+        currentData
+      );
+      
+      currentData.competitiveIntelligence = competitiveIntel as any;
+      currentData.opportunityScore = competitiveIntel.opportunity_score;
+      currentData.salesPitch = competitiveIntel.sales_pitch;
+      
+      console.log(`✅ Competitive Intelligence: Score ${competitiveIntel.opportunity_score}/100`);
+    } catch (error: any) {
+      console.warn(`⚠️ Competitive Intelligence failed:`, error.message);
+    }
+  }
+
+  // --- STEP 6: NEWS & TRIGGERS ---
+  try {
+    console.log(`📰 Fetching news for ${currentData.companyName}`);
+    
+    // Try NewsAPI first
+    let newsArticles: any[] = [];
+    try {
+      newsArticles = await searchCompanyNews(currentData.companyName);
+      if (newsArticles && newsArticles.length > 0) {
+        console.log(`✅ NewsAPI: Found ${newsArticles.length} articles`);
+      } else {
+        throw new Error('No articles from NewsAPI');
+      }
+    } catch (newsError) {
+      console.warn(`⚠️ NewsAPI failed, trying fallback sources...`);
+      
+      // FALLBACK: Scrape Swedish business news sites
+      const newsSources = [
+        { name: 'Market.se', url: `https://www.market.se/sok?q=${encodeURIComponent(currentData.companyName)}` },
+        { name: 'Breakit.se', url: `https://www.breakit.se/sok?q=${encodeURIComponent(currentData.companyName)}` },
+        { name: 'ehandel.se', url: `https://www.ehandel.se/?s=${encodeURIComponent(currentData.companyName)}` }
+      ];
+      
+      for (const source of newsSources) {
+        try {
+          console.log(`🔍 Trying ${source.name}...`);
+          
+          // Use Groq to search and extract news from the source
+          const newsPrompt = `
+          Sök efter nyheter om företaget "${currentData.companyName}" från ${source.name}.
+          
+          Returnera JSON med följande struktur:
+          {
+            "articles": [
+              {
+                "title": "Rubrik",
+                "description": "Kort beskrivning",
+                "url": "${source.url}",
+                "publishedAt": "2024-01-01",
+                "source": "${source.name}"
+              }
+            ]
+          }
+          
+          Om du inte hittar några nyheter, returnera tom array.
+          `;
+          
+          const newsResponse = await analyzeWithGroq(
+            "Du är en nyhetsanalytiker som söker efter företagsnyheter.",
+            newsPrompt,
+            0.3
+          );
+          
+          const newsJson = extractJSON(newsResponse);
+          if (newsJson && newsJson[0]?.articles?.length > 0) {
+            newsArticles = newsJson[0].articles;
+            console.log(`✅ ${source.name}: Found ${newsArticles.length} articles`);
+            break; // Stop after first successful source
+          }
+        } catch (sourceError) {
+          console.warn(`⚠️ ${source.name} failed:`, sourceError);
+        }
+      }
+    }
+    
+    // Process news articles
+    if (newsArticles && newsArticles.length > 0) {
+      currentData.recentNews = newsArticles.slice(0, 5).map((article: any) => ({
+        title: article.title || '',
+        url: article.url || '',
+        date: article.publishedAt || new Date().toISOString(),
+        source: article.source?.name || article.source || 'Unknown'
+      }));
+      
+      // Detect triggers from news
+      const triggers = detectTriggers(currentData, newsArticles);
+      currentData.triggers = triggers;
+      
+      console.log(`✅ News processed: ${currentData.recentNews.length} articles, ${triggers.length} triggers`);
+    } else {
+      console.log(`ℹ️ No news found for ${currentData.companyName}`);
+    }
+  } catch (error: any) {
+    console.warn(`⚠️ News & Triggers failed:`, error.message);
+  }
+
   // --- FINALIZE ---
   currentData.analysisDate = new Date().toISOString();
   currentData.analysisStatus = "COMPLETE";
   currentData.analysisProtocol = "groq_deep";
   
   console.log(`✅ GROQ DEEP ANALYSIS COMPLETE för ${currentData.companyName}`);
+  console.log(`   - Competitive Intelligence: ${currentData.opportunityScore || 0}/100`);
+  console.log(`   - News Articles: ${currentData.recentNews?.length || 0}`);
+  console.log(`   - Triggers: ${currentData.triggers?.length || 0}`);
   
   return currentData;
 };
