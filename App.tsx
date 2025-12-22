@@ -25,6 +25,7 @@ import { TenantDashboard } from './src/components/admin/TenantDashboard';
 import { DashboardRouter } from './components/DashboardRouter';
 import { AdminSettings } from './components/AdminSettings'; 
 import { generateLeads, findPersonOnLinkedIn, generateDeepDiveSequential } from './services/geminiService';
+import { generateDeepDiveWithGroq, generateQuickScanWithGroq } from './services/groqDeepAnalysis';
 import { SearchFormData, LeadData, Segment } from './types';
 import { AlertCircle, Search, Database } from 'lucide-react';
 
@@ -131,8 +132,8 @@ const AppContent: React.FC = () => {
   const [protocolMode, setProtocolMode] = useState<'quick' | 'deep' | 'deep_pro' | 'groq_fast' | 'groq_deep' | 'batch_prospecting'>(() => {
     try {
       const saved = localStorage.getItem('dhl_protocol_mode');
-      return (saved as any) || 'deep';
-    } catch (e) { return 'deep'; }
+      return (saved as any) || 'groq_deep'; // DEFAULT: Groq Deep (gratis & snabb)
+    } catch (e) { return 'groq_deep'; }
   }); 
 
   // --- API CALL COUNTER & TIMESTAMP ---
@@ -812,16 +813,44 @@ const AppContent: React.FC = () => {
           formData.triggers = formDataState.triggers;
       }
 
-      const result = await generateDeepDiveSequential(formData, (partialLead) => {
-           // Live Update Callback
-           // Only update if we are still looking at this company
-           const merged = currentLead ? { ...currentLead, ...partialLead } : partialLead;
-           setDeepDiveLead(merged);
-           setIsEnriching(true); // Show skeletons for missing parts
-           
-           // Update in list too
-           handleUpdateLead(merged);
-      });
+      // PROTOCOL ROUTING: Anropa rätt funktion baserat på protocolMode
+      let result: LeadData;
+      
+      switch (protocolMode) {
+        case 'groq_deep':
+          console.log('🚀 Routing to: Groq Deep Analysis');
+          result = await generateDeepDiveWithGroq(formData, (partialLead) => {
+            const merged = currentLead ? { ...currentLead, ...partialLead } : partialLead;
+            setDeepDiveLead(merged);
+            setIsEnriching(true);
+            handleUpdateLead(merged);
+          });
+          break;
+          
+        case 'groq_fast':
+          console.log('⚡ Routing to: Groq Quick Scan');
+          result = await generateQuickScanWithGroq(formData, (partialLead) => {
+            const merged = currentLead ? { ...currentLead, ...partialLead } : partialLead;
+            setDeepDiveLead(merged);
+            setIsEnriching(true);
+            handleUpdateLead(merged);
+          });
+          break;
+          
+        case 'deep':
+        case 'deep_pro':
+        case 'quick':
+        case 'batch_prospecting':
+        default:
+          console.log(`🔍 Routing to: Gemini ${protocolMode}`);
+          result = await generateDeepDiveSequential(formData, (partialLead) => {
+            const merged = currentLead ? { ...currentLead, ...partialLead } : partialLead;
+            setDeepDiveLead(merged);
+            setIsEnriching(true);
+            handleUpdateLead(merged);
+          });
+          break;
+      }
 
       // Explicitly timestamp the analysis if missing
       // CRITICAL: Ensure analysisDate is present

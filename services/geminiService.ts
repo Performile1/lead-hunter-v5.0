@@ -106,7 +106,7 @@ function getFromCache(name: string, org?: string): LeadData | null {
 /**
  * Robust JSON extraction helper
  */
-function extractJSON(text: string): any[] | null {
+export function extractJSON(text: string): any[] | null {
   if (!text) return null;
 
   // 1. Remove markdown code blocks (case insensitive)
@@ -278,7 +278,7 @@ async function checkKronofogden(orgNr: string): Promise<string> {
 /**
  * Maps the flattened Swedish JSON keys from Gemini to LeadData
  */
-function mapAiResponseToLeadData(raw: any, groundingChunks?: any[]): LeadData {
+export function mapAiResponseToLeadData(raw: any, groundingChunks?: any[]): LeadData {
   const mapDecisionMaker = (dmRaw: any): DecisionMaker => ({
     name: dmRaw?.namn || "Okänd",
     title: dmRaw?.titel || "Okänd titel",
@@ -1466,7 +1466,7 @@ Returnera ENDAST JSON, ingen annan text.`;
 };
 
 // Helper to extract links specifically from chunks without full mapping
-function extractGroundingLinks(chunks: any[]): SourceLink[] {
+export function extractGroundingLinks(chunks: any[]): SourceLink[] {
     if (!chunks) return [];
     return chunks.map((c: any) => {
          const uri = c.web?.uri || "";
