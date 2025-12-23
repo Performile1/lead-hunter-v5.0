@@ -115,14 +115,14 @@ export const LoginPage: React.FC = () => {
           {/* Header with Corporate Identity */}
           <div className="p-8 text-center relative bg-[#FFC400]">
             <div className="absolute top-0 left-0 w-full h-1 bg-black"></div>
-            <div className="h-96 mx-auto mb-4 flex items-center justify-center">
+            <div className="mx-auto mb-4 flex items-center justify-center">
               {tenantInfo?.logoUrl ? (
-                <img src={tenantInfo.logoUrl} alt={companyName} className="h-96 object-contain" />
+                <img src={tenantInfo.logoUrl} alt={companyName} className="h-64 object-contain" />
               ) : (
                 <img 
                   src="/eurakai-logo.png" 
                   alt="EUREKAI" 
-                  className="h-96 w-auto"
+                  className="h-64 object-contain"
                 />
               )}
             </div>
@@ -213,15 +213,16 @@ export const LoginPage: React.FC = () => {
               </button>
             </form>
 
-            {isSuperAdminLogin && (
-              <div className="mt-8 pt-6 border-t-2 border-gray-100">
-                <div className="bg-[#FFC400]/10 p-4 border-l-4 border-[#FFC400]">
-                  <p className="text-xs font-bold text-black uppercase tracking-wide mb-2">Super Admin:</p>
-                  <p className="text-sm font-semibold text-black">admin@leadhunter.com</p>
-                  <p className="text-xs text-gray-600 mt-1">Lösenord: <span className="font-semibold">LeadHunter2024!</span></p>
-                </div>
-              </div>
-            )}
+            {/* Glömt lösenord */}
+            <div className="mt-6 text-center">
+              <button
+                type="button"
+                onClick={() => alert('Kontakta din administratör för att återställa lösenordet.')}
+                className="text-sm text-gray-600 hover:text-[#FFC400] font-semibold transition-colors"
+              >
+                Glömt lösenord?
+              </button>
+            </div>
           </div>
 
           {/* Footer Stripe */}
