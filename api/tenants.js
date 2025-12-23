@@ -56,6 +56,15 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Parse body if it's a string (Vercel sometimes doesn't auto-parse)
+    if (req.body && typeof req.body === 'string') {
+      try {
+        req.body = JSON.parse(req.body);
+      } catch (e) {
+        return res.status(400).json({ error: 'Invalid JSON in request body' });
+      }
+    }
+
     // Authenticate user
     const { user, isSuperAdmin } = await authenticate(req);
 
