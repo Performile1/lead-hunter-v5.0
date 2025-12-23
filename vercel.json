@@ -5,6 +5,14 @@
   "installCommand": "npm install",
   "rewrites": [
     {
+      "source": "/api/tenants/:id",
+      "destination": "/api/tenants.js"
+    },
+    {
+      "source": "/api/tenants",
+      "destination": "/api/tenants.js"
+    },
+    {
       "source": "/api/notifications",
       "destination": "/api/notifications.js"
     },
