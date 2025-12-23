@@ -226,7 +226,7 @@ export const SharedLeadPool: React.FC = () => {
         </div>
         <div className="bg-white border-2 border-gray-200 p-4 rounded">
           <p className="text-xs font-bold text-gray-500 uppercase">Tier 1 (KAM)</p>
-          <p className="text-3xl font-black text-purple-600 mt-1">{stats.bySegment['tier1'] || 0}</p>
+          <p className="text-3xl font-black text-gray-600 mt-1">{stats.bySegment['tier1'] || 0}</p>
         </div>
         <div className="bg-white border-2 border-gray-200 p-4 rounded">
           <p className="text-xs font-bold text-gray-500 uppercase">Tier 2-3</p>
@@ -386,7 +386,7 @@ export const SharedLeadPool: React.FC = () => {
                   <TrendingUp className="w-4 h-4 text-gray-400" />
                   <span className="text-gray-700">{lead.revenue || 'Okänd omsättning'}</span>
                   <span className={`ml-auto px-2 py-0.5 text-xs font-bold rounded ${
-                    lead.segment === 'tier1' ? 'bg-purple-100 text-purple-800' :
+                    lead.segment === 'tier1' ? 'bg-gray-100 text-gray-800' :
                     lead.segment === 'tier2' ? 'bg-blue-100 text-blue-800' :
                     lead.segment === 'tier3' ? 'bg-green-100 text-green-800' :
                     'bg-gray-100 text-gray-800'

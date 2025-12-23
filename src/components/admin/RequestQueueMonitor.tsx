@@ -125,15 +125,15 @@ export const RequestQueueMonitor: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-purple-50 border-2 border-purple-200 p-4 rounded">
+          <div className="bg-gray-50 border-2 border-gray-200 p-4 rounded">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs font-bold text-purple-600 uppercase">Aktiva Services</p>
-                <p className="text-3xl font-black text-purple-900 mt-1">
+                <p className="text-xs font-bold text-gray-600 uppercase">Aktiva Services</p>
+                <p className="text-3xl font-black text-gray-900 mt-1">
                   {status.serviceStats.filter((s: any) => s.active > 0).length}
                 </p>
               </div>
-              <CheckCircle className="w-8 h-8 text-purple-400" />
+              <CheckCircle className="w-8 h-8 text-gray-400" />
             </div>
           </div>
         </div>

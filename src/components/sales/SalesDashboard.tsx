@@ -164,7 +164,7 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
         <div className="flex gap-3">
           <button
             onClick={() => setCurrentView('shared-pool')}
-            className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded font-semibold"
+            className="flex items-center gap-2 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded font-semibold"
           >
             <Share2 className="w-4 h-4" />
             Delad Lead-Pool
@@ -265,7 +265,7 @@ export const SalesDashboard: React.FC<SalesDashboardProps> = ({ leads, onNavigat
           </div>
           
           <div className="text-center">
-            <div className="bg-purple-100 border-2 border-yellow-300 rounded-lg p-4">
+            <div className="bg-gray-100 border-2 border-yellow-300 rounded-lg p-4">
               <p className="text-2xl font-black text-black">{metrics.pipeline.qualified}</p>
               <p className="text-xs font-bold text-gray-700 mt-1 uppercase">Kvalificerade</p>
             </div>

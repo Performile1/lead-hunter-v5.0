@@ -127,7 +127,7 @@ export const TenantUserManagement: React.FC = () => {
 
   const getRoleBadge = (role: string) => {
     const badges: Record<string, { bg: string; text: string; label: string }> = {
-      admin: { bg: 'bg-purple-100', text: 'text-black', label: 'Admin' },
+      admin: { bg: 'bg-gray-100', text: 'text-black', label: 'Admin' },
       manager: { bg: 'bg-blue-100', text: 'text-blue-800', label: 'Manager' },
       sales: { bg: 'bg-green-100', text: 'text-green-800', label: 'Säljare' },
       terminal_manager: { bg: 'bg-orange-100', text: 'text-orange-800', label: 'Terminalchef' }

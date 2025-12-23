@@ -243,10 +243,10 @@ export const TenantSegmentConfig: React.FC = () => {
           </div>
 
           {/* KAM Segment */}
-          <div className="border-2 border-purple-200 p-4 rounded bg-purple-50">
+          <div className="border-2 border-gray-200 p-4 rounded bg-gray-50">
             <div className="flex items-center justify-between mb-3">
               <div>
-                <span className="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded font-black text-sm border-2 border-purple-300">KAM</span>
+                <span className="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded font-black text-sm border-2 border-gray-300">KAM</span>
                 <span className="ml-2 text-sm text-gray-600">Key Account Manager / Enterprise</span>
               </div>
             </div>

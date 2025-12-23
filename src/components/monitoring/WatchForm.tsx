@@ -217,7 +217,7 @@ export const WatchForm: React.FC<WatchFormProps> = ({ leadId, companyName, onWat
                   type="checkbox"
                   checked={triggers.segment_change}
                   onChange={(e) => setTriggers({...triggers, segment_change: e.target.checked})}
-                  className="w-4 h-4 text-gray-700 border-gray-300 rounded focus:ring-purple-500"
+                  className="w-4 h-4 text-gray-700 border-gray-300 rounded focus:ring-gray-500"
                 />
                 <span className="text-sm">🔄 Segmentändring</span>
               </label>

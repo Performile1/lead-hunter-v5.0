@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { 
   X, Building2, MapPin, Phone, Globe, Mail, Calendar, User, TrendingUp, TrendingDown,
   AlertCircle, CheckCircle, ExternalLink, DollarSign, Package, ShoppingCart, 
@@ -662,7 +662,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
               {lead.competitive_intelligence ? (
                 <>
                   {/* Opportunity Score */}
-                  <div className="bg-purple-50 border-2 border-yellow-300 p-6 rounded-lg">
+                  <div className="bg-gray-50 border-2 border-yellow-300 p-6 rounded-lg">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm text-gray-600 mb-1">Opportunity Score</p>
@@ -671,7 +671,7 @@ export const EnhancedLeadCard: React.FC<EnhancedLeadCardProps> = ({ lead, onClos
                         </p>
                       </div>
                       <div className="text-right">
-                        <Award className="w-16 h-16 text-purple-400 mb-2" />
+                        <Award className="w-16 h-16 text-gray-400 mb-2" />
                         <p className="text-sm font-semibold text-black">
                           {lead.competitive_intelligence.opportunity_score >= 80 ? '🔥 KONTAKTA NU!' :
                            lead.competitive_intelligence.opportunity_score >= 60 ? '⭐ Kontakta snart' :

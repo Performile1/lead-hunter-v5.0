@@ -20,7 +20,7 @@ export const TenantSwitcher: React.FC = () => {
         className="flex items-center gap-2 px-3 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
       >
         {activeTenant.isSuperAdminMode ? (
-          <Shield className="w-4 h-4 text-purple-600" />
+          <Shield className="w-4 h-4 text-gray-600" />
         ) : (
           <Building2 className="w-4 h-4 text-blue-600" />
         )}
@@ -44,16 +44,16 @@ export const TenantSwitcher: React.FC = () => {
                 setIsOpen(false);
               }}
               className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 ${
-                activeTenant.isSuperAdminMode ? 'bg-purple-50' : ''
+                activeTenant.isSuperAdminMode ? 'bg-gray-50' : ''
               }`}
             >
-              <Shield className="w-5 h-5 text-purple-600 flex-shrink-0" />
+              <Shield className="w-5 h-5 text-gray-600 flex-shrink-0" />
               <div className="flex-1 text-left">
                 <div className="text-sm font-medium text-gray-900">SuperAdmin Mode</div>
                 <div className="text-xs text-gray-500">Full system access</div>
               </div>
               {activeTenant.isSuperAdminMode && (
-                <Check className="w-4 h-4 text-purple-600 flex-shrink-0" />
+                <Check className="w-4 h-4 text-gray-600 flex-shrink-0" />
               )}
             </button>
 
