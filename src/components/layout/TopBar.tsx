@@ -51,8 +51,26 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenTools }) => {
             </div>
           </div>
 
-          {/* Center - Tools Menu */}
-          <div className="flex items-center gap-4">
+          {/* Center - Navigation Buttons */}
+          <div className="flex items-center gap-3">
+            {/* Leads Button */}
+            <button
+              onClick={() => handleToolClick('leads')}
+              className="flex items-center gap-2 px-4 py-2 bg-[#FFC400] hover:bg-[#FFD633] text-black rounded-lg transition-colors font-bold text-sm"
+            >
+              <Database className="w-4 h-4" />
+              Leads
+            </button>
+
+            {/* Kunder Button */}
+            <button
+              onClick={() => handleToolClick('customers')}
+              className="flex items-center gap-2 px-4 py-2 bg-[#FFC400] hover:bg-[#FFD633] text-black rounded-lg transition-colors font-bold text-sm"
+            >
+              <Users className="w-4 h-4" />
+              Kunder
+            </button>
+
             {/* Tools Dropdown */}
             <div className="relative">
               <button
