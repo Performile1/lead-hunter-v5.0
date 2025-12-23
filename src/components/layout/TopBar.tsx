@@ -41,7 +41,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenTools }) => {
               <img 
                 src="/eurakai-logo.png" 
                 alt="EUREKAI" 
-                className="h-8 w-auto"
+                className="h-8 object-contain"
               />
               <div className="border-l border-gray-300 pl-3">
                 <p className="text-xs text-gray-500 font-medium">
