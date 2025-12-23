@@ -1,7 +1,6 @@
 ﻿import React, { useState, useRef, useEffect } from 'react';
 import { Settings, ChevronDown, LogOut, User, Shield } from 'lucide-react';
 import { useAuth } from '../../../contexts/AuthContext';
-import lsaLogo from '../../assets/lsa-logo.svg';
 
 interface SuperAdminHeaderProps {
   onNavigateToDashboard?: () => void;
@@ -29,28 +28,28 @@ export const SuperAdminHeader: React.FC<SuperAdminHeaderProps> = ({
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-2">
         <div className="flex items-center justify-between">
           
-          {/* LEFT: LSA LOGO */}
+          {/* LEFT: EUREKAI LOGO */}
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-4">
               {onNavigateToDashboard ? (
                 <button onClick={onNavigateToDashboard} className="hover:opacity-80 transition-opacity">
                   <img 
-                    src={lsaLogo} 
-                    alt="LSA Super Admin" 
+                    src="/eurakai-logo.png" 
+                    alt="EUREKAI" 
                     className="h-12 w-auto"
                   />
                 </button>
               ) : (
                 <img 
-                  src={lsaLogo} 
-                  alt="LSA Super Admin" 
+                  src="/eurakai-logo.png" 
+                  alt="EUREKAI" 
                   className="h-12 w-auto"
                 />
               )}
               
               {/* Subtitle */}
-              <div className="hidden lg:block border-l-2 border-[#8B5CF6]/20 pl-4">
-                <div className="text-[#FFC400] font-black italic uppercase tracking-widest text-lg leading-none">
+              <div className="hidden lg:block border-l-2 border-black/20 pl-4">
+                <div className="text-black font-black uppercase tracking-widest text-lg leading-none">
                   Super Admin
                 </div>
                 <div className="text-[10px] text-black font-bold uppercase tracking-wide opacity-80">

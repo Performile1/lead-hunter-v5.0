@@ -115,14 +115,14 @@ export const LoginPage: React.FC = () => {
           {/* Header with Corporate Identity */}
           <div className="p-8 text-center relative bg-[#FFC400]">
             <div className="absolute top-0 left-0 w-full h-1 bg-black"></div>
-            <div className="h-20 mx-auto mb-4 flex items-center justify-center">
+            <div className="h-32 mx-auto mb-4 flex items-center justify-center">
               {tenantInfo?.logoUrl ? (
-                <img src={tenantInfo.logoUrl} alt={companyName} className="h-16 object-contain" />
+                <img src={tenantInfo.logoUrl} alt={companyName} className="h-32 object-contain" />
               ) : (
                 <img 
                   src="/eurakai-logo.png" 
                   alt="EUREKAI" 
-                  className="h-16 w-auto"
+                  className="h-32 w-auto"
                 />
               )}
             </div>
