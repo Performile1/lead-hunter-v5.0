@@ -9,6 +9,7 @@ import { TenantManagement } from './TenantManagement';
 import { SuperAdminUserManagement } from './SuperAdminUserManagement';
 import { SuperAdminSettings } from './SuperAdminSettings';
 import { SuperAdminLeadSearch } from './SuperAdminLeadSearch';
+import { SuperAdminLeadViewer } from './SuperAdminLeadViewer';
 import { SuperAdminCustomers } from './SuperAdminCustomers';
 import { ErrorReportReview } from './ErrorReportReview';
 import APIKeysPanel from './APIKeysPanel';
