@@ -84,13 +84,19 @@ export const SuperAdminLeadViewer: React.FC = () => {
     return true;
   });
 
+  // Calculate allocation stats
+  const allocatedLeads = filteredLeads.filter(l => l.tenant_id);
+  const unallocatedLeads = filteredLeads.filter(l => !l.tenant_id);
+  
   const stats = {
     total: filteredLeads.length,
-    withDhl: filteredLeads.filter(l => l.has_dhl).length,
+    allocated: allocatedLeads.length,
+    unallocated: unallocatedLeads.length,
     byTenant: tenants.map(t => ({
-      name: t.name,
+      id: t.id,
+      name: t.company_name || t.name,
       count: filteredLeads.filter(l => l.tenant_id === t.id).length
-    }))
+    })).filter(t => t.count > 0)
   };
 
   return (
@@ -122,17 +128,39 @@ export const SuperAdminLeadViewer: React.FC = () => {
           <p className="text-xs font-bold text-gray-500 uppercase">Totalt Leads</p>
           <p className="text-3xl font-black text-[#FFC400] mt-1">{stats.total}</p>
         </div>
-        <div className="bg-white border-2 border-gray-200 p-4 rounded">
-          <p className="text-xs font-bold text-gray-500 uppercase">Allokerade</p>
-          <p className="text-3xl font-black text-green-600 mt-1">{stats.withDhl}</p>
+        <div className="bg-white border-2 border-gray-200 p-4 rounded cursor-pointer hover:bg-green-50 transition-colors" title="Leads tilldelade till tenants">
+          <p className="text-xs font-bold text-gray-500 uppercase flex items-center gap-2">
+            Allokerade
+            <Building2 className="w-4 h-4" />
+          </p>
+          <p className="text-3xl font-black text-green-600 mt-1">{stats.allocated}</p>
+          {stats.byTenant.length > 0 && (
+            <div className="mt-2 pt-2 border-t border-gray-200">
+              <p className="text-xs text-gray-600 mb-1">Per tenant:</p>
+              {stats.byTenant.slice(0, 3).map(t => (
+                <div key={t.id} className="text-xs text-gray-700 flex justify-between">
+                  <span className="truncate">{t.name}</span>
+                  <span className="font-semibold ml-2">{t.count}</span>
+                </div>
+              ))}
+              {stats.byTenant.length > 3 && (
+                <p className="text-xs text-gray-500 mt-1">+{stats.byTenant.length - 3} fler...</p>
+              )}
+            </div>
+          )}
+        </div>
+        <div className="bg-white border-2 border-gray-200 p-4 rounded cursor-pointer hover:bg-red-50 transition-colors" title="Leads utan tenant-tilldelning">
+          <p className="text-xs font-bold text-gray-500 uppercase flex items-center gap-2">
+            Inte allokerade
+            <Package className="w-4 h-4" />
+          </p>
+          <p className="text-3xl font-black text-red-600 mt-1">{stats.unallocated}</p>
+          <p className="text-xs text-gray-600 mt-2">Lediga leads tillgängliga för tilldelning</p>
         </div>
         <div className="bg-white border-2 border-gray-200 p-4 rounded">
-          <p className="text-xs font-bold text-gray-500 uppercase">Inte allokerade</p>
-          <p className="text-3xl font-black text-red-600 mt-1">{stats.total - stats.withDhl}</p>
-        </div>
-        <div className="bg-white border-2 border-gray-200 p-4 rounded">
-          <p className="text-xs font-bold text-gray-500 uppercase">Tenants</p>
+          <p className="text-xs font-bold text-gray-500 uppercase">Aktiva Tenants</p>
           <p className="text-3xl font-black text-[#4F46E5] mt-1">{tenants.length}</p>
+          <p className="text-xs text-gray-600 mt-2">{stats.byTenant.length} med leads</p>
         </div>
       </div>
 
