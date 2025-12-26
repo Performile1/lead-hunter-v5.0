@@ -123,11 +123,11 @@ export const SuperAdminLeadViewer: React.FC = () => {
           <p className="text-3xl font-black text-[#FFC400] mt-1">{stats.total}</p>
         </div>
         <div className="bg-white border-2 border-gray-200 p-4 rounded">
-          <p className="text-xs font-bold text-gray-500 uppercase">Med DHL</p>
+          <p className="text-xs font-bold text-gray-500 uppercase">Allokerade</p>
           <p className="text-3xl font-black text-green-600 mt-1">{stats.withDhl}</p>
         </div>
         <div className="bg-white border-2 border-gray-200 p-4 rounded">
-          <p className="text-xs font-bold text-gray-500 uppercase">Utan DHL</p>
+          <p className="text-xs font-bold text-gray-500 uppercase">Inte allokerade</p>
           <p className="text-3xl font-black text-red-600 mt-1">{stats.total - stats.withDhl}</p>
         </div>
         <div className="bg-white border-2 border-gray-200 p-4 rounded">
