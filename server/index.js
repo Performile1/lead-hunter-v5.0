@@ -34,6 +34,7 @@ import analyticsRoutes from './routes/analytics.js';
 import errorReportsRoutes from './routes/errorReports.js';
 import adminLeadsRoutes from './routes/adminLeads.js';
 import batchAnalysisRoutes from './routes/batchAnalysis.js';
+import quotasRoutes from './routes/quotas.js';
 
 // Services
 import { startScheduler as startBatchScheduler } from './services/batchSchedulerService.js';
@@ -118,6 +119,7 @@ app.use('/api/analytics', analyticsRoutes);
 app.use('/api/error-reports', errorReportsRoutes);
 app.use('/api/admin', adminLeadsRoutes);
 app.use('/api/batch-analysis', batchAnalysisRoutes);
+app.use('/api/quotas', quotasRoutes);
 
 // ============================================
 // ERROR HANDLING

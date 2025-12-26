@@ -44,72 +44,57 @@ export default function QuotaManagementPanel() {
   const loadQuotas = async () => {
     setLoading(true);
     
-    const mockQuotas: ServiceQuota[] = [
-      {
-        name: 'Gemini',
-        service: 'AI Analysis',
-        used: 18,
-        limit: 20,
-        percentage: 90,
-        resetTime: new Date(Date.now() + 3600000).toISOString(),
-        status: 'critical',
-        trend: 'increasing',
-        lastHour: 5,
-        priority: 'critical'
-      },
-      {
-        name: 'Groq',
-        service: 'AI Fallback',
-        used: 8420,
-        limit: 14400,
-        percentage: 58,
-        resetTime: new Date(Date.now() + 86400000).toISOString(),
-        status: 'healthy',
-        trend: 'stable',
-        lastHour: 120,
-        priority: 'critical'
-      },
-      {
-        name: 'Firecrawl',
-        service: 'Web Scraping',
-        used: 380,
-        limit: 500,
-        percentage: 76,
-        resetTime: new Date(Date.now() + 2592000000).toISOString(),
-        status: 'warning',
-        trend: 'increasing',
-        lastHour: 15,
-        priority: 'recommended'
-      },
-      {
-        name: 'DeepSeek',
-        service: 'AI Backup',
-        used: 0,
-        limit: 1000000,
-        percentage: 0,
-        resetTime: new Date(Date.now() + 2592000000).toISOString(),
-        status: 'healthy',
-        trend: 'stable',
-        lastHour: 0,
-        priority: 'recommended'
-      },
-      {
-        name: 'NewsAPI',
-        service: 'News',
-        used: 45,
-        limit: 100,
-        percentage: 45,
-        resetTime: new Date(Date.now() + 86400000).toISOString(),
-        status: 'healthy',
-        trend: 'stable',
-        lastHour: 3,
-        priority: 'optional'
-      }
-    ];
+    try {
+      const token = localStorage.getItem('eurekai_token');
+      const response = await fetch('http://localhost:3001/api/quotas/stats', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
 
-    setQuotas(mockQuotas);
-    checkForAlerts(mockQuotas);
-    setLoading(false);
+      if (!response.ok) {
+        throw new Error('Failed to fetch quota stats');
+      }
+
+      const data = await response.json();
+      setQuotas(data.quotas || []);
+      checkForAlerts(data.quotas || []);
+    } catch (error) {
+      console.error('Error loading quotas:', error);
+      // Fallback to empty array on error
+      setQuotas([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResetQuota = async (service: string) => {
+    if (!confirm(`Är du säker på att du vill återställa quota för ${service}?`)) {
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem('eurekai_token');
+      const response = await fetch('http://localhost:3001/api/quotas/reset', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ service: service.toLowerCase() })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to reset quota');
+      }
+
+      alert(`Quota för ${service} har återställts!`);
+      loadQuotas();
+    } catch (error) {
+      console.error('Error resetting quota:', error);
+      alert('Kunde inte återställa quota. Försök igen.');
+    }
   };
 
   const checkForAlerts = (quotas: ServiceQuota[]) => {
@@ -401,6 +386,16 @@ export default function QuotaManagementPanel() {
                           }
                         </div>
                       )}
+
+                      <div className="flex justify-end mt-3">
+                        <button
+                          onClick={() => handleResetQuota(quota.name)}
+                          className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded border border-gray-300 flex items-center gap-2"
+                        >
+                          <RefreshCw className="w-3 h-3" />
+                          Återställ Quota
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
